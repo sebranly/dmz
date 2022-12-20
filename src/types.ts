@@ -4,6 +4,8 @@ export enum Template {
   Javascript = 'javascript'
 }
 
-export type TemplateLanguage = {
-  language: Template;
+export type TimeUnits = {
+  hours: number;
+  minutes: number;
+  seconds: number;
 };

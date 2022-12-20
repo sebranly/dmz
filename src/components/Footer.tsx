@@ -8,7 +8,7 @@ const Footer = () => (
       <a href={PROJECT_URL} rel="noopener noreferrer" title="GitHub page for repository" target="_blank">
         {AUTHOR_NAME}
       </a>{' '}
-      with ❤️
+      with 💚
     </div>
     <div>
       Website version{' '}
