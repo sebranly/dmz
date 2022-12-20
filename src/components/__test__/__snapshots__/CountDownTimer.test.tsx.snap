@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CountDownTimer 1`] = `
+NodeList [
+  <div
+    class="count-down "
+  >
+    <h3>
+      Timer 1
+    </h3>
+    <ul
+      class="count-down-timer flex-container"
+    >
+      <li
+        class="count-down-timer-element flex-child"
+      >
+        <span
+          class=""
+        >
+          01
+        </span>
+        <div
+          class="count-down-timer-unit"
+        >
+          hour
+        </div>
+      </li>
+      <li
+        class="count-down-timer-element flex-child"
+      >
+        <span
+          class=""
+        >
+          01
+        </span>
+        <div
+          class="count-down-timer-unit"
+        >
+          minute
+        </div>
+      </li>
+      <li
+        class="count-down-timer-element flex-child"
+      >
+        <span
+          class=""
+        >
+          02
+        </span>
+        <div
+          class="count-down-timer-unit"
+        >
+          seconds
+        </div>
+      </li>
+    </ul>
+  </div>,
+]
+`;
