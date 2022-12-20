@@ -1,8 +1,4 @@
-import {
-  convertSecondsToUnits,
-  convertToTwoDigits,
-  pluralize,
-} from '../index';
+import { convertSecondsToUnits, convertToTwoDigits, pluralize } from '../index';
 
 test('pluralize', () => {
   expect(pluralize('word', -1)).toBe('word');

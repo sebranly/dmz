@@ -2,11 +2,15 @@ import * as React from 'react';
 import { convertSecondsToUnits, convertToTwoDigits, pluralize } from '../utils';
 
 export interface CountDownTimerProps {
+  className?: string;
   remainingSeconds: number;
+  title: string;
 }
 
 const CountDownTimer: React.FC<CountDownTimerProps> = (props) => {
-  const { remainingSeconds } = props;
+  const { className = '', remainingSeconds, title } = props;
+
+  const classnamesComponent = `count-down ${className}`;
 
   const [remainingSecondsBis, setRemainingSecondsBis] = React.useState(remainingSeconds);
 
@@ -43,10 +47,10 @@ const CountDownTimer: React.FC<CountDownTimerProps> = (props) => {
     const { value, label: l } = element;
     const isFixed = (l === 'hour' && isFixedHours) || (l === 'minute' && isFixedMinutes);
 
-    const classnamesValue = isFixed ? 'color-light-blue' : '';
+    const classnamesValue = isFixed ? 'color-light-green' : '';
 
     return (
-      <li className="count-down-timer-element" key={l}>
+      <li className="count-down-timer-element flex-child" key={l}>
         <span className={classnamesValue}>{convertToTwoDigits(value)}</span>
         <div className="count-down-timer-unit">{pluralize(l, value)}</div>
       </li>
@@ -54,9 +58,9 @@ const CountDownTimer: React.FC<CountDownTimerProps> = (props) => {
   });
 
   return (
-    <div className="count-down">
-      <h3>Countdown to Series Premiere</h3>
-      <ul className="count-down-timer">{items}</ul>
+    <div className={classnamesComponent}>
+      <h3>{title}</h3>
+      <ul className="count-down-timer flex-container">{items}</ul>
     </div>
   );
 };
