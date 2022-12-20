@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer 1`] = `
+NodeList [
+  <div
+    class="App-footer"
+  >
+    <div>
+      Developed by
+       
+      <a
+        href="https://github.com/sebranly/template-ts"
+        rel="noopener noreferrer"
+        target="_blank"
+        title="GitHub page for repository"
+      >
+        sebranly
+      </a>
+       
+      with ❤️
+    </div>
+    <div>
+      Website version
+       
+      <a
+        href="https://github.com/sebranly/template-ts/releases"
+        rel="noopener noreferrer"
+        target="_blank"
+        title="Website changelog"
+      >
+        0.0.1
+      </a>
+    </div>
+  </div>,
+]
+`;
