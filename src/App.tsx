@@ -5,14 +5,13 @@ import { MAX_HOURS_FOR_TIMER, MAX_PLAYERS, MAX_TIMERS_PER_PLAYER } from './const
 import { Footer } from './components/Footer';
 import './App.css';
 import { TimerCard } from './components/TimerCard';
+import { getCurrentTimestamp, numberRange } from './utils';
 import {
   convertPlayerTimerIndexToHourTimer,
   convertTimerIndexToPlayerIndex,
   convertTimerIndexToPlayerTimerIndex,
-  convertTimeValueToSeconds,
-  getCurrentTimestamp,
-  numberRange
-} from './utils';
+  convertTimeValueToSeconds
+} from './utils/convert';
 import { convertToTwoDigits, getPlayerColor } from './utils/display';
 import { sortTimers } from './utils/sort';
 import { Sort, TimeUnit, Timer, TimeValue } from './types';
