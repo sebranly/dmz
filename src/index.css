@@ -129,21 +129,12 @@ li span {
 }
 
 .money-value {
-  /* display: inline; */
-  /* font-family: 'Ra-Mono'; */
-  /* float: right; */
   padding-right: 10px;
   font-weight: bold;
 }
 
-/* .timer-value {
-  font-family: 'Ra-Mono';
-} */
-
 .money-title {
   flex-grow: 1;
-  /* float: left; */
-  /* display: contents; */
 }
 
 .remove-timer {

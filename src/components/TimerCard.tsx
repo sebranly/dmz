@@ -46,7 +46,6 @@ const TimerCard: React.FC<TimerCardProps> = (props) => {
   const classnamesPlayerTitle = `timer-card-title ${classnamesPlayerColor}`;
   const classnamesComponent = `timer-card-component ${className} border-color-${color} ribbon-container`;
   const classnamesMoney = `money-value ${classnamesPlayerColor}`;
-  const classnamesTimerValue = 'timer-value';
 
   const items = [
     { value: hours, label: TimeUnit.Hour },
@@ -59,7 +58,7 @@ const TimerCard: React.FC<TimerCardProps> = (props) => {
       (l === TimeUnit.Minute && isFixedMinutes) ||
       (l === TimeUnit.Second && isFixedSeconds);
 
-    const classnamesValue = isFixed ? `${classnamesPlayerColor} ${classnamesTimerValue}` : classnamesTimerValue;
+    const classnamesValue = isFixed ? classnamesPlayerColor : '';
 
     return (
       <li className="timer-card-element flex-child" key={l}>

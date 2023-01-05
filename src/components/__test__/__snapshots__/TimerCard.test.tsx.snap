@@ -27,7 +27,7 @@ NodeList [
         class="timer-card-element flex-child"
       >
         <span
-          class="color-green timer-value"
+          class="color-green"
         >
           00
         </span>
@@ -41,7 +41,7 @@ NodeList [
         class="timer-card-element flex-child"
       >
         <span
-          class="color-green timer-value"
+          class="color-green"
         >
           00
         </span>
@@ -55,7 +55,7 @@ NodeList [
         class="timer-card-element flex-child"
       >
         <span
-          class="timer-value"
+          class=""
         >
           59
         </span>
