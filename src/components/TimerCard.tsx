@@ -11,14 +11,14 @@ import {
 } from '../utils';
 import { convertToTwoDigits, formatMoney, getPlayerColor, pluralize } from '../utils/display';
 
-export interface CountDownTimerProps {
+export interface TimerCardProps {
   className?: string;
   currentTimestamp: number;
   deleteTimer: () => void;
   timer: Timer;
 }
 
-const CountDownTimer: React.FC<CountDownTimerProps> = (props) => {
+const TimerCard: React.FC<TimerCardProps> = (props) => {
   const { className = '', currentTimestamp, deleteTimer, timer } = props;
   const { timerIndex } = timer;
 
@@ -97,4 +97,4 @@ const CountDownTimer: React.FC<CountDownTimerProps> = (props) => {
   );
 };
 
-export { CountDownTimer };
+export { TimerCard };

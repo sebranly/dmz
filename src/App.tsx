@@ -4,7 +4,7 @@ import { DEBUG_TIMERS } from './constants/debug';
 import { MAX_HOURS_FOR_TIMER, MAX_PLAYERS_COUNT, MAX_TIMERS_PER_PLAYER_COUNT } from './constants/game';
 import { Footer } from './components/Footer';
 import './App.css';
-import { CountDownTimer } from './components/CountDownTimer';
+import { TimerCard } from './components/TimerCard';
 import {
   convertPlayerTimerIndexToHourTimer,
   convertTimerIndexToPlayerIndex,
@@ -145,7 +145,7 @@ function App() {
       const { timerIndex } = timer;
 
       return (
-        <CountDownTimer
+        <TimerCard
           currentTimestamp={currentTimestamp}
           deleteTimer={deleteTimer(timerIndex)}
           key={timerIndex}

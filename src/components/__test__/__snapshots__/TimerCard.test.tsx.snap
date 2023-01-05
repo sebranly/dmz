@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CountDownTimer 1`] = `
+exports[`TimerCard 1`] = `
 NodeList [
   <div
     class="count-down  border-color-green ribbon-container"
