@@ -1,0 +1,123 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TimerCard 1`] = `
+NodeList [
+  <div
+    class="timer-card-component  border-color-green ribbon-container"
+  >
+    <div
+      class="ribbon-child"
+    >
+      NEW
+    </div>
+    <div
+      class="timer-card-title color-green"
+    >
+      Player 1
+    </div>
+    <div
+      class="timer-card-title"
+    >
+      Timer 1
+    </div>
+    <ul
+      class="timer-card flex-container"
+    >
+      <li
+        class="timer-card-element flex-child"
+      >
+        <span
+          class="color-green"
+        >
+          00
+        </span>
+        <div
+          class="timer-card-unit"
+        >
+          hours
+        </div>
+      </li>
+      <li
+        class="timer-card-element flex-child"
+      >
+        <span
+          class="color-green"
+        >
+          00
+        </span>
+        <div
+          class="timer-card-unit"
+        >
+          minutes
+        </div>
+      </li>
+      <li
+        class="timer-card-element flex-child"
+      >
+        <span
+          class=""
+        >
+          59
+        </span>
+        <div
+          class="timer-card-unit"
+        >
+          seconds
+        </div>
+      </li>
+    </ul>
+    <div
+      class="timer-card-money"
+    >
+      <div
+        class="money-title"
+      >
+        End Time:
+      </div>
+       
+      <div
+        class="money-value color-green"
+      >
+        01:03 AM
+      </div>
+    </div>
+    <div
+      class="timer-card-money"
+    >
+      <div
+        class="money-title"
+      >
+        Exfil Money:
+      </div>
+       
+      <div
+        class="money-value color-green"
+      >
+        $
+        700
+      </div>
+    </div>
+    <div
+      class="timer-card-money"
+    >
+      <div
+        class="money-title"
+      >
+        Dead Drop:
+      </div>
+       
+      <div
+        class="money-value color-green"
+      >
+        $
+        500
+      </div>
+    </div>
+    <button
+      class="remove-timer"
+    >
+      Delete this timer
+    </button>
+  </div>,
+]
+`;

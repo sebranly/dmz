@@ -1,11 +1,33 @@
-// TODO: remove
-export enum Template {
-  Typescript = 'typescript',
-  Javascript = 'javascript'
+export enum Color {
+  Blue = 'blue',
+  Green = 'green',
+  Pink = 'pink',
+  Yellow = 'yellow'
 }
 
-export type TimeUnits = {
-  hours: number;
-  minutes: number;
-  seconds: number;
+export enum TimeUnit {
+  Hour = 'hour',
+  Minute = 'minute',
+  Second = 'second'
+}
+
+export type TimeValue = {
+  [TimeUnit.Hour]: number;
+  [TimeUnit.Minute]: number;
+  [TimeUnit.Second]: number;
 };
+
+export type Timer = {
+  durationSec: number;
+  timerIndex: number;
+  timestampStart: number;
+};
+
+export enum Sort {
+  firstPlayerToLastPlayer = 'First player to Last player',
+  lastPlayerToFirstPlayer = 'Last player to First player',
+  longestToShortest = 'Longest to Shortest',
+  newestToOldest = 'Newest to Oldest',
+  oldestToNewest = 'Oldest to Newest',
+  shortestToLongest = 'Shortest to Longest'
+}

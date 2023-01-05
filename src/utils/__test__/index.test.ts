@@ -1,66 +1,34 @@
-import { convertSecondsToUnits, convertToTwoDigits, pluralize } from '../index';
+import { TimeUnit } from '../../types';
+import { calculateRemainingSeconds, getCurrentTimestamp, getEndTime, isNullTimeValue, numberRange } from '../index';
 
-test('pluralize', () => {
-  expect(pluralize('word', -1)).toBe('word');
-  expect(pluralize('word', 0)).toBe('words');
-  expect(pluralize('word', 1)).toBe('word');
-  expect(pluralize('word', 2)).toBe('words');
-  expect(pluralize('word', 100)).toBe('words');
+test('calculateRemainingSeconds', () => {
+  let timer = { timerIndex: 0, timestampStart: 2, durationSec: 0 };
+  expect(calculateRemainingSeconds(timer, 3)).toBe(0);
+
+  timer.durationSec = 3;
+  expect(calculateRemainingSeconds(timer, 1)).toBe(3);
+  expect(calculateRemainingSeconds(timer, 2)).toBe(3);
+  expect(calculateRemainingSeconds(timer, 3)).toBe(2);
+  expect(calculateRemainingSeconds(timer, 4)).toBe(1);
+  expect(calculateRemainingSeconds(timer, 5)).toBe(0);
+  expect(calculateRemainingSeconds(timer, 6)).toBe(0);
 });
 
-test('convertToTwoDigits', () => {
-  expect(convertToTwoDigits(0)).toBe('00');
-  expect(convertToTwoDigits(5)).toBe('05');
-  expect(convertToTwoDigits(10)).toBe('10');
-  expect(convertToTwoDigits(100)).toBe('100');
+test('getCurrentTimestamp', () => {
+  expect(getCurrentTimestamp()).toBeGreaterThan(0);
 });
 
-test('convertSecondsToUnits', () => {
-  expect(convertSecondsToUnits(-1)).toStrictEqual({
-    hours: 0,
-    minutes: 0,
-    seconds: 0
-  });
+test('getEndTime', () => {
+  expect(getEndTime({ timerIndex: 0, timestampStart: 3_660, durationSec: 3_600 })).toBe('03:01 AM');
+  expect(getEndTime({ timerIndex: 0, timestampStart: 13 * 3_600 + 60, durationSec: 7_200 + 24 * 60 })).toBe('04:25 PM');
+});
 
-  expect(convertSecondsToUnits(0)).toStrictEqual({
-    hours: 0,
-    minutes: 0,
-    seconds: 0
-  });
+test('isNullTimeValue', () => {
+  expect(isNullTimeValue({ [TimeUnit.Hour]: 1, [TimeUnit.Minute]: 0, [TimeUnit.Second]: 0 })).toBe(false);
+  expect(isNullTimeValue({ [TimeUnit.Hour]: 0, [TimeUnit.Minute]: 0, [TimeUnit.Second]: 0 })).toBe(true);
+});
 
-  expect(convertSecondsToUnits(1)).toStrictEqual({
-    hours: 0,
-    minutes: 0,
-    seconds: 1
-  });
-
-  expect(convertSecondsToUnits(60)).toStrictEqual({
-    hours: 0,
-    minutes: 1,
-    seconds: 0
-  });
-
-  expect(convertSecondsToUnits(61)).toStrictEqual({
-    hours: 0,
-    minutes: 1,
-    seconds: 1
-  });
-
-  expect(convertSecondsToUnits(3599)).toStrictEqual({
-    hours: 0,
-    minutes: 59,
-    seconds: 59
-  });
-
-  expect(convertSecondsToUnits(3600)).toStrictEqual({
-    hours: 1,
-    minutes: 0,
-    seconds: 0
-  });
-
-  expect(convertSecondsToUnits(86400)).toStrictEqual({
-    hours: 24,
-    minutes: 0,
-    seconds: 0
-  });
+test('numberRange', () => {
+  expect(numberRange(0, 3)).toStrictEqual([0, 1, 2, 3]);
+  expect(numberRange(1, 8)).toStrictEqual([1, 2, 3, 4, 5, 6, 7, 8]);
 });

@@ -4,6 +4,6 @@ import App from './App';
 
 test('renders text', () => {
   render(<App />);
-  const textElement = screen.getByText(/DMZ Currency to Cooldown Converter/i);
+  const textElement = screen.getByText(/Currency to Cooldown Converter/i);
   expect(textElement).toBeInTheDocument();
 });
