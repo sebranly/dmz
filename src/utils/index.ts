@@ -1,4 +1,4 @@
-import { Timer } from '../types';
+import { Timer, TimeUnit, TimeValue } from '../types';
 
 /**
  * @name calculateRemainingSeconds
@@ -35,6 +35,16 @@ const getEndTime = (timer: Timer) => {
 };
 
 /**
+ * @name isNullTimeValue
+ * @description Returns whether a time value is 0 seconds in total
+ */
+const isNullTimeValue = (timeValue: TimeValue) => {
+  const { [TimeUnit.Hour]: hours, [TimeUnit.Minute]: minutes, [TimeUnit.Second]: seconds } = timeValue;
+
+  return hours === 0 && minutes === 0 && seconds === 0;
+};
+
+/**
  * @name numberRange
  * @description Returns an array containing all numbers from min to max included
  */
@@ -44,4 +54,4 @@ const numberRange = (min: number, max: number) => {
   return numbers;
 };
 
-export { calculateRemainingSeconds, getCurrentTimestamp, getEndTime, numberRange };
+export { calculateRemainingSeconds, getCurrentTimestamp, getEndTime, isNullTimeValue, numberRange };

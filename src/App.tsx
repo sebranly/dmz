@@ -1,11 +1,11 @@
 import React from 'react';
 import { SORT_OPTIONS, WEBSITE_SUBTITLE, WEBSITE_TITLE } from './constants/general';
 import { DEBUG_TIMERS } from './constants/debug';
-import { MAX_HOURS_FOR_TIMER, MAX_PLAYERS, MAX_TIMERS_PER_PLAYER } from './constants/game';
+import { MAX_HOURS_FOR_TIMER, MAX_PLAYERS, MAX_TIMERS, MAX_TIMERS_PER_PLAYER } from './constants/game';
 import { Footer } from './components/Footer';
 import './App.css';
 import { TimerCard } from './components/TimerCard';
-import { getCurrentTimestamp, numberRange } from './utils';
+import { getCurrentTimestamp, isNullTimeValue, numberRange } from './utils';
 import {
   convertPlayerTimerIndexToHourTimer,
   convertTimerIndexToPlayerIndex,
@@ -14,7 +14,7 @@ import {
 } from './utils/convert';
 import { displayWithTwoDigits, getPlayerColor } from './utils/display';
 import { sortTimers } from './utils/sort';
-import { Sort, TimeUnit, Timer, TimeValue } from './types';
+import { Sort, Timer, TimeUnit, TimeValue } from './types';
 import { excludeTimerByIndex, pickTimerByIndex } from './utils/filter';
 
 function App() {
@@ -30,11 +30,9 @@ function App() {
 
   const playerTimerIndex = convertTimerIndexToPlayerTimerIndex(timerIndex);
   const hoursForTimer = convertPlayerTimerIndexToHourTimer(playerTimerIndex);
-  const maxTimers = MAX_PLAYERS * MAX_TIMERS_PER_PLAYER;
   const quickOptionTimerValue = { [TimeUnit.Hour]: hoursForTimer, [TimeUnit.Minute]: 0, [TimeUnit.Second]: 0 };
   const copyLostWeapon = `Add ${hoursForTimer}-hour timer`;
-  const timerValuesAreZero =
-    timerValue[TimeUnit.Hour] === 0 && timerValue[TimeUnit.Minute] === 0 && timerValue[TimeUnit.Second] === 0;
+  const timerValuesAreNull = isNullTimeValue(timerValue);
 
   const onMount = () => {
     const interval = setInterval(() => {
@@ -64,10 +62,10 @@ function App() {
 
   const onChangeSort = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { value } = e.target;
-    const sortValue = value as Sort;
-    const newTimers = sortTimers(timers, currentTimestamp, sortValue);
-    setSort(sortValue);
-    setTimers(newTimers);
+    const newSort = value as Sort;
+    const sortedTimers = sortTimers(timers, currentTimestamp, newSort);
+    setSort(newSort);
+    setTimers(sortedTimers);
   };
 
   const onClickAddTimer = (timerValue: TimeValue) => {
@@ -78,7 +76,8 @@ function App() {
     };
 
     const newTimers = [...timers, newTimer];
-    setTimers(sortTimers(newTimers, currentTimestamp, sort));
+    const sortedTimers = sortTimers(newTimers, currentTimestamp, sort);
+    setTimers(sortedTimers);
   };
 
   const deleteTimer = (timerIndex: number) => () => {
@@ -166,7 +165,7 @@ function App() {
         <div>
           <h3>Add a timer</h3>
           <div className="flex-container new-timer">
-            <div className="margin-right border-select">
+            <div className="margin-right-20 border-select">
               <div className="new-timer-option">Pick Timer ID</div>
               <div className={`new-timer-option color-${playerColor}`}>{`Player ${playerIndex + 1}`}</div>
               <select className="new-timer-select" onChange={onChangeTimerIndex} value={timerIndex}>
@@ -178,7 +177,7 @@ function App() {
                 <div className="information">Timer can be created.</div>
               )}
             </div>
-            <div className="margin-right border-select">
+            <div className="margin-right-20 border-select">
               <div className="new-timer-option">Current remaining time</div>
               {[TimeUnit.Hour, TimeUnit.Minute, TimeUnit.Second].map((timeLabel: TimeUnit) => {
                 return (
@@ -195,9 +194,9 @@ function App() {
                 );
               })}
               <button
-                className="margin-top block"
+                className="margin-top-10 block"
                 onClick={() => onClickAddTimer(timerValue)}
-                disabled={timerValuesAreZero || timerExists}
+                disabled={timerValuesAreNull || timerExists}
               >
                 Add this timer
               </button>
@@ -210,7 +209,7 @@ function App() {
             </div>
           </div>
         </div>
-        <h3>{`View all timers (${timers.length}/${maxTimers})`}</h3>
+        <h3>{`View all timers (${timers.length}/${MAX_TIMERS})`}</h3>
         <select onChange={onChangeSort} value={sort}>
           {renderSortOptions()}
         </select>

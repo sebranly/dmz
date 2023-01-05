@@ -1,4 +1,5 @@
-import { calculateRemainingSeconds, getCurrentTimestamp, getEndTime, numberRange } from '../index';
+import { TimeUnit } from '../../types';
+import { calculateRemainingSeconds, getCurrentTimestamp, getEndTime, isNullTimeValue, numberRange } from '../index';
 
 test('calculateRemainingSeconds', () => {
   let timer = { timerIndex: 0, timestampStart: 2, durationSec: 0 };
@@ -20,6 +21,11 @@ test('getCurrentTimestamp', () => {
 test('getEndTime', () => {
   expect(getEndTime({ timerIndex: 0, timestampStart: 3_660, durationSec: 3_600 })).toBe('03:01 AM');
   expect(getEndTime({ timerIndex: 0, timestampStart: 13 * 3_600 + 60, durationSec: 7_200 + 24 * 60 })).toBe('04:25 PM');
+});
+
+test('isNullTimeValue', () => {
+  expect(isNullTimeValue({ [TimeUnit.Hour]: 1, [TimeUnit.Minute]: 0, [TimeUnit.Second]: 0 })).toBe(false);
+  expect(isNullTimeValue({ [TimeUnit.Hour]: 0, [TimeUnit.Minute]: 0, [TimeUnit.Second]: 0 })).toBe(true);
 });
 
 test('numberRange', () => {
