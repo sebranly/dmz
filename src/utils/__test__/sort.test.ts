@@ -1,5 +1,5 @@
 import { Sort, Timer } from '../../types';
-import { sortTimers, sortTimersByCreationDate, sortTimersByPlayer, sortTimersByTime } from '../sort';
+import { sortTimers, sortTimersByCreationDate, sortTimersByDuration, sortTimersByPlayer } from '../sort';
 
 const timer0: Timer = { timerIndex: 0, timestampStart: 1, durationSec: 20 };
 const timer1: Timer = { timerIndex: 1, timestampStart: 2, durationSec: 50 };
@@ -45,6 +45,17 @@ test('sortTimersByCreationDate', () => {
   expect(sortTimersByCreationDate(timers, true)).toStrictEqual([timer3, timer6, timer1, timer0]);
 });
 
+test('sortTimersByDuration', () => {
+  expect(sortTimersByDuration([], 5)).toStrictEqual([])
+  expect(sortTimersByDuration([], 5, true)).toStrictEqual([])
+  expect(sortTimersByDuration([timer0], 5, true)).toStrictEqual([timer0])
+  expect(sortTimersByDuration([timer0], 5, true)).toStrictEqual([timer0])
+  expect(sortTimersByDuration(timers, 5)).toStrictEqual([timer6, timer0, timer3, timer1])
+  expect(sortTimersByDuration(timers, 5, true)).toStrictEqual([timer1, timer3, timer0, timer6])
+  expect(sortTimersByDuration(timers, 100)).toStrictEqual([timer0, timer1, timer3, timer6])
+  expect(sortTimersByDuration(timers, 100, true)).toStrictEqual([timer6, timer3, timer1, timer0])
+});
+
 test('sortTimersByPlayer', () => {
   expect(sortTimersByPlayer([])).toStrictEqual([])
   expect(sortTimersByPlayer([], true)).toStrictEqual([])
@@ -52,15 +63,4 @@ test('sortTimersByPlayer', () => {
   expect(sortTimersByPlayer([timer0], true)).toStrictEqual([timer0])
   expect(sortTimersByPlayer(timers)).toStrictEqual([timer0, timer1, timer3, timer6]);
   expect(sortTimersByPlayer(timers, true)).toStrictEqual([timer6, timer3, timer0, timer1]);
-});
-
-test('sortTimersByTime', () => {
-  expect(sortTimersByTime([], 5)).toStrictEqual([])
-  expect(sortTimersByTime([], 5, true)).toStrictEqual([])
-  expect(sortTimersByTime([timer0], 5, true)).toStrictEqual([timer0])
-  expect(sortTimersByTime([timer0], 5, true)).toStrictEqual([timer0])
-  expect(sortTimersByTime(timers, 5)).toStrictEqual([timer6, timer0, timer3, timer1])
-  expect(sortTimersByTime(timers, 5, true)).toStrictEqual([timer1, timer3, timer0, timer6])
-  expect(sortTimersByTime(timers, 100)).toStrictEqual([timer0, timer1, timer3, timer6])
-  expect(sortTimersByTime(timers, 100, true)).toStrictEqual([timer6, timer3, timer1, timer0])
 });

@@ -9,9 +9,9 @@ import { Sort, Timer } from '../types';
 const sortTimers = (timers: Timer[], currentTimestamp: number, sort: Sort) => {
   switch (sort) {
     case Sort.longestToShortest:
-      return sortTimersByTime(timers, currentTimestamp, true);
+      return sortTimersByDuration(timers, currentTimestamp, true);
     case Sort.shortestToLongest:
-      return sortTimersByTime(timers, currentTimestamp);
+      return sortTimersByDuration(timers, currentTimestamp);
     case Sort.oldestToNewest:
     default:
       return sortTimersByCreationDate(timers);
@@ -34,6 +34,26 @@ const sortTimersByCreationDate = (timers: Timer[], shouldReverse = false) => {
   const copyTimers = timers.slice(0, timers.length);
   const sortedTimers = copyTimers.sort((t1: Timer, t2: Timer) => {
     return t1.timestampStart - t2.timestampStart;
+  });
+
+  if (!shouldReverse) return sortedTimers;
+
+  return sortedTimers.reverse();
+};
+
+/**
+ * @name sortTimersByDuration
+ * @description Returns the same list of timers sorted according to remaining duration
+ */
+const sortTimersByDuration = (timers: Timer[], currentTimestamp: number, shouldReverse = false) => {
+  if ([0, 1].includes(timers.length)) return timers;
+
+  const copyTimers = timers.slice(0, timers.length);
+  const sortedTimers = copyTimers.sort((t1: Timer, t2: Timer) => {
+    const remainingSeconds1 = calculateRemainingSeconds(t1, currentTimestamp);
+    const remainingSeconds2 = calculateRemainingSeconds(t2, currentTimestamp);
+    const remainingSecondsDiff = remainingSeconds1 - remainingSeconds2;
+    return remainingSecondsDiff !== 0 ? remainingSecondsDiff : t1.timerIndex - t2.timerIndex;
   });
 
   if (!shouldReverse) return sortedTimers;
@@ -69,24 +89,4 @@ const sortTimersByPlayer = (timers: Timer[], shouldReverse = false) => {
   return sortedTimers.reverse();
 };
 
-/**
- * @name sortTimersByTime
- * @description Returns the same list of timers sorted according to current remaining time
- */
-const sortTimersByTime = (timers: Timer[], currentTimestamp: number, shouldReverse = false) => {
-  if ([0, 1].includes(timers.length)) return timers;
-
-  const copyTimers = timers.slice(0, timers.length);
-  const sortedTimers = copyTimers.sort((t1: Timer, t2: Timer) => {
-    const remainingSeconds1 = calculateRemainingSeconds(t1, currentTimestamp);
-    const remainingSeconds2 = calculateRemainingSeconds(t2, currentTimestamp);
-    const remainingSecondsDiff = remainingSeconds1 - remainingSeconds2;
-    return remainingSecondsDiff !== 0 ? remainingSecondsDiff : t1.timerIndex - t2.timerIndex;
-  });
-
-  if (!shouldReverse) return sortedTimers;
-
-  return sortedTimers.reverse();
-};
-
-export { sortTimers, sortTimersByCreationDate, sortTimersByPlayer, sortTimersByTime };
+export { sortTimers, sortTimersByCreationDate, sortTimersByDuration, sortTimersByPlayer };
