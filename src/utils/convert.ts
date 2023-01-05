@@ -2,7 +2,7 @@ import { HOURS_PER_SLOT, MAX_TIMERS_PER_PLAYER } from '../constants/game';
 import { TimeUnit, TimeValue } from '../types';
 
 /**
- * @name convertPlayerTimerIndexToHourTimer 
+ * @name convertPlayerTimerIndexToHourTimer
  * @description Returns the max number of hours a timer can last per the game's rules
  * @example For example, third slot is a 6-hour timer (see `HOURS_PER_SLOT`)
  */
@@ -12,9 +12,9 @@ const convertPlayerTimerIndexToHourTimer = (index: number) => {
 };
 
 /**
- * @name convertSecondsToMoney 
+ * @name convertSecondsToMoney
  * @description Returns the rounded up money required for covering all seconds
- * For instance if result is exactly 13_333 then 13_400 is returned 
+ * For instance if result is exactly 13_333 then 13_400 is returned
  */
 const convertSecondsToMoney = (seconds: number, hourlyRate: number) => {
   const money = Math.ceil((seconds * hourlyRate) / 3_600);
@@ -26,7 +26,7 @@ const convertSecondsToMoney = (seconds: number, hourlyRate: number) => {
 };
 
 /**
- * @name convertSecondsToTimeValue 
+ * @name convertSecondsToTimeValue
  * @description Returns the same time value but in hours, minutes and seconds
  */
 const convertSecondsToTimeValue = (seconds: number): TimeValue => {
@@ -38,8 +38,8 @@ const convertSecondsToTimeValue = (seconds: number): TimeValue => {
     };
   }
 
-  const hours = Math.floor(seconds / (3_600));
-  const minutes = Math.floor((seconds % (3_600)) / 60);
+  const hours = Math.floor(seconds / 3_600);
+  const minutes = Math.floor((seconds % 3_600) / 60);
   const secondsBis = Math.floor(seconds % 60);
 
   return {
@@ -50,7 +50,7 @@ const convertSecondsToTimeValue = (seconds: number): TimeValue => {
 };
 
 /**
- * @name convertTimerIndexToPlayerIndex 
+ * @name convertTimerIndexToPlayerIndex
  * @description Returns the player a timer belongs to
  * @example 9 timers for 3 players. Timer index 3 belongs to second player, so player index 1
  */
@@ -60,7 +60,7 @@ const convertTimerIndexToPlayerIndex = (timerIndex: number) => {
 };
 
 /**
- * @name convertTimerIndexToPlayerTimerIndex 
+ * @name convertTimerIndexToPlayerTimerIndex
  * @description Returns the timer index seen from its player's perspective
  * @example 9 timers for 3 players. Timer index 3 belongs to second player and has index 0
  */
@@ -70,7 +70,7 @@ const convertTimerIndexToPlayerTimerIndex = (timerIndex: number) => {
 };
 
 /**
- * @name convertTimeValueToSeconds 
+ * @name convertTimeValueToSeconds
  * @description Returns the same time value but in seconds only
  */
 const convertTimeValueToSeconds = (timeValue: TimeValue) => {

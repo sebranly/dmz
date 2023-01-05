@@ -1,5 +1,5 @@
 import { calculateRemainingSeconds } from '.';
-import { convertTimerIndexToPlayerIndex, convertTimerIndexToPlayerTimerIndex } from './convert';
+import { convertTimerIndexToPlayerIndex, convertTimerIndexToPlayerTimerIndex } from './convert';
 import { Sort, Timer } from '../types';
 
 /**

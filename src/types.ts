@@ -1,8 +1,8 @@
 export enum Color {
-  Green = 'green',
-  Yellow = 'yellow',
   Blue = 'blue',
-  Pink = 'pink'
+  Green = 'green',
+  Pink = 'pink',
+  Yellow = 'yellow'
 }
 
 export enum TimeUnit {
@@ -18,16 +18,16 @@ export type TimeValue = {
 };
 
 export type Timer = {
-  timerIndex: number;
   durationSec: number;
+  timerIndex: number;
   timestampStart: number;
 };
 
 export enum Sort {
-  oldestToNewest = 'Oldest to Newest',
-  newestToOldest = 'Newest to Oldest',
-  longestToShortest = 'Longest to Shortest',
-  shortestToLongest = 'Shortest to Longest',
   firstPlayerToLastPlayer = 'First player to Last player',
-  lastPlayerToFirstPlayer = 'Last player to First player'
+  lastPlayerToFirstPlayer = 'Last player to First player',
+  longestToShortest = 'Longest to Shortest',
+  newestToOldest = 'Newest to Oldest',
+  oldestToNewest = 'Oldest to Newest',
+  shortestToLongest = 'Shortest to Longest'
 }

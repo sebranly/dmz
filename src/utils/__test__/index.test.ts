@@ -1,7 +1,7 @@
 import { calculateRemainingSeconds, getCurrentTimestamp, getEndTime, numberRange } from '../index';
 
 test('calculateRemainingSeconds', () => {
-  let timer = {timerIndex: 0, timestampStart: 2, durationSec: 0};
+  let timer = { timerIndex: 0, timestampStart: 2, durationSec: 0 };
   expect(calculateRemainingSeconds(timer, 3)).toBe(0);
 
   timer.durationSec = 3;
