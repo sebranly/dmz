@@ -1,4 +1,17 @@
-import { getCurrentTimestamp, getEndTime, numberRange } from '../index';
+import { calculateRemainingSeconds, getCurrentTimestamp, getEndTime, numberRange } from '../index';
+
+test('calculateRemainingSeconds', () => {
+  let timer = {timerIndex: 0, timestampStart: 2, durationSec: 0};
+  expect(calculateRemainingSeconds(timer, 3)).toBe(0);
+
+  timer.durationSec = 3;
+  expect(calculateRemainingSeconds(timer, 1)).toBe(3);
+  expect(calculateRemainingSeconds(timer, 2)).toBe(3);
+  expect(calculateRemainingSeconds(timer, 3)).toBe(2);
+  expect(calculateRemainingSeconds(timer, 4)).toBe(1);
+  expect(calculateRemainingSeconds(timer, 5)).toBe(0);
+  expect(calculateRemainingSeconds(timer, 6)).toBe(0);
+});
 
 test('getCurrentTimestamp', () => {
   expect(getCurrentTimestamp()).toBeGreaterThan(0);
