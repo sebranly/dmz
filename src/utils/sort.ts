@@ -1,4 +1,5 @@
-import { calculateRemainingSeconds, convertTimerIndexToPlayerIndex, convertTimerIndexToPlayerTimerIndex } from '.';
+import { calculateRemainingSeconds } from '.';
+import { convertTimerIndexToPlayerIndex, convertTimerIndexToPlayerTimerIndex } from './convert';
 import { Sort, Timer } from '../types';
 
 // TODO: add tests
