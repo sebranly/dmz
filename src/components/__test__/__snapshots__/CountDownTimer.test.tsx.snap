@@ -3,11 +3,23 @@
 exports[`CountDownTimer 1`] = `
 NodeList [
   <div
-    class="count-down "
+    class="count-down  border-color-green ribbon-container"
   >
-    <h3>
+    <div
+      class="ribbon-child"
+    >
+      NEW
+    </div>
+    <div
+      class="count-down-title color-green"
+    >
+      Player 1
+    </div>
+    <div
+      class="count-down-title"
+    >
       Timer 1
-    </h3>
+    </div>
     <ul
       class="count-down-timer flex-container"
     >
@@ -15,37 +27,37 @@ NodeList [
         class="count-down-timer-element flex-child"
       >
         <span
-          class=""
+          class="color-green timer-value"
         >
-          01
+          00
         </span>
         <div
           class="count-down-timer-unit"
         >
-          hour
+          hours
         </div>
       </li>
       <li
         class="count-down-timer-element flex-child"
       >
         <span
-          class=""
+          class="color-green timer-value"
         >
-          01
+          00
         </span>
         <div
           class="count-down-timer-unit"
         >
-          minute
+          minutes
         </div>
       </li>
       <li
         class="count-down-timer-element flex-child"
       >
         <span
-          class=""
+          class="timer-value"
         >
-          02
+          59
         </span>
         <div
           class="count-down-timer-unit"
@@ -54,6 +66,58 @@ NodeList [
         </div>
       </li>
     </ul>
+    <div
+      class="count-down-timer-money"
+    >
+      <div
+        class="money-title"
+      >
+        End Time:
+      </div>
+       
+      <div
+        class="money-value color-green"
+      >
+        01:03 AM
+      </div>
+    </div>
+    <div
+      class="count-down-timer-money"
+    >
+      <div
+        class="money-title"
+      >
+        Exfil Money:
+      </div>
+       
+      <div
+        class="money-value color-green"
+      >
+        $
+        700
+      </div>
+    </div>
+    <div
+      class="count-down-timer-money"
+    >
+      <div
+        class="money-title"
+      >
+        Dead Drop:
+      </div>
+       
+      <div
+        class="money-value color-green"
+      >
+        $
+        500
+      </div>
+    </div>
+    <button
+      class="remove-timer"
+    >
+      Delete this timer
+    </button>
   </div>,
 ]
 `;

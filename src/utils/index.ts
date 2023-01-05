@@ -1,17 +1,37 @@
-import { TimeUnits } from '../types';
+import { HOURS_PER_SLOT, MAX_TIMERS_PER_PLAYER_COUNT } from '../constants/game';
+import { TimeUnit, Timer, TimeValue } from '../types';
 
-const pluralize = (str: string, nb: number) => {
-  if (nb === 1 || nb < 0) return str;
+const getCurrentTimestamp = () => Math.floor(Date.now() / 1000);
 
-  return `${str}s`;
+// TODO: add tests
+const calculateRemainingSeconds = (timer: Timer, currentTimestamp: number) => {
+  const { durationSec, timestampStart } = timer;
+
+  if (durationSec === 0) return 0;
+  if (timestampStart > currentTimestamp) return durationSec;
+
+  const elapsedSec = currentTimestamp - timestampStart;
+  const remainingSec = durationSec - elapsedSec;
+
+  if (remainingSec <= 0) return 0;
+
+  return remainingSec;
 };
 
-const convertSecondsToUnits = (seconds: number): TimeUnits => {
+// TODO: add tests
+const convertTimeValueToSeconds = (timeValue: TimeValue) => {
+  const { [TimeUnit.Hour]: hours, [TimeUnit.Minute]: minutes, [TimeUnit.Second]: seconds } = timeValue;
+  const secondsBis = hours * 3_600 + minutes * 60 + seconds;
+
+  return secondsBis;
+};
+
+const convertSecondsToTimeValue = (seconds: number): TimeValue => {
   if (seconds <= 0) {
     return {
-      hours: 0,
-      minutes: 0,
-      seconds: 0
+      [TimeUnit.Hour]: 0,
+      [TimeUnit.Minute]: 0,
+      [TimeUnit.Second]: 0
     };
   }
 
@@ -20,15 +40,56 @@ const convertSecondsToUnits = (seconds: number): TimeUnits => {
   const secondsBis = Math.floor(seconds % 60);
 
   return {
-    hours,
-    minutes,
-    seconds: secondsBis
+    [TimeUnit.Hour]: hours,
+    [TimeUnit.Minute]: minutes,
+    [TimeUnit.Second]: secondsBis
   };
 };
 
-const convertToTwoDigits = (nb: number) => {
-  if (nb < 10) return `0${nb}`;
-  return `${nb}`;
+const convertSecondsToMoney = (seconds: number, rate: number) => {
+  const money = Math.ceil((seconds * rate) / 3_600);
+  const moneyHundreds = Math.floor(money / 100);
+  const roundUp = moneyHundreds * 100 !== money;
+  const moneyHundredsBis = roundUp ? moneyHundreds + 1 : moneyHundreds;
+
+  return moneyHundredsBis * 100;
 };
 
-export { convertSecondsToUnits, convertToTwoDigits, pluralize };
+const numberRange = (min: number, max: number) => {
+  const numbers = [];
+  for (let i = min; i <= max; i += 1) numbers.push(i);
+  return numbers;
+};
+
+const convertTimerIndexToPlayerIndex = (timerIndex: number) => {
+  const playerIndex = Math.floor(timerIndex / MAX_TIMERS_PER_PLAYER_COUNT);
+  return playerIndex;
+};
+
+const convertTimerIndexToPlayerTimerIndex = (timerIndex: number) => {
+  const playerTimerIndex = timerIndex % MAX_TIMERS_PER_PLAYER_COUNT;
+  return playerTimerIndex;
+};
+
+const convertPlayerTimerIndexToHourTimer = (index: number) => {
+  return (index + 1) * HOURS_PER_SLOT;
+};
+
+const getEndTime = (timer: Timer) => {
+  const { durationSec, timestampStart } = timer;
+  const endTime = (timestampStart + durationSec) * 1000;
+  return new Date(endTime).toLocaleString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+};
+
+export {
+  calculateRemainingSeconds,
+  getCurrentTimestamp,
+  getEndTime,
+  convertSecondsToTimeValue,
+  convertPlayerTimerIndexToHourTimer,
+  convertSecondsToMoney,
+  convertTimerIndexToPlayerIndex,
+  convertTimerIndexToPlayerTimerIndex,
+  convertTimeValueToSeconds,
+  numberRange
+};

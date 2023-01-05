@@ -1,53 +1,65 @@
 import * as React from 'react';
-import { convertSecondsToUnits, convertToTwoDigits, pluralize } from '../utils';
+import { DEAD_DROP_HOURLY_RATE, REGULAR_HOURLY_RATE } from '../constants/game';
+import { Timer, TimeUnit } from '../types';
+import {
+  calculateRemainingSeconds,
+  convertSecondsToMoney,
+  convertSecondsToTimeValue,
+  convertTimerIndexToPlayerIndex,
+  convertTimerIndexToPlayerTimerIndex,
+  getEndTime
+} from '../utils';
+import { convertToTwoDigits, formatMoney, getPlayerColor, pluralize } from '../utils/display';
 
 export interface CountDownTimerProps {
   className?: string;
-  remainingSeconds: number;
-  title: string;
+  currentTimestamp: number;
+  deleteTimer: () => void;
+  timer: Timer;
 }
 
 const CountDownTimer: React.FC<CountDownTimerProps> = (props) => {
-  const { className = '', remainingSeconds, title } = props;
+  const { className = '', currentTimestamp, deleteTimer, timer } = props;
+  const { timerIndex } = timer;
 
-  const classnamesComponent = `count-down ${className}`;
+  const remainingSeconds = calculateRemainingSeconds(timer, currentTimestamp);
+  const endTime = getEndTime(timer);
 
-  const [remainingSecondsBis, setRemainingSecondsBis] = React.useState(remainingSeconds);
-
-  const onMount = () => {
-    const interval = setInterval(() => {
-      setRemainingSecondsBis((prevValue: number) => {
-        return prevValue - 1;
-      });
-    }, 1000);
-
-    return () => clearInterval(interval);
-  };
-
-  // Note: StrictMode triggers useEffect twice on development hence the minus 2 seconds on each tick
-  React.useEffect(() => {
-    onMount();
-  }, []);
-
-  if (remainingSecondsBis <= 0) return null;
-
-  const { hours, minutes, seconds } = convertSecondsToUnits(remainingSecondsBis);
-  if (hours === 0 && minutes === 0 && seconds === 0) {
-    return null;
-  }
+  const {
+    [TimeUnit.Hour]: hours,
+    [TimeUnit.Minute]: minutes,
+    [TimeUnit.Second]: seconds
+  } = convertSecondsToTimeValue(remainingSeconds);
 
   const isFixedHours = hours === 0;
   const isFixedMinutes = isFixedHours && minutes === 0;
+  const isFixedSeconds = isFixedMinutes && seconds === 0;
+
+  const playerIndex = convertTimerIndexToPlayerIndex(timerIndex);
+  const playerTimerIndex = convertTimerIndexToPlayerTimerIndex(timerIndex);
+  const color = getPlayerColor(playerIndex);
+  const playerTitle = `Player ${playerIndex + 1}`;
+  const timerTitle = `Timer ${playerTimerIndex + 1}`;
+  const showRibbon = currentTimestamp - timer.timestampStart <= 5;
+
+  const classnamesPlayerColor = `color-${color}`;
+  const classnamesPlayerTitle = `count-down-title ${classnamesPlayerColor}`;
+  const classnamesComponent = `count-down ${className} border-color-${color} ribbon-container`;
+  const classnamesMoney = `money-value ${classnamesPlayerColor}`;
+  const classnamesTimerValue = 'timer-value';
 
   const items = [
-    { value: hours, label: 'hour' },
-    { value: minutes, label: 'minute' },
-    { value: seconds, label: 'second' }
+    { value: hours, label: TimeUnit.Hour },
+    { value: minutes, label: TimeUnit.Minute },
+    { value: seconds, label: TimeUnit.Second }
   ].map((element: { value: number; label: string }) => {
     const { value, label: l } = element;
-    const isFixed = (l === 'hour' && isFixedHours) || (l === 'minute' && isFixedMinutes);
+    const isFixed =
+      (l === TimeUnit.Hour && isFixedHours) ||
+      (l === TimeUnit.Minute && isFixedMinutes) ||
+      (l === TimeUnit.Second && isFixedSeconds);
 
-    const classnamesValue = isFixed ? 'color-light-green' : '';
+    const classnamesValue = isFixed ? `${classnamesPlayerColor} ${classnamesTimerValue}` : classnamesTimerValue;
 
     return (
       <li className="count-down-timer-element flex-child" key={l}>
@@ -59,8 +71,28 @@ const CountDownTimer: React.FC<CountDownTimerProps> = (props) => {
 
   return (
     <div className={classnamesComponent}>
-      <h3>{title}</h3>
+      {showRibbon && <div className="ribbon-child">NEW</div>}
+      <div className={classnamesPlayerTitle}>{playerTitle}</div>
+      <div className="count-down-title">{timerTitle}</div>
       <ul className="count-down-timer flex-container">{items}</ul>
+      <div className="count-down-timer-money">
+        <div className="money-title">End Time:</div> <div className={classnamesMoney}>{endTime}</div>
+      </div>
+      <div className="count-down-timer-money">
+        <div className="money-title">Exfil Money:</div>{' '}
+        <div className={classnamesMoney}>
+          ${formatMoney(convertSecondsToMoney(remainingSeconds, REGULAR_HOURLY_RATE))}
+        </div>
+      </div>
+      <div className="count-down-timer-money">
+        <div className="money-title">Dead Drop:</div>{' '}
+        <div className={classnamesMoney}>
+          ${formatMoney(convertSecondsToMoney(remainingSeconds, DEAD_DROP_HOURLY_RATE))}
+        </div>
+      </div>
+      <button className="remove-timer" onClick={() => deleteTimer()}>
+        Delete this timer
+      </button>
     </div>
   );
 };

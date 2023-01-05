@@ -1,66 +1,178 @@
-import { convertSecondsToUnits, convertToTwoDigits, pluralize } from '../index';
+import { DEAD_DROP_HOURLY_RATE, REGULAR_HOURLY_RATE } from '../../constants/game';
+import { TimeUnit } from '../../types';
+import {
+  convertSecondsToTimeValue,
+  convertSecondsToMoney,
+  getCurrentTimestamp,
+  getEndTime,
+  numberRange,
+  convertTimerIndexToPlayerIndex,
+  convertTimerIndexToPlayerTimerIndex,
+  convertPlayerTimerIndexToHourTimer,
+  convertTimeValueToSeconds
+} from '../index';
 
-test('pluralize', () => {
-  expect(pluralize('word', -1)).toBe('word');
-  expect(pluralize('word', 0)).toBe('words');
-  expect(pluralize('word', 1)).toBe('word');
-  expect(pluralize('word', 2)).toBe('words');
-  expect(pluralize('word', 100)).toBe('words');
+test('convertSecondsToMoney', () => {
+  expect(convertSecondsToMoney(0, DEAD_DROP_HOURLY_RATE)).toBe(0);
+  expect(convertSecondsToMoney(30 * 60, DEAD_DROP_HOURLY_RATE)).toBe(15_000);
+  expect(convertSecondsToMoney(60 * 60, DEAD_DROP_HOURLY_RATE)).toBe(30_000);
+  expect(convertSecondsToMoney(120 * 60, DEAD_DROP_HOURLY_RATE)).toBe(60_000);
+
+  expect(convertSecondsToMoney(0, REGULAR_HOURLY_RATE)).toBe(0);
+  expect(convertSecondsToMoney(20 * 60, REGULAR_HOURLY_RATE)).toBe(13_400);
+  expect(convertSecondsToMoney(30 * 60, REGULAR_HOURLY_RATE)).toBe(20_000);
+  expect(convertSecondsToMoney(60 * 60, REGULAR_HOURLY_RATE)).toBe(40_000);
+  expect(convertSecondsToMoney(120 * 60, REGULAR_HOURLY_RATE)).toBe(80_000);
 });
 
-test('convertToTwoDigits', () => {
-  expect(convertToTwoDigits(0)).toBe('00');
-  expect(convertToTwoDigits(5)).toBe('05');
-  expect(convertToTwoDigits(10)).toBe('10');
-  expect(convertToTwoDigits(100)).toBe('100');
+test('getCurrentTimestamp', () => {
+  expect(getCurrentTimestamp()).toBeGreaterThan(0);
 });
 
-test('convertSecondsToUnits', () => {
-  expect(convertSecondsToUnits(-1)).toStrictEqual({
-    hours: 0,
-    minutes: 0,
-    seconds: 0
+test('getEndTime', () => {
+  expect(getEndTime({ timerIndex: 0, timestampStart: 3_660, durationSec: 3_600 })).toBe('03:01 AM');
+  expect(getEndTime({ timerIndex: 0, timestampStart: 13 * 3_600 + 60, durationSec: 7_200 + 24 * 60 })).toBe('04:25 PM');
+});
+
+test('numberRange', () => {
+  expect(numberRange(0, 3)).toStrictEqual([0, 1, 2, 3]);
+  expect(numberRange(1, 8)).toStrictEqual([1, 2, 3, 4, 5, 6, 7, 8]);
+});
+
+test('convertPlayerTimerIndexToHourTimer', () => {
+  expect(convertPlayerTimerIndexToHourTimer(0)).toBe(2);
+  expect(convertPlayerTimerIndexToHourTimer(1)).toBe(4);
+  expect(convertPlayerTimerIndexToHourTimer(2)).toBe(6);
+});
+
+test('convertTimerIndexToPlayerIndex', () => {
+  expect(convertTimerIndexToPlayerIndex(0)).toBe(0);
+  expect(convertTimerIndexToPlayerIndex(1)).toBe(0);
+  expect(convertTimerIndexToPlayerIndex(2)).toBe(0);
+  expect(convertTimerIndexToPlayerIndex(3)).toBe(1);
+  expect(convertTimerIndexToPlayerIndex(4)).toBe(1);
+  expect(convertTimerIndexToPlayerIndex(5)).toBe(1);
+  expect(convertTimerIndexToPlayerIndex(6)).toBe(2);
+  expect(convertTimerIndexToPlayerIndex(7)).toBe(2);
+  expect(convertTimerIndexToPlayerIndex(8)).toBe(2);
+});
+
+test('convertTimerIndexToPlayerTimerIndex', () => {
+  expect(convertTimerIndexToPlayerTimerIndex(0)).toBe(0);
+  expect(convertTimerIndexToPlayerTimerIndex(1)).toBe(1);
+  expect(convertTimerIndexToPlayerTimerIndex(2)).toBe(2);
+  expect(convertTimerIndexToPlayerTimerIndex(3)).toBe(0);
+  expect(convertTimerIndexToPlayerTimerIndex(4)).toBe(1);
+  expect(convertTimerIndexToPlayerTimerIndex(5)).toBe(2);
+  expect(convertTimerIndexToPlayerTimerIndex(6)).toBe(0);
+  expect(convertTimerIndexToPlayerTimerIndex(7)).toBe(1);
+  expect(convertTimerIndexToPlayerTimerIndex(8)).toBe(2);
+});
+
+test('convertSecondsToTimeValue', () => {
+  expect(convertSecondsToTimeValue(-1)).toStrictEqual({
+    [TimeUnit.Hour]: 0,
+    [TimeUnit.Minute]: 0,
+    [TimeUnit.Second]: 0
   });
 
-  expect(convertSecondsToUnits(0)).toStrictEqual({
-    hours: 0,
-    minutes: 0,
-    seconds: 0
+  expect(convertSecondsToTimeValue(0)).toStrictEqual({
+    [TimeUnit.Hour]: 0,
+    [TimeUnit.Minute]: 0,
+    [TimeUnit.Second]: 0
   });
 
-  expect(convertSecondsToUnits(1)).toStrictEqual({
-    hours: 0,
-    minutes: 0,
-    seconds: 1
+  expect(convertSecondsToTimeValue(1)).toStrictEqual({
+    [TimeUnit.Hour]: 0,
+    [TimeUnit.Minute]: 0,
+    [TimeUnit.Second]: 1
   });
 
-  expect(convertSecondsToUnits(60)).toStrictEqual({
-    hours: 0,
-    minutes: 1,
-    seconds: 0
+  expect(convertSecondsToTimeValue(60)).toStrictEqual({
+    [TimeUnit.Hour]: 0,
+    [TimeUnit.Minute]: 1,
+    [TimeUnit.Second]: 0
   });
 
-  expect(convertSecondsToUnits(61)).toStrictEqual({
-    hours: 0,
-    minutes: 1,
-    seconds: 1
+  expect(convertSecondsToTimeValue(61)).toStrictEqual({
+    [TimeUnit.Hour]: 0,
+    [TimeUnit.Minute]: 1,
+    [TimeUnit.Second]: 1
   });
 
-  expect(convertSecondsToUnits(3599)).toStrictEqual({
-    hours: 0,
-    minutes: 59,
-    seconds: 59
+  expect(convertSecondsToTimeValue(3_599)).toStrictEqual({
+    [TimeUnit.Hour]: 0,
+    [TimeUnit.Minute]: 59,
+    [TimeUnit.Second]: 59
   });
 
-  expect(convertSecondsToUnits(3600)).toStrictEqual({
-    hours: 1,
-    minutes: 0,
-    seconds: 0
+  expect(convertSecondsToTimeValue(3_600)).toStrictEqual({
+    [TimeUnit.Hour]: 1,
+    [TimeUnit.Minute]: 0,
+    [TimeUnit.Second]: 0
   });
 
-  expect(convertSecondsToUnits(86400)).toStrictEqual({
-    hours: 24,
-    minutes: 0,
-    seconds: 0
+  expect(convertSecondsToTimeValue(86_400)).toStrictEqual({
+    [TimeUnit.Hour]: 24,
+    [TimeUnit.Minute]: 0,
+    [TimeUnit.Second]: 0
   });
+});
+
+test('convertTimeValueToSeconds', () => {
+  expect(
+    convertTimeValueToSeconds({
+      [TimeUnit.Hour]: 0,
+      [TimeUnit.Minute]: 0,
+      [TimeUnit.Second]: 0
+    })
+  ).toBe(0);
+
+  expect(
+    convertTimeValueToSeconds({
+      [TimeUnit.Hour]: 0,
+      [TimeUnit.Minute]: 0,
+      [TimeUnit.Second]: 1
+    })
+  ).toBe(1);
+
+  expect(
+    convertTimeValueToSeconds({
+      [TimeUnit.Hour]: 0,
+      [TimeUnit.Minute]: 1,
+      [TimeUnit.Second]: 0
+    })
+  ).toBe(60);
+
+  expect(
+    convertTimeValueToSeconds({
+      [TimeUnit.Hour]: 0,
+      [TimeUnit.Minute]: 1,
+      [TimeUnit.Second]: 1
+    })
+  ).toBe(61);
+
+  expect(
+    convertTimeValueToSeconds({
+      [TimeUnit.Hour]: 0,
+      [TimeUnit.Minute]: 59,
+      [TimeUnit.Second]: 59
+    })
+  ).toBe(3_599);
+
+  expect(
+    convertTimeValueToSeconds({
+      [TimeUnit.Hour]: 1,
+      [TimeUnit.Minute]: 0,
+      [TimeUnit.Second]: 0
+    })
+  ).toBe(3_600);
+
+  expect(
+    convertTimeValueToSeconds({
+      [TimeUnit.Hour]: 24,
+      [TimeUnit.Minute]: 0,
+      [TimeUnit.Second]: 0
+    })
+  ).toBe(86_400);
 });
