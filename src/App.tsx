@@ -1,6 +1,5 @@
 import React from 'react';
 import { SORT_OPTIONS, WEBSITE_SUBTITLE, WEBSITE_TITLE } from './constants/general';
-import { DEBUG_TIMERS } from './constants/debug';
 import { MAX_HOURS_FOR_TIMER, MAX_PLAYERS, MAX_TIMERS, MAX_TIMERS_PER_PLAYER } from './constants/game';
 import { Footer } from './components/Footer';
 import './App.css';
@@ -18,7 +17,7 @@ import { Sort, Timer, TimeUnit, TimeValue } from './types';
 import { excludeTimerByIndex, pickTimerByIndex } from './utils/filter';
 
 function App() {
-  const [timers, setTimers] = React.useState<Timer[]>(DEBUG_TIMERS);
+  const [timers, setTimers] = React.useState<Timer[]>([]);
   const [sort, setSort] = React.useState(Sort.oldestToNewest);
   const [timerIndex, setTimerIndex] = React.useState(0);
   const [currentTimestamp, setCurrentTimestamp] = React.useState(getCurrentTimestamp());
