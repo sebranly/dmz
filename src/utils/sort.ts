@@ -2,7 +2,10 @@ import { calculateRemainingSeconds } from '.';
 import { convertTimerIndexToPlayerIndex, convertTimerIndexToPlayerTimerIndex } from './convert';
 import { Sort, Timer } from '../types';
 
-// TODO: add tests
+/**
+ * @name sortTimers
+ * @description Returns the same list of timers sorted according to specified sort
+ */
 const sortTimers = (timers: Timer[], currentTimestamp: number, sort: Sort) => {
   switch (sort) {
     case Sort.longestToShortest:
@@ -21,9 +24,13 @@ const sortTimers = (timers: Timer[], currentTimestamp: number, sort: Sort) => {
   }
 };
 
-// TODO: add tests
+/**
+ * @name sortTimersByCreationDate
+ * @description Returns the same list of timers sorted according to creation date
+ */
 const sortTimersByCreationDate = (timers: Timer[], shouldReverse = false) => {
   if ([0, 1].includes(timers.length)) return timers;
+
   const copyTimers = timers.slice(0, timers.length);
   const sortedTimers = copyTimers.sort((t1: Timer, t2: Timer) => {
     return t1.timestampStart - t2.timestampStart;
@@ -34,10 +41,14 @@ const sortTimersByCreationDate = (timers: Timer[], shouldReverse = false) => {
   return sortedTimers.reverse();
 };
 
-// TODO: add tests
+/**
+ * @name sortTimersByPlayer
+ * @description Returns the same list of timers sorted according to player index
+ */
 const sortTimersByPlayer = (timers: Timer[], shouldReverse = false) => {
   if ([0, 1].includes(timers.length)) return timers;
 
+  // No matter value of `shouldReverse`, for each player, their own timers should be sorted ASC
   const multiplier = shouldReverse ? -1 : 1;
 
   const copyTimers = timers.slice(0, timers.length);
@@ -58,15 +69,19 @@ const sortTimersByPlayer = (timers: Timer[], shouldReverse = false) => {
   return sortedTimers.reverse();
 };
 
-// TODO: add tests
-// TODO: add case where all timers are 0
+/**
+ * @name sortTimersByTime
+ * @description Returns the same list of timers sorted according to current remaining time
+ */
 const sortTimersByTime = (timers: Timer[], currentTimestamp: number, shouldReverse = false) => {
   if ([0, 1].includes(timers.length)) return timers;
+
   const copyTimers = timers.slice(0, timers.length);
   const sortedTimers = copyTimers.sort((t1: Timer, t2: Timer) => {
     const remainingSeconds1 = calculateRemainingSeconds(t1, currentTimestamp);
     const remainingSeconds2 = calculateRemainingSeconds(t2, currentTimestamp);
-    return remainingSeconds1 - remainingSeconds2;
+    const remainingSecondsDiff = remainingSeconds1 - remainingSeconds2;
+    return remainingSecondsDiff !== 0 ? remainingSecondsDiff : t1.timerIndex - t2.timerIndex;
   });
 
   if (!shouldReverse) return sortedTimers;
