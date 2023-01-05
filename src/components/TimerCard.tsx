@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { DEAD_DROP_HOURLY_RATE, REGULAR_HOURLY_RATE } from '../constants/game';
+import { NEW_RIBBON_DURATION_SEC } from '../constants/general';
 import { Timer, TimeUnit } from '../types';
 import {
   calculateRemainingSeconds,
@@ -20,7 +21,7 @@ export interface TimerCardProps {
 
 const TimerCard: React.FC<TimerCardProps> = (props) => {
   const { className = '', currentTimestamp, deleteTimer, timer } = props;
-  const { timerIndex } = timer;
+  const { timerIndex, timestampStart } = timer;
 
   const remainingSeconds = calculateRemainingSeconds(timer, currentTimestamp);
   const endTime = getEndTime(timer);
@@ -40,11 +41,11 @@ const TimerCard: React.FC<TimerCardProps> = (props) => {
   const color = getPlayerColor(playerIndex);
   const playerTitle = `Player ${playerIndex + 1}`;
   const timerTitle = `Timer ${playerTimerIndex + 1}`;
-  const showRibbon = currentTimestamp - timer.timestampStart <= 5;
+  const showRibbon = currentTimestamp - timestampStart <= NEW_RIBBON_DURATION_SEC;
 
   const classnamesPlayerColor = `color-${color}`;
-  const classnamesPlayerTitle = `count-down-title ${classnamesPlayerColor}`;
-  const classnamesComponent = `count-down ${className} border-color-${color} ribbon-container`;
+  const classnamesPlayerTitle = `timer-card-title ${classnamesPlayerColor}`;
+  const classnamesComponent = `timer-card-component ${className} border-color-${color} ribbon-container`;
   const classnamesMoney = `money-value ${classnamesPlayerColor}`;
   const classnamesTimerValue = 'timer-value';
 
@@ -73,7 +74,7 @@ const TimerCard: React.FC<TimerCardProps> = (props) => {
     <div className={classnamesComponent}>
       {showRibbon && <div className="ribbon-child">NEW</div>}
       <div className={classnamesPlayerTitle}>{playerTitle}</div>
-      <div className="count-down-title">{timerTitle}</div>
+      <div className="timer-card-title">{timerTitle}</div>
       <ul className="timer-card flex-container">{items}</ul>
       <div className="timer-card-money">
         <div className="money-title">End Time:</div> <div className={classnamesMoney}>{endTime}</div>

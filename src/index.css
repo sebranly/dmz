@@ -10,7 +10,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.count-down {
+.timer-card-component {
   background-color: #222;
   font-family: 'Ra-Mono';
   border: 1px solid;
@@ -21,7 +21,7 @@ body {
   width: 325px;
 }
 
-.count-down-title {
+.timer-card-title {
   font-size: 18px;
   font-weight: bold;
   margin-top: 5px;

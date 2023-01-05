@@ -1,4 +1,4 @@
-import { HOURS_PER_SLOT, MAX_TIMERS_PER_PLAYER_COUNT } from '../constants/game';
+import { HOURS_PER_SLOT, MAX_TIMERS_PER_PLAYER } from '../constants/game';
 import { TimeUnit, Timer, TimeValue } from '../types';
 
 const getCurrentTimestamp = () => Math.floor(Date.now() / 1000);
@@ -46,8 +46,8 @@ const convertSecondsToTimeValue = (seconds: number): TimeValue => {
   };
 };
 
-const convertSecondsToMoney = (seconds: number, rate: number) => {
-  const money = Math.ceil((seconds * rate) / 3_600);
+const convertSecondsToMoney = (seconds: number, hourlyRate: number) => {
+  const money = Math.ceil((seconds * hourlyRate) / 3_600);
   const moneyHundreds = Math.floor(money / 100);
   const roundUp = moneyHundreds * 100 !== money;
   const moneyHundredsBis = roundUp ? moneyHundreds + 1 : moneyHundreds;
@@ -62,12 +62,12 @@ const numberRange = (min: number, max: number) => {
 };
 
 const convertTimerIndexToPlayerIndex = (timerIndex: number) => {
-  const playerIndex = Math.floor(timerIndex / MAX_TIMERS_PER_PLAYER_COUNT);
+  const playerIndex = Math.floor(timerIndex / MAX_TIMERS_PER_PLAYER);
   return playerIndex;
 };
 
 const convertTimerIndexToPlayerTimerIndex = (timerIndex: number) => {
-  const playerTimerIndex = timerIndex % MAX_TIMERS_PER_PLAYER_COUNT;
+  const playerTimerIndex = timerIndex % MAX_TIMERS_PER_PLAYER;
   return playerTimerIndex;
 };
 

@@ -3,7 +3,7 @@
 exports[`TimerCard 1`] = `
 NodeList [
   <div
-    class="count-down  border-color-green ribbon-container"
+    class="timer-card-component  border-color-green ribbon-container"
   >
     <div
       class="ribbon-child"
@@ -11,12 +11,12 @@ NodeList [
       NEW
     </div>
     <div
-      class="count-down-title color-green"
+      class="timer-card-title color-green"
     >
       Player 1
     </div>
     <div
-      class="count-down-title"
+      class="timer-card-title"
     >
       Timer 1
     </div>

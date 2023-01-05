@@ -1,7 +1,7 @@
 import React from 'react';
 import { SORT_OPTIONS, WEBSITE_SUBTITLE, WEBSITE_TITLE } from './constants/general';
 import { DEBUG_TIMERS } from './constants/debug';
-import { MAX_HOURS_FOR_TIMER, MAX_PLAYERS_COUNT, MAX_TIMERS_PER_PLAYER_COUNT } from './constants/game';
+import { MAX_HOURS_FOR_TIMER, MAX_PLAYERS, MAX_TIMERS_PER_PLAYER } from './constants/game';
 import { Footer } from './components/Footer';
 import './App.css';
 import { TimerCard } from './components/TimerCard';
@@ -31,7 +31,7 @@ function App() {
 
   const playerTimerIndex = convertTimerIndexToPlayerTimerIndex(timerIndex);
   const hoursForTimer = convertPlayerTimerIndexToHourTimer(playerTimerIndex);
-  const maxTimers = MAX_PLAYERS_COUNT * MAX_TIMERS_PER_PLAYER_COUNT;
+  const maxTimers = MAX_PLAYERS * MAX_TIMERS_PER_PLAYER;
   const quickOptionTimerValue = { [TimeUnit.Hour]: hoursForTimer, [TimeUnit.Minute]: 0, [TimeUnit.Second]: 0 };
   const copyLostWeapon = `Add ${hoursForTimer}-hour timer`;
   const timerValuesAreZero =
@@ -102,11 +102,11 @@ function App() {
   };
 
   const renderPlayerTimerOptions = (playerIndex: number) => {
-    const timers = numberRange(0, MAX_TIMERS_PER_PLAYER_COUNT - 1);
+    const timers = numberRange(0, MAX_TIMERS_PER_PLAYER - 1);
 
     return timers.map((idx: number) => {
       const key = `player-${playerIndex}-timer-${idx}`;
-      const uniqueTimerIdx = playerIndex * MAX_TIMERS_PER_PLAYER_COUNT + idx;
+      const uniqueTimerIdx = playerIndex * MAX_TIMERS_PER_PLAYER + idx;
       const label = `Timer ${idx + 1}`;
 
       return (
@@ -128,7 +128,7 @@ function App() {
   };
 
   const renderPlayerIndexesOptionGroups = () => {
-    const allPlayerIndexes = numberRange(0, MAX_PLAYERS_COUNT - 1);
+    const allPlayerIndexes = numberRange(0, MAX_PLAYERS - 1);
 
     return allPlayerIndexes.map((idx: number) => {
       const label = `Player ${idx + 1}`;
