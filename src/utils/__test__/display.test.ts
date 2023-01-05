@@ -1,11 +1,11 @@
 import { Color } from '../../types';
-import { convertToTwoDigits, formatMoney, getPlayerColor, pluralize } from '../display';
+import { displayWithTwoDigits, formatMoney, getPlayerColor, pluralize } from '../display';
 
-test('convertToTwoDigits', () => {
-  expect(convertToTwoDigits(0)).toBe('00');
-  expect(convertToTwoDigits(5)).toBe('05');
-  expect(convertToTwoDigits(10)).toBe('10');
-  expect(convertToTwoDigits(100)).toBe('100');
+test('displayWithTwoDigits', () => {
+  expect(displayWithTwoDigits(0)).toBe('00');
+  expect(displayWithTwoDigits(5)).toBe('05');
+  expect(displayWithTwoDigits(10)).toBe('10');
+  expect(displayWithTwoDigits(100)).toBe('100');
 });
 
 test('formatMoney', () => {

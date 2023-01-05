@@ -9,7 +9,7 @@ import {
   convertTimerIndexToPlayerIndex,
   convertTimerIndexToPlayerTimerIndex
 } from '../utils/convert';
-import { convertToTwoDigits, formatMoney, getPlayerColor, pluralize } from '../utils/display';
+import { displayWithTwoDigits, formatMoney, getPlayerColor, pluralize } from '../utils/display';
 
 export interface TimerCardProps {
   className?: string;
@@ -63,7 +63,7 @@ const TimerCard: React.FC<TimerCardProps> = (props) => {
 
     return (
       <li className="timer-card-element flex-child" key={l}>
-        <span className={classnamesValue}>{convertToTwoDigits(value)}</span>
+        <span className={classnamesValue}>{displayWithTwoDigits(value)}</span>
         <div className="timer-card-unit">{pluralize(l, value)}</div>
       </li>
     );

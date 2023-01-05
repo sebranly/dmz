@@ -1,14 +1,26 @@
 import { Color } from '../types';
 
-const convertToTwoDigits = (nb: number) => {
+/**
+ * @name displayWithTwoDigits
+ * @description Ensures a number is being displayed with at least two digits
+ */
+const displayWithTwoDigits = (nb: number) => {
   if (nb < 10) return `0${nb}`;
   return `${nb}`;
 };
 
+/**
+ * @name formatMoney
+ * @description Ensures money is being displayed with thousands being comma-separated
+ */
 const formatMoney = (value: number) => {
   return new Intl.NumberFormat('en-US').format(value);
 };
 
+/**
+ * @name getPlayerColor
+ * @description Returns the DMZ color of each player
+ */
 const getPlayerColor = (playerIndex: number) => {
   switch (playerIndex) {
     case 0:
@@ -23,10 +35,14 @@ const getPlayerColor = (playerIndex: number) => {
   }
 };
 
+/**
+ * @name pluralize
+ * @description Returns the same string or plural version if applicable
+ */
 const pluralize = (str: string, nb: number) => {
   if (nb === 1 || nb < 0) return str;
 
   return `${str}s`;
 };
 
-export { convertToTwoDigits, formatMoney, getPlayerColor, pluralize };
+export { displayWithTwoDigits, formatMoney, getPlayerColor, pluralize };

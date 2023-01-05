@@ -12,7 +12,7 @@ import {
   convertTimerIndexToPlayerTimerIndex,
   convertTimeValueToSeconds
 } from './utils/convert';
-import { convertToTwoDigits, getPlayerColor } from './utils/display';
+import { displayWithTwoDigits, getPlayerColor } from './utils/display';
 import { sortTimers } from './utils/sort';
 import { Sort, TimeUnit, Timer, TimeValue } from './types';
 import { excludeTimerByIndex, filterTimersByIndex } from './utils/filter';
@@ -94,7 +94,7 @@ function App() {
       const key = `${label}-${value}`;
       return (
         <option key={key} value={value}>
-          {convertToTwoDigits(value)}
+          {displayWithTwoDigits(value)}
         </option>
       );
     });
