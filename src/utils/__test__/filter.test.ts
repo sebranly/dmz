@@ -1,5 +1,5 @@
-import { Timer } from "../../types";
-import { excludeTimerByIndex, filterTimersByIndex } from "../filter";
+import { Timer } from '../../types';
+import { excludeTimerByIndex, filterTimersByIndex } from '../filter';
 
 const timer1: Timer = { timerIndex: 0, timestampStart: 1, durationSec: 12 };
 const timer2: Timer = { timerIndex: 1, timestampStart: 4, durationSec: 34 };
