@@ -15,7 +15,7 @@ import {
 import { displayWithTwoDigits, getPlayerColor } from './utils/display';
 import { sortTimers } from './utils/sort';
 import { Sort, TimeUnit, Timer, TimeValue } from './types';
-import { excludeTimerByIndex, filterTimersByIndex } from './utils/filter';
+import { excludeTimerByIndex, pickTimerByIndex } from './utils/filter';
 
 function App() {
   const [timers, setTimers] = React.useState<Timer[]>(DEBUG_TIMERS);
@@ -156,7 +156,7 @@ function App() {
 
   const playerIndex = convertTimerIndexToPlayerIndex(timerIndex);
   const playerColor = getPlayerColor(playerIndex);
-  const timerExists = filterTimersByIndex(timers, timerIndex).length > 0;
+  const timerExists = pickTimerByIndex(timers, timerIndex).length > 0;
 
   return (
     <div className="App">

@@ -1,5 +1,5 @@
 import { Timer } from '../../types';
-import { excludeTimerByIndex, filterTimersByIndex } from '../filter';
+import { excludeTimerByIndex, pickTimerByIndex } from '../filter';
 
 const timer1: Timer = { timerIndex: 0, timestampStart: 1, durationSec: 12 };
 const timer2: Timer = { timerIndex: 1, timestampStart: 4, durationSec: 34 };
@@ -11,8 +11,8 @@ test('excludeTimerByIndex', () => {
   expect(excludeTimerByIndex(timers, 1)).toStrictEqual([timer1]);
 });
 
-test('filterTimersByIndex', () => {
-  expect(filterTimersByIndex([], 0)).toStrictEqual([]);
-  expect(filterTimersByIndex(timers, 3)).toStrictEqual([]);
-  expect(filterTimersByIndex(timers, 0)).toStrictEqual([timer1]);
+test('pickTimerByIndex', () => {
+  expect(pickTimerByIndex([], 0)).toStrictEqual([]);
+  expect(pickTimerByIndex(timers, 3)).toStrictEqual([]);
+  expect(pickTimerByIndex(timers, 0)).toStrictEqual([timer1]);
 });
