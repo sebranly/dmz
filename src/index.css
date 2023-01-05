@@ -28,7 +28,7 @@ body {
   margin-bottom: 5px;
 }
 
-.count-down-timer {
+.timer-card {
   list-style-type: disc;
   text-transform: uppercase;
   margin-block-start: 1em;
@@ -39,19 +39,19 @@ body {
   padding-inline-start: 0;
 }
 
-.count-down-timer-element {
+.timer-card-element {
   display: inline-block;
   margin-left: 10px;
   margin-right: 10px;
 }
 
-.count-down-timer-money {
+.timer-card-money {
   text-align: left;
   display: flex;
   padding-left: 10px;
 }
 
-.count-down-timer-unit {
+.timer-card-unit {
   font-size: 14px;
 }
 

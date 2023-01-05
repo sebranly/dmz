@@ -62,9 +62,9 @@ const TimerCard: React.FC<TimerCardProps> = (props) => {
     const classnamesValue = isFixed ? `${classnamesPlayerColor} ${classnamesTimerValue}` : classnamesTimerValue;
 
     return (
-      <li className="count-down-timer-element flex-child" key={l}>
+      <li className="timer-card-element flex-child" key={l}>
         <span className={classnamesValue}>{convertToTwoDigits(value)}</span>
-        <div className="count-down-timer-unit">{pluralize(l, value)}</div>
+        <div className="timer-card-unit">{pluralize(l, value)}</div>
       </li>
     );
   });
@@ -74,17 +74,17 @@ const TimerCard: React.FC<TimerCardProps> = (props) => {
       {showRibbon && <div className="ribbon-child">NEW</div>}
       <div className={classnamesPlayerTitle}>{playerTitle}</div>
       <div className="count-down-title">{timerTitle}</div>
-      <ul className="count-down-timer flex-container">{items}</ul>
-      <div className="count-down-timer-money">
+      <ul className="timer-card flex-container">{items}</ul>
+      <div className="timer-card-money">
         <div className="money-title">End Time:</div> <div className={classnamesMoney}>{endTime}</div>
       </div>
-      <div className="count-down-timer-money">
+      <div className="timer-card-money">
         <div className="money-title">Exfil Money:</div>{' '}
         <div className={classnamesMoney}>
           ${formatMoney(convertSecondsToMoney(remainingSeconds, REGULAR_HOURLY_RATE))}
         </div>
       </div>
-      <div className="count-down-timer-money">
+      <div className="timer-card-money">
         <div className="money-title">Dead Drop:</div>{' '}
         <div className={classnamesMoney}>
           ${formatMoney(convertSecondsToMoney(remainingSeconds, DEAD_DROP_HOURLY_RATE))}
