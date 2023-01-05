@@ -165,9 +165,6 @@ function App() {
         <h1>{WEBSITE_TITLE}</h1>
         <h2>{WEBSITE_SUBTITLE}</h2>
         <div>
-          <h3>Quick conversion</h3>
-        </div>
-        <div>
           <h3>Add a timer</h3>
           <div className="flex-container new-timer">
             <div className="margin-right border-select">
