@@ -52,4 +52,11 @@ const convertPlayerTimerIndexToHourTimer = (index: number) => {
   return (index + 1) * HOURS_PER_SLOT;
 };
 
-export { convertTimeValueToSeconds, convertSecondsToMoney, convertSecondsToTimeValue, convertTimerIndexToPlayerIndex, convertTimerIndexToPlayerTimerIndex, convertPlayerTimerIndexToHourTimer }
+export {
+  convertTimeValueToSeconds,
+  convertSecondsToMoney,
+  convertSecondsToTimeValue,
+  convertTimerIndexToPlayerIndex,
+  convertTimerIndexToPlayerTimerIndex,
+  convertPlayerTimerIndexToHourTimer
+};

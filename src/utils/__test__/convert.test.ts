@@ -103,45 +103,59 @@ test('convertSecondsToTimeValue', () => {
 });
 
 test('convertTimeValueToSeconds', () => {
-  expect(convertTimeValueToSeconds({
-    [TimeUnit.Hour]: 0,
-    [TimeUnit.Minute]: 0,
-    [TimeUnit.Second]: 0
-  })).toBe(0);
+  expect(
+    convertTimeValueToSeconds({
+      [TimeUnit.Hour]: 0,
+      [TimeUnit.Minute]: 0,
+      [TimeUnit.Second]: 0
+    })
+  ).toBe(0);
 
-  expect(convertTimeValueToSeconds({
-    [TimeUnit.Hour]: 0,
-    [TimeUnit.Minute]: 0,
-    [TimeUnit.Second]: 1
-  })).toBe(1);
+  expect(
+    convertTimeValueToSeconds({
+      [TimeUnit.Hour]: 0,
+      [TimeUnit.Minute]: 0,
+      [TimeUnit.Second]: 1
+    })
+  ).toBe(1);
 
-  expect(convertTimeValueToSeconds({
-    [TimeUnit.Hour]: 0,
-    [TimeUnit.Minute]: 1,
-    [TimeUnit.Second]: 0
-  })).toBe(60);
+  expect(
+    convertTimeValueToSeconds({
+      [TimeUnit.Hour]: 0,
+      [TimeUnit.Minute]: 1,
+      [TimeUnit.Second]: 0
+    })
+  ).toBe(60);
 
-  expect(convertTimeValueToSeconds({
-    [TimeUnit.Hour]: 0,
-    [TimeUnit.Minute]: 1,
-    [TimeUnit.Second]: 1
-  })).toBe(61);
+  expect(
+    convertTimeValueToSeconds({
+      [TimeUnit.Hour]: 0,
+      [TimeUnit.Minute]: 1,
+      [TimeUnit.Second]: 1
+    })
+  ).toBe(61);
 
-  expect(convertTimeValueToSeconds({
-    [TimeUnit.Hour]: 0,
-    [TimeUnit.Minute]: 59,
-    [TimeUnit.Second]: 59
-  })).toBe(3_599);
+  expect(
+    convertTimeValueToSeconds({
+      [TimeUnit.Hour]: 0,
+      [TimeUnit.Minute]: 59,
+      [TimeUnit.Second]: 59
+    })
+  ).toBe(3_599);
 
-  expect(convertTimeValueToSeconds({
-    [TimeUnit.Hour]: 1,
-    [TimeUnit.Minute]: 0,
-    [TimeUnit.Second]: 0
-  })).toBe(3_600);
+  expect(
+    convertTimeValueToSeconds({
+      [TimeUnit.Hour]: 1,
+      [TimeUnit.Minute]: 0,
+      [TimeUnit.Second]: 0
+    })
+  ).toBe(3_600);
 
-  expect(convertTimeValueToSeconds({
-    [TimeUnit.Hour]: 24,
-    [TimeUnit.Minute]: 0,
-    [TimeUnit.Second]: 0
-  })).toBe(86_400);
+  expect(
+    convertTimeValueToSeconds({
+      [TimeUnit.Hour]: 24,
+      [TimeUnit.Minute]: 0,
+      [TimeUnit.Second]: 0
+    })
+  ).toBe(86_400);
 });

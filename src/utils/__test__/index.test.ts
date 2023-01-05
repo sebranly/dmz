@@ -1,8 +1,4 @@
-import {
-  getCurrentTimestamp,
-  getEndTime,
-  numberRange,
-} from '../index';
+import { getCurrentTimestamp, getEndTime, numberRange } from '../index';
 
 test('getCurrentTimestamp', () => {
   expect(getCurrentTimestamp()).toBeGreaterThan(0);

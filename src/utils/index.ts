@@ -29,9 +29,4 @@ const getEndTime = (timer: Timer) => {
   return new Date(endTime).toLocaleString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
 };
 
-export {
-  calculateRemainingSeconds,
-  getCurrentTimestamp,
-  getEndTime,
-  numberRange
-};
+export { calculateRemainingSeconds, getCurrentTimestamp, getEndTime, numberRange };
