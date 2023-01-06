@@ -85,7 +85,7 @@ const TimerCard: React.FC<TimerCardProps> = (props) => {
         <div className="money-title">End Time:</div> <div className={classnamesMoney}>{endTime}</div>
       </div>
       <div className="timer-card-money">
-        <div className="money-title">Exfil Money:</div>{' '}
+        <div className="money-title">Exfiltration:</div>{' '}
         <div className={classnamesMoney}>
           ${formatMoney(convertSecondsToMoney(remainingSeconds, REGULAR_HOURLY_RATE))}
         </div>

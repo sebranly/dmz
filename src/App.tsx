@@ -204,7 +204,7 @@ function App() {
               <div className="time-equivalent-title">Time equivalent</div>
               <div className="margin-top-10">
                 <div className="time-equivalent">
-                  <div className="money-title">Exfil Money:</div> {regularTimeEquivalentText}
+                  <div className="money-title">Exfiltration:</div> {regularTimeEquivalentText}
                 </div>
                 <div className="time-equivalent">
                   <div className="money-title">Dead Drop:</div> {deadDropTimeEquivalentText}
