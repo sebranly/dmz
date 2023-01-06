@@ -68,7 +68,7 @@ const TimerCard: React.FC<TimerCardProps> = (props) => {
     const classnamesValue = classnames({ [classnamesPlayerColor]: isFixed });
 
     return (
-      <li className="timer-card-element flex-child" key={l}>
+      <li className="timer-card-element" key={l}>
         <span className={classnamesValue}>{displayWithTwoDigits(value)}</span>
         <div className="timer-card-unit">{pluralize(l, value)}</div>
       </li>
@@ -80,7 +80,7 @@ const TimerCard: React.FC<TimerCardProps> = (props) => {
       {showRibbon && <div className="ribbon-child">NEW</div>}
       <div className={classnamesPlayerTitle}>{playerTitle}</div>
       <div className="timer-card-title">{timerTitle}</div>
-      <ul className="timer-card flex-container">{items}</ul>
+      <ul className="timer-card flex-container-timers">{items}</ul>
       <div className="timer-card-money">
         <div className="money-title">End Time:</div> <div className={classnamesMoney}>{endTime}</div>
       </div>

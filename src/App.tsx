@@ -187,8 +187,8 @@ function App() {
         <div>
           <h3>Money to Time Converter</h3>
           <div className="flex-container">
-            <div className="margin-right-20 border-select">
-              <div className="money-input-title">Enter Money Value:</div>${' '}
+            <div className="margin-flex-20 flex-child">
+              <div className="money-input-title">Enter Money Value</div>${' '}
               <input
                 className="margin-top-10 money-input"
                 min="0"
@@ -199,10 +199,8 @@ function App() {
                 value={moneyInput}
               />
             </div>
-            <div className="time-equivalent-card border-select">
-              <div className="time-equivalent-title">
-                <b>Time equivalent:</b>
-              </div>
+            <div className="time-equivalent-card margin-flex-20 flex-child">
+              <div className="time-equivalent-title">Time equivalent</div>
               <div className="margin-top-10">
                 <div className="time-equivalent">
                   <div className="money-title">Exfil Money:</div> {regularTimeEquivalentText}
@@ -218,10 +216,10 @@ function App() {
           <h3>Time to Money Converter</h3>
           <h4>Add a timer</h4>
           <div className="flex-container new-timer">
-            <div className="margin-right-20 border-select">
+            <div className="margin-flex-20 flex-child">
               <div className="new-timer-option">Pick Timer ID</div>
-              <div className={`new-timer-option color-${playerColor}`}>{`Player ${playerIndex + 1}`}</div>
-              <select className="new-timer-select" onChange={onChangeTimerIndex} value={timerIndex}>
+              <div className={`margin-top-10 new-timer-option color-${playerColor}`}>{`Player ${playerIndex + 1}`}</div>
+              <select className="margin-top-10 new-timer-select" onChange={onChangeTimerIndex} value={timerIndex}>
                 {renderPlayerIndexesOptionGroups()}
               </select>
               {timerExists ? (
@@ -230,33 +228,39 @@ function App() {
                 <div className="information">Timer can be created.</div>
               )}
             </div>
-            <div className="margin-right-20 border-select">
+            <div className="margin-flex-20 flex-child">
               <div className="new-timer-option">Current remaining time</div>
-              {[TimeUnit.Hour, TimeUnit.Minute, TimeUnit.Second].map((timeLabel: TimeUnit) => {
-                return (
-                  <div className="inline" key={timeLabel}>
-                    <select
-                      disabled={timerExists}
-                      onChange={onChangeTimerValue(timeLabel)}
-                      value={timerValue[timeLabel]}
-                    >
-                      {renderTimerUnitOptions(timeLabel)}
-                    </select>
-                    <div className="new-timer-separator">{timeLabel.charAt(0).toLowerCase()}</div>
-                  </div>
-                );
-              })}
+              <div className="margin-top-10">
+                {[TimeUnit.Hour, TimeUnit.Minute, TimeUnit.Second].map((timeLabel: TimeUnit) => {
+                  return (
+                    <div className="inline" key={timeLabel}>
+                      <select
+                        disabled={timerExists}
+                        onChange={onChangeTimerValue(timeLabel)}
+                        value={timerValue[timeLabel]}
+                      >
+                        {renderTimerUnitOptions(timeLabel)}
+                      </select>
+                      <div className="new-timer-separator">{timeLabel.charAt(0).toLowerCase()}</div>
+                    </div>
+                  );
+                })}
+              </div>
               <button
-                className="margin-top-10 block"
+                className="margin-top-20"
                 onClick={() => onClickAddTimer(timerValue)}
                 disabled={timerValuesAreNull || timerExists}
               >
                 Add this timer
               </button>
             </div>
-            <div className="border-select">
+            <div className="margin-flex-20 flex-child">
               <div className="new-timer-option">Quick option</div>
-              <button disabled={timerExists} onClick={() => onClickAddTimer(quickOptionTimerValue)}>
+              <button
+                className="margin-top-10"
+                disabled={timerExists}
+                onClick={() => onClickAddTimer(quickOptionTimerValue)}
+              >
                 {copyLostWeapon}
               </button>
             </div>
@@ -266,7 +270,7 @@ function App() {
         <select onChange={onChangeSort} value={sort}>
           {renderSortOptions()}
         </select>
-        <div className="flex-container flex-wrap all-timers">{renderTimers()}</div>
+        <div className="flex-container-timers flex-wrap all-timers">{renderTimers()}</div>
       </section>
       <Footer />
     </div>

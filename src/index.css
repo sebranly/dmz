@@ -88,7 +88,7 @@ body {
 }
 
 .new-timer {
-  text-align: left;
+  text-align: center;
 }
 
 .new-timer-separator {
@@ -124,6 +124,11 @@ li span {
   justify-content: center;
 }
 
+.flex-container-timers {
+  display: flex;
+  justify-content: center;
+}
+
 .flex-wrap {
   flex-wrap: wrap;
 }
@@ -153,11 +158,19 @@ select {
   margin-right: 20px;
 }
 
+.margin-flex-20 {
+  margin-right: 20px;
+}
+
 .margin-top-10 {
   margin-top: 10px;
 }
 
-.border-select {
+.margin-top-20 {
+  margin-top: 20px;
+}
+
+.flex-child {
   border: 1px solid black;
   padding: 10px;
   background-color: #222;
@@ -174,13 +187,13 @@ select {
 .warning {
   color: orange;
   padding-top: 10px;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .information {
   color: green;
   padding-top: 10px;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .ribbon-container {
@@ -231,4 +244,46 @@ select {
 
 .time-equivalent-card {
   min-width: 300px;
+}
+
+input {
+  font-size: 16px;
+  text-align: center;
+}
+
+button {
+  font-size: 16px;
+  text-align: center;
+}
+
+select {
+  font-size: 16px;
+  text-align: center;
+}
+
+@media screen and (max-width: 801px) {
+  .flex-container {
+    flex-direction: column;
+  }
+
+  .margin-flex-20 {
+    margin-bottom: 20px;
+    margin-right: 0px;
+  }
+
+  .flex-child {
+    min-width: 350px;
+  }
+}
+
+@media screen and (max-width: 401px) {
+  .flex-child {
+    min-width: 300px;
+  }
+}
+
+@media screen and (max-width: 351px) {
+  .flex-child {
+    min-width: 250px;
+  }
 }
