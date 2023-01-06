@@ -10,6 +10,7 @@ import {
   convertTimerIndexToPlayerTimerIndex
 } from '../utils/convert';
 import { displayWithTwoDigits, formatMoney, getPlayerColor, pluralize } from '../utils/display';
+import classnames from 'classnames';
 
 export interface TimerCardProps {
   className?: string;
@@ -43,9 +44,15 @@ const TimerCard: React.FC<TimerCardProps> = (props) => {
   const showRibbon = currentTimestamp - timestampStart <= NEW_RIBBON_DURATION_SEC;
 
   const classnamesPlayerColor = `color-${color}`;
-  const classnamesPlayerTitle = `timer-card-title ${classnamesPlayerColor}`;
-  const classnamesComponent = `timer-card-component ${className} border-color-${color} ribbon-container`;
-  const classnamesMoney = `money-value ${classnamesPlayerColor}`;
+  const classnamesPlayerTitle = classnames('timer-card-title', classnamesPlayerColor);
+  const classnamesComponent = classnames(
+    'timer-card-component',
+    className,
+    `border-color-${color}`,
+    'ribbon-container'
+  );
+
+  const classnamesMoney = classnames('money-value', classnamesPlayerColor);
 
   const items = [
     { value: hours, label: TimeUnit.Hour },
@@ -58,7 +65,7 @@ const TimerCard: React.FC<TimerCardProps> = (props) => {
       (l === TimeUnit.Minute && isFixedMinutes) ||
       (l === TimeUnit.Second && isFixedSeconds);
 
-    const classnamesValue = isFixed ? classnamesPlayerColor : '';
+    const classnamesValue = classnames({ [classnamesPlayerColor]: isFixed });
 
     return (
       <li className="timer-card-element flex-child" key={l}>

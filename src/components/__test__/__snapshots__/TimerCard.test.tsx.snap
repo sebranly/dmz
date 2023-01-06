@@ -3,7 +3,7 @@
 exports[`TimerCard 1`] = `
 NodeList [
   <div
-    class="timer-card-component  border-color-green ribbon-container"
+    class="timer-card-component border-color-green ribbon-container"
   >
     <div
       class="ribbon-child"
