@@ -267,7 +267,7 @@ function App() {
           </div>
         </div>
         <h4>{`View all timers (${timers.length}/${MAX_TIMERS})`}</h4>
-        <select onChange={onChangeSort} value={sort}>
+        <select disabled={timers.length <= 1} onChange={onChangeSort} value={sort}>
           {renderSortOptions()}
         </select>
         <div className="flex-container-timers flex-wrap all-timers">{renderTimers()}</div>

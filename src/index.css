@@ -146,14 +146,6 @@ li span {
   margin-top: 10px;
 }
 
-button {
-  font-family: 'Ra-Mono';
-}
-
-select {
-  font-family: 'Ra-Mono';
-}
-
 .margin-right-20 {
   margin-right: 20px;
 }
@@ -252,11 +244,13 @@ input {
 }
 
 button {
+  font-family: 'Ra-Mono';
   font-size: 16px;
   text-align: center;
 }
 
 select {
+  font-family: 'Ra-Mono';
   font-size: 16px;
   text-align: center;
 }
@@ -280,10 +274,35 @@ select {
   .flex-child {
     min-width: 300px;
   }
+
+  .timer-card-component {
+    width: 300px;
+  }
 }
 
 @media screen and (max-width: 351px) {
   .flex-child {
+    font-size: 14px;
     min-width: 250px;
+  }
+
+  .timer-card-component {
+    width: 250px;
+  }
+
+  .timer-card-component {
+    font-size: 16px;
+  }
+
+  button {
+    font-size: 14px;
+  }
+
+  input {
+    font-size: 14px;
+  }
+
+  select {
+    font-size: 14px;
   }
 }
