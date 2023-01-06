@@ -189,7 +189,8 @@ function App() {
           <h3>Money to Time Converter</h3>
           <div className="flex-container">
             <div className="margin-flex-20 flex-child">
-              <div className="money-input-title">Enter Money Value</div>${' '}
+              <div className="money-input-title">Enter Money Value</div>
+              <div className="inline lightgreen">$</div>{' '}
               <input
                 className="margin-top-10 money-input"
                 min="0"
