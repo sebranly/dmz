@@ -8,8 +8,8 @@ const FAQ = () => {
   const onToggle = (questionString: string) => {
     const newFaq = faq.map((qa: QuestionAnswer) => {
       const { answer, question, shown } = qa;
-      const isQuestion = question === questionString;
-      const shownValue = isQuestion ? !shown : false;
+      const isClicked = question === questionString;
+      const shownValue = isClicked ? !shown : false;
       return { question, answer, shown: shownValue };
     });
 
