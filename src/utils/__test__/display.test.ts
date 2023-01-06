@@ -1,5 +1,15 @@
-import { Color } from '../../types';
-import { displayWithTwoDigits, formatMoney, getPlayerColor, pluralize } from '../display';
+import { Color, TimeUnit } from '../../types';
+import { displayTimeValue, displayWithTwoDigits, formatMoney, getPlayerColor, pluralize } from '../display';
+
+test('displayTimeValue', () => {
+  let timeValue = { [TimeUnit.Hour]: 0, [TimeUnit.Minute]: 0, [TimeUnit.Second]: 0 };
+  expect(displayTimeValue(timeValue)).toBe('00h 00m 00s');
+
+  timeValue[TimeUnit.Hour] = 1;
+  timeValue[TimeUnit.Minute] = 2;
+  timeValue[TimeUnit.Second] = 24;
+  expect(displayTimeValue(timeValue)).toBe('01h 02m 24s');
+});
 
 test('displayWithTwoDigits', () => {
   expect(displayWithTwoDigits(0)).toBe('00');

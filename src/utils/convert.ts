@@ -1,5 +1,18 @@
-import { HOURS_PER_SLOT, MAX_TIMERS_PER_PLAYER } from '../constants/game';
+import { DEAD_DROP_HOURLY_RATE, HOURS_PER_SLOT, MAX_TIMERS_PER_PLAYER, REGULAR_HOURLY_RATE } from '../constants/game';
 import { TimeUnit, TimeValue } from '../types';
+
+/**
+ * @name convertMoneyToSeconds
+ * @description Returns the time equivalent (in seconds) of a money value
+ */
+const convertMoneyToSeconds = (money: number, isDeadDrop = false) => {
+  if (money <= 0) return 0;
+
+  const hourlyRate = isDeadDrop ? DEAD_DROP_HOURLY_RATE : REGULAR_HOURLY_RATE;
+  const seconds = Math.floor((3_600 * money) / hourlyRate);
+
+  return seconds;
+};
 
 /**
  * @name convertPlayerTimerIndexToHourTimer
@@ -81,6 +94,7 @@ const convertTimeValueToSeconds = (timeValue: TimeValue) => {
 };
 
 export {
+  convertMoneyToSeconds,
   convertPlayerTimerIndexToHourTimer,
   convertSecondsToMoney,
   convertSecondsToTimeValue,

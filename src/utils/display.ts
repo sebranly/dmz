@@ -1,4 +1,5 @@
-import { Color } from '../types';
+import { isNullTimeValue } from '.';
+import { Color, TimeUnit, TimeValue } from '../types';
 
 /**
  * @name displayWithTwoDigits
@@ -7,6 +8,25 @@ import { Color } from '../types';
 const displayWithTwoDigits = (nb: number) => {
   if (nb < 10) return `0${nb}`;
   return `${nb}`;
+};
+
+/**
+ * @name displayTimeValue
+ * @description Displays a time value with two-digits for hours, minutes and seconds
+ */
+const displayTimeValue = (timeValue: TimeValue) => {
+  const timeValueIsNull = isNullTimeValue(timeValue);
+
+  if (timeValueIsNull) return '00h 00m 00s';
+
+  const { [TimeUnit.Hour]: hours, [TimeUnit.Minute]: minutes, [TimeUnit.Second]: seconds } = timeValue;
+
+  const hoursString = `${displayWithTwoDigits(hours)}h`;
+  const minutesString = `${displayWithTwoDigits(minutes)}m`;
+  const secondsString = `${displayWithTwoDigits(seconds)}s`;
+
+  const finalString = `${hoursString} ${minutesString} ${secondsString}`;
+  return finalString;
 };
 
 /**
@@ -45,4 +65,4 @@ const pluralize = (str: string, nb: number) => {
   return `${str}s`;
 };
 
-export { displayWithTwoDigits, formatMoney, getPlayerColor, pluralize };
+export { displayTimeValue, displayWithTwoDigits, formatMoney, getPlayerColor, pluralize };

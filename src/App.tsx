@@ -1,22 +1,31 @@
 import React from 'react';
 import { SORT_OPTIONS, WEBSITE_SUBTITLE, WEBSITE_TITLE } from './constants/general';
-import { MAX_HOURS_FOR_TIMER, MAX_PLAYERS, MAX_TIMERS, MAX_TIMERS_PER_PLAYER } from './constants/game';
+import {
+  MAX_HOURS_FOR_TIMER,
+  MAX_PLAYERS,
+  MAX_TIMERS,
+  MAX_TIMERS_PER_PLAYER,
+  REGULAR_HOURLY_RATE
+} from './constants/game';
 import { Footer } from './components/Footer';
 import './App.css';
 import { TimerCard } from './components/TimerCard';
 import { getCurrentTimestamp, isNullTimeValue, numberRange } from './utils';
 import {
+  convertMoneyToSeconds,
   convertPlayerTimerIndexToHourTimer,
+  convertSecondsToTimeValue,
   convertTimerIndexToPlayerIndex,
   convertTimerIndexToPlayerTimerIndex,
   convertTimeValueToSeconds
 } from './utils/convert';
-import { displayWithTwoDigits, getPlayerColor } from './utils/display';
+import { displayTimeValue, displayWithTwoDigits, getPlayerColor } from './utils/display';
 import { sortTimers } from './utils/sort';
 import { Sort, Timer, TimeUnit, TimeValue } from './types';
 import { excludeTimerByIndex, pickTimerByIndex } from './utils/filter';
 
 function App() {
+  const [moneyInput, setMoneyInput] = React.useState(REGULAR_HOURLY_RATE / 2);
   const [timers, setTimers] = React.useState<Timer[]>([]);
   const [sort, setSort] = React.useState(Sort.oldestToNewest);
   const [timerIndex, setTimerIndex] = React.useState(0);
@@ -45,6 +54,12 @@ function App() {
     onMount();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const onChangeMoneyInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    const newValue = Number(value);
+    setMoneyInput(newValue);
+  };
 
   const onChangeTimerIndex = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { value } = e.target;
@@ -156,13 +171,52 @@ function App() {
   const playerColor = getPlayerColor(playerIndex);
   const timerExists = pickTimerByIndex(timers, timerIndex).length > 0;
 
+  const deadDropTimeEquivalentSeconds = convertMoneyToSeconds(moneyInput, true);
+  const deadDropTimeEquivalent = convertSecondsToTimeValue(deadDropTimeEquivalentSeconds);
+  const deadDropTimeEquivalentText = displayTimeValue(deadDropTimeEquivalent);
+
+  const regularTimeEquivalentSeconds = convertMoneyToSeconds(moneyInput);
+  const regularTimeEquivalent = convertSecondsToTimeValue(regularTimeEquivalentSeconds);
+  const regularTimeEquivalentText = displayTimeValue(regularTimeEquivalent);
+
   return (
     <div className="App">
       <section className="main">
         <h1>{WEBSITE_TITLE}</h1>
         <h2>{WEBSITE_SUBTITLE}</h2>
         <div>
-          <h3>Add a timer</h3>
+          <h3>Money to Time Converter</h3>
+          <div className="flex-container">
+            <div className="margin-right-20 border-select">
+              <div className="money-input-title">Enter Money Value:</div>${' '}
+              <input
+                className="margin-top-10 money-input"
+                min="0"
+                max="1000000"
+                step="100"
+                type="number"
+                onChange={onChangeMoneyInput}
+                value={moneyInput}
+              />
+            </div>
+            <div className="time-equivalent-card border-select">
+              <div className="time-equivalent-title">
+                <b>Time equivalent:</b>
+              </div>
+              <div className="margin-top-10">
+                <div className="time-equivalent">
+                  <div className="money-title">Exfil Money:</div> {regularTimeEquivalentText}
+                </div>
+                <div className="time-equivalent">
+                  <div className="money-title">Dead Drop:</div> {deadDropTimeEquivalentText}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3>Time to Money Converter</h3>
+          <h4>Add a timer</h4>
           <div className="flex-container new-timer">
             <div className="margin-right-20 border-select">
               <div className="new-timer-option">Pick Timer ID</div>
@@ -208,7 +262,7 @@ function App() {
             </div>
           </div>
         </div>
-        <h3>{`View all timers (${timers.length}/${MAX_TIMERS})`}</h3>
+        <h4>{`View all timers (${timers.length}/${MAX_TIMERS})`}</h4>
         <select onChange={onChangeSort} value={sort}>
           {renderSortOptions()}
         </select>

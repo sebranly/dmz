@@ -218,3 +218,17 @@ select {
 .all-timers {
   margin-top: 10px;
 }
+
+.money-input {
+  font-family: 'Ra-Mono';
+  text-align: center;
+}
+
+.time-equivalent {
+  display: flex;
+  text-align: left;
+}
+
+.time-equivalent-card {
+  min-width: 300px;
+}
