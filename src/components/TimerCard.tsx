@@ -10,6 +10,7 @@ import {
   convertTimerIndexToPlayerTimerIndex
 } from '../utils/convert';
 import { displayWithTwoDigits, formatMoney, getPlayerColor, pluralize } from '../utils/display';
+import classnames from 'classnames';
 
 export interface TimerCardProps {
   className?: string;
@@ -43,9 +44,15 @@ const TimerCard: React.FC<TimerCardProps> = (props) => {
   const showRibbon = currentTimestamp - timestampStart <= NEW_RIBBON_DURATION_SEC;
 
   const classnamesPlayerColor = `color-${color}`;
-  const classnamesPlayerTitle = `timer-card-title ${classnamesPlayerColor}`;
-  const classnamesComponent = `timer-card-component ${className} border-color-${color} ribbon-container`;
-  const classnamesMoney = `money-value ${classnamesPlayerColor}`;
+  const classnamesPlayerTitle = classnames('timer-card-title', classnamesPlayerColor);
+  const classnamesComponent = classnames(
+    'timer-card-component',
+    className,
+    `border-color-${color}`,
+    'ribbon-container'
+  );
+
+  const classnamesMoney = classnames('money-value', classnamesPlayerColor);
 
   const items = [
     { value: hours, label: TimeUnit.Hour },
@@ -58,10 +65,10 @@ const TimerCard: React.FC<TimerCardProps> = (props) => {
       (l === TimeUnit.Minute && isFixedMinutes) ||
       (l === TimeUnit.Second && isFixedSeconds);
 
-    const classnamesValue = isFixed ? classnamesPlayerColor : '';
+    const classnamesValue = classnames({ [classnamesPlayerColor]: isFixed });
 
     return (
-      <li className="timer-card-element flex-child" key={l}>
+      <li className="timer-card-element" key={l}>
         <span className={classnamesValue}>{displayWithTwoDigits(value)}</span>
         <div className="timer-card-unit">{pluralize(l, value)}</div>
       </li>
@@ -73,12 +80,12 @@ const TimerCard: React.FC<TimerCardProps> = (props) => {
       {showRibbon && <div className="ribbon-child">NEW</div>}
       <div className={classnamesPlayerTitle}>{playerTitle}</div>
       <div className="timer-card-title">{timerTitle}</div>
-      <ul className="timer-card flex-container">{items}</ul>
+      <ul className="timer-card flex-container-timers">{items}</ul>
       <div className="timer-card-money">
         <div className="money-title">End Time:</div> <div className={classnamesMoney}>{endTime}</div>
       </div>
       <div className="timer-card-money">
-        <div className="money-title">Exfil Money:</div>{' '}
+        <div className="money-title">Exfiltration:</div>{' '}
         <div className={classnamesMoney}>
           ${formatMoney(convertSecondsToMoney(remainingSeconds, REGULAR_HOURLY_RATE))}
         </div>

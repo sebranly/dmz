@@ -41,6 +41,8 @@ const getEndTime = (timer: Timer) => {
 const isNullTimeValue = (timeValue: TimeValue) => {
   const { [TimeUnit.Hour]: hours, [TimeUnit.Minute]: minutes, [TimeUnit.Second]: seconds } = timeValue;
 
+  if (hours < 0 || minutes < 0 || seconds < 0) return true;
+
   return hours === 0 && minutes === 0 && seconds === 0;
 };
 

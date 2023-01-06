@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FAQ 1`] = `
+NodeList [
+  <div
+    id="faq"
+  >
+    <h3>
+      FAQ
+    </h3>
+    <div
+      class="question-and-answer"
+    >
+      <div
+        class="question"
+      >
+        What is DMZ? [+]
+      </div>
+    </div>
+    <div
+      class="question-and-answer"
+    >
+      <div
+        class="question"
+      >
+        What is this website? [-]
+      </div>
+      <div
+        class="answer"
+      >
+        DMZ: Currency to Cooldown Converter is an unofficial website which focuses on getting your lost, insured weapons back as efficiently as possible. In the game, dying on the battlefield with an insured weapon means that the weapon gets locked behind a cooldown timer. By default, the player has to wait for a certain amount of hours before selecting this same weapon. The player can make this process faster by using money to reduce said cooldown timer. This website provides money-to-time and time-to-money conversions for these lost, insured weapons.
+      </div>
+    </div>
+    <div
+      class="question-and-answer"
+    >
+      <div
+        class="question"
+      >
+        What are the hourly rates? [+]
+      </div>
+    </div>
+    <div
+      class="question-and-answer"
+    >
+      <div
+        class="question"
+      >
+        What are dead drops? [+]
+      </div>
+    </div>
+    <div
+      class="question-and-answer"
+    >
+      <div
+        class="question"
+      >
+        What about items? [+]
+      </div>
+    </div>
+    <div
+      class="question-and-answer"
+    >
+      <div
+        class="question"
+      >
+        I don't understand the use-case [+]
+      </div>
+    </div>
+    <div
+      class="question-and-answer"
+    >
+      <div
+        class="question"
+      >
+        Can I bake cakes with this website? [+]
+      </div>
+    </div>
+  </div>,
+]
+`;

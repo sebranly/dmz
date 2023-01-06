@@ -88,7 +88,7 @@ body {
 }
 
 .new-timer {
-  text-align: left;
+  text-align: center;
 }
 
 .new-timer-separator {
@@ -124,6 +124,11 @@ li span {
   justify-content: center;
 }
 
+.flex-container-timers {
+  display: flex;
+  justify-content: center;
+}
+
 .flex-wrap {
   flex-wrap: wrap;
 }
@@ -141,15 +146,11 @@ li span {
   margin-top: 10px;
 }
 
-button {
-  font-family: 'Ra-Mono';
-}
-
-select {
-  font-family: 'Ra-Mono';
-}
-
 .margin-right-20 {
+  margin-right: 20px;
+}
+
+.margin-flex-20 {
   margin-right: 20px;
 }
 
@@ -157,7 +158,11 @@ select {
   margin-top: 10px;
 }
 
-.border-select {
+.margin-top-20 {
+  margin-top: 20px;
+}
+
+.flex-child {
   border: 1px solid black;
   padding: 10px;
   background-color: #222;
@@ -174,13 +179,13 @@ select {
 .warning {
   color: orange;
   padding-top: 10px;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .information {
   color: green;
   padding-top: 10px;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .ribbon-container {
@@ -217,4 +222,108 @@ select {
 
 .all-timers {
   margin-top: 10px;
+}
+
+.money-input {
+  font-family: 'Ra-Mono';
+  text-align: center;
+}
+
+.time-equivalent {
+  display: flex;
+  text-align: left;
+}
+
+.time-equivalent-card {
+  min-width: 300px;
+}
+
+input {
+  font-family: 'Ra-Mono';
+  font-size: 16px;
+  text-align: center;
+}
+
+button {
+  font-family: 'Ra-Mono';
+  font-size: 16px;
+  text-align: center;
+}
+
+select {
+  font-family: 'Ra-Mono';
+  font-size: 16px;
+  text-align: center;
+}
+
+#faq {
+  max-width: 900px;
+}
+
+.question {
+  color: #aaff55;
+  cursor: pointer;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.question:hover {
+  color: #73d90d;
+}
+
+.answer {
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+@media screen and (max-width: 801px) {
+  .flex-container {
+    flex-direction: column;
+  }
+
+  .margin-flex-20 {
+    margin-bottom: 20px;
+    margin-right: 0px;
+  }
+
+  .flex-child {
+    min-width: 350px;
+  }
+}
+
+@media screen and (max-width: 401px) {
+  .flex-child {
+    min-width: 300px;
+  }
+
+  .timer-card-component {
+    width: 300px;
+  }
+}
+
+@media screen and (max-width: 351px) {
+  .flex-child {
+    font-size: 14px;
+    min-width: 250px;
+  }
+
+  .timer-card-component {
+    width: 250px;
+  }
+
+  .timer-card-component {
+    font-size: 16px;
+  }
+
+  button {
+    font-size: 14px;
+  }
+
+  input {
+    font-size: 14px;
+  }
+
+  select {
+    font-size: 14px;
+  }
 }

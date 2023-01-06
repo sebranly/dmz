@@ -3,7 +3,7 @@
 exports[`TimerCard 1`] = `
 NodeList [
   <div
-    class="timer-card-component  border-color-green ribbon-container"
+    class="timer-card-component border-color-green ribbon-container"
   >
     <div
       class="ribbon-child"
@@ -21,10 +21,10 @@ NodeList [
       Timer 1
     </div>
     <ul
-      class="timer-card flex-container"
+      class="timer-card flex-container-timers"
     >
       <li
-        class="timer-card-element flex-child"
+        class="timer-card-element"
       >
         <span
           class="color-green"
@@ -38,7 +38,7 @@ NodeList [
         </div>
       </li>
       <li
-        class="timer-card-element flex-child"
+        class="timer-card-element"
       >
         <span
           class="color-green"
@@ -52,7 +52,7 @@ NodeList [
         </div>
       </li>
       <li
-        class="timer-card-element flex-child"
+        class="timer-card-element"
       >
         <span
           class=""
@@ -87,7 +87,7 @@ NodeList [
       <div
         class="money-title"
       >
-        Exfil Money:
+        Exfiltration:
       </div>
        
       <div

@@ -1,6 +1,7 @@
 import { DEAD_DROP_HOURLY_RATE, REGULAR_HOURLY_RATE } from '../../constants/game';
 import { TimeUnit } from '../../types';
 import {
+  convertMoneyToSeconds,
   convertPlayerTimerIndexToHourTimer,
   convertSecondsToTimeValue,
   convertSecondsToMoney,
@@ -8,6 +9,17 @@ import {
   convertTimerIndexToPlayerTimerIndex,
   convertTimeValueToSeconds
 } from '../convert';
+
+test('convertMoneyToSeconds', () => {
+  expect(convertMoneyToSeconds(-1000)).toBe(0);
+  expect(convertMoneyToSeconds(-1)).toBe(0);
+  expect(convertMoneyToSeconds(0)).toBe(0);
+  expect(convertMoneyToSeconds(0, true)).toBe(0);
+  expect(convertMoneyToSeconds(20_000)).toBe(1_800);
+  expect(convertMoneyToSeconds(40_000)).toBe(3_600);
+  expect(convertMoneyToSeconds(15_000, true)).toBe(1_800);
+  expect(convertMoneyToSeconds(30_000, true)).toBe(3_600);
+});
 
 test('convertPlayerTimerIndexToHourTimer', () => {
   expect(convertPlayerTimerIndexToHourTimer(-1)).toBe(0);
