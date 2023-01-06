@@ -23,6 +23,7 @@ import { displayTimeValue, displayWithTwoDigits, getPlayerColor } from './utils/
 import { sortTimers } from './utils/sort';
 import { Sort, Timer, TimeUnit, TimeValue } from './types';
 import { excludeTimerByIndex, pickTimerByIndex } from './utils/filter';
+import { FAQ } from './components/FAQ';
 
 function App() {
   const [moneyInput, setMoneyInput] = React.useState(REGULAR_HOURLY_RATE / 2);
@@ -271,6 +272,7 @@ function App() {
           {renderSortOptions()}
         </select>
         <div className="flex-container-timers flex-wrap all-timers">{renderTimers()}</div>
+        <FAQ />
       </section>
       <Footer />
     </div>

@@ -23,6 +23,12 @@ export type Timer = {
   timestampStart: number;
 };
 
+export type QuestionAnswer = {
+  question: string;
+  answer: string;
+  shown: boolean;
+};
+
 export enum Sort {
   firstPlayerToLastPlayer = 'First player to Last player',
   lastPlayerToFirstPlayer = 'Last player to First player',

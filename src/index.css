@@ -255,6 +255,26 @@ select {
   text-align: center;
 }
 
+#faq {
+  max-width: 900px;
+}
+
+.question {
+  color: #aaff55;
+  cursor: pointer;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.question:hover {
+  color: #73d90d;
+}
+
+.answer {
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
 @media screen and (max-width: 801px) {
   .flex-container {
     flex-direction: column;
