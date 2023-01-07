@@ -27,3 +27,10 @@ Live at https://sebranly.github.io/dmz/
 - Confirm that test suite passes with `npm run test`
 - Then run `npm run deploy`
 - Finally create a new release for this version on [GitHub Releases page](https://github.com/sebranly/dmz/releases) by adding the changelog
+
+### Credits
+
+The sharing image comes from: https://commons.wikimedia.org/wiki/File:Calculator_icon.svg
+Attribution: Boca Tutor, CC BY-SA 3.0 <https://creativecommons.org/licenses/by-sa/3.0>, via Wikimedia Commons
+
+As it is an SVG format not supported by Twitter, it has been converted into JPG thanks to https://image.online-convert.com/convert/svg-to-jpg

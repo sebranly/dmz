@@ -1,6 +1,7 @@
 // Any constant that comes from the DMZ official game itself
 export const CURRENT_SEASON = 1;
 export const DEAD_DROP_HOURLY_RATE = 30_000;
+export const DOG_TAG_VALUE = 2_500;
 export const HOURS_PER_SLOT = 2;
 export const JERRYCAN_VALUE = 200;
 export const MAX_HOURS_FOR_TIMER = 6;

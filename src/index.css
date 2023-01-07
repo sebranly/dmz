@@ -142,6 +142,10 @@ li span {
   font-weight: bold;
 }
 
+.xp-title {
+  flex-grow: 1;
+}
+
 .money-title {
   flex-grow: 1;
 }
@@ -238,6 +242,11 @@ li span {
   text-align: center;
 }
 
+.xp-equivalent {
+  display: flex;
+  text-align: left;
+}
+
 .time-equivalent {
   display: flex;
   text-align: left;
@@ -245,6 +254,10 @@ li span {
 
 .time-equivalent-card {
   min-width: 300px;
+}
+
+.xp-equivalent-card {
+  min-width: 200px;
 }
 
 input {
@@ -288,6 +301,10 @@ select {
 .answer {
   margin-bottom: 20px;
   text-align: justify;
+}
+
+.yt-video {
+  color: white;
 }
 
 @media screen and (max-width: 801px) {
