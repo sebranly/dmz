@@ -1,3 +1,4 @@
+import classnames from 'classnames';
 import * as React from 'react';
 import { questionsAnswers } from '../data/faq';
 import { QuestionAnswer } from '../types';
@@ -24,9 +25,13 @@ const FAQ = () => {
 
         const questionSuffix = shown ? '-' : '+';
         const questionBis = `${question} [${questionSuffix}]`;
+        const classnamesQuestionAndAnswer = classnames(
+          { 'margin-top-10': !shown },
+          { 'margin-bottom-20 margin-top-20': shown }
+        );
 
         return (
-          <div key={question} className="question-and-answer">
+          <div key={question} className={classnamesQuestionAndAnswer}>
             <div onClick={() => onToggle(question)} className="question">
               {questionBis}
             </div>

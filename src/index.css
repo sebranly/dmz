@@ -162,6 +162,10 @@ li span {
   margin-top: 10px;
 }
 
+.margin-bottom-20 {
+  margin-bottom: 20px;
+}
+
 .margin-top-20 {
   margin-top: 20px;
 }
@@ -308,6 +312,14 @@ select {
 
   .timer-card-component {
     width: 300px;
+  }
+
+  .question {
+    text-align: left;
+  }
+
+  .answer {
+    text-align: left;
   }
 }
 

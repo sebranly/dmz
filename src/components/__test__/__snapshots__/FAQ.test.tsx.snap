@@ -9,7 +9,7 @@ NodeList [
       FAQ
     </h3>
     <div
-      class="question-and-answer"
+      class="margin-top-10"
     >
       <div
         class="question"
@@ -18,7 +18,7 @@ NodeList [
       </div>
     </div>
     <div
-      class="question-and-answer"
+      class="margin-bottom-20 margin-top-20"
     >
       <div
         class="question"
@@ -37,7 +37,7 @@ NodeList [
       </div>
     </div>
     <div
-      class="question-and-answer"
+      class="margin-top-10"
     >
       <div
         class="question"
@@ -46,7 +46,7 @@ NodeList [
       </div>
     </div>
     <div
-      class="question-and-answer"
+      class="margin-top-10"
     >
       <div
         class="question"
@@ -55,7 +55,7 @@ NodeList [
       </div>
     </div>
     <div
-      class="question-and-answer"
+      class="margin-top-10"
     >
       <div
         class="question"
@@ -64,16 +64,16 @@ NodeList [
       </div>
     </div>
     <div
-      class="question-and-answer"
+      class="margin-top-10"
     >
       <div
         class="question"
       >
-        I don't understand the use-case [+]
+        I don't understand the use-case(s) [+]
       </div>
     </div>
     <div
-      class="question-and-answer"
+      class="margin-top-10"
     >
       <div
         class="question"
