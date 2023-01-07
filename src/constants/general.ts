@@ -9,7 +9,7 @@ export const COOKIE_TIMERS = 'timers-live-save';
 export const NEW_RIBBON_DURATION_SEC = 5;
 export const WEBSITE_TITLE = 'DMZ';
 export const WEBSITE_SUBTITLE = 'Currency to Cooldown Converter';
-export const WEBSITE_VERSION = '1.1.0';
+export const WEBSITE_VERSION = '1.2.0';
 
 export const SORT_OPTIONS = [
   DEFAULT_SORT_OPTION,
