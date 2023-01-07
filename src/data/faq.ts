@@ -82,7 +82,7 @@ const questionsAnswers: QuestionAnswer[] = [
     shown: false,
     question: 'What about cookies?',
     answer: [
-      `On this website we use only one browser cookie called '${COOKIE_TIMERS}'. We do this in order to save the timers that you created, so that upon refreshing the page you don't lose them.`
+      `On this website we only use one browser cookie called '${COOKIE_TIMERS}'. We do this in order to save the timers that you created, so that upon refreshing the page you don't lose them.`
     ]
   }
 ];
