@@ -30,7 +30,13 @@ const FAQ = () => {
             <div onClick={() => onToggle(question)} className="question">
               {questionBis}
             </div>
-            {shown && <div className="answer">{answer}</div>}
+            {shown && (
+              <div className="answer">
+                {answer.map((answerParagraph: string, index: number) => (
+                  <p key={index}>{answerParagraph}</p>
+                ))}
+              </div>
+            )}
           </div>
         );
       })}
