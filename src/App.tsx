@@ -189,8 +189,8 @@ function App() {
   const regularTimeEquivalent = convertSecondsToTimeValue(regularTimeEquivalentSeconds);
   const regularTimeEquivalentText = displayTimeValue(regularTimeEquivalent);
 
-  const expEquivalent = Math.floor(moneyInput / 10);
-  const expEquivalentTitle = `${expEquivalent} points`;
+  const xpEquivalent = Math.floor(moneyInput / 10);
+  const xpEquivalentTitle = `${xpEquivalent} points`;
 
   return (
     <div className="App">
@@ -228,7 +228,7 @@ function App() {
               <div>XP equivalent</div>
               <div className="margin-top-10">
                 <div className="xp-equivalent">
-                  <div className="xp-title">XP:</div> {expEquivalentTitle}
+                  <div className="xp-title">XP:</div> {xpEquivalentTitle}
                 </div>
               </div>
             </div>
