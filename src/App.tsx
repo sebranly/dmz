@@ -189,6 +189,9 @@ function App() {
   const regularTimeEquivalent = convertSecondsToTimeValue(regularTimeEquivalentSeconds);
   const regularTimeEquivalentText = displayTimeValue(regularTimeEquivalent);
 
+  const expEquivalent = Math.floor(moneyInput / 10);
+  const expEquivalentTitle = `${expEquivalent} points`;
+
   return (
     <div className="App">
       <section className="main">
@@ -218,6 +221,14 @@ function App() {
                 </div>
                 <div className="time-equivalent">
                   <div className="money-title">Dead Drop:</div> {deadDropTimeEquivalentText}
+                </div>
+              </div>
+            </div>
+            <div className="xp-equivalent-card margin-flex-20 flex-child">
+              <div>XP equivalent</div>
+              <div className="margin-top-10">
+                <div className="xp-equivalent">
+                  <div className="xp-title">XP:</div> {expEquivalentTitle}
                 </div>
               </div>
             </div>
