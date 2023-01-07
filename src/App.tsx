@@ -1,5 +1,6 @@
 import React from 'react';
-import { SORT_OPTIONS, WEBSITE_SUBTITLE, WEBSITE_TITLE } from './constants/general';
+import { useCookies } from 'react-cookie';
+import { COOKIE_TIMERS, DEFAULT_SORT_OPTION, SORT_OPTIONS, WEBSITE_SUBTITLE, WEBSITE_TITLE } from './constants/general';
 import {
   MAX_HOURS_FOR_TIMER,
   MAX_PLAYERS,
@@ -10,7 +11,7 @@ import {
 import { Footer } from './components/Footer';
 import './App.css';
 import { TimerCard } from './components/TimerCard';
-import { getCurrentTimestamp, isNullTimeValue, numberRange } from './utils';
+import { getCurrentTimestamp, isNullTimeValue, numberRange, sanitizeTimersCookie } from './utils';
 import {
   convertMoneyToSeconds,
   convertPlayerTimerIndexToHourTimer,
@@ -26,9 +27,13 @@ import { excludeTimerByIndex, pickTimerByIndex } from './utils/filter';
 import { FAQ } from './components/FAQ';
 
 function App() {
+  const [cookies, setCookie] = useCookies([COOKIE_TIMERS]);
   const [moneyInput, setMoneyInput] = React.useState(REGULAR_HOURLY_RATE / 2);
-  const [timers, setTimers] = React.useState<Timer[]>([]);
-  const [sort, setSort] = React.useState(Sort.oldestToNewest);
+  const [timers, setTimers] = React.useState<Timer[]>(
+    sortTimers(sanitizeTimersCookie(cookies[COOKIE_TIMERS]), getCurrentTimestamp(), DEFAULT_SORT_OPTION)
+  );
+
+  const [sort, setSort] = React.useState(DEFAULT_SORT_OPTION);
   const [timerIndex, setTimerIndex] = React.useState(0);
   const [currentTimestamp, setCurrentTimestamp] = React.useState(getCurrentTimestamp());
   const [timerValue, setTimerValue] = React.useState<TimeValue>({
@@ -55,6 +60,10 @@ function App() {
     onMount();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  React.useEffect(() => {
+    setCookie(COOKIE_TIMERS, timers, { path: '/' });
+  }, [setCookie, timers]);
 
   const onChangeMoneyInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
