@@ -78,9 +78,13 @@ const questionsAnswers: QuestionAnswer[] = [
       `Sure, it's a countdown timer at its core after all. Pro-tip: just make sure your cake does not take longer than ${MAX_HOURS_FOR_TIMER} hours.`
     ]
   },
-  { shown: false,
-  question: 'What about cookies?',
-answer: [`On this website we use only one browser cookie called '${COOKIE_TIMERS}'. We do this in order to save the timers that you created, so that upon refreshing the page you don't lose them.`]}
+  {
+    shown: false,
+    question: 'What about cookies?',
+    answer: [
+      `On this website we use only one browser cookie called '${COOKIE_TIMERS}'. We do this in order to save the timers that you created, so that upon refreshing the page you don't lose them.`
+    ]
+  }
 ];
 
 export { questionsAnswers };
