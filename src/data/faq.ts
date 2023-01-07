@@ -1,6 +1,7 @@
 import {
   CURRENT_SEASON,
   DEAD_DROP_HOURLY_RATE,
+  DOG_TAG_VALUE,
   JERRYCAN_VALUE,
   MAX_HOURS_FOR_TIMER,
   REGULAR_HOURLY_RATE
@@ -31,6 +32,7 @@ const questionsAnswers: QuestionAnswer[] = [
   },
   {
     shown: false,
+    yt: true,
     question: 'What are the hourly rates?',
     answer: [
       `Dollars-per-hour rates have been determined by playing DMZ several times. It is a proportional function (linear function that includes the origin).`,
@@ -39,7 +41,8 @@ const questionsAnswers: QuestionAnswer[] = [
       )} will reduce the cooldown timer by an hour. Alternatively, depositing $${formatMoney(
         DEAD_DROP_HOURLY_RATE
       )} into any dead drop will reduce the cooldown timer by an hour (even if you die in-game).`,
-      `Both methods can also be combined (as a sum).`
+      `Both methods can also be combined (as a sum).`,
+      'The following video (and its YouTube description) showcases how the formulae have been determined:'
     ]
   },
   {
@@ -69,6 +72,15 @@ const questionsAnswers: QuestionAnswer[] = [
       `Once a timer is set up on the website, it decreases on the website every second like the in-game cooldown timer. However, the latter is only visible on the game menu. So, after some time spent fighting into DMZ, this website allows you to accurately know how much time is left and, more importantly, how to split money within your squad in order not to waste any dollar.`,
       `Everyone may be able to get their insured weapons back. You can then use the remaining money you saved for better things such as buying contraband weapons, strikes or UAVs.`,
       `Another example is that you can exfiltrate from the battlefield as soon as you have the required money to get your lost weapon back (rather than risking it all).`
+    ]
+  },
+  {
+    shown: false,
+    yt: true,
+    question: 'I think your formulae are incorrect',
+    answer: [
+      `The formulae have been verified multiple times for season ${CURRENT_SEASON}. The game is known to have multiple bugs affecting how the backpack total is being displayed (i.e. some items don't count in the total up until the end result screen). Another known bug, happening this time on the result screen, is dog tags counting for time reduction, but not being reflected in the total money being exfiltrated with. Each dog tag awards you $${DOG_TAG_VALUE}.`,
+      'The following video showcases how the formulae have been determined. Known bugs have been detailed in the video description:'
     ]
   },
   {

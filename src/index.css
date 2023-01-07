@@ -290,6 +290,10 @@ select {
   text-align: justify;
 }
 
+.yt-video {
+  color: white;
+}
+
 @media screen and (max-width: 801px) {
   .flex-container {
     flex-direction: column;

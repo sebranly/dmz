@@ -27,6 +27,7 @@ export type QuestionAnswer = {
   question: string;
   answer: string[];
   shown: boolean;
+  yt?: boolean;
 };
 
 export enum Sort {
