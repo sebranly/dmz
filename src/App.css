@@ -3,7 +3,7 @@
 }
 
 .main {
-  background-color: #282c34;
+  background: radial-gradient(circle, #282c34, #282c34 50%, #282c34 0, #00050a 100%);
   min-height: 90vh;
   display: flex;
   flex-direction: column;

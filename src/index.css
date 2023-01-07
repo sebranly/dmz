@@ -114,6 +114,10 @@ h3 {
   color: #aaff55;
 }
 
+.lightgreen {
+  color: #aaff55;
+}
+
 li span {
   font-size: 50px;
   font-weight: bold;
@@ -158,14 +162,19 @@ li span {
   margin-top: 10px;
 }
 
+.margin-bottom-20 {
+  margin-bottom: 20px;
+}
+
 .margin-top-20 {
   margin-top: 20px;
 }
 
 .flex-child {
-  border: 1px solid black;
-  padding: 10px;
   background-color: #222;
+  border: 1px solid white;
+  border-radius: 10px;
+  padding: 10px;
 }
 
 .block {
@@ -241,18 +250,23 @@ li span {
 input {
   font-family: 'Ra-Mono';
   font-size: 16px;
+  border-radius: 10px;
   text-align: center;
 }
 
 button {
+  border-radius: 10px;
   font-family: 'Ra-Mono';
   font-size: 16px;
+  padding: 5px;
   text-align: center;
 }
 
 select {
+  border-radius: 10px;
   font-family: 'Ra-Mono';
   font-size: 16px;
+  padding: 5px;
   text-align: center;
 }
 
@@ -298,6 +312,14 @@ select {
 
   .timer-card-component {
     width: 300px;
+  }
+
+  .question {
+    text-align: left;
+  }
+
+  .answer {
+    text-align: left;
   }
 }
 

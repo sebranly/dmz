@@ -9,7 +9,7 @@ NodeList [
       FAQ
     </h3>
     <div
-      class="question-and-answer"
+      class="margin-top-10"
     >
       <div
         class="question"
@@ -18,7 +18,7 @@ NodeList [
       </div>
     </div>
     <div
-      class="question-and-answer"
+      class="margin-bottom-20 margin-top-20"
     >
       <div
         class="question"
@@ -28,11 +28,16 @@ NodeList [
       <div
         class="answer"
       >
-        DMZ: Currency to Cooldown Converter is an unofficial website which focuses on getting your lost, insured weapons back as efficiently as possible. In the game, dying on the battlefield with an insured weapon means that the weapon gets locked behind a cooldown timer. By default, the player has to wait for a certain amount of hours before selecting this same weapon. The player can make this process faster by using money to reduce said cooldown timer. This website provides money-to-time and time-to-money conversions for these lost, insured weapons.
+        <p>
+          DMZ: Currency to Cooldown Converter is an unofficial website which focuses on getting your lost, insured weapons back as efficiently as possible. In the game, dying on the battlefield with an insured weapon means that the weapon gets locked behind a cooldown timer. By default, the player has to wait for a certain amount of hours before selecting this same weapon.
+        </p>
+        <p>
+          The player can make this process faster by using money to reduce said cooldown timer. This website provides money-to-time and time-to-money conversions for these lost, insured weapons.
+        </p>
       </div>
     </div>
     <div
-      class="question-and-answer"
+      class="margin-top-10"
     >
       <div
         class="question"
@@ -41,7 +46,7 @@ NodeList [
       </div>
     </div>
     <div
-      class="question-and-answer"
+      class="margin-top-10"
     >
       <div
         class="question"
@@ -50,7 +55,7 @@ NodeList [
       </div>
     </div>
     <div
-      class="question-and-answer"
+      class="margin-top-10"
     >
       <div
         class="question"
@@ -59,21 +64,30 @@ NodeList [
       </div>
     </div>
     <div
-      class="question-and-answer"
+      class="margin-top-10"
     >
       <div
         class="question"
       >
-        I don't understand the use-case [+]
+        I don't understand the use-case(s) [+]
       </div>
     </div>
     <div
-      class="question-and-answer"
+      class="margin-top-10"
     >
       <div
         class="question"
       >
         Can I bake cakes with this website? [+]
+      </div>
+    </div>
+    <div
+      class="margin-top-10"
+    >
+      <div
+        class="question"
+      >
+        What about cookies? [+]
       </div>
     </div>
   </div>,

@@ -25,7 +25,7 @@ export type Timer = {
 
 export type QuestionAnswer = {
   question: string;
-  answer: string;
+  answer: string[];
   shown: boolean;
 };
 
