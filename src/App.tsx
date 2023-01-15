@@ -32,7 +32,7 @@ function App() {
   const [cookies, setCookie] = useCookies([COOKIE_TIMERS]);
   const [moneyInput, setMoneyInput] = React.useState(REGULAR_HOURLY_RATE / 2);
   const [timers, setTimers] = React.useState<Timer[]>(
-    sortTimers(sanitizeTimersCookie(cookies[COOKIE_TIMERS], MAX_TIMERS), getCurrentTimestamp(), DEFAULT_SORT_OPTION)
+    sortTimers(sanitizeTimersCookie(cookies[COOKIE_TIMERS], MAX_TIMERS), getCurrentTimestamp(), DEFAULT_SORT_OPTION, MAX_TIMERS_PER_PLAYER)
   );
 
   const [sort, setSort] = React.useState(DEFAULT_SORT_OPTION);
@@ -89,7 +89,7 @@ function App() {
   const onChangeSort = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { value } = e.target;
     const newSort = value as Sort;
-    const sortedTimers = sortTimers(timers, currentTimestamp, newSort);
+    const sortedTimers = sortTimers(timers, currentTimestamp, newSort, MAX_TIMERS_PER_PLAYER);
     setSort(newSort);
     setTimers(sortedTimers);
   };
@@ -102,7 +102,7 @@ function App() {
     };
 
     const newTimers = [...timers, newTimer];
-    const sortedTimers = sortTimers(newTimers, currentTimestamp, sort);
+    const sortedTimers = sortTimers(newTimers, currentTimestamp, sort, MAX_TIMERS_PER_PLAYER);
     setTimers(sortedTimers);
   };
 
