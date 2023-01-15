@@ -1,4 +1,4 @@
-import { DEAD_DROP_HOURLY_RATE, HOURS_PER_SLOT, MAX_TIMERS_PER_PLAYER, REGULAR_HOURLY_RATE } from '../constants/game';
+import { HOURS_PER_SLOT, MAX_TIMERS_PER_PLAYER } from '../constants/game';
 import { TimeUnit, TimeValue } from '../types';
 
 /**
