@@ -1,4 +1,3 @@
-import { MAX_TIMERS } from '../../constants/game';
 import { TimeUnit } from '../../types';
 import {
   calculateRemainingSeconds,
@@ -44,28 +43,28 @@ test('numberRange', () => {
 });
 
 test('sanitizeTimersCookie', () => {
-  expect(sanitizeTimersCookie(null)).toStrictEqual([]);
-  expect(sanitizeTimersCookie('')).toStrictEqual([]);
-  expect(sanitizeTimersCookie(0)).toStrictEqual([]);
-  expect(sanitizeTimersCookie([])).toStrictEqual([]);
-  expect(sanitizeTimersCookie(undefined)).toStrictEqual([]);
-  expect(sanitizeTimersCookie({})).toStrictEqual([]);
+  expect(sanitizeTimersCookie(null, 9)).toStrictEqual([]);
+  expect(sanitizeTimersCookie('', 9)).toStrictEqual([]);
+  expect(sanitizeTimersCookie(0, 9)).toStrictEqual([]);
+  expect(sanitizeTimersCookie([], 9)).toStrictEqual([]);
+  expect(sanitizeTimersCookie(undefined, 9)).toStrictEqual([]);
+  expect(sanitizeTimersCookie({}, 9)).toStrictEqual([]);
 
-  expect(sanitizeTimersCookie([null])).toStrictEqual([]);
-  expect(sanitizeTimersCookie([''])).toStrictEqual([]);
-  expect(sanitizeTimersCookie([0])).toStrictEqual([]);
-  expect(sanitizeTimersCookie([[]])).toStrictEqual([]);
-  expect(sanitizeTimersCookie([undefined])).toStrictEqual([]);
-  expect(sanitizeTimersCookie([{}])).toStrictEqual([]);
+  expect(sanitizeTimersCookie([null], 9)).toStrictEqual([]);
+  expect(sanitizeTimersCookie([''], 9)).toStrictEqual([]);
+  expect(sanitizeTimersCookie([0], 9)).toStrictEqual([]);
+  expect(sanitizeTimersCookie([[]], 9)).toStrictEqual([]);
+  expect(sanitizeTimersCookie([undefined], 9)).toStrictEqual([]);
+  expect(sanitizeTimersCookie([{}], 9)).toStrictEqual([]);
 
-  expect(sanitizeTimersCookie([{ durationSec: 0, timerIndex: 1, timestampStart: 123 }])).toStrictEqual([]);
-  expect(sanitizeTimersCookie([{ durationSec: 1, timerIndex: -1, timestampStart: 123 }])).toStrictEqual([]);
-  expect(sanitizeTimersCookie([{ durationSec: 1, timerIndex: 1, timestampStart: -1 }])).toStrictEqual([]);
-  expect(sanitizeTimersCookie([{ durationSec: 1, timerIndex: 9, timestampStart: 1 }])).toStrictEqual([]);
-  expect(sanitizeTimersCookie([{ durationSec: 1, timestampStart: 123 }])).toStrictEqual([]);
-  expect(sanitizeTimersCookie([{ timerIndex: 1, timestampStart: 123 }])).toStrictEqual([]);
+  expect(sanitizeTimersCookie([{ durationSec: 0, timerIndex: 1, timestampStart: 123 }], 9)).toStrictEqual([]);
+  expect(sanitizeTimersCookie([{ durationSec: 1, timerIndex: -1, timestampStart: 123 }], 9)).toStrictEqual([]);
+  expect(sanitizeTimersCookie([{ durationSec: 1, timerIndex: 1, timestampStart: -1 }], 9)).toStrictEqual([]);
+  expect(sanitizeTimersCookie([{ durationSec: 1, timerIndex: 9, timestampStart: 1 }], 9)).toStrictEqual([]);
+  expect(sanitizeTimersCookie([{ durationSec: 1, timestampStart: 123 }], 9)).toStrictEqual([]);
+  expect(sanitizeTimersCookie([{ timerIndex: 1, timestampStart: 123 }], 9)).toStrictEqual([]);
 
-  expect(sanitizeTimersCookie([{ durationSec: 1, timerIndex: 1, timestampStart: 123, wxyz: 12 }])).toStrictEqual([
+  expect(sanitizeTimersCookie([{ durationSec: 1, timerIndex: 1, timestampStart: 123, wxyz: 12 }], 9)).toStrictEqual([
     { durationSec: 1, timerIndex: 1, timestampStart: 123 }
   ]);
 
@@ -86,7 +85,7 @@ test('sanitizeTimersCookie', () => {
       [],
       { timestampStart: 90, durationSec: 504, timerIndex: 7 },
       { timestampStart: 321, durationSec: 63, timerIndex: 8 }
-    ])
+    ], 9)
   ).toStrictEqual([
     { timestampStart: 123, durationSec: 7203, timerIndex: 0 },
     { timestampStart: 456, durationSec: 14003, timerIndex: 1 },
