@@ -1,4 +1,4 @@
-import { HOURS_PER_SLOT, MAX_TIMERS_PER_PLAYER } from '../constants/game';
+import { MAX_TIMERS_PER_PLAYER } from '../constants/game';
 import { TimeUnit, TimeValue } from '../types';
 
 /**
@@ -19,7 +19,7 @@ const convertMoneyToSeconds = (money: number, hourlyRate: number) => {
  */
 const convertPlayerTimerIndexToHourTimer = (index: number, hoursPerSlot: number) => {
   if (index < 0) return 0;
-  return (index + 1) * HOURS_PER_SLOT;
+  return (index + 1) * hoursPerSlot;
 };
 
 /**
