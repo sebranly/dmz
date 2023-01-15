@@ -5,10 +5,9 @@ import { TimeUnit, TimeValue } from '../types';
  * @name convertMoneyToSeconds
  * @description Returns the time equivalent (in seconds) of a money value
  */
-const convertMoneyToSeconds = (money: number, isDeadDrop = false) => {
+const convertMoneyToSeconds = (money: number, hourlyRate: number) => {
   if (money <= 0) return 0;
 
-  const hourlyRate = isDeadDrop ? DEAD_DROP_HOURLY_RATE : REGULAR_HOURLY_RATE;
   const seconds = Math.floor((3_600 * money) / hourlyRate);
 
   return seconds;

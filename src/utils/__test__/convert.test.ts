@@ -11,14 +11,14 @@ import {
 } from '../convert';
 
 test('convertMoneyToSeconds', () => {
-  expect(convertMoneyToSeconds(-1000)).toBe(0);
-  expect(convertMoneyToSeconds(-1)).toBe(0);
-  expect(convertMoneyToSeconds(0)).toBe(0);
-  expect(convertMoneyToSeconds(0, true)).toBe(0);
-  expect(convertMoneyToSeconds(20_000)).toBe(1_800);
-  expect(convertMoneyToSeconds(40_000)).toBe(3_600);
-  expect(convertMoneyToSeconds(15_000, true)).toBe(1_800);
-  expect(convertMoneyToSeconds(30_000, true)).toBe(3_600);
+  expect(convertMoneyToSeconds(-1000, 40_000)).toBe(0);
+  expect(convertMoneyToSeconds(-1, 40_000)).toBe(0);
+  expect(convertMoneyToSeconds(0, 40_000)).toBe(0);
+  expect(convertMoneyToSeconds(0, 30_000)).toBe(0);
+  expect(convertMoneyToSeconds(20_000, 40_000)).toBe(1_800);
+  expect(convertMoneyToSeconds(40_000, 40_000)).toBe(3_600);
+  expect(convertMoneyToSeconds(15_000, 30_000)).toBe(1_800);
+  expect(convertMoneyToSeconds(30_000, 30_000)).toBe(3_600);
 });
 
 test('convertPlayerTimerIndexToHourTimer', () => {
