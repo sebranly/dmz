@@ -1,4 +1,3 @@
-import { DEAD_DROP_HOURLY_RATE, REGULAR_HOURLY_RATE } from '../../constants/game';
 import { TimeUnit } from '../../types';
 import {
   convertMoneyToSeconds,
@@ -29,16 +28,16 @@ test('convertPlayerTimerIndexToHourTimer', () => {
 });
 
 test('convertSecondsToMoney', () => {
-  expect(convertSecondsToMoney(0, DEAD_DROP_HOURLY_RATE)).toBe(0);
-  expect(convertSecondsToMoney(30 * 60, DEAD_DROP_HOURLY_RATE)).toBe(15_000);
-  expect(convertSecondsToMoney(60 * 60, DEAD_DROP_HOURLY_RATE)).toBe(30_000);
-  expect(convertSecondsToMoney(120 * 60, DEAD_DROP_HOURLY_RATE)).toBe(60_000);
+  expect(convertSecondsToMoney(0, 30_000)).toBe(0);
+  expect(convertSecondsToMoney(30 * 60, 30_000)).toBe(15_000);
+  expect(convertSecondsToMoney(60 * 60, 30_000)).toBe(30_000);
+  expect(convertSecondsToMoney(120 * 60, 30_000)).toBe(60_000);
 
-  expect(convertSecondsToMoney(0, REGULAR_HOURLY_RATE)).toBe(0);
-  expect(convertSecondsToMoney(20 * 60, REGULAR_HOURLY_RATE)).toBe(13_400);
-  expect(convertSecondsToMoney(30 * 60, REGULAR_HOURLY_RATE)).toBe(20_000);
-  expect(convertSecondsToMoney(60 * 60, REGULAR_HOURLY_RATE)).toBe(40_000);
-  expect(convertSecondsToMoney(120 * 60, REGULAR_HOURLY_RATE)).toBe(80_000);
+  expect(convertSecondsToMoney(0, 40_000)).toBe(0);
+  expect(convertSecondsToMoney(20 * 60, 40_000)).toBe(13_400);
+  expect(convertSecondsToMoney(30 * 60, 40_000)).toBe(20_000);
+  expect(convertSecondsToMoney(60 * 60, 40_000)).toBe(40_000);
+  expect(convertSecondsToMoney(120 * 60, 40_000)).toBe(80_000);
 });
 
 test('convertSecondsToTimeValue', () => {
