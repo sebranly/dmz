@@ -15,9 +15,9 @@ import classnames from 'classnames';
 export interface TimerCardProps {
   className?: string;
   currentTimestamp: number;
-  deadDropHourlyRate: number;
+  deadDropHourlyRate?: number;
   deleteTimer: () => void;
-  regularHourlyRate: number;
+  regularHourlyRate?: number;
   timer: Timer;
 }
 
