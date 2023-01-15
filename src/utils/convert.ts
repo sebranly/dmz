@@ -16,9 +16,8 @@ const convertMoneyToSeconds = (money: number, hourlyRate: number) => {
 /**
  * @name convertPlayerTimerIndexToHourTimer
  * @description Returns the max number of hours a timer can last per the game's rules
- * @example For example, third slot is a 6-hour timer (see `HOURS_PER_SLOT`)
  */
-const convertPlayerTimerIndexToHourTimer = (index: number) => {
+const convertPlayerTimerIndexToHourTimer = (index: number, hoursPerSlot: number) => {
   if (index < 0) return 0;
   return (index + 1) * HOURS_PER_SLOT;
 };

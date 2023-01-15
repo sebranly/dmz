@@ -3,6 +3,7 @@ import { useCookies } from 'react-cookie';
 import { COOKIE_TIMERS, DEFAULT_SORT_OPTION, SORT_OPTIONS, WEBSITE_SUBTITLE, WEBSITE_TITLE } from './constants/general';
 import {
   DEAD_DROP_HOURLY_RATE,
+  HOURS_PER_SLOT,
   MAX_HOURS_FOR_TIMER,
   MAX_PLAYERS,
   MAX_TIMERS,
@@ -44,7 +45,7 @@ function App() {
   });
 
   const playerTimerIndex = convertTimerIndexToPlayerTimerIndex(timerIndex);
-  const hoursForTimer = convertPlayerTimerIndexToHourTimer(playerTimerIndex);
+  const hoursForTimer = convertPlayerTimerIndexToHourTimer(playerTimerIndex, HOURS_PER_SLOT);
   const quickOptionTimerValue = { [TimeUnit.Hour]: hoursForTimer, [TimeUnit.Minute]: 0, [TimeUnit.Second]: 0 };
   const copyLostWeapon = `Add ${hoursForTimer}-hour timer`;
   const timerValuesAreNull = isNullTimeValue(timerValue);

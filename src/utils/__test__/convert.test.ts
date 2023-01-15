@@ -21,10 +21,10 @@ test('convertMoneyToSeconds', () => {
 });
 
 test('convertPlayerTimerIndexToHourTimer', () => {
-  expect(convertPlayerTimerIndexToHourTimer(-1)).toBe(0);
-  expect(convertPlayerTimerIndexToHourTimer(0)).toBe(2);
-  expect(convertPlayerTimerIndexToHourTimer(1)).toBe(4);
-  expect(convertPlayerTimerIndexToHourTimer(2)).toBe(6);
+  expect(convertPlayerTimerIndexToHourTimer(-1, 2)).toBe(0);
+  expect(convertPlayerTimerIndexToHourTimer(0, 2)).toBe(2);
+  expect(convertPlayerTimerIndexToHourTimer(1, 2)).toBe(4);
+  expect(convertPlayerTimerIndexToHourTimer(2, 2)).toBe(6);
 });
 
 test('convertSecondsToMoney', () => {
