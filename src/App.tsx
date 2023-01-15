@@ -32,7 +32,12 @@ function App() {
   const [cookies, setCookie] = useCookies([COOKIE_TIMERS]);
   const [moneyInput, setMoneyInput] = React.useState(REGULAR_HOURLY_RATE / 2);
   const [timers, setTimers] = React.useState<Timer[]>(
-    sortTimers(sanitizeTimersCookie(cookies[COOKIE_TIMERS], MAX_TIMERS), getCurrentTimestamp(), DEFAULT_SORT_OPTION, MAX_TIMERS_PER_PLAYER)
+    sortTimers(
+      sanitizeTimersCookie(cookies[COOKIE_TIMERS], MAX_TIMERS),
+      getCurrentTimestamp(),
+      DEFAULT_SORT_OPTION,
+      MAX_TIMERS_PER_PLAYER
+    )
   );
 
   const [sort, setSort] = React.useState(DEFAULT_SORT_OPTION);

@@ -22,7 +22,14 @@ export interface TimerCardProps {
 }
 
 const TimerCard: React.FC<TimerCardProps> = (props) => {
-  const { className = '', currentTimestamp, deadDropHourlyRate = DEAD_DROP_HOURLY_RATE, deleteTimer, timer, regularHourlyRate = REGULAR_HOURLY_RATE } = props;
+  const {
+    className = '',
+    currentTimestamp,
+    deadDropHourlyRate = DEAD_DROP_HOURLY_RATE,
+    deleteTimer,
+    timer,
+    regularHourlyRate = REGULAR_HOURLY_RATE
+  } = props;
   const { timerIndex, timestampStart } = timer;
 
   const remainingSeconds = calculateRemainingSeconds(timer, currentTimestamp);
