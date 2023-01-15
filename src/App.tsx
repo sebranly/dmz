@@ -44,7 +44,7 @@ function App() {
     [TimeUnit.Second]: 0
   });
 
-  const playerTimerIndex = convertTimerIndexToPlayerTimerIndex(timerIndex);
+  const playerTimerIndex = convertTimerIndexToPlayerTimerIndex(timerIndex, MAX_TIMERS_PER_PLAYER);
   const hoursForTimer = convertPlayerTimerIndexToHourTimer(playerTimerIndex, HOURS_PER_SLOT);
   const quickOptionTimerValue = { [TimeUnit.Hour]: hoursForTimer, [TimeUnit.Minute]: 0, [TimeUnit.Second]: 0 };
   const copyLostWeapon = `Add ${hoursForTimer}-hour timer`;
@@ -179,7 +179,7 @@ function App() {
     });
   };
 
-  const playerIndex = convertTimerIndexToPlayerIndex(timerIndex);
+  const playerIndex = convertTimerIndexToPlayerIndex(timerIndex, MAX_TIMERS_PER_PLAYER);
   const playerColor = getPlayerColor(playerIndex);
   const timerExists = pickTimerByIndex(timers, timerIndex).length > 0;
 

@@ -1,6 +1,7 @@
 import { calculateRemainingSeconds } from '.';
 import { convertTimerIndexToPlayerIndex, convertTimerIndexToPlayerTimerIndex } from './convert';
 import { Sort, Timer } from '../types';
+import { MAX_TIMERS_PER_PLAYER } from '../constants/game';
 
 /**
  * @name sortTimers
@@ -73,10 +74,10 @@ const sortTimersByPlayer = (timers: Timer[], shouldReverse = false) => {
 
   const copyTimers = timers.slice(0, timers.length);
   const sortedTimers = copyTimers.sort((t1: Timer, t2: Timer) => {
-    const playerIndex1 = convertTimerIndexToPlayerIndex(t1.timerIndex);
-    const playerIndex2 = convertTimerIndexToPlayerIndex(t2.timerIndex);
-    const playerTimerIndex1 = convertTimerIndexToPlayerTimerIndex(t1.timerIndex);
-    const playerTimerIndex2 = convertTimerIndexToPlayerTimerIndex(t2.timerIndex);
+    const playerIndex1 = convertTimerIndexToPlayerIndex(t1.timerIndex, MAX_TIMERS_PER_PLAYER);
+    const playerIndex2 = convertTimerIndexToPlayerIndex(t2.timerIndex, MAX_TIMERS_PER_PLAYER);
+    const playerTimerIndex1 = convertTimerIndexToPlayerTimerIndex(t1.timerIndex, MAX_TIMERS_PER_PLAYER);
+    const playerTimerIndex2 = convertTimerIndexToPlayerTimerIndex(t2.timerIndex, MAX_TIMERS_PER_PLAYER);
 
     const playerIndexDiff = playerIndex1 - playerIndex2;
     const playerTimerIndexDiff = multiplier * (playerTimerIndex1 - playerTimerIndex2);

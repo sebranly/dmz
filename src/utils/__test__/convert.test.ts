@@ -91,27 +91,27 @@ test('convertSecondsToTimeValue', () => {
 });
 
 test('convertTimerIndexToPlayerIndex', () => {
-  expect(convertTimerIndexToPlayerIndex(0)).toBe(0);
-  expect(convertTimerIndexToPlayerIndex(1)).toBe(0);
-  expect(convertTimerIndexToPlayerIndex(2)).toBe(0);
-  expect(convertTimerIndexToPlayerIndex(3)).toBe(1);
-  expect(convertTimerIndexToPlayerIndex(4)).toBe(1);
-  expect(convertTimerIndexToPlayerIndex(5)).toBe(1);
-  expect(convertTimerIndexToPlayerIndex(6)).toBe(2);
-  expect(convertTimerIndexToPlayerIndex(7)).toBe(2);
-  expect(convertTimerIndexToPlayerIndex(8)).toBe(2);
+  expect(convertTimerIndexToPlayerIndex(0, 3)).toBe(0);
+  expect(convertTimerIndexToPlayerIndex(1, 3)).toBe(0);
+  expect(convertTimerIndexToPlayerIndex(2, 3)).toBe(0);
+  expect(convertTimerIndexToPlayerIndex(3, 3)).toBe(1);
+  expect(convertTimerIndexToPlayerIndex(4, 3)).toBe(1);
+  expect(convertTimerIndexToPlayerIndex(5, 3)).toBe(1);
+  expect(convertTimerIndexToPlayerIndex(6, 3)).toBe(2);
+  expect(convertTimerIndexToPlayerIndex(7, 3)).toBe(2);
+  expect(convertTimerIndexToPlayerIndex(8, 3)).toBe(2);
 });
 
 test('convertTimerIndexToPlayerTimerIndex', () => {
-  expect(convertTimerIndexToPlayerTimerIndex(0)).toBe(0);
-  expect(convertTimerIndexToPlayerTimerIndex(1)).toBe(1);
-  expect(convertTimerIndexToPlayerTimerIndex(2)).toBe(2);
-  expect(convertTimerIndexToPlayerTimerIndex(3)).toBe(0);
-  expect(convertTimerIndexToPlayerTimerIndex(4)).toBe(1);
-  expect(convertTimerIndexToPlayerTimerIndex(5)).toBe(2);
-  expect(convertTimerIndexToPlayerTimerIndex(6)).toBe(0);
-  expect(convertTimerIndexToPlayerTimerIndex(7)).toBe(1);
-  expect(convertTimerIndexToPlayerTimerIndex(8)).toBe(2);
+  expect(convertTimerIndexToPlayerTimerIndex(0, 3)).toBe(0);
+  expect(convertTimerIndexToPlayerTimerIndex(1, 3)).toBe(1);
+  expect(convertTimerIndexToPlayerTimerIndex(2, 3)).toBe(2);
+  expect(convertTimerIndexToPlayerTimerIndex(3, 3)).toBe(0);
+  expect(convertTimerIndexToPlayerTimerIndex(4, 3)).toBe(1);
+  expect(convertTimerIndexToPlayerTimerIndex(5, 3)).toBe(2);
+  expect(convertTimerIndexToPlayerTimerIndex(6, 3)).toBe(0);
+  expect(convertTimerIndexToPlayerTimerIndex(7, 3)).toBe(1);
+  expect(convertTimerIndexToPlayerTimerIndex(8, 3)).toBe(2);
 });
 
 test('convertTimeValueToSeconds', () => {

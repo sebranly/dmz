@@ -65,8 +65,8 @@ const convertSecondsToTimeValue = (seconds: number): TimeValue => {
  * @description Returns the player a timer belongs to
  * @example 9 timers for 3 players. Timer index 3 belongs to second player, so player index 1
  */
-const convertTimerIndexToPlayerIndex = (timerIndex: number) => {
-  const playerIndex = Math.floor(timerIndex / MAX_TIMERS_PER_PLAYER);
+const convertTimerIndexToPlayerIndex = (timerIndex: number, maxTimersPerPlayer: number) => {
+  const playerIndex = Math.floor(timerIndex / maxTimersPerPlayer);
   return playerIndex;
 };
 
@@ -75,8 +75,8 @@ const convertTimerIndexToPlayerIndex = (timerIndex: number) => {
  * @description Returns the timer index seen from its player's perspective
  * @example 9 timers for 3 players. Timer index 3 belongs to second player and has index 0
  */
-const convertTimerIndexToPlayerTimerIndex = (timerIndex: number) => {
-  const playerTimerIndex = timerIndex % MAX_TIMERS_PER_PLAYER;
+const convertTimerIndexToPlayerTimerIndex = (timerIndex: number, maxTimersPerPlayer: number) => {
+  const playerTimerIndex = timerIndex % maxTimersPerPlayer;
   return playerTimerIndex;
 };
 
