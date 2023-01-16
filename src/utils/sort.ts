@@ -1,12 +1,18 @@
 import { calculateRemainingSeconds } from '.';
 import { convertTimerIndexToPlayerIndex, convertTimerIndexToPlayerTimerIndex } from './convert';
 import { Sort, Timer } from '../types';
+import { MAX_TIMERS_PER_PLAYER } from '../constants/game';
 
 /**
  * @name sortTimers
  * @description Returns the same list of timers sorted according to specified sort
  */
-const sortTimers = (timers: Timer[], currentTimestamp: number, sort: Sort) => {
+const sortTimers = (
+  timers: Timer[],
+  currentTimestamp: number,
+  sort: Sort,
+  maxTimersPerPlayer = MAX_TIMERS_PER_PLAYER
+) => {
   switch (sort) {
     case Sort.longestToShortest:
       return sortTimersByDuration(timers, currentTimestamp, true);
@@ -18,9 +24,9 @@ const sortTimers = (timers: Timer[], currentTimestamp: number, sort: Sort) => {
     case Sort.newestToOldest:
       return sortTimersByCreationDate(timers, true);
     case Sort.firstPlayerToLastPlayer:
-      return sortTimersByPlayer(timers);
+      return sortTimersByPlayer(timers, false, maxTimersPerPlayer);
     case Sort.lastPlayerToFirstPlayer:
-      return sortTimersByPlayer(timers, true);
+      return sortTimersByPlayer(timers, true, maxTimersPerPlayer);
   }
 };
 
@@ -65,7 +71,7 @@ const sortTimersByDuration = (timers: Timer[], currentTimestamp: number, shouldR
  * @name sortTimersByPlayer
  * @description Returns the same list of timers sorted according to player index
  */
-const sortTimersByPlayer = (timers: Timer[], shouldReverse = false) => {
+const sortTimersByPlayer = (timers: Timer[], shouldReverse: boolean, maxTimersPerPlayer: number) => {
   if ([0, 1].includes(timers.length)) return timers;
 
   // No matter value of `shouldReverse`, for each player, their own timers should be sorted ASC
@@ -73,10 +79,10 @@ const sortTimersByPlayer = (timers: Timer[], shouldReverse = false) => {
 
   const copyTimers = timers.slice(0, timers.length);
   const sortedTimers = copyTimers.sort((t1: Timer, t2: Timer) => {
-    const playerIndex1 = convertTimerIndexToPlayerIndex(t1.timerIndex);
-    const playerIndex2 = convertTimerIndexToPlayerIndex(t2.timerIndex);
-    const playerTimerIndex1 = convertTimerIndexToPlayerTimerIndex(t1.timerIndex);
-    const playerTimerIndex2 = convertTimerIndexToPlayerTimerIndex(t2.timerIndex);
+    const playerIndex1 = convertTimerIndexToPlayerIndex(t1.timerIndex, maxTimersPerPlayer);
+    const playerIndex2 = convertTimerIndexToPlayerIndex(t2.timerIndex, maxTimersPerPlayer);
+    const playerTimerIndex1 = convertTimerIndexToPlayerTimerIndex(t1.timerIndex, maxTimersPerPlayer);
+    const playerTimerIndex2 = convertTimerIndexToPlayerTimerIndex(t2.timerIndex, maxTimersPerPlayer);
 
     const playerIndexDiff = playerIndex1 - playerIndex2;
     const playerTimerIndexDiff = multiplier * (playerTimerIndex1 - playerTimerIndex2);

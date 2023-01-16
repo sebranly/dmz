@@ -1,14 +1,13 @@
-import { DEAD_DROP_HOURLY_RATE, HOURS_PER_SLOT, MAX_TIMERS_PER_PLAYER, REGULAR_HOURLY_RATE } from '../constants/game';
+import { HOURS_PER_SLOT, MAX_TIMERS_PER_PLAYER } from '../constants/game';
 import { TimeUnit, TimeValue } from '../types';
 
 /**
  * @name convertMoneyToSeconds
  * @description Returns the time equivalent (in seconds) of a money value
  */
-const convertMoneyToSeconds = (money: number, isDeadDrop = false) => {
+const convertMoneyToSeconds = (money: number, hourlyRate: number) => {
   if (money <= 0) return 0;
 
-  const hourlyRate = isDeadDrop ? DEAD_DROP_HOURLY_RATE : REGULAR_HOURLY_RATE;
   const seconds = Math.floor((3_600 * money) / hourlyRate);
 
   return seconds;
@@ -17,11 +16,10 @@ const convertMoneyToSeconds = (money: number, isDeadDrop = false) => {
 /**
  * @name convertPlayerTimerIndexToHourTimer
  * @description Returns the max number of hours a timer can last per the game's rules
- * @example For example, third slot is a 6-hour timer (see `HOURS_PER_SLOT`)
  */
-const convertPlayerTimerIndexToHourTimer = (index: number) => {
+const convertPlayerTimerIndexToHourTimer = (index: number, hoursPerSlot = HOURS_PER_SLOT) => {
   if (index < 0) return 0;
-  return (index + 1) * HOURS_PER_SLOT;
+  return (index + 1) * hoursPerSlot;
 };
 
 /**
@@ -67,8 +65,8 @@ const convertSecondsToTimeValue = (seconds: number): TimeValue => {
  * @description Returns the player a timer belongs to
  * @example 9 timers for 3 players. Timer index 3 belongs to second player, so player index 1
  */
-const convertTimerIndexToPlayerIndex = (timerIndex: number) => {
-  const playerIndex = Math.floor(timerIndex / MAX_TIMERS_PER_PLAYER);
+const convertTimerIndexToPlayerIndex = (timerIndex: number, maxTimersPerPlayer = MAX_TIMERS_PER_PLAYER) => {
+  const playerIndex = Math.floor(timerIndex / maxTimersPerPlayer);
   return playerIndex;
 };
 
@@ -77,8 +75,8 @@ const convertTimerIndexToPlayerIndex = (timerIndex: number) => {
  * @description Returns the timer index seen from its player's perspective
  * @example 9 timers for 3 players. Timer index 3 belongs to second player and has index 0
  */
-const convertTimerIndexToPlayerTimerIndex = (timerIndex: number) => {
-  const playerTimerIndex = timerIndex % MAX_TIMERS_PER_PLAYER;
+const convertTimerIndexToPlayerTimerIndex = (timerIndex: number, maxTimersPerPlayer = MAX_TIMERS_PER_PLAYER) => {
+  const playerTimerIndex = timerIndex % maxTimersPerPlayer;
   return playerTimerIndex;
 };
 

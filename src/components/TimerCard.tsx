@@ -15,12 +15,21 @@ import classnames from 'classnames';
 export interface TimerCardProps {
   className?: string;
   currentTimestamp: number;
+  deadDropHourlyRate?: number;
   deleteTimer: () => void;
+  regularHourlyRate?: number;
   timer: Timer;
 }
 
 const TimerCard: React.FC<TimerCardProps> = (props) => {
-  const { className = '', currentTimestamp, deleteTimer, timer } = props;
+  const {
+    className = '',
+    currentTimestamp,
+    deadDropHourlyRate = DEAD_DROP_HOURLY_RATE,
+    deleteTimer,
+    timer,
+    regularHourlyRate = REGULAR_HOURLY_RATE
+  } = props;
   const { timerIndex, timestampStart } = timer;
 
   const remainingSeconds = calculateRemainingSeconds(timer, currentTimestamp);
@@ -87,13 +96,13 @@ const TimerCard: React.FC<TimerCardProps> = (props) => {
       <div className="timer-card-money">
         <div className="money-title">Exfiltration:</div>{' '}
         <div className={classnamesMoney}>
-          ${formatMoney(convertSecondsToMoney(remainingSeconds, REGULAR_HOURLY_RATE))}
+          ${formatMoney(convertSecondsToMoney(remainingSeconds, regularHourlyRate))}
         </div>
       </div>
       <div className="timer-card-money">
         <div className="money-title">Dead Drop:</div>{' '}
         <div className={classnamesMoney}>
-          ${formatMoney(convertSecondsToMoney(remainingSeconds, DEAD_DROP_HOURLY_RATE))}
+          ${formatMoney(convertSecondsToMoney(remainingSeconds, deadDropHourlyRate))}
         </div>
       </div>
       <button className="remove-timer" onClick={() => deleteTimer()}>

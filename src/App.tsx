@@ -2,6 +2,7 @@ import React from 'react';
 import { useCookies } from 'react-cookie';
 import { COOKIE_TIMERS, DEFAULT_SORT_OPTION, SORT_OPTIONS, WEBSITE_SUBTITLE, WEBSITE_TITLE } from './constants/general';
 import {
+  DEAD_DROP_HOURLY_RATE,
   MAX_HOURS_FOR_TIMER,
   MAX_PLAYERS,
   MAX_TIMERS,
@@ -181,11 +182,11 @@ function App() {
   const playerColor = getPlayerColor(playerIndex);
   const timerExists = pickTimerByIndex(timers, timerIndex).length > 0;
 
-  const deadDropTimeEquivalentSeconds = convertMoneyToSeconds(moneyInput, true);
+  const deadDropTimeEquivalentSeconds = convertMoneyToSeconds(moneyInput, DEAD_DROP_HOURLY_RATE);
   const deadDropTimeEquivalent = convertSecondsToTimeValue(deadDropTimeEquivalentSeconds);
   const deadDropTimeEquivalentText = displayTimeValue(deadDropTimeEquivalent);
 
-  const regularTimeEquivalentSeconds = convertMoneyToSeconds(moneyInput);
+  const regularTimeEquivalentSeconds = convertMoneyToSeconds(moneyInput, REGULAR_HOURLY_RATE);
   const regularTimeEquivalent = convertSecondsToTimeValue(regularTimeEquivalentSeconds);
   const regularTimeEquivalentText = displayTimeValue(regularTimeEquivalent);
 

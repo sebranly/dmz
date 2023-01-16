@@ -9,26 +9,26 @@ const timer6: Timer = { timerIndex: 6, timestampStart: 3, durationSec: 10 };
 const timers: Timer[] = [timer0, timer1, timer3, timer6];
 
 test('sortTimers', () => {
-  expect(sortTimers([], 5, Sort.firstPlayerToLastPlayer)).toStrictEqual([]);
-  expect(sortTimers([], 5, Sort.lastPlayerToFirstPlayer)).toStrictEqual([]);
-  expect(sortTimers([], 5, Sort.oldestToNewest)).toStrictEqual([]);
-  expect(sortTimers([], 5, Sort.newestToOldest)).toStrictEqual([]);
-  expect(sortTimers([], 5, Sort.shortestToLongest)).toStrictEqual([]);
-  expect(sortTimers([], 5, Sort.longestToShortest)).toStrictEqual([]);
+  expect(sortTimers([], 5, Sort.firstPlayerToLastPlayer, 3)).toStrictEqual([]);
+  expect(sortTimers([], 5, Sort.lastPlayerToFirstPlayer, 3)).toStrictEqual([]);
+  expect(sortTimers([], 5, Sort.oldestToNewest, 3)).toStrictEqual([]);
+  expect(sortTimers([], 5, Sort.newestToOldest, 3)).toStrictEqual([]);
+  expect(sortTimers([], 5, Sort.shortestToLongest, 3)).toStrictEqual([]);
+  expect(sortTimers([], 5, Sort.longestToShortest, 3)).toStrictEqual([]);
 
-  expect(sortTimers([timer0], 5, Sort.firstPlayerToLastPlayer)).toStrictEqual([timer0]);
-  expect(sortTimers([timer0], 5, Sort.lastPlayerToFirstPlayer)).toStrictEqual([timer0]);
-  expect(sortTimers([timer0], 5, Sort.oldestToNewest)).toStrictEqual([timer0]);
-  expect(sortTimers([timer0], 5, Sort.newestToOldest)).toStrictEqual([timer0]);
-  expect(sortTimers([timer0], 5, Sort.shortestToLongest)).toStrictEqual([timer0]);
-  expect(sortTimers([timer0], 5, Sort.longestToShortest)).toStrictEqual([timer0]);
+  expect(sortTimers([timer0], 5, Sort.firstPlayerToLastPlayer, 3)).toStrictEqual([timer0]);
+  expect(sortTimers([timer0], 5, Sort.lastPlayerToFirstPlayer, 3)).toStrictEqual([timer0]);
+  expect(sortTimers([timer0], 5, Sort.oldestToNewest, 3)).toStrictEqual([timer0]);
+  expect(sortTimers([timer0], 5, Sort.newestToOldest, 3)).toStrictEqual([timer0]);
+  expect(sortTimers([timer0], 5, Sort.shortestToLongest, 3)).toStrictEqual([timer0]);
+  expect(sortTimers([timer0], 5, Sort.longestToShortest, 3)).toStrictEqual([timer0]);
 
-  expect(sortTimers(timers, 5, Sort.firstPlayerToLastPlayer)).toStrictEqual([timer0, timer1, timer3, timer6]);
-  expect(sortTimers(timers, 5, Sort.lastPlayerToFirstPlayer)).toStrictEqual([timer6, timer3, timer0, timer1]);
-  expect(sortTimers(timers, 5, Sort.oldestToNewest)).toStrictEqual([timer0, timer1, timer6, timer3]);
-  expect(sortTimers(timers, 5, Sort.newestToOldest)).toStrictEqual([timer3, timer6, timer1, timer0]);
-  expect(sortTimers(timers, 5, Sort.shortestToLongest)).toStrictEqual([timer6, timer0, timer3, timer1]);
-  expect(sortTimers(timers, 5, Sort.longestToShortest)).toStrictEqual([timer1, timer3, timer0, timer6]);
+  expect(sortTimers(timers, 5, Sort.firstPlayerToLastPlayer, 3)).toStrictEqual([timer0, timer1, timer3, timer6]);
+  expect(sortTimers(timers, 5, Sort.lastPlayerToFirstPlayer, 3)).toStrictEqual([timer6, timer3, timer0, timer1]);
+  expect(sortTimers(timers, 5, Sort.oldestToNewest, 3)).toStrictEqual([timer0, timer1, timer6, timer3]);
+  expect(sortTimers(timers, 5, Sort.newestToOldest, 3)).toStrictEqual([timer3, timer6, timer1, timer0]);
+  expect(sortTimers(timers, 5, Sort.shortestToLongest, 3)).toStrictEqual([timer6, timer0, timer3, timer1]);
+  expect(sortTimers(timers, 5, Sort.longestToShortest, 3)).toStrictEqual([timer1, timer3, timer0, timer6]);
 });
 
 test('sortTimersByCreationDate', () => {
@@ -52,10 +52,10 @@ test('sortTimersByDuration', () => {
 });
 
 test('sortTimersByPlayer', () => {
-  expect(sortTimersByPlayer([])).toStrictEqual([]);
-  expect(sortTimersByPlayer([], true)).toStrictEqual([]);
-  expect(sortTimersByPlayer([timer0])).toStrictEqual([timer0]);
-  expect(sortTimersByPlayer([timer0], true)).toStrictEqual([timer0]);
-  expect(sortTimersByPlayer(timers)).toStrictEqual([timer0, timer1, timer3, timer6]);
-  expect(sortTimersByPlayer(timers, true)).toStrictEqual([timer6, timer3, timer0, timer1]);
+  expect(sortTimersByPlayer([], false, 3)).toStrictEqual([]);
+  expect(sortTimersByPlayer([], true, 3)).toStrictEqual([]);
+  expect(sortTimersByPlayer([timer0], false, 3)).toStrictEqual([timer0]);
+  expect(sortTimersByPlayer([timer0], true, 3)).toStrictEqual([timer0]);
+  expect(sortTimersByPlayer(timers, false, 3)).toStrictEqual([timer0, timer1, timer3, timer6]);
+  expect(sortTimersByPlayer(timers, true, 3)).toStrictEqual([timer6, timer3, timer0, timer1]);
 });
