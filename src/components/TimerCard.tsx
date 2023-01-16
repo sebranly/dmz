@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DEAD_DROP_HOURLY_RATE, MAX_TIMERS_PER_PLAYER, REGULAR_HOURLY_RATE } from '../constants/game';
+import { DEAD_DROP_HOURLY_RATE, REGULAR_HOURLY_RATE } from '../constants/game';
 import { NEW_RIBBON_DURATION_SEC } from '../constants/general';
 import { Timer, TimeUnit } from '../types';
 import { calculateRemainingSeconds, getEndTime } from '../utils';
