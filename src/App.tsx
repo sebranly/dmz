@@ -33,10 +33,9 @@ function App() {
   const [moneyInput, setMoneyInput] = React.useState(REGULAR_HOURLY_RATE / 2);
   const [timers, setTimers] = React.useState<Timer[]>(
     sortTimers(
-      sanitizeTimersCookie(cookies[COOKIE_TIMERS], MAX_TIMERS),
+      sanitizeTimersCookie(cookies[COOKIE_TIMERS]),
       getCurrentTimestamp(),
-      DEFAULT_SORT_OPTION,
-      MAX_TIMERS_PER_PLAYER
+      DEFAULT_SORT_OPTION
     )
   );
 
@@ -49,8 +48,8 @@ function App() {
     [TimeUnit.Second]: 0
   });
 
-  const playerTimerIndex = convertTimerIndexToPlayerTimerIndex(timerIndex, MAX_TIMERS_PER_PLAYER);
-  const hoursForTimer = convertPlayerTimerIndexToHourTimer(playerTimerIndex, HOURS_PER_SLOT);
+  const playerTimerIndex = convertTimerIndexToPlayerTimerIndex(timerIndex);
+  const hoursForTimer = convertPlayerTimerIndexToHourTimer(playerTimerIndex);
   const quickOptionTimerValue = { [TimeUnit.Hour]: hoursForTimer, [TimeUnit.Minute]: 0, [TimeUnit.Second]: 0 };
   const copyLostWeapon = `Add ${hoursForTimer}-hour timer`;
   const timerValuesAreNull = isNullTimeValue(timerValue);
@@ -94,7 +93,7 @@ function App() {
   const onChangeSort = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { value } = e.target;
     const newSort = value as Sort;
-    const sortedTimers = sortTimers(timers, currentTimestamp, newSort, MAX_TIMERS_PER_PLAYER);
+    const sortedTimers = sortTimers(timers, currentTimestamp, newSort);
     setSort(newSort);
     setTimers(sortedTimers);
   };
@@ -107,7 +106,7 @@ function App() {
     };
 
     const newTimers = [...timers, newTimer];
-    const sortedTimers = sortTimers(newTimers, currentTimestamp, sort, MAX_TIMERS_PER_PLAYER);
+    const sortedTimers = sortTimers(newTimers, currentTimestamp, sort);
     setTimers(sortedTimers);
   };
 
@@ -184,7 +183,7 @@ function App() {
     });
   };
 
-  const playerIndex = convertTimerIndexToPlayerIndex(timerIndex, MAX_TIMERS_PER_PLAYER);
+  const playerIndex = convertTimerIndexToPlayerIndex(timerIndex);
   const playerColor = getPlayerColor(playerIndex);
   const timerExists = pickTimerByIndex(timers, timerIndex).length > 0;
 

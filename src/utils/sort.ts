@@ -7,7 +7,7 @@ import { MAX_TIMERS_PER_PLAYER } from '../constants/game';
  * @name sortTimers
  * @description Returns the same list of timers sorted according to specified sort
  */
-const sortTimers = (timers: Timer[], currentTimestamp: number, sort: Sort, maxTimersPerPlayer: number) => {
+const sortTimers = (timers: Timer[], currentTimestamp: number, sort: Sort, maxTimersPerPlayer = MAX_TIMERS_PER_PLAYER) => {
   switch (sort) {
     case Sort.longestToShortest:
       return sortTimersByDuration(timers, currentTimestamp, true);

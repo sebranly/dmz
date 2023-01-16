@@ -61,7 +61,7 @@ const numberRange = (min: number, max: number) => {
  * @name sanitizeTimersCookie
  * @description Returns timers contained in their cookie by removing any wrong value
  */
-const sanitizeTimersCookie = (cookieValue: any, maxTimers: number) => {
+const sanitizeTimersCookie = (cookieValue: any, maxTimers = MAX_TIMERS) => {
   if (!cookieValue) return [];
   if (!Array.isArray(cookieValue)) return [];
 

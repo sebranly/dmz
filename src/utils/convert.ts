@@ -1,4 +1,4 @@
-import { MAX_TIMERS_PER_PLAYER } from '../constants/game';
+import { HOURS_PER_SLOT, MAX_TIMERS_PER_PLAYER } from '../constants/game';
 import { TimeUnit, TimeValue } from '../types';
 
 /**
@@ -17,7 +17,7 @@ const convertMoneyToSeconds = (money: number, hourlyRate: number) => {
  * @name convertPlayerTimerIndexToHourTimer
  * @description Returns the max number of hours a timer can last per the game's rules
  */
-const convertPlayerTimerIndexToHourTimer = (index: number, hoursPerSlot: number) => {
+const convertPlayerTimerIndexToHourTimer = (index: number, hoursPerSlot = HOURS_PER_SLOT) => {
   if (index < 0) return 0;
   return (index + 1) * hoursPerSlot;
 };
@@ -65,7 +65,7 @@ const convertSecondsToTimeValue = (seconds: number): TimeValue => {
  * @description Returns the player a timer belongs to
  * @example 9 timers for 3 players. Timer index 3 belongs to second player, so player index 1
  */
-const convertTimerIndexToPlayerIndex = (timerIndex: number, maxTimersPerPlayer: number) => {
+const convertTimerIndexToPlayerIndex = (timerIndex: number, maxTimersPerPlayer = MAX_TIMERS_PER_PLAYER) => {
   const playerIndex = Math.floor(timerIndex / maxTimersPerPlayer);
   return playerIndex;
 };
@@ -75,7 +75,7 @@ const convertTimerIndexToPlayerIndex = (timerIndex: number, maxTimersPerPlayer: 
  * @description Returns the timer index seen from its player's perspective
  * @example 9 timers for 3 players. Timer index 3 belongs to second player and has index 0
  */
-const convertTimerIndexToPlayerTimerIndex = (timerIndex: number, maxTimersPerPlayer: number) => {
+const convertTimerIndexToPlayerTimerIndex = (timerIndex: number, maxTimersPerPlayer = MAX_TIMERS_PER_PLAYER) => {
   const playerTimerIndex = timerIndex % maxTimersPerPlayer;
   return playerTimerIndex;
 };

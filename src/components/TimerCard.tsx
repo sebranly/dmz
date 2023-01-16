@@ -45,8 +45,8 @@ const TimerCard: React.FC<TimerCardProps> = (props) => {
   const isFixedMinutes = isFixedHours && minutes === 0;
   const isFixedSeconds = isFixedMinutes && seconds === 0;
 
-  const playerIndex = convertTimerIndexToPlayerIndex(timerIndex, MAX_TIMERS_PER_PLAYER);
-  const playerTimerIndex = convertTimerIndexToPlayerTimerIndex(timerIndex, MAX_TIMERS_PER_PLAYER);
+  const playerIndex = convertTimerIndexToPlayerIndex(timerIndex);
+  const playerTimerIndex = convertTimerIndexToPlayerTimerIndex(timerIndex);
   const color = getPlayerColor(playerIndex);
   const playerTitle = `Player ${playerIndex + 1}`;
   const timerTitle = `Timer ${playerTimerIndex + 1}`;
