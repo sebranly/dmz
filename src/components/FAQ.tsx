@@ -1,8 +1,10 @@
 import classnames from 'classnames';
 import * as React from 'react';
+import { CURRENT_SEASON } from '../constants/game';
 import { YOUTUBE_REFERENCE } from '../constants/general';
 import { questionsAnswers } from '../data/faq';
 import { QuestionAnswer } from '../types';
+import { displayWithTwoDigits } from '../utils/display';
 
 const FAQ = () => {
   const [faq, setFaq] = React.useState(questionsAnswers);
@@ -56,7 +58,7 @@ const FAQ = () => {
                       title="YouTube reference for conversion functions"
                       target="_blank"
                     >
-                      watch video
+                      {`watch S${displayWithTwoDigits(CURRENT_SEASON)} video`}
                     </a>
                   </>
                 )}

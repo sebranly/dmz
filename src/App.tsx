@@ -2,6 +2,7 @@ import React from 'react';
 import { useCookies } from 'react-cookie';
 import { COOKIE_TIMERS, DEFAULT_SORT_OPTION, SORT_OPTIONS, WEBSITE_SUBTITLE, WEBSITE_TITLE } from './constants/general';
 import {
+  CURRENT_SEASON,
   DEAD_DROP_HOURLY_RATE,
   MAX_HOURS_FOR_TIMER,
   MAX_PLAYERS,
@@ -198,6 +199,7 @@ function App() {
       <section className="main">
         <h1>{WEBSITE_TITLE}</h1>
         <h2>{WEBSITE_SUBTITLE}</h2>
+        <div>{`(Updated for Season ${displayWithTwoDigits(CURRENT_SEASON)})`}</div>
         <div>
           <h3>Money to Time Converter</h3>
           <div className="flex-container">

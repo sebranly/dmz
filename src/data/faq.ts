@@ -1,12 +1,12 @@
 import {
   CURRENT_SEASON,
   DEAD_DROP_HOURLY_RATE,
-  DOG_TAG_VALUE,
   JERRYCAN_VALUE,
   MAX_HOURS_FOR_TIMER,
-  REGULAR_HOURLY_RATE
+  REGULAR_HOURLY_RATE,
+  SILVER_DOG_TAG_VALUE
 } from '../constants/game';
-import { formatMoney } from '../utils/display';
+import { displayWithTwoDigits, formatMoney } from '../utils/display';
 import { QuestionAnswer } from '../types';
 import { COOKIE_TIMERS } from '../constants/general';
 
@@ -35,8 +35,10 @@ const questionsAnswers: QuestionAnswer[] = [
     yt: true,
     question: 'What are the hourly rates?',
     answer: [
-      `Dollars-per-hour rates have been determined by playing DMZ several times. It is a proportional function (linear function that includes the origin).`,
-      `Season ${CURRENT_SEASON} is known to have the following rates: exfiltrating with the chopper with $${formatMoney(
+      `Dollars-per-hour rates have been determined by playing DMZ for several games during all seasons. It is a proportional function (linear function that includes the origin).`,
+      `The current season (Season ${displayWithTwoDigits(
+        CURRENT_SEASON
+      )}) is known to have the following rates: exfiltrating with the chopper with $${formatMoney(
         REGULAR_HOURLY_RATE
       )} will reduce the cooldown timer by an hour. Alternatively, depositing $${formatMoney(
         DEAD_DROP_HOURLY_RATE
@@ -79,9 +81,24 @@ const questionsAnswers: QuestionAnswer[] = [
     yt: true,
     question: 'I think your formulae are incorrect',
     answer: [
-      `The formulae have been verified multiple times for season ${CURRENT_SEASON}. The game is known to have multiple bugs affecting how the backpack total is being displayed (i.e. some items don't count in the total up until the end result screen). Another known bug, happening this time on the result screen, is dog tags counting for time reduction, but not being reflected in the total money being exfiltrated with. Each dog tag awards you $${DOG_TAG_VALUE}.`,
+      `The formulae have been verified several times for all seasons including Season ${displayWithTwoDigits(
+        CURRENT_SEASON
+      )}. The game is known to have multiple bugs affecting how the backpack total is being displayed (i.e. some items don't count in the total up until the end result screen). Another known bug, happening this time on the result screen, is dog tags counting for time reduction, but not being reflected in the total money being exfiltrated with. Each silver dog tag awards you $${SILVER_DOG_TAG_VALUE}.`,
       'The following video showcases how the formulae have been determined. Known bugs have been detailed in the video description:'
     ]
+  },
+  {
+    shown: false,
+    question: 'What changed since Season 01?',
+    answer: [
+      'In Season 01, the cooldown periods for Insured Slots 1, 2 and 3 were respectively 2, 4 and 6 hours.',
+      'In Season 02, the cooldown periods for Insured Slots 1, 2 and 3 have all been decreased. They are now respectively 1, 2 and 3 hours.'
+    ]
+  },
+  {
+    shown: false,
+    question: 'Is there a time difference between Al Mazrah and Ashika Island?',
+    answer: ['TBD']
   },
   {
     shown: false,
