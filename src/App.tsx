@@ -4,8 +4,10 @@ import { COOKIE_TIMERS, DEFAULT_SORT_OPTION, SORT_OPTIONS, WEBSITE_SUBTITLE, WEB
 import {
   CURRENT_SEASON,
   DEAD_DROP_HOURLY_RATE,
+  HOURS_PER_SLOT,
   MAX_HOURS_FOR_TIMER,
   MAX_PLAYERS,
+  MAX_PLAYERS_WITHOUT_ASSIMILATION,
   MAX_TIMERS,
   MAX_TIMERS_PER_PLAYER,
   REGULAR_HOURLY_RATE
@@ -39,7 +41,7 @@ function App() {
   const [timerIndex, setTimerIndex] = React.useState(0);
   const [currentTimestamp, setCurrentTimestamp] = React.useState(getCurrentTimestamp());
   const [timerValue, setTimerValue] = React.useState<TimeValue>({
-    [TimeUnit.Hour]: 0,
+    [TimeUnit.Hour]: HOURS_PER_SLOT,
     [TimeUnit.Minute]: 0,
     [TimeUnit.Second]: 0
   });
@@ -47,7 +49,8 @@ function App() {
   const playerTimerIndex = convertTimerIndexToPlayerTimerIndex(timerIndex);
   const hoursForTimer = convertPlayerTimerIndexToHourTimer(playerTimerIndex);
   const quickOptionTimerValue = { [TimeUnit.Hour]: hoursForTimer, [TimeUnit.Minute]: 0, [TimeUnit.Second]: 0 };
-  const copyLostWeapon = `Add ${hoursForTimer}-hour timer`;
+  const copyLostWeapon = `Add new ${hoursForTimer}-hour timer`;
+  const copyLostWeaponEdit = `Edit to ${hoursForTimer}-hour timer`;
   const timerValuesAreNull = isNullTimeValue(timerValue);
 
   const onMount = () => {
@@ -82,7 +85,10 @@ function App() {
   const onChangeTimerValue = (timeLabel: TimeUnit) => (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { value } = e.target;
     const newValue = Number(value);
-    const newTimerValue = { ...timerValue, [timeLabel]: newValue };
+    const isMaxHour = timeLabel === TimeUnit.Hour && newValue === MAX_HOURS_FOR_TIMER;
+    const newTimerValue = isMaxHour
+      ? { [TimeUnit.Hour]: MAX_HOURS_FOR_TIMER, [TimeUnit.Minute]: 0, [TimeUnit.Second]: 0 }
+      : { ...timerValue, [timeLabel]: newValue };
     setTimerValue(newTimerValue);
   };
 
@@ -101,7 +107,7 @@ function App() {
       durationSec: convertTimeValueToSeconds(timerValue)
     };
 
-    const newTimers = [...timers, newTimer];
+    const newTimers = [...excludeTimerByIndex(timers, timerIndex), newTimer];
     const sortedTimers = sortTimers(newTimers, currentTimestamp, sort);
     setTimers(sortedTimers);
   };
@@ -131,7 +137,7 @@ function App() {
     return timers.map((idx: number) => {
       const key = `player-${playerIndex}-timer-${idx}`;
       const uniqueTimerIdx = playerIndex * MAX_TIMERS_PER_PLAYER + idx;
-      const label = `Timer ${idx + 1}`;
+      const label = `Insured Slot ${idx + 1}`;
 
       return (
         <option key={key} label={label} value={uniqueTimerIdx}>
@@ -157,9 +163,26 @@ function App() {
     return allPlayerIndexes.map((idx: number) => {
       const label = `Player ${idx + 1}`;
       return (
-        <optgroup key={label} label={label}>
-          {renderPlayerTimerOptions(idx)}
-        </optgroup>
+        <React.Fragment key={label}>
+          {idx === 0 && (
+            <option disabled key="base-players" label="Base Players">
+              Base Players
+            </option>
+          )}
+          {idx === MAX_PLAYERS_WITHOUT_ASSIMILATION && (
+            <>
+              <option disabled key="separator" label="__________">
+                __________
+              </option>
+              <option disabled key="assimilated-players" label="Assimilated Players">
+                Assimilated Players
+              </option>
+            </>
+          )}
+          <optgroup key={label} label={label}>
+            {renderPlayerTimerOptions(idx)}
+          </optgroup>
+        </React.Fragment>
       );
     });
   };
@@ -182,6 +205,7 @@ function App() {
   const playerIndex = convertTimerIndexToPlayerIndex(timerIndex);
   const playerColor = getPlayerColor(playerIndex);
   const timerExists = pickTimerByIndex(timers, timerIndex).length > 0;
+  const isMaxTimer = timerValue[TimeUnit.Hour] === MAX_HOURS_FOR_TIMER;
 
   const deadDropTimeEquivalentSeconds = convertMoneyToSeconds(moneyInput, DEAD_DROP_HOURLY_RATE);
   const deadDropTimeEquivalent = convertSecondsToTimeValue(deadDropTimeEquivalentSeconds);
@@ -199,7 +223,7 @@ function App() {
       <section className="main">
         <h1>{WEBSITE_TITLE}</h1>
         <h2>{WEBSITE_SUBTITLE}</h2>
-        <div>{`(Updated for Season ${displayWithTwoDigits(CURRENT_SEASON)})`}</div>
+        <div className="color-orange">{`Updated for Season ${displayWithTwoDigits(CURRENT_SEASON)}`}</div>
         <div>
           <h3>Money to Time Converter</h3>
           <div className="flex-container">
@@ -242,15 +266,15 @@ function App() {
           <h4>Add a timer</h4>
           <div className="flex-container new-timer">
             <div className="margin-flex-20 flex-child">
-              <div className="new-timer-option">Pick Timer ID</div>
+              <div className="new-timer-option">Select Insured Slot</div>
               <div className={`margin-top-10 new-timer-option color-${playerColor}`}>{`Player ${playerIndex + 1}`}</div>
               <select className="margin-top-10 new-timer-select" onChange={onChangeTimerIndex} value={timerIndex}>
                 {renderPlayerIndexesOptionGroups()}
               </select>
               {timerExists ? (
-                <div className="warning">Timer already exists.</div>
+                <div className="warning">Existing timer will be replaced.</div>
               ) : (
-                <div className="information">Timer can be created.</div>
+                <div className="information">A new timer will be created.</div>
               )}
             </div>
             <div className="margin-flex-20 flex-child">
@@ -260,7 +284,7 @@ function App() {
                   return (
                     <div className="inline" key={timeLabel}>
                       <select
-                        disabled={timerExists}
+                        disabled={timeLabel !== TimeUnit.Hour && isMaxTimer}
                         onChange={onChangeTimerValue(timeLabel)}
                         value={timerValue[timeLabel]}
                       >
@@ -274,19 +298,15 @@ function App() {
               <button
                 className="margin-top-20"
                 onClick={() => onClickAddTimer(timerValue)}
-                disabled={timerValuesAreNull || timerExists}
+                disabled={timerValuesAreNull}
               >
-                Add this timer
+                {timerExists ? 'Modify existing timer' : 'Add new timer'}
               </button>
             </div>
             <div className="margin-flex-20 flex-child">
               <div className="new-timer-option">Quick option</div>
-              <button
-                className="margin-top-10"
-                disabled={timerExists}
-                onClick={() => onClickAddTimer(quickOptionTimerValue)}
-              >
-                {copyLostWeapon}
+              <button className="margin-top-10" onClick={() => onClickAddTimer(quickOptionTimerValue)}>
+                {timerExists ? copyLostWeaponEdit : copyLostWeapon}
               </button>
             </div>
           </div>

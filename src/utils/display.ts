@@ -52,6 +52,26 @@ const getPlayerColor = (playerIndex: number) => {
       return Color.Blue;
     case 3:
       return Color.Pink;
+    case 4:
+      return Color.Orange;
+    case 5:
+      return Color.Gray;
+  }
+};
+
+const getPlayersSize = (length: number) => {
+  switch (length) {
+    case 0:
+    default:
+      return '';
+    case 1:
+      return 'solo players';
+    case 2:
+      return 'duos';
+    case 3:
+      return 'trios';
+    case 4:
+      return 'quatuors';
   }
 };
 
@@ -65,4 +85,4 @@ const pluralize = (str: string, nb: number) => {
   return `${str}s`;
 };
 
-export { displayTimeValue, displayWithTwoDigits, formatMoney, getPlayerColor, pluralize };
+export { displayTimeValue, displayWithTwoDigits, formatMoney, getPlayerColor, getPlayersSize, pluralize };

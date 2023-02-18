@@ -71,6 +71,14 @@ body {
   color: pink;
 }
 
+.color-orange {
+  color: orange;
+}
+
+.color-gray {
+  color: gray;
+}
+
 .border-color-green {
   border-color: limegreen;
 }
@@ -85,6 +93,14 @@ body {
 
 .border-color-pink {
   border-color: pink;
+}
+
+.border-color-orange {
+  border-color: orange;
+}
+
+.border-color-gray {
+  border-color: gray;
 }
 
 .new-timer {
@@ -191,14 +207,18 @@ li span {
 
 .warning {
   color: orange;
-  padding-top: 10px;
-  font-size: 16px;
+  padding-top: 16px;
+  font-size: 14px;
+  margin: 0 auto;
+  max-width: 175px;
 }
 
 .information {
   color: green;
-  padding-top: 10px;
-  font-size: 16px;
+  padding-top: 16px;
+  font-size: 14px;
+  margin: 0 auto;
+  max-width: 175px;
 }
 
 .ribbon-container {

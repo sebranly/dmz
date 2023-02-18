@@ -11,10 +11,10 @@ const FAQ = () => {
 
   const onToggle = (questionString: string) => {
     const newFaq = faq.map((qa: QuestionAnswer) => {
-      const { answer, question, shown, yt } = qa;
+      const { answer, isNew, question, shown, yt } = qa;
       const isClicked = question === questionString;
       const shownValue = isClicked ? !shown : false;
-      return { question, answer, shown: shownValue, yt: !!yt };
+      return { question, answer, isNew: !!isNew, shown: shownValue, yt: !!yt };
     });
 
     setFaq(newFaq);
@@ -24,7 +24,7 @@ const FAQ = () => {
     <div id="faq">
       <h3>FAQ</h3>
       {faq.map((qa: QuestionAnswer) => {
-        const { answer, question, shown, yt } = qa;
+        const { answer, isNew, question, shown, yt } = qa;
 
         const questionSuffix = shown ? '-' : '+';
         const questionBis = `${question} [${questionSuffix}]`;
@@ -36,6 +36,7 @@ const FAQ = () => {
         return (
           <div key={question} className={classnamesQuestionAndAnswer}>
             <div onClick={() => onToggle(question)} className="question">
+              {isNew && <div className="inline color-orange">{'[New] '}</div>}
               {questionBis}
             </div>
             {shown && (

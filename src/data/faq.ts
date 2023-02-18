@@ -3,10 +3,12 @@ import {
   DEAD_DROP_HOURLY_RATE,
   JERRYCAN_VALUE,
   MAX_HOURS_FOR_TIMER,
+  MAX_PLAYERS,
+  MAX_PLAYERS_WITHOUT_ASSIMILATION,
   REGULAR_HOURLY_RATE,
   SILVER_DOG_TAG_VALUE
 } from '../constants/game';
-import { displayWithTwoDigits, formatMoney } from '../utils/display';
+import { displayWithTwoDigits, formatMoney, getPlayersSize } from '../utils/display';
 import { QuestionAnswer } from '../types';
 import { COOKIE_TIMERS } from '../constants/general';
 
@@ -51,7 +53,7 @@ const questionsAnswers: QuestionAnswer[] = [
     shown: false,
     question: 'What are dead drops?',
     answer: [
-      `These are dumpsters that are always at the same locations on the DMZ battlefield and that can be interacted with. Players can drop money/items into them in order to reduce the cooldown timer in exchange.`,
+      `These are dumpsters that are present on the DMZ battlefield and that can be interacted with. Players can drop money, weapons and/or items into them in order to reduce the cooldown timer in exchange.`,
       `Dead drops offer two advantages compared to exfiltrating with said money/items with the chopper: the cooldown timer decreases ${
         Math.round((REGULAR_HOURLY_RATE / DEAD_DROP_HOURLY_RATE) * 100) / 100
       }x faster thanks to dead drops, and dead drops will award you the time reduction even if you die afterwards.`
@@ -62,9 +64,9 @@ const questionsAnswers: QuestionAnswer[] = [
     question: 'What about items?',
     answer: [
       'Items sometimes have a displayed value underneath (in your backpack) which corresponds to the equivalent amount of money they give you when exfiltrating or deposited into dead drops.',
-      `Some other items don't have a displayed value but one exists anyway. I don't have a definite list yet but for instance depositing a jerrycan into dead drops will award you $${formatMoney(
+      `Some other items don't have a displayed value but one exists anyway. I don't have a definite list but for instance depositing a jerrycan into dead drops will award you $${formatMoney(
         JERRYCAN_VALUE
-      )}.`
+      )} (which is then converted for time reduction).`
     ]
   },
   {
@@ -89,16 +91,36 @@ const questionsAnswers: QuestionAnswer[] = [
   },
   {
     shown: false,
+    isNew: true,
     question: 'What changed since Season 01?',
     answer: [
       'In Season 01, the cooldown periods for Insured Slots 1, 2 and 3 were respectively 2, 4 and 6 hours.',
-      'In Season 02, the cooldown periods for Insured Slots 1, 2 and 3 have all been decreased. They are now respectively 1, 2 and 3 hours.'
+      'In Season 02, the cooldown periods for Insured Slots 1, 2 and 3 have all been reduced by half.',
+      'They are now respectively 1, 2 and 3 hours.',
+      'The locations of dead drops in Al Mazrah have changed in Season 02.',
+      'A new map called Ashika Island is available since Season 02.',
+      'Note: the dollars-per-hour rates have not changed in Season 02 (for both exfiltration and dead drops).'
     ]
   },
   {
     shown: false,
-    question: 'Is there a time difference between Al Mazrah and Ashika Island?',
-    answer: ['TBD']
+    isNew: true,
+    question: 'Is there a time difference between the maps?',
+    answer: [
+      'Al Mazrah and Ashika Island both share the same dollars-per-hour rates (for both exfiltration and dead drops).',
+      'Determining if it is also the case for Building 21 is a work in progress on my end (testing it takes longer as access to Building 21 requires a keycard).'
+    ]
+  },
+  {
+    shown: false,
+    isNew: true,
+    question: `Why is the maximum number of players high on this website?`,
+    answer: [
+      `Although the maximum that DMZ mode accepts is ${getPlayersSize(
+        MAX_PLAYERS_WITHOUT_ASSIMILATION
+      )} when launching a game, the squad size can grow up to ${MAX_PLAYERS} players thanks to assimilation in-game (opponents can join your squad).`,
+      'Thanks to in-game voice chat, you can always help your new friends by setting up a timer for them if they roughly remember how much time they had left for their insured slots before starting the game.'
+    ]
   },
   {
     shown: false,
