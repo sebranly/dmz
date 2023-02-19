@@ -1,10 +1,10 @@
 export enum Color {
   Blue = 'blue',
+  Gray = 'gray',
   Green = 'green',
-  Pink = 'pink',
-  Yellow = 'yellow',
   Orange = 'orange',
-  Gray = 'gray'
+  Pink = 'pink',
+  Yellow = 'yellow'
 }
 
 export enum TimeUnit {
@@ -28,7 +28,7 @@ export type Timer = {
 export type QuestionAnswer = {
   question: string;
   answer: string[];
-  shown: boolean;
+  shown?: boolean;
   isNew?: boolean;
   yt?: boolean;
 };

@@ -22,8 +22,7 @@ const questionsAnswers: QuestionAnswer[] = [
   where Operator squads have free rein to complete faction-based missions, take on additional side objectives,
   engage with enemy Operators or AI combatants, and search for valuable items, all while fighting to survive
   toward exfiltration.".`
-    ],
-    shown: false
+    ]
   },
   {
     shown: true,
@@ -34,7 +33,6 @@ const questionsAnswers: QuestionAnswer[] = [
     ]
   },
   {
-    shown: false,
     yt: true,
     question: 'What are the hourly rates?',
     answer: [
@@ -52,7 +50,6 @@ const questionsAnswers: QuestionAnswer[] = [
     ]
   },
   {
-    shown: false,
     question: 'What are dead drops?',
     answer: [
       `These are dumpsters that are present on the DMZ battlefield and that can be interacted with. Players can drop money, weapons and/or items into them in order to reduce the cooldown timer in exchange.`,
@@ -62,7 +59,6 @@ const questionsAnswers: QuestionAnswer[] = [
     ]
   },
   {
-    shown: false,
     question: 'What about items?',
     answer: [
       'Items sometimes have a displayed value underneath (in your backpack) which corresponds to the equivalent amount of money they give you when exfiltrating or deposited into dead drops.',
@@ -72,7 +68,6 @@ const questionsAnswers: QuestionAnswer[] = [
     ]
   },
   {
-    shown: false,
     question: "I don't understand the use-case(s)",
     answer: [
       `Once a timer is set up on the website, it decreases on the website every second like the in-game cooldown timer. However, the latter is only visible on the game menu. So, after some time spent fighting into DMZ, this website allows you to accurately know how much time is left and, more importantly, how to split money within your squad in order not to waste any dollar.`,
@@ -81,7 +76,6 @@ const questionsAnswers: QuestionAnswer[] = [
     ]
   },
   {
-    shown: false,
     isNew: true,
     yt: true,
     question: 'I think your formulae are incorrect',
@@ -99,7 +93,6 @@ const questionsAnswers: QuestionAnswer[] = [
     ]
   },
   {
-    shown: false,
     isNew: true,
     question: 'What changed since Season 01?',
     answer: [
@@ -112,7 +105,6 @@ const questionsAnswers: QuestionAnswer[] = [
     ]
   },
   {
-    shown: false,
     isNew: true,
     question: 'Is there a time difference between the maps?',
     answer: [
@@ -121,7 +113,6 @@ const questionsAnswers: QuestionAnswer[] = [
     ]
   },
   {
-    shown: false,
     isNew: true,
     question: `Why is the maximum number of players high on this website?`,
     answer: [
@@ -132,14 +123,12 @@ const questionsAnswers: QuestionAnswer[] = [
     ]
   },
   {
-    shown: false,
     question: 'Can I bake cakes with this website?',
     answer: [
       `Sure, it's a countdown timer at its core after all. Pro-tip: just make sure your cake does not take longer than ${MAX_HOURS_FOR_TIMER} hours.`
     ]
   },
   {
-    shown: false,
     question: 'What about cookies?',
     answer: [
       `On this website we only use one browser cookie called '${COOKIE_TIMERS}'. We do this in order to save the timers that you created, so that upon refreshing the page you don't lose them.`

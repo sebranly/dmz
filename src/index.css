@@ -207,7 +207,7 @@ li span {
 
 .warning {
   color: orange;
-  padding-top: 16px;
+  padding-top: 10px;
   font-size: 14px;
   margin: 0 auto;
   max-width: 175px;
@@ -215,7 +215,7 @@ li span {
 
 .information {
   color: green;
-  padding-top: 16px;
+  padding-top: 10px;
   font-size: 14px;
   margin: 0 auto;
   max-width: 175px;

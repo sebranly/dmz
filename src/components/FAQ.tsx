@@ -36,7 +36,7 @@ const FAQ = () => {
         return (
           <div key={question} className={classnamesQuestionAndAnswer}>
             <div onClick={() => onToggle(question)} className="question">
-              {isNew && <div className="inline color-orange">{'[New] '}</div>}
+              {isNew && <div className="inline color-orange">[New] </div>}
               {questionBis}
             </div>
             {shown && (

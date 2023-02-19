@@ -89,6 +89,7 @@ function App() {
     const newTimerValue = isMaxHour
       ? { [TimeUnit.Hour]: MAX_HOURS_FOR_TIMER, [TimeUnit.Minute]: 0, [TimeUnit.Second]: 0 }
       : { ...timerValue, [timeLabel]: newValue };
+
     setTimerValue(newTimerValue);
   };
 
@@ -100,7 +101,7 @@ function App() {
     setTimers(sortedTimers);
   };
 
-  const onClickAddTimer = (timerValue: TimeValue) => {
+  const onClickEditTimer = (timerValue: TimeValue) => {
     const newTimer: Timer = {
       timerIndex,
       timestampStart: currentTimestamp,
@@ -272,9 +273,9 @@ function App() {
                 {renderPlayerIndexesOptionGroups()}
               </select>
               {timerExists ? (
-                <div className="warning">Existing timer will be replaced.</div>
+                <div className="warning">Existing timer will be edited.</div>
               ) : (
-                <div className="information">A new timer will be created.</div>
+                <div className="information">A new timer will be added.</div>
               )}
             </div>
             <div className="margin-flex-20 flex-child">
@@ -297,7 +298,7 @@ function App() {
               </div>
               <button
                 className="margin-top-20"
-                onClick={() => onClickAddTimer(timerValue)}
+                onClick={() => onClickEditTimer(timerValue)}
                 disabled={timerValuesAreNull}
               >
                 {timerExists ? 'Modify existing timer' : 'Add new timer'}
@@ -305,7 +306,7 @@ function App() {
             </div>
             <div className="margin-flex-20 flex-child">
               <div className="new-timer-option">Quick option</div>
-              <button className="margin-top-10" onClick={() => onClickAddTimer(quickOptionTimerValue)}>
+              <button className="margin-top-10" onClick={() => onClickEditTimer(quickOptionTimerValue)}>
                 {timerExists ? copyLostWeaponEdit : copyLostWeapon}
               </button>
             </div>
