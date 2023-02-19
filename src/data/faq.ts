@@ -45,7 +45,7 @@ const questionsAnswers: QuestionAnswer[] = [
         DEAD_DROP_HOURLY_RATE
       )} into any dead drop will reduce the cooldown timer by an hour (even if you die in-game).`,
       `Both methods can also be combined (as a sum).`,
-      'Note: exfiltrating thanks to a Rescue Hostage Contract will apply the same rate.',
+      'Note: exfiltrating thanks to a Rescue Hostage Contract will apply the same rates.',
       'The following video (and its YouTube description) showcases how the formulae have been determined:'
     ]
   },
@@ -119,7 +119,7 @@ const questionsAnswers: QuestionAnswer[] = [
       `Although the maximum that DMZ mode accepts is ${getPlayersSize(
         MAX_PLAYERS_WITHOUT_ASSIMILATION
       )} when launching a game, the squad size can grow up to ${MAX_PLAYERS} players thanks to assimilation in-game (opponents can join your squad).`,
-      'Thanks to in-game voice chat, you can always help your new friends by setting up a timer for them if they roughly remember how much time they had left for their insured slots before starting the game.'
+      'Thanks to in-game textual chat and voice chat, you can always help your new friends by setting up a timer for them if they roughly remember how much time they had left for their insured slots before starting the game.'
     ]
   },
   {
