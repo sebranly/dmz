@@ -1,4 +1,5 @@
 import {
+  BRONZE_DOG_TAG_VALUE,
   CURRENT_SEASON,
   DEAD_DROP_HOURLY_RATE,
   JERRYCAN_VALUE,
@@ -6,8 +7,7 @@ import {
   MAX_PLAYERS,
   MAX_PLAYERS_WITHOUT_ASSIMILATION,
   REGULAR_HOURLY_RATE,
-  SENSITIVE_DOCUMENTS_VALUE,
-  SILVER_DOG_TAG_VALUE
+  SENSITIVE_DOCUMENTS_VALUE
 } from '../constants/game';
 import { displayWithTwoDigits, formatMoney, getPlayersSize } from '../utils/display';
 import { QuestionAnswer } from '../types';
@@ -89,8 +89,8 @@ const questionsAnswers: QuestionAnswer[] = [
       `The formulae have been verified several times for all seasons including Season ${displayWithTwoDigits(
         CURRENT_SEASON
       )}.`,
-      `The game is known to have multiple bugs affecting how the backpack total is being displayed (e.g. some items don't count in the total up until the end result screen). A bug happening on the result screen, is dog tags counting for time reduction, but not being reflected in the total money being exfiltrated with. Each silver dog tag awards you $${formatMoney(
-        SILVER_DOG_TAG_VALUE
+      `The game is known to have multiple bugs affecting how the backpack total is being displayed (e.g. some items don't count in the total up until the end result screen). A bug happening on the result screen, is dog tags counting for time reduction, but not being reflected in the total money being exfiltrated with. Each bronze dog tag awards you $${formatMoney(
+        BRONZE_DOG_TAG_VALUE
       )}.`,
       `On the other hand, there is an opposite bug regarding sensitive documents, most likely because they can now be retained in the stash. They show up in the total of the backpack but actually do not count towards time reduction. You need to subtract $${formatMoney(
         SENSITIVE_DOCUMENTS_VALUE
