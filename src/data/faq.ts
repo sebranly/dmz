@@ -1,12 +1,15 @@
 import {
+  BRONZE_DOG_TAG_VALUE,
   CURRENT_SEASON,
   DEAD_DROP_HOURLY_RATE,
-  DOG_TAG_VALUE,
   JERRYCAN_VALUE,
   MAX_HOURS_FOR_TIMER,
-  REGULAR_HOURLY_RATE
+  MAX_PLAYERS,
+  MAX_PLAYERS_WITHOUT_ASSIMILATION,
+  REGULAR_HOURLY_RATE,
+  SENSITIVE_DOCUMENTS_VALUE
 } from '../constants/game';
-import { formatMoney } from '../utils/display';
+import { displayWithTwoDigits, formatMoney, getPlayersSize } from '../utils/display';
 import { QuestionAnswer } from '../types';
 import { COOKIE_TIMERS } from '../constants/general';
 
@@ -19,8 +22,7 @@ const questionsAnswers: QuestionAnswer[] = [
   where Operator squads have free rein to complete faction-based missions, take on additional side objectives,
   engage with enemy Operators or AI combatants, and search for valuable items, all while fighting to survive
   toward exfiltration.".`
-    ],
-    shown: false
+    ]
   },
   {
     shown: true,
@@ -31,42 +33,41 @@ const questionsAnswers: QuestionAnswer[] = [
     ]
   },
   {
-    shown: false,
     yt: true,
     question: 'What are the hourly rates?',
     answer: [
-      `Dollars-per-hour rates have been determined by playing DMZ several times. It is a proportional function (linear function that includes the origin).`,
-      `Season ${CURRENT_SEASON} is known to have the following rates: exfiltrating with the chopper with $${formatMoney(
+      `Dollars-per-hour rates have been determined by playing DMZ for several games during all seasons. It is a proportional function (linear function that includes the origin).`,
+      `The current season (Season ${displayWithTwoDigits(
+        CURRENT_SEASON
+      )}) is known to have the following rates: exfiltrating with the chopper with $${formatMoney(
         REGULAR_HOURLY_RATE
       )} will reduce the cooldown timer by an hour. Alternatively, depositing $${formatMoney(
         DEAD_DROP_HOURLY_RATE
       )} into any dead drop will reduce the cooldown timer by an hour (even if you die in-game).`,
       `Both methods can also be combined (as a sum).`,
+      'Note: exfiltrating thanks to a Rescue Hostage Contract will apply the same rates.',
       'The following video (and its YouTube description) showcases how the formulae have been determined:'
     ]
   },
   {
-    shown: false,
     question: 'What are dead drops?',
     answer: [
-      `These are dumpsters that are always at the same locations on the DMZ battlefield and that can be interacted with. Players can drop money/items into them in order to reduce the cooldown timer in exchange.`,
+      `These are dumpsters that are present on the DMZ battlefield and that can be interacted with. Players can drop money, weapons and/or items into them in order to reduce the cooldown timer in exchange.`,
       `Dead drops offer two advantages compared to exfiltrating with said money/items with the chopper: the cooldown timer decreases ${
         Math.round((REGULAR_HOURLY_RATE / DEAD_DROP_HOURLY_RATE) * 100) / 100
       }x faster thanks to dead drops, and dead drops will award you the time reduction even if you die afterwards.`
     ]
   },
   {
-    shown: false,
     question: 'What about items?',
     answer: [
       'Items sometimes have a displayed value underneath (in your backpack) which corresponds to the equivalent amount of money they give you when exfiltrating or deposited into dead drops.',
-      `Some other items don't have a displayed value but one exists anyway. I don't have a definite list yet but for instance depositing a jerrycan into dead drops will award you $${formatMoney(
+      `Some other items don't have a displayed value but one exists anyway. I don't have a definite list but for instance depositing a jerrycan into dead drops will award you $${formatMoney(
         JERRYCAN_VALUE
-      )}.`
+      )} (which is then converted for time reduction).`
     ]
   },
   {
-    shown: false,
     question: "I don't understand the use-case(s)",
     answer: [
       `Once a timer is set up on the website, it decreases on the website every second like the in-game cooldown timer. However, the latter is only visible on the game menu. So, after some time spent fighting into DMZ, this website allows you to accurately know how much time is left and, more importantly, how to split money within your squad in order not to waste any dollar.`,
@@ -75,23 +76,59 @@ const questionsAnswers: QuestionAnswer[] = [
     ]
   },
   {
-    shown: false,
+    isNew: true,
     yt: true,
     question: 'I think your formulae are incorrect',
     answer: [
-      `The formulae have been verified multiple times for season ${CURRENT_SEASON}. The game is known to have multiple bugs affecting how the backpack total is being displayed (i.e. some items don't count in the total up until the end result screen). Another known bug, happening this time on the result screen, is dog tags counting for time reduction, but not being reflected in the total money being exfiltrated with. Each dog tag awards you $${DOG_TAG_VALUE}.`,
+      `The formulae have been verified several times for all seasons including Season ${displayWithTwoDigits(
+        CURRENT_SEASON
+      )}.`,
+      `The game is known to have multiple bugs affecting how the backpack total is being displayed (e.g. some items don't count in the total up until the end result screen). A bug happening on the result screen, is dog tags counting for time reduction, but not being reflected in the total money being exfiltrated with. Each bronze dog tag awards you $${formatMoney(
+        BRONZE_DOG_TAG_VALUE
+      )}.`,
+      `On the other hand, there is an opposite bug regarding sensitive documents, most likely because they can now be retained in the stash. They show up in the total of the backpack but actually do not count towards time reduction. You need to subtract $${formatMoney(
+        SENSITIVE_DOCUMENTS_VALUE
+      )} per sensitive documents.`,
       'The following video showcases how the formulae have been determined. Known bugs have been detailed in the video description:'
     ]
   },
   {
-    shown: false,
+    isNew: true,
+    question: 'What changed since Season 01?',
+    answer: [
+      'In Season 01, the cooldown periods for Insured Slots 1, 2 and 3 were respectively 2, 4 and 6 hours.',
+      'In Season 02, the cooldown periods for Insured Slots 1, 2 and 3 have all been reduced by half.',
+      'They are now respectively 1, 2 and 3 hours.',
+      'The locations of dead drops in Al Mazrah have changed in Season 02.',
+      'A new map called Ashika Island is available since Season 02.',
+      'Note: the dollars-per-hour rates have not changed in Season 02 (for both exfiltration and dead drops).'
+    ]
+  },
+  {
+    isNew: true,
+    question: 'Is there a time difference between the maps?',
+    answer: [
+      'Al Mazrah and Ashika Island both share the same dollars-per-hour rates (for both exfiltration and dead drops).',
+      'Determining if it is also the case for Building 21 is a work in progress on my end (testing it takes longer as access to Building 21 requires a keycard).'
+    ]
+  },
+  {
+    isNew: true,
+    question: `Why is the maximum number of players high on this website?`,
+    answer: [
+      `Although the maximum that DMZ mode accepts is ${getPlayersSize(
+        MAX_PLAYERS_WITHOUT_ASSIMILATION
+      )} when launching a game, the squad size can grow up to ${MAX_PLAYERS} players thanks to assimilation in-game (opponents can join your squad).`,
+      'Thanks to in-game textual chat and voice chat, you can always help your new friends by setting up a timer for them if they roughly remember how much time they had left for their insured slots before starting the game.'
+    ]
+  },
+  {
     question: 'Can I bake cakes with this website?',
     answer: [
       `Sure, it's a countdown timer at its core after all. Pro-tip: just make sure your cake does not take longer than ${MAX_HOURS_FOR_TIMER} hours.`
     ]
   },
   {
-    shown: false,
     question: 'What about cookies?',
     answer: [
       `On this website we only use one browser cookie called '${COOKIE_TIMERS}'. We do this in order to save the timers that you created, so that upon refreshing the page you don't lose them.`

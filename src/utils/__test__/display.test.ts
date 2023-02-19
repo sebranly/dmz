@@ -1,5 +1,12 @@
 import { Color, TimeUnit } from '../../types';
-import { displayTimeValue, displayWithTwoDigits, formatMoney, getPlayerColor, pluralize } from '../display';
+import {
+  displayTimeValue,
+  displayWithTwoDigits,
+  formatMoney,
+  getPlayerColor,
+  getPlayersSize,
+  pluralize
+} from '../display';
 
 test('displayTimeValue', () => {
   let timeValue = { [TimeUnit.Hour]: 0, [TimeUnit.Minute]: 0, [TimeUnit.Second]: 0 };
@@ -33,8 +40,19 @@ test('getPlayerColor', () => {
   expect(getPlayerColor(1)).toBe(Color.Yellow);
   expect(getPlayerColor(2)).toBe(Color.Blue);
   expect(getPlayerColor(3)).toBe(Color.Pink);
-  expect(getPlayerColor(4)).toBe(Color.Green);
+  expect(getPlayerColor(4)).toBe(Color.Orange);
+  expect(getPlayerColor(5)).toBe(Color.Gray);
+  expect(getPlayerColor(6)).toBe(Color.Green);
   expect(getPlayerColor(999)).toBe(Color.Green);
+});
+
+test('getPlayersSize', () => {
+  expect(getPlayersSize(0)).toBe('');
+  expect(getPlayersSize(1)).toBe('solo players');
+  expect(getPlayersSize(2)).toBe('duos');
+  expect(getPlayersSize(3)).toBe('trios');
+  expect(getPlayersSize(4)).toBe('quatuors');
+  expect(getPlayersSize(5)).toBe('');
 });
 
 test('pluralize', () => {

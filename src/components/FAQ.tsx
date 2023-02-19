@@ -1,18 +1,20 @@
 import classnames from 'classnames';
 import * as React from 'react';
+import { CURRENT_SEASON } from '../constants/game';
 import { YOUTUBE_REFERENCE } from '../constants/general';
 import { questionsAnswers } from '../data/faq';
 import { QuestionAnswer } from '../types';
+import { displayWithTwoDigits } from '../utils/display';
 
 const FAQ = () => {
   const [faq, setFaq] = React.useState(questionsAnswers);
 
   const onToggle = (questionString: string) => {
     const newFaq = faq.map((qa: QuestionAnswer) => {
-      const { answer, question, shown, yt } = qa;
+      const { answer, isNew, question, shown, yt } = qa;
       const isClicked = question === questionString;
       const shownValue = isClicked ? !shown : false;
-      return { question, answer, shown: shownValue, yt: !!yt };
+      return { question, answer, isNew: !!isNew, shown: shownValue, yt: !!yt };
     });
 
     setFaq(newFaq);
@@ -22,7 +24,7 @@ const FAQ = () => {
     <div id="faq">
       <h3>FAQ</h3>
       {faq.map((qa: QuestionAnswer) => {
-        const { answer, question, shown, yt } = qa;
+        const { answer, isNew, question, shown, yt } = qa;
 
         const questionSuffix = shown ? '-' : '+';
         const questionBis = `${question} [${questionSuffix}]`;
@@ -34,6 +36,7 @@ const FAQ = () => {
         return (
           <div key={question} className={classnamesQuestionAndAnswer}>
             <div onClick={() => onToggle(question)} className="question">
+              {isNew && <div className="inline color-orange">[New] </div>}
               {questionBis}
             </div>
             {shown && (
@@ -56,7 +59,7 @@ const FAQ = () => {
                       title="YouTube reference for conversion functions"
                       target="_blank"
                     >
-                      watch video
+                      {`watch S${displayWithTwoDigits(CURRENT_SEASON)} video`}
                     </a>
                   </>
                 )}

@@ -82,7 +82,54 @@ NodeList [
       <div
         class="question"
       >
+        <div
+          class="inline color-orange"
+        >
+          [New] 
+        </div>
         I think your formulae are incorrect [+]
+      </div>
+    </div>
+    <div
+      class="margin-top-10"
+    >
+      <div
+        class="question"
+      >
+        <div
+          class="inline color-orange"
+        >
+          [New] 
+        </div>
+        What changed since Season 01? [+]
+      </div>
+    </div>
+    <div
+      class="margin-top-10"
+    >
+      <div
+        class="question"
+      >
+        <div
+          class="inline color-orange"
+        >
+          [New] 
+        </div>
+        Is there a time difference between the maps? [+]
+      </div>
+    </div>
+    <div
+      class="margin-top-10"
+    >
+      <div
+        class="question"
+      >
+        <div
+          class="inline color-orange"
+        >
+          [New] 
+        </div>
+        Why is the maximum number of players high on this website? [+]
       </div>
     </div>
     <div
