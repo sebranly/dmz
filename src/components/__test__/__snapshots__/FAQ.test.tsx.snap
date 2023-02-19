@@ -82,6 +82,11 @@ NodeList [
       <div
         class="question"
       >
+        <div
+          class="inline color-orange"
+        >
+          [New] 
+        </div>
         I think your formulae are incorrect [+]
       </div>
     </div>
