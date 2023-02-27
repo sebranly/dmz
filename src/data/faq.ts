@@ -39,7 +39,7 @@ const questionsAnswers: QuestionAnswer[] = [
       `Dollars-per-hour rates have been determined by playing DMZ for several games during all seasons. It is a proportional function (linear function that includes the origin).`,
       `The current season (Season ${displayWithTwoDigits(
         CURRENT_SEASON
-      )}) is known to have the following rates: exfiltrating with the chopper with $${formatMoney(
+      )}) is known to have the following rates: exfiltrating with the chopper (or elevator in Building 21) with $${formatMoney(
         REGULAR_HOURLY_RATE
       )} will reduce the cooldown timer by an hour. Alternatively, depositing $${formatMoney(
         DEAD_DROP_HOURLY_RATE
@@ -52,8 +52,8 @@ const questionsAnswers: QuestionAnswer[] = [
   {
     question: 'What are dead drops?',
     answer: [
-      `These are dumpsters that are present on the DMZ battlefield and that can be interacted with. Players can drop money, weapons and/or items into them in order to reduce the cooldown timer in exchange.`,
-      `Dead drops offer two advantages compared to exfiltrating with said money/items with the chopper: the cooldown timer decreases ${
+      `These are dumpsters that are present in all three maps of DMZ and that can be interacted with. Players can drop money, weapons and/or items into them in order to reduce the cooldown timer in exchange.`,
+      `Dead drops offer two advantages compared to exfiltrating with said money/items with the chopper (or elevator in Building 21): the cooldown timer decreases ${
         Math.round((REGULAR_HOURLY_RATE / DEAD_DROP_HOURLY_RATE) * 100) / 100
       }x faster thanks to dead drops, and dead drops will award you the time reduction even if you die afterwards.`
     ]
@@ -71,7 +71,7 @@ const questionsAnswers: QuestionAnswer[] = [
     question: "I don't understand the use-case(s)",
     answer: [
       `Once a timer is set up on the website, it decreases on the website every second like the in-game cooldown timer. However, the latter is only visible on the game menu. So, after some time spent fighting into DMZ, this website allows you to accurately know how much time is left and, more importantly, how to split money within your squad in order not to waste any dollar.`,
-      `Everyone may be able to get their insured weapons back. You can then use the remaining money you saved for better things such as buying contraband weapons, strikes or UAVs.`,
+      `Everyone may be able to get their insured weapons back. You can then use the remaining money you saved for better things such as buying contraband weapons, strikes or UAVs. Or even buying a Building 21 Access Card.`,
       `Another example is that you can exfiltrate from the battlefield as soon as you have the required money to get your lost weapon back (rather than risking it all).`
     ]
   },
@@ -99,8 +99,9 @@ const questionsAnswers: QuestionAnswer[] = [
       'In Season 01, the cooldown periods for Insured Slots 1, 2 and 3 were respectively 2, 4 and 6 hours.',
       'In Season 02, the cooldown periods for Insured Slots 1, 2 and 3 have all been reduced by half.',
       'They are now respectively 1, 2 and 3 hours.',
-      'The locations of dead drops in Al Mazrah have changed in Season 02.',
+      'The locations of dead drops in Al Mazrah and Building 21 have changed in Season 02.',
       'A new map called Ashika Island is available since Season 02.',
+      'The Access Card for Building 21 is now single-use in Season 02.',
       'Note: the dollars-per-hour rates have not changed in Season 02 (for both exfiltration and dead drops).'
     ]
   },
@@ -108,8 +109,7 @@ const questionsAnswers: QuestionAnswer[] = [
     isNew: true,
     question: 'Is there a time difference between the maps?',
     answer: [
-      'Al Mazrah and Ashika Island both share the same dollars-per-hour rates (for both exfiltration and dead drops).',
-      'Determining if it is also the case for Building 21 is a work in progress on my end (testing it takes longer as access to Building 21 requires a keycard).'
+      'Al Mazrah, Ashika Island and Building 21 all share the same dollars-per-hour rates (for both exfiltration and dead drops).'
     ]
   },
   {
@@ -119,7 +119,8 @@ const questionsAnswers: QuestionAnswer[] = [
       `Although the maximum that DMZ mode accepts is ${getPlayersSize(
         MAX_PLAYERS_WITHOUT_ASSIMILATION
       )} when launching a game, the squad size can grow up to ${MAX_PLAYERS} players thanks to assimilation in-game (opponents can join your squad).`,
-      'Thanks to in-game textual chat and voice chat, you can always help your new friends by setting up a timer for them if they roughly remember how much time they had left for their insured slots before starting the game.'
+      'Thanks to in-game textual chat and voice chat, you can always help your new friends by setting up a timer for them if they roughly remember how much time they had left for their insured slots before starting the game.',
+      'Please note that Building 21 does not offer this assimilation concept.'
     ]
   },
   {
