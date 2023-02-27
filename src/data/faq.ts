@@ -101,7 +101,7 @@ const questionsAnswers: QuestionAnswer[] = [
       'They are now respectively 1, 2 and 3 hours.',
       'The locations of dead drops in Al Mazrah and Building 21 have changed in Season 02.',
       'A new map called Ashika Island is available since Season 02.',
-      'The Access Card for Building 21 is now single-use.',
+      'The Access Card for Building 21 is now single-use in Season 02.',
       'Note: the dollars-per-hour rates have not changed in Season 02 (for both exfiltration and dead drops).'
     ]
   },
