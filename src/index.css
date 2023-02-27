@@ -197,14 +197,6 @@ li span {
   padding: 10px;
 }
 
-.block {
-  display: block;
-}
-
-.inline {
-  display: inline;
-}
-
 .warning {
   color: orange;
   padding-top: 10px;
