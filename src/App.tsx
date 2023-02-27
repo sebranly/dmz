@@ -240,7 +240,7 @@ function App() {
         <div className="text-amber-500">{`Updated for Season ${displayWithTwoDigits(CURRENT_SEASON)}`}</div>
         <div>
           <Header text="Money to Time Converter" />
-          <div className="flex-container">
+          <div className="flex flex-col md:flex-row justify-center">
             <div className="margin-flex-20 flex-child">
               <div className="money-input-title">Enter Money Value</div>
               <div className="inline lightgreen">$</div>{' '}
@@ -257,19 +257,19 @@ function App() {
             <div className="time-equivalent-card margin-flex-20 flex-child">
               <div className="time-equivalent-title">Time equivalent</div>
               <div className="mt-2.5">
-                <div className="time-equivalent">
-                  <div className="money-title">Exfiltration:</div> {regularTimeEquivalentText}
+                <div className="flex text-left">
+                  <div className="grow">Exfiltration:</div> {regularTimeEquivalentText}
                 </div>
-                <div className="time-equivalent">
-                  <div className="money-title">Dead Drop:</div> {deadDropTimeEquivalentText}
+                <div className="flex text-left">
+                  <div className="grow">Dead Drop:</div> {deadDropTimeEquivalentText}
                 </div>
               </div>
             </div>
             <div className="xp-equivalent-card margin-flex-20 flex-child">
               <div>XP equivalent</div>
               <div className="mt-2.5">
-                <div className="xp-equivalent">
-                  <div className="xp-title">XP:</div> {xpEquivalentTitle}
+                <div className="flex text-left">
+                  <div className="grow">XP:</div> {xpEquivalentTitle}
                 </div>
               </div>
             </div>
@@ -278,7 +278,7 @@ function App() {
         <div>
           <Header text="Time to Money Converter" />
           <h4 className="font-bold mb-5">Add a timer</h4>
-          <div className="flex-container">
+          <div className="flex flex-col md:flex-row justify-center">
             <div className="margin-flex-20 flex-child">
               <div className="new-timer-option">Select Insured Slot</div>
               <div className={`mt-2.5 new-timer-option text-${playerColor}-500`}>{`Player ${playerIndex + 1}`}</div>
@@ -329,7 +329,7 @@ function App() {
         <select className="text-black" disabled={timers.length <= 1} onChange={onChangeSort} value={sort}>
           {renderSortOptions()}
         </select>
-        <div className="flex-container-timers flex-wrap mt-2.5">{renderTimers()}</div>
+        <div className="flex justify-center flex-wrap mt-2.5">{renderTimers()}</div>
         <FAQ />
       </section>
       <Footer />

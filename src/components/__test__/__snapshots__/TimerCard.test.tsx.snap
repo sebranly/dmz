@@ -21,7 +21,7 @@ NodeList [
       Timer 1
     </div>
     <ul
-      class="timer-card flex-container-timers"
+      class="timer-card flex justify-center"
     >
       <li
         class="timer-card-element"
@@ -67,10 +67,10 @@ NodeList [
       </li>
     </ul>
     <div
-      class="timer-card-money"
+      class="timer-card-money flex"
     >
       <div
-        class="money-title"
+        class="grow"
       >
         End Time:
       </div>
@@ -82,10 +82,10 @@ NodeList [
       </div>
     </div>
     <div
-      class="timer-card-money"
+      class="timer-card-money flex"
     >
       <div
-        class="money-title"
+        class="grow"
       >
         Exfiltration:
       </div>
@@ -98,10 +98,10 @@ NodeList [
       </div>
     </div>
     <div
-      class="timer-card-money"
+      class="timer-card-money flex"
     >
       <div
-        class="money-title"
+        class="grow"
       >
         Dead Drop:
       </div>

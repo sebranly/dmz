@@ -49,7 +49,6 @@ body {
 
 .timer-card-money {
   text-align: left;
-  display: flex;
   padding-left: 10px;
 }
 
@@ -89,31 +88,9 @@ li span {
   font-weight: bold;
 }
 
-.flex-container {
-  display: flex;
-  justify-content: center;
-}
-
-.flex-container-timers {
-  display: flex;
-  justify-content: center;
-}
-
-.flex-wrap {
-  flex-wrap: wrap;
-}
-
 .money-value {
   padding-right: 10px;
   font-weight: bold;
-}
-
-.xp-title {
-  flex-grow: 1;
-}
-
-.money-title {
-  flex-grow: 1;
 }
 
 .margin-flex-20 {
@@ -167,18 +144,8 @@ li span {
   text-align: center;
 }
 
-.xp-equivalent {
-  display: flex;
-  text-align: left;
-}
-
-.time-equivalent {
-  display: flex;
-  text-align: left;
-}
-
 .time-equivalent-card {
-  min-width: 300px;
+  min-width: 320px;
 }
 
 .xp-equivalent-card {
@@ -223,11 +190,7 @@ select {
   color: white;
 }
 
-@media screen and (max-width: 801px) {
-  .flex-container {
-    flex-direction: column;
-  }
-
+@media screen and (max-width: 767px) {
   .margin-flex-20 {
     margin-bottom: 20px;
     margin-right: 0px;

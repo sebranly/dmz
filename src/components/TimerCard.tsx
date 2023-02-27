@@ -92,18 +92,18 @@ const TimerCard: React.FC<TimerCardProps> = (props) => {
       {showRibbon && <div className="ribbon-child">NEW</div>}
       <div className={classnamesPlayerTitle}>{playerTitle}</div>
       <div className="timer-card-title">{timerTitle}</div>
-      <ul className="timer-card flex-container-timers">{items}</ul>
-      <div className="timer-card-money">
-        <div className="money-title">End Time:</div> <div className={classnamesMoney}>{endTime}</div>
+      <ul className="timer-card flex justify-center">{items}</ul>
+      <div className="timer-card-money flex">
+        <div className="grow">End Time:</div> <div className={classnamesMoney}>{endTime}</div>
       </div>
-      <div className="timer-card-money">
-        <div className="money-title">Exfiltration:</div>{' '}
+      <div className="timer-card-money flex">
+        <div className="grow">Exfiltration:</div>{' '}
         <div className={classnamesMoney}>
           ${formatMoney(convertSecondsToMoney(remainingSeconds, regularHourlyRate))}
         </div>
       </div>
-      <div className="timer-card-money">
-        <div className="money-title">Dead Drop:</div>{' '}
+      <div className="timer-card-money flex">
+        <div className="grow">Dead Drop:</div>{' '}
         <div className={classnamesMoney}>
           ${formatMoney(convertSecondsToMoney(remainingSeconds, deadDropHourlyRate))}
         </div>
