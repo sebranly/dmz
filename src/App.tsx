@@ -29,6 +29,8 @@ import { sortTimers } from './utils/sort';
 import { Sort, Timer, TimeUnit, TimeValue } from './types';
 import { excludeTimerByIndex, pickTimerByIndex } from './utils/filter';
 import { FAQ } from './components/FAQ';
+import classnames from 'classnames';
+import { Header } from './components/Header';
 
 function App() {
   const [cookies, setCookie] = useCookies([COOKIE_TIMERS]);
@@ -203,10 +205,21 @@ function App() {
     });
   };
 
+  const classesButtonTimer = classnames('mt-5 border-2 border-solid text-base rounded-lg p-1 text-center text-black', {
+    'border-white bg-white': !timerValuesAreNull,
+    'border-gray-800 bg-gray-600': timerValuesAreNull
+  });
+
   const playerIndex = convertTimerIndexToPlayerIndex(timerIndex);
   const playerColor = getPlayerColor(playerIndex);
   const timerExists = pickTimerByIndex(timers, timerIndex).length > 0;
   const isMaxTimer = timerValue[TimeUnit.Hour] === MAX_HOURS_FOR_TIMER;
+
+  const textInformation = timerExists ? 'Existing timer will be edited.' : 'A new timer will be added.';
+  const classesInformation = classnames('information', {
+    'text-amber-500': timerExists,
+    'text-green-500': !timerExists
+  });
 
   const deadDropTimeEquivalentSeconds = convertMoneyToSeconds(moneyInput, DEAD_DROP_HOURLY_RATE);
   const deadDropTimeEquivalent = convertSecondsToTimeValue(deadDropTimeEquivalentSeconds);
@@ -222,17 +235,17 @@ function App() {
   return (
     <div className="App">
       <section className="main">
-        <h1>{WEBSITE_TITLE}</h1>
-        <h2>{WEBSITE_SUBTITLE}</h2>
-        <div className="color-orange">{`Updated for Season ${displayWithTwoDigits(CURRENT_SEASON)}`}</div>
+        <h1 className="font-bold mt-5 mb-2.5">{WEBSITE_TITLE}</h1>
+        <h2 className="font-bold text-2xl">{WEBSITE_SUBTITLE}</h2>
+        <div className="text-amber-500">{`Updated for Season ${displayWithTwoDigits(CURRENT_SEASON)}`}</div>
         <div>
-          <h3>Money to Time Converter</h3>
+          <Header text="Money to Time Converter" />
           <div className="flex-container">
             <div className="margin-flex-20 flex-child">
               <div className="money-input-title">Enter Money Value</div>
               <div className="inline lightgreen">$</div>{' '}
               <input
-                className="margin-top-10 money-input"
+                className="text-black mt-2.5 money-input"
                 min="0"
                 max="1000000"
                 step="100"
@@ -243,7 +256,7 @@ function App() {
             </div>
             <div className="time-equivalent-card margin-flex-20 flex-child">
               <div className="time-equivalent-title">Time equivalent</div>
-              <div className="margin-top-10">
+              <div className="mt-2.5">
                 <div className="time-equivalent">
                   <div className="money-title">Exfiltration:</div> {regularTimeEquivalentText}
                 </div>
@@ -254,7 +267,7 @@ function App() {
             </div>
             <div className="xp-equivalent-card margin-flex-20 flex-child">
               <div>XP equivalent</div>
-              <div className="margin-top-10">
+              <div className="mt-2.5">
                 <div className="xp-equivalent">
                   <div className="xp-title">XP:</div> {xpEquivalentTitle}
                 </div>
@@ -263,28 +276,25 @@ function App() {
           </div>
         </div>
         <div>
-          <h3>Time to Money Converter</h3>
-          <h4>Add a timer</h4>
-          <div className="flex-container new-timer">
+          <Header text="Time to Money Converter" />
+          <h4 className="font-bold mb-5">Add a timer</h4>
+          <div className="flex-container">
             <div className="margin-flex-20 flex-child">
               <div className="new-timer-option">Select Insured Slot</div>
-              <div className={`margin-top-10 new-timer-option color-${playerColor}`}>{`Player ${playerIndex + 1}`}</div>
-              <select className="margin-top-10 new-timer-select" onChange={onChangeTimerIndex} value={timerIndex}>
+              <div className={`mt-2.5 new-timer-option text-${playerColor}-500`}>{`Player ${playerIndex + 1}`}</div>
+              <select className="text-black mt-2.5 new-timer-select" onChange={onChangeTimerIndex} value={timerIndex}>
                 {renderPlayerIndexesOptionGroups()}
               </select>
-              {timerExists ? (
-                <div className="warning">Existing timer will be edited.</div>
-              ) : (
-                <div className="information">A new timer will be added.</div>
-              )}
+              <div className={classesInformation}>{textInformation}</div>
             </div>
             <div className="margin-flex-20 flex-child">
               <div className="new-timer-option">Current remaining time</div>
-              <div className="margin-top-10">
+              <div className="mt-2.5">
                 {[TimeUnit.Hour, TimeUnit.Minute, TimeUnit.Second].map((timeLabel: TimeUnit) => {
                   return (
                     <div className="inline" key={timeLabel}>
                       <select
+                        className="text-black"
                         disabled={timeLabel !== TimeUnit.Hour && isMaxTimer}
                         onChange={onChangeTimerValue(timeLabel)}
                         value={timerValue[timeLabel]}
@@ -297,7 +307,7 @@ function App() {
                 })}
               </div>
               <button
-                className="margin-top-20"
+                className={classesButtonTimer}
                 onClick={() => onClickEditTimer(timerValue)}
                 disabled={timerValuesAreNull}
               >
@@ -306,17 +316,20 @@ function App() {
             </div>
             <div className="margin-flex-20 flex-child">
               <div className="new-timer-option">Quick option</div>
-              <button className="margin-top-10" onClick={() => onClickEditTimer(quickOptionTimerValue)}>
+              <button
+                className="mt-2.5 border-2 border-solid border-white text-base rounded-lg p-1 text-center bg-white text-black"
+                onClick={() => onClickEditTimer(quickOptionTimerValue)}
+              >
                 {timerExists ? copyLostWeaponEdit : copyLostWeapon}
               </button>
             </div>
           </div>
         </div>
-        <h4>{`View all timers (${timers.length}/${MAX_TIMERS})`}</h4>
-        <select disabled={timers.length <= 1} onChange={onChangeSort} value={sort}>
+        <h4 className="font-bold my-5">{`View all timers (${timers.length}/${MAX_TIMERS})`}</h4>
+        <select className="text-black" disabled={timers.length <= 1} onChange={onChangeSort} value={sort}>
           {renderSortOptions()}
         </select>
-        <div className="flex-container-timers flex-wrap all-timers">{renderTimers()}</div>
+        <div className="flex-container-timers flex-wrap mt-2.5">{renderTimers()}</div>
         <FAQ />
       </section>
       <Footer />

@@ -52,13 +52,16 @@ const TimerCard: React.FC<TimerCardProps> = (props) => {
   const timerTitle = `Timer ${playerTimerIndex + 1}`;
   const showRibbon = currentTimestamp - timestampStart <= NEW_RIBBON_DURATION_SEC;
 
-  const classnamesPlayerColor = `color-${color}`;
+  const classnamesPlayerColor = `text-${color}-500`;
   const classnamesPlayerTitle = classnames('timer-card-title', classnamesPlayerColor);
   const classnamesComponent = classnames(
     'timer-card-component',
     className,
-    `border-color-${color}`,
-    'ribbon-container'
+    'border-solid',
+    'border-2',
+    'rounded-lg',
+    `border-${color}-500`,
+    'relative'
   );
 
   const classnamesMoney = classnames('money-value', classnamesPlayerColor);
@@ -105,7 +108,10 @@ const TimerCard: React.FC<TimerCardProps> = (props) => {
           ${formatMoney(convertSecondsToMoney(remainingSeconds, deadDropHourlyRate))}
         </div>
       </div>
-      <button className="remove-timer" onClick={() => deleteTimer()}>
+      <button
+        className="mt-2.5 border-2 border-solid border-white text-base rounded-lg p-1 text-center bg-white text-black"
+        onClick={() => deleteTimer()}
+      >
         Delete this timer
       </button>
     </div>

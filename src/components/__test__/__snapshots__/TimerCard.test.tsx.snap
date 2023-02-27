@@ -3,7 +3,7 @@
 exports[`TimerCard 1`] = `
 NodeList [
   <div
-    class="timer-card-component border-color-green ribbon-container"
+    class="timer-card-component border-solid border-2 rounded-lg border-green-500 relative"
   >
     <div
       class="ribbon-child"
@@ -11,7 +11,7 @@ NodeList [
       NEW
     </div>
     <div
-      class="timer-card-title color-green"
+      class="timer-card-title text-green-500"
     >
       Player 1
     </div>
@@ -27,7 +27,7 @@ NodeList [
         class="timer-card-element"
       >
         <span
-          class="color-green"
+          class="text-green-500"
         >
           00
         </span>
@@ -41,7 +41,7 @@ NodeList [
         class="timer-card-element"
       >
         <span
-          class="color-green"
+          class="text-green-500"
         >
           00
         </span>
@@ -76,7 +76,7 @@ NodeList [
       </div>
        
       <div
-        class="money-value color-green"
+        class="money-value text-green-500"
       >
         01:03 AM
       </div>
@@ -91,7 +91,7 @@ NodeList [
       </div>
        
       <div
-        class="money-value color-green"
+        class="money-value text-green-500"
       >
         $
         700
@@ -107,14 +107,14 @@ NodeList [
       </div>
        
       <div
-        class="money-value color-green"
+        class="money-value text-green-500"
       >
         $
         500
       </div>
     </div>
     <button
-      class="remove-timer"
+      class="mt-2.5 border-2 border-solid border-white text-base rounded-lg p-1 text-center bg-white text-black"
     >
       Delete this timer
     </button>

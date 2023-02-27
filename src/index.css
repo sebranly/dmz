@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @font-face {
   font-family: 'Ra-Mono';
   src: local('Ra-Mono'), url('./fonts/Ra-Mono/Ra-Mono.otf');
@@ -13,8 +17,6 @@ body {
 .timer-card-component {
   background-color: #222;
   font-family: 'Ra-Mono';
-  border: 1px solid;
-  border-radius: 10px;
   margin: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -53,58 +55,6 @@ body {
 
 .timer-card-unit {
   font-size: 14px;
-}
-
-.color-green {
-  color: limegreen;
-}
-
-.color-yellow {
-  color: gold;
-}
-
-.color-blue {
-  color: #209cee;
-}
-
-.color-pink {
-  color: pink;
-}
-
-.color-orange {
-  color: orange;
-}
-
-.color-gray {
-  color: gray;
-}
-
-.border-color-green {
-  border-color: limegreen;
-}
-
-.border-color-yellow {
-  border-color: gold;
-}
-
-.border-color-blue {
-  border-color: #209cee;
-}
-
-.border-color-pink {
-  border-color: pink;
-}
-
-.border-color-orange {
-  border-color: orange;
-}
-
-.border-color-gray {
-  border-color: gray;
-}
-
-.new-timer {
-  text-align: center;
 }
 
 .new-timer-separator {
@@ -166,28 +116,8 @@ li span {
   flex-grow: 1;
 }
 
-.remove-timer {
-  margin-top: 10px;
-}
-
-.margin-right-20 {
-  margin-right: 20px;
-}
-
 .margin-flex-20 {
   margin-right: 20px;
-}
-
-.margin-top-10 {
-  margin-top: 10px;
-}
-
-.margin-bottom-20 {
-  margin-bottom: 20px;
-}
-
-.margin-top-20 {
-  margin-top: 20px;
 }
 
 .flex-child {
@@ -197,24 +127,11 @@ li span {
   padding: 10px;
 }
 
-.warning {
-  color: orange;
-  padding-top: 10px;
-  font-size: 14px;
-  margin: 0 auto;
-  max-width: 175px;
-}
-
 .information {
-  color: green;
   padding-top: 10px;
   font-size: 14px;
   margin: 0 auto;
   max-width: 175px;
-}
-
-.ribbon-container {
-  position: relative;
 }
 
 .ribbon-child {
@@ -243,10 +160,6 @@ li span {
     calc(100% - var(--d)) calc(100% - var(--d)),
     var(--d) calc(100% - var(--d))
   );
-}
-
-.all-timers {
-  margin-top: 10px;
 }
 
 .money-input {
@@ -279,14 +192,6 @@ input {
   text-align: center;
 }
 
-button {
-  border-radius: 10px;
-  font-family: 'Ra-Mono';
-  font-size: 16px;
-  padding: 5px;
-  text-align: center;
-}
-
 select {
   border-radius: 10px;
   font-family: 'Ra-Mono';
@@ -311,7 +216,6 @@ select {
 }
 
 .answer {
-  margin-bottom: 20px;
   text-align: justify;
 }
 
@@ -364,10 +268,6 @@ select {
 
   .timer-card-component {
     font-size: 16px;
-  }
-
-  button {
-    font-size: 14px;
   }
 
   input {

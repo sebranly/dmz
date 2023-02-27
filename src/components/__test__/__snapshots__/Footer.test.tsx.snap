@@ -9,6 +9,7 @@ NodeList [
       Developed by
        
       <a
+        class="text-green-700 underline"
         href="https://github.com/sebranly/dmz"
         rel="noopener noreferrer"
         target="_blank"
@@ -23,6 +24,7 @@ NodeList [
       Website version
        
       <a
+        class="text-green-700 underline"
         href="https://github.com/sebranly/dmz/releases"
         rel="noopener noreferrer"
         target="_blank"

@@ -5,14 +5,26 @@ const Footer = () => (
   <div className="App-footer">
     <div>
       Developed by{' '}
-      <a href={PROJECT_URL} rel="noopener noreferrer" title="GitHub page for repository" target="_blank">
+      <a
+        className="text-green-700 underline"
+        href={PROJECT_URL}
+        rel="noopener noreferrer"
+        title="GitHub page for repository"
+        target="_blank"
+      >
         {AUTHOR_NAME}
       </a>{' '}
       with 💚
     </div>
     <div>
       Website version{' '}
-      <a href={CHANGELOG_URL} rel="noopener noreferrer" title="Website changelog" target="_blank">
+      <a
+        className="text-green-700 underline"
+        href={CHANGELOG_URL}
+        rel="noopener noreferrer"
+        title="Website changelog"
+        target="_blank"
+      >
         {WEBSITE_VERSION}
       </a>
     </div>
