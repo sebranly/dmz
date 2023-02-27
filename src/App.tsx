@@ -301,7 +301,7 @@ function App() {
                       >
                         {renderTimerUnitOptions(timeLabel)}
                       </select>
-                      <div className="new-timer-separator">{timeLabel.charAt(0).toLowerCase()}</div>
+                      <div className="inline text-base font-bold px-0.5 mr-1">{timeLabel.charAt(0).toLowerCase()}</div>
                     </div>
                   );
                 })}

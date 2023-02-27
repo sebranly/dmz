@@ -18,16 +18,7 @@ body {
   background-color: #222;
   font-family: 'Ra-Mono';
   margin: 10px;
-  padding-top: 10px;
-  padding-bottom: 10px;
   width: 325px;
-}
-
-.timer-card-title {
-  font-size: 18px;
-  font-weight: bold;
-  margin-top: 5px;
-  margin-bottom: 5px;
 }
 
 .timer-card {
@@ -39,30 +30,6 @@ body {
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   padding-inline-start: 0;
-}
-
-.timer-card-element {
-  display: inline-block;
-  margin-left: 10px;
-  margin-right: 10px;
-}
-
-.timer-card-money {
-  text-align: left;
-  padding-left: 10px;
-}
-
-.timer-card-unit {
-  font-size: 14px;
-}
-
-.new-timer-separator {
-  display: inline;
-  font-size: 16px;
-  font-weight: bold;
-  padding-left: 2px;
-  padding-right: 2px;
-  margin-right: 5px;
 }
 
 h1 {

@@ -3,7 +3,7 @@
 exports[`TimerCard 1`] = `
 NodeList [
   <div
-    class="timer-card-component border-solid border-2 rounded-lg border-green-500 relative"
+    class="timer-card-component border-solid border-2 rounded-lg border-green-500 p-2.5 relative"
   >
     <div
       class="ribbon-child"
@@ -11,12 +11,12 @@ NodeList [
       NEW
     </div>
     <div
-      class="timer-card-title text-green-500"
+      class="font-bold my-1 text-lg text-green-500"
     >
       Player 1
     </div>
     <div
-      class="timer-card-title"
+      class="font-bold my-1 text-lg"
     >
       Timer 1
     </div>
@@ -24,7 +24,7 @@ NodeList [
       class="timer-card flex justify-center"
     >
       <li
-        class="timer-card-element"
+        class="inline-block mx-2.5"
       >
         <span
           class="text-green-500"
@@ -32,13 +32,13 @@ NodeList [
           00
         </span>
         <div
-          class="timer-card-unit"
+          class="text-sm"
         >
           hours
         </div>
       </li>
       <li
-        class="timer-card-element"
+        class="inline-block mx-2.5"
       >
         <span
           class="text-green-500"
@@ -46,13 +46,13 @@ NodeList [
           00
         </span>
         <div
-          class="timer-card-unit"
+          class="text-sm"
         >
           minutes
         </div>
       </li>
       <li
-        class="timer-card-element"
+        class="inline-block mx-2.5"
       >
         <span
           class=""
@@ -60,14 +60,14 @@ NodeList [
           59
         </span>
         <div
-          class="timer-card-unit"
+          class="text-sm"
         >
           seconds
         </div>
       </li>
     </ul>
     <div
-      class="timer-card-money flex"
+      class="flex text-left pl-2.5"
     >
       <div
         class="grow"
@@ -82,7 +82,7 @@ NodeList [
       </div>
     </div>
     <div
-      class="timer-card-money flex"
+      class="flex text-left pl-2.5"
     >
       <div
         class="grow"
@@ -98,7 +98,7 @@ NodeList [
       </div>
     </div>
     <div
-      class="timer-card-money flex"
+      class="flex text-left pl-2.5"
     >
       <div
         class="grow"
