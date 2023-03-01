@@ -5,6 +5,7 @@ import { YOUTUBE_REFERENCE } from '../constants/general';
 import { questionsAnswers } from '../data/faq';
 import { QuestionAnswer } from '../types';
 import { displayWithTwoDigits } from '../utils/display';
+import { Header } from './Header';
 
 const FAQ = () => {
   const [faq, setFaq] = React.useState(questionsAnswers);
@@ -22,27 +23,27 @@ const FAQ = () => {
 
   return (
     <div id="faq">
-      <h3>FAQ</h3>
+      <Header text="FAQ" />
       {faq.map((qa: QuestionAnswer) => {
         const { answer, isNew, question, shown, yt } = qa;
 
         const questionSuffix = shown ? '-' : '+';
         const questionBis = `${question} [${questionSuffix}]`;
-        const classnamesQuestionAndAnswer = classnames(
-          { 'margin-top-10': !shown },
-          { 'margin-bottom-20 margin-top-20': shown }
-        );
+        const classnamesQuestionAndAnswer = classnames({ 'mt-2.5': !shown }, { 'my-5': shown });
 
         return (
           <div key={question} className={classnamesQuestionAndAnswer}>
-            <div onClick={() => onToggle(question)} className="question">
-              {isNew && <div className="inline color-orange">[New] </div>}
+            <div
+              onClick={() => onToggle(question)}
+              className="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
+            >
+              {isNew && <div className="inline text-amber-500 hover:text-amber-600">[New] </div>}
               {questionBis}
             </div>
             {shown && (
-              <div className="answer">
+              <div className="text-left sm:text-justify mb-5">
                 {answer.map((answerParagraph: string, index: number) => {
-                  const classnamesParagraph = classnames({ inline: index === answer.length - 1 && yt });
+                  const classnamesParagraph = classnames('mb-5', { inline: index === answer.length - 1 && yt });
                   return (
                     <p className={classnamesParagraph} key={index}>
                       {answerParagraph}
@@ -53,7 +54,7 @@ const FAQ = () => {
                   <>
                     {' '}
                     <a
-                      className="yt-video"
+                      className="underline text-white"
                       href={YOUTUBE_REFERENCE}
                       rel="noopener noreferrer"
                       title="YouTube reference for conversion functions"

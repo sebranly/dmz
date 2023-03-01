@@ -52,16 +52,23 @@ const TimerCard: React.FC<TimerCardProps> = (props) => {
   const timerTitle = `Timer ${playerTimerIndex + 1}`;
   const showRibbon = currentTimestamp - timestampStart <= NEW_RIBBON_DURATION_SEC;
 
-  const classnamesPlayerColor = `color-${color}`;
-  const classnamesPlayerTitle = classnames('timer-card-title', classnamesPlayerColor);
+  const classnamesTitle = 'font-bold my-1 text-lg';
+  const classnamesPlayerColor = `text-${color}-500`;
+  const classnamesPlayerTitle = classnames(classnamesTitle, classnamesPlayerColor);
   const classnamesComponent = classnames(
-    'timer-card-component',
     className,
-    `border-color-${color}`,
-    'ribbon-container'
+    'bg-neutral-800',
+    'border-solid',
+    'border-2',
+    'rounded-lg',
+    `border-${color}-500`,
+    'm-2.5',
+    'p-2.5',
+    'relative',
+    'w-72 sm:w-80'
   );
 
-  const classnamesMoney = classnames('money-value', classnamesPlayerColor);
+  const classnamesMoney = classnames('font-bold pr-1', classnamesPlayerColor);
 
   const items = [
     { value: hours, label: TimeUnit.Hour },
@@ -74,12 +81,12 @@ const TimerCard: React.FC<TimerCardProps> = (props) => {
       (l === TimeUnit.Minute && isFixedMinutes) ||
       (l === TimeUnit.Second && isFixedSeconds);
 
-    const classnamesValue = classnames({ [classnamesPlayerColor]: isFixed });
+    const classnamesValue = classnames('font-bold text-5xl', { [classnamesPlayerColor]: isFixed });
 
     return (
-      <li className="timer-card-element" key={l}>
+      <li className="inline-block mx-2.5" key={l}>
         <span className={classnamesValue}>{displayWithTwoDigits(value)}</span>
-        <div className="timer-card-unit">{pluralize(l, value)}</div>
+        <div className="text-sm">{pluralize(l, value)}</div>
       </li>
     );
   });
@@ -88,24 +95,27 @@ const TimerCard: React.FC<TimerCardProps> = (props) => {
     <div className={classnamesComponent}>
       {showRibbon && <div className="ribbon-child">NEW</div>}
       <div className={classnamesPlayerTitle}>{playerTitle}</div>
-      <div className="timer-card-title">{timerTitle}</div>
-      <ul className="timer-card flex-container-timers">{items}</ul>
-      <div className="timer-card-money">
-        <div className="money-title">End Time:</div> <div className={classnamesMoney}>{endTime}</div>
+      <div className={classnamesTitle}>{timerTitle}</div>
+      <ul className="timer-card flex justify-center">{items}</ul>
+      <div className="flex text-left pl-2.5">
+        <div className="grow">End Time:</div> <div className={classnamesMoney}>{endTime}</div>
       </div>
-      <div className="timer-card-money">
-        <div className="money-title">Exfiltration:</div>{' '}
+      <div className="flex text-left pl-2.5">
+        <div className="grow">Exfiltration:</div>{' '}
         <div className={classnamesMoney}>
           ${formatMoney(convertSecondsToMoney(remainingSeconds, regularHourlyRate))}
         </div>
       </div>
-      <div className="timer-card-money">
-        <div className="money-title">Dead Drop:</div>{' '}
+      <div className="flex text-left pl-2.5">
+        <div className="grow">Dead Drop:</div>{' '}
         <div className={classnamesMoney}>
           ${formatMoney(convertSecondsToMoney(remainingSeconds, deadDropHourlyRate))}
         </div>
       </div>
-      <button className="remove-timer" onClick={() => deleteTimer()}>
+      <button
+        className="mt-2.5 border-2 border-solid border-white text-base rounded-lg p-1 text-center bg-white text-black"
+        onClick={() => deleteTimer()}
+      >
         Delete this timer
       </button>
     </div>

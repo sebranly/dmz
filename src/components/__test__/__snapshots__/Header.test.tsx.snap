@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header 1`] = `
+NodeList [
+  <h3
+    class="font-bold my-5 text-xl"
+  >
+    Bonjour
+  </h3>,
+]
+`;

@@ -5,85 +5,87 @@ NodeList [
   <div
     id="faq"
   >
-    <h3>
+    <h3
+      class="font-bold my-5 text-xl text-lime-500"
+    >
       FAQ
     </h3>
     <div
-      class="margin-top-10"
+      class="mt-2.5"
     >
       <div
-        class="question"
+        class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
       >
         What is DMZ? [+]
       </div>
     </div>
     <div
-      class="margin-bottom-20 margin-top-20"
+      class="my-5"
     >
       <div
-        class="question"
+        class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
       >
         What is this website? [-]
       </div>
       <div
-        class="answer"
+        class="text-left sm:text-justify mb-5"
       >
         <p
-          class=""
+          class="mb-5"
         >
           DMZ: Currency to Cooldown Converter is an unofficial website which focuses on getting your lost, insured weapons back as efficiently as possible. In the game, dying on the battlefield with an insured weapon means that the weapon gets locked behind a cooldown timer. By default, the player has to wait for a certain amount of hours before selecting this same weapon.
         </p>
         <p
-          class=""
+          class="mb-5"
         >
           The player can make this process faster by using money to reduce said cooldown timer. This website provides money-to-time and time-to-money conversions for these lost, insured weapons.
         </p>
       </div>
     </div>
     <div
-      class="margin-top-10"
+      class="mt-2.5"
     >
       <div
-        class="question"
+        class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
       >
         What are the hourly rates? [+]
       </div>
     </div>
     <div
-      class="margin-top-10"
+      class="mt-2.5"
     >
       <div
-        class="question"
+        class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
       >
         What are dead drops? [+]
       </div>
     </div>
     <div
-      class="margin-top-10"
+      class="mt-2.5"
     >
       <div
-        class="question"
+        class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
       >
         What about items? [+]
       </div>
     </div>
     <div
-      class="margin-top-10"
+      class="mt-2.5"
     >
       <div
-        class="question"
+        class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
       >
         I don't understand the use-case(s) [+]
       </div>
     </div>
     <div
-      class="margin-top-10"
+      class="mt-2.5"
     >
       <div
-        class="question"
+        class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
       >
         <div
-          class="inline color-orange"
+          class="inline text-amber-500 hover:text-amber-600"
         >
           [New] 
         </div>
@@ -91,13 +93,13 @@ NodeList [
       </div>
     </div>
     <div
-      class="margin-top-10"
+      class="mt-2.5"
     >
       <div
-        class="question"
+        class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
       >
         <div
-          class="inline color-orange"
+          class="inline text-amber-500 hover:text-amber-600"
         >
           [New] 
         </div>
@@ -105,13 +107,13 @@ NodeList [
       </div>
     </div>
     <div
-      class="margin-top-10"
+      class="mt-2.5"
     >
       <div
-        class="question"
+        class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
       >
         <div
-          class="inline color-orange"
+          class="inline text-amber-500 hover:text-amber-600"
         >
           [New] 
         </div>
@@ -119,13 +121,13 @@ NodeList [
       </div>
     </div>
     <div
-      class="margin-top-10"
+      class="mt-2.5"
     >
       <div
-        class="question"
+        class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
       >
         <div
-          class="inline color-orange"
+          class="inline text-amber-500 hover:text-amber-600"
         >
           [New] 
         </div>
@@ -133,19 +135,19 @@ NodeList [
       </div>
     </div>
     <div
-      class="margin-top-10"
+      class="mt-2.5"
     >
       <div
-        class="question"
+        class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
       >
         Can I bake cakes with this website? [+]
       </div>
     </div>
     <div
-      class="margin-top-10"
+      class="mt-2.5"
     >
       <div
-        class="question"
+        class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
       >
         What about cookies? [+]
       </div>

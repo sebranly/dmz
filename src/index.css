@@ -1,6 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @font-face {
   font-family: 'Ra-Mono';
   src: local('Ra-Mono'), url('./fonts/Ra-Mono/Ra-Mono.otf');
+}
+
+#main {
+  background: radial-gradient(circle, #282c34, #282c34 50%, #282c34 0, #00050a 100%);
+  min-height: 90vh;
+}
+
+#footer {
+  min-height: 10vh;
 }
 
 body {
@@ -8,24 +21,6 @@ body {
   font-family: 'Ra-Mono';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-.timer-card-component {
-  background-color: #222;
-  font-family: 'Ra-Mono';
-  border: 1px solid;
-  border-radius: 10px;
-  margin: 10px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  width: 325px;
-}
-
-.timer-card-title {
-  font-size: 18px;
-  font-weight: bold;
-  margin-top: 5px;
-  margin-bottom: 5px;
 }
 
 .timer-card {
@@ -37,192 +32,6 @@ body {
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   padding-inline-start: 0;
-}
-
-.timer-card-element {
-  display: inline-block;
-  margin-left: 10px;
-  margin-right: 10px;
-}
-
-.timer-card-money {
-  text-align: left;
-  display: flex;
-  padding-left: 10px;
-}
-
-.timer-card-unit {
-  font-size: 14px;
-}
-
-.color-green {
-  color: limegreen;
-}
-
-.color-yellow {
-  color: gold;
-}
-
-.color-blue {
-  color: #209cee;
-}
-
-.color-pink {
-  color: pink;
-}
-
-.color-orange {
-  color: orange;
-}
-
-.color-gray {
-  color: gray;
-}
-
-.border-color-green {
-  border-color: limegreen;
-}
-
-.border-color-yellow {
-  border-color: gold;
-}
-
-.border-color-blue {
-  border-color: #209cee;
-}
-
-.border-color-pink {
-  border-color: pink;
-}
-
-.border-color-orange {
-  border-color: orange;
-}
-
-.border-color-gray {
-  border-color: gray;
-}
-
-.new-timer {
-  text-align: center;
-}
-
-.new-timer-separator {
-  display: inline;
-  font-size: 16px;
-  font-weight: bold;
-  padding-left: 2px;
-  padding-right: 2px;
-  margin-right: 5px;
-}
-
-h1 {
-  color: #aaff55;
-  font-size: 40px;
-  margin-bottom: 5px;
-}
-
-h2 {
-  margin: 0;
-}
-
-h3 {
-  color: #aaff55;
-}
-
-.lightgreen {
-  color: #aaff55;
-}
-
-li span {
-  font-size: 50px;
-  font-weight: bold;
-}
-
-.flex-container {
-  display: flex;
-  justify-content: center;
-}
-
-.flex-container-timers {
-  display: flex;
-  justify-content: center;
-}
-
-.flex-wrap {
-  flex-wrap: wrap;
-}
-
-.money-value {
-  padding-right: 10px;
-  font-weight: bold;
-}
-
-.xp-title {
-  flex-grow: 1;
-}
-
-.money-title {
-  flex-grow: 1;
-}
-
-.remove-timer {
-  margin-top: 10px;
-}
-
-.margin-right-20 {
-  margin-right: 20px;
-}
-
-.margin-flex-20 {
-  margin-right: 20px;
-}
-
-.margin-top-10 {
-  margin-top: 10px;
-}
-
-.margin-bottom-20 {
-  margin-bottom: 20px;
-}
-
-.margin-top-20 {
-  margin-top: 20px;
-}
-
-.flex-child {
-  background-color: #222;
-  border: 1px solid white;
-  border-radius: 10px;
-  padding: 10px;
-}
-
-.block {
-  display: block;
-}
-
-.inline {
-  display: inline;
-}
-
-.warning {
-  color: orange;
-  padding-top: 10px;
-  font-size: 14px;
-  margin: 0 auto;
-  max-width: 175px;
-}
-
-.information {
-  color: green;
-  padding-top: 10px;
-  font-size: 14px;
-  margin: 0 auto;
-  max-width: 175px;
-}
-
-.ribbon-container {
-  position: relative;
 }
 
 .ribbon-child {
@@ -253,136 +62,14 @@ li span {
   );
 }
 
-.all-timers {
-  margin-top: 10px;
-}
-
-.money-input {
-  font-family: 'Ra-Mono';
-  text-align: center;
-}
-
-.xp-equivalent {
-  display: flex;
-  text-align: left;
-}
-
-.time-equivalent {
-  display: flex;
-  text-align: left;
-}
-
-.time-equivalent-card {
-  min-width: 300px;
-}
-
-.xp-equivalent-card {
-  min-width: 200px;
-}
-
 input {
   font-family: 'Ra-Mono';
-  font-size: 16px;
-  border-radius: 10px;
-  text-align: center;
-}
-
-button {
-  border-radius: 10px;
-  font-family: 'Ra-Mono';
-  font-size: 16px;
-  padding: 5px;
-  text-align: center;
 }
 
 select {
-  border-radius: 10px;
   font-family: 'Ra-Mono';
-  font-size: 16px;
-  padding: 5px;
-  text-align: center;
 }
 
 #faq {
   max-width: 900px;
-}
-
-.question {
-  color: #aaff55;
-  cursor: pointer;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-.question:hover {
-  color: #73d90d;
-}
-
-.answer {
-  margin-bottom: 20px;
-  text-align: justify;
-}
-
-.yt-video {
-  color: white;
-}
-
-@media screen and (max-width: 801px) {
-  .flex-container {
-    flex-direction: column;
-  }
-
-  .margin-flex-20 {
-    margin-bottom: 20px;
-    margin-right: 0px;
-  }
-
-  .flex-child {
-    min-width: 350px;
-  }
-}
-
-@media screen and (max-width: 401px) {
-  .flex-child {
-    min-width: 300px;
-  }
-
-  .timer-card-component {
-    width: 300px;
-  }
-
-  .question {
-    text-align: left;
-  }
-
-  .answer {
-    text-align: left;
-  }
-}
-
-@media screen and (max-width: 351px) {
-  .flex-child {
-    font-size: 14px;
-    min-width: 250px;
-  }
-
-  .timer-card-component {
-    width: 250px;
-  }
-
-  .timer-card-component {
-    font-size: 16px;
-  }
-
-  button {
-    font-size: 14px;
-  }
-
-  input {
-    font-size: 14px;
-  }
-
-  select {
-    font-size: 14px;
-  }
 }

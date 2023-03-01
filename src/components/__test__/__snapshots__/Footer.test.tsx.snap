@@ -3,12 +3,14 @@
 exports[`Footer 1`] = `
 NodeList [
   <div
-    class="App-footer"
+    class="flex flex-col items-center justify-center text-sm text-black"
+    id="footer"
   >
     <div>
       Developed by
        
       <a
+        class="text-green-700 underline"
         href="https://github.com/sebranly/dmz"
         rel="noopener noreferrer"
         target="_blank"
@@ -23,12 +25,13 @@ NodeList [
       Website version
        
       <a
+        class="text-green-700 underline"
         href="https://github.com/sebranly/dmz/releases"
         rel="noopener noreferrer"
         target="_blank"
         title="Website changelog"
       >
-        1.5.0
+        1.5.1
       </a>
     </div>
   </div>,
