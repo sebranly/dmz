@@ -209,7 +209,7 @@ function App() {
   const classnamesCardBorder = classnames(classnamesCardBorderBis, 'min-w-[300px] md:min-w-[350px]');
   const classnamesCardBorderXp = classnames(classnamesCardBorderBis, 'min-w-[300px] md:min-w-[200px]');
   const classnamesCardBorderAddTimer = classnames(classnamesCardBorderBis, 'min-w-[300px] md:min-w-[200px]');
-  const classesButtonTimer = classnames(
+  const classnamesButtonTimer = classnames(
     'mt-5 border-2 border-solid text-base md:text-sm lg:text-base rounded-lg p-1 text-center text-black',
     {
       'border-white bg-white': !timerValuesAreNull,
@@ -223,7 +223,7 @@ function App() {
   const isMaxTimer = timerValue[TimeUnit.Hour] === MAX_HOURS_FOR_TIMER;
 
   const textInformation = timerExists ? 'Existing timer will be edited.' : 'A new timer will be added.';
-  const classesInformation = classnames('pt-2.5 text-sm m-0 m-auto w-44', {
+  const classnamesInformation = classnames('pt-2.5 text-sm m-0 m-auto w-44', {
     'text-amber-500': timerExists,
     'text-lime-500': !timerExists
   });
@@ -296,7 +296,7 @@ function App() {
               >
                 {renderPlayerIndexesOptionGroups()}
               </select>
-              <div className={classesInformation}>{textInformation}</div>
+              <div className={classnamesInformation}>{textInformation}</div>
             </div>
             <div className={classnamesCardBorderAddTimer}>
               <div>Current remaining time</div>
@@ -318,7 +318,7 @@ function App() {
                 })}
               </div>
               <button
-                className={classesButtonTimer}
+                className={classnamesButtonTimer}
                 onClick={() => onClickEditTimer(timerValue)}
                 disabled={timerValuesAreNull}
               >
