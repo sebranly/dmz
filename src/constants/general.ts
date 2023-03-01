@@ -10,7 +10,7 @@ export const NEW_RIBBON_DURATION_SEC = 5;
 export const YOUTUBE_REFERENCE = 'https://youtu.be/XtsRwpnUNAY';
 export const WEBSITE_TITLE = 'DMZ';
 export const WEBSITE_SUBTITLE = 'Currency to Cooldown Converter';
-export const WEBSITE_VERSION = '1.5.0';
+export const WEBSITE_VERSION = '1.5.1';
 
 export const SORT_OPTIONS = [
   DEFAULT_SORT_OPTION,
