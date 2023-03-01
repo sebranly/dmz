@@ -204,8 +204,12 @@ function App() {
       );
     });
   };
-
-  const classesButtonTimer = classnames('mt-5 border-2 border-solid text-base rounded-lg p-1 text-center text-black', {
+  
+  const classnamesCardBorderBis = 'mb-4 mr-0 md:mr-5 border border-solid border-white rounded-lg p-2.5 bg-neutral-800 text-lg md:text-base lg:text-lg';
+  const classnamesCardBorder = classnames(classnamesCardBorderBis, 'min-w-[300px] md:min-w-[350px]');
+  const classnamesCardBorderXp = classnames(classnamesCardBorderBis, 'min-w-[300px] md:min-w-[200px]');
+  const classnamesCardBorderAddTimer = classnames(classnamesCardBorderBis, 'min-w-[300px] md:min-w-[200px]');
+  const classesButtonTimer = classnames('mt-5 border-2 border-solid text-base md:text-sm lg:text-base rounded-lg p-1 text-center text-black', {
     'border-white bg-white': !timerValuesAreNull,
     'border-gray-800 bg-gray-600': timerValuesAreNull
   });
@@ -216,9 +220,9 @@ function App() {
   const isMaxTimer = timerValue[TimeUnit.Hour] === MAX_HOURS_FOR_TIMER;
 
   const textInformation = timerExists ? 'Existing timer will be edited.' : 'A new timer will be added.';
-  const classesInformation = classnames('information', {
+  const classesInformation = classnames('information pt-2.5 text-sm m-0 m-auto', {
     'text-amber-500': timerExists,
-    'text-green-500': !timerExists
+    'text-lime-500': !timerExists
   });
 
   const deadDropTimeEquivalentSeconds = convertMoneyToSeconds(moneyInput, DEAD_DROP_HOURLY_RATE);
@@ -232,20 +236,21 @@ function App() {
   const xpEquivalent = Math.floor(moneyInput / 10);
   const xpEquivalentTitle = `${xpEquivalent} points`;
 
+
   return (
     <div className="App">
       <section className="main">
-        <h1 className="font-bold mt-5 mb-2.5">{WEBSITE_TITLE}</h1>
-        <h2 className="font-bold text-2xl">{WEBSITE_SUBTITLE}</h2>
+        <h1 className="font-bold pt-5 my-5 text-lime-500 text-5xl">{WEBSITE_TITLE}</h1>
+        <h2 className="font-bold text-2xl m-0">{WEBSITE_SUBTITLE}</h2>
         <div className="text-amber-500">{`Updated for Season ${displayWithTwoDigits(CURRENT_SEASON)}`}</div>
         <div>
           <Header text="Money to Time Converter" />
           <div className="flex flex-col md:flex-row justify-center">
-            <div className="margin-flex-20 flex-child">
+            <div className={classnamesCardBorderBis}>
               <div className="money-input-title">Enter Money Value</div>
-              <div className="inline lightgreen">$</div>{' '}
+              <div className="inline text-lime-500">$</div>{' '}
               <input
-                className="text-black mt-2.5 money-input"
+                className="text-black mt-2.5 text-center money-input"
                 min="0"
                 max="1000000"
                 step="100"
@@ -254,22 +259,22 @@ function App() {
                 value={moneyInput}
               />
             </div>
-            <div className="time-equivalent-card margin-flex-20 flex-child">
+            <div className={classnamesCardBorder}>
               <div className="time-equivalent-title">Time equivalent</div>
               <div className="mt-2.5">
                 <div className="flex text-left">
-                  <div className="grow">Exfiltration:</div> {regularTimeEquivalentText}
+                  <div className="grow pr-5">Exfiltration:</div> {regularTimeEquivalentText}
                 </div>
                 <div className="flex text-left">
-                  <div className="grow">Dead Drop:</div> {deadDropTimeEquivalentText}
+                  <div className="grow pr-5">Dead Drop:</div> {deadDropTimeEquivalentText}
                 </div>
               </div>
             </div>
-            <div className="xp-equivalent-card margin-flex-20 flex-child">
+            <div className={classnamesCardBorderXp}>
               <div>XP equivalent</div>
               <div className="mt-2.5">
                 <div className="flex text-left">
-                  <div className="grow">XP:</div> {xpEquivalentTitle}
+                  <div className="grow pr-5">XP:</div> {xpEquivalentTitle}
                 </div>
               </div>
             </div>
@@ -279,22 +284,22 @@ function App() {
           <Header text="Time to Money Converter" />
           <h4 className="font-bold mb-5">Add a timer</h4>
           <div className="flex flex-col md:flex-row justify-center">
-            <div className="margin-flex-20 flex-child">
+            <div className={classnamesCardBorderAddTimer}>
               <div className="new-timer-option">Select Insured Slot</div>
               <div className={`mt-2.5 new-timer-option text-${playerColor}-500`}>{`Player ${playerIndex + 1}`}</div>
-              <select className="text-black mt-2.5 new-timer-select" onChange={onChangeTimerIndex} value={timerIndex}>
+              <select className="text-black mt-2.5 new-timer-select text-base md:text-sm lg:text-base" onChange={onChangeTimerIndex} value={timerIndex}>
                 {renderPlayerIndexesOptionGroups()}
               </select>
               <div className={classesInformation}>{textInformation}</div>
             </div>
-            <div className="margin-flex-20 flex-child">
+            <div className={classnamesCardBorderAddTimer}>
               <div className="new-timer-option">Current remaining time</div>
               <div className="mt-2.5">
                 {[TimeUnit.Hour, TimeUnit.Minute, TimeUnit.Second].map((timeLabel: TimeUnit) => {
                   return (
                     <div className="inline" key={timeLabel}>
                       <select
-                        className="text-black"
+                        className="text-black text-base md:text-sm lg:text-base"
                         disabled={timeLabel !== TimeUnit.Hour && isMaxTimer}
                         onChange={onChangeTimerValue(timeLabel)}
                         value={timerValue[timeLabel]}
@@ -314,10 +319,10 @@ function App() {
                 {timerExists ? 'Modify existing timer' : 'Add new timer'}
               </button>
             </div>
-            <div className="margin-flex-20 flex-child">
+            <div className={classnamesCardBorderAddTimer}>
               <div className="new-timer-option">Quick option</div>
               <button
-                className="mt-2.5 border-2 border-solid border-white text-base rounded-lg p-1 text-center bg-white text-black"
+                className="mt-2.5 border-2 border-solid border-white text-base md:text-sm lg:text-base rounded-lg p-1 text-center bg-white text-black"
                 onClick={() => onClickEditTimer(quickOptionTimerValue)}
               >
                 {timerExists ? copyLostWeaponEdit : copyLostWeapon}

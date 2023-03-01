@@ -62,11 +62,12 @@ const TimerCard: React.FC<TimerCardProps> = (props) => {
     'border-2',
     'rounded-lg',
     `border-${color}-500`,
+    'm-2.5',
     'p-2.5',
     'relative'
   );
 
-  const classnamesMoney = classnames('money-value', classnamesPlayerColor);
+  const classnamesMoney = classnames('font-bold pr-1', classnamesPlayerColor);
 
   const items = [
     { value: hours, label: TimeUnit.Hour },
@@ -79,7 +80,7 @@ const TimerCard: React.FC<TimerCardProps> = (props) => {
       (l === TimeUnit.Minute && isFixedMinutes) ||
       (l === TimeUnit.Second && isFixedSeconds);
 
-    const classnamesValue = classnames({ [classnamesPlayerColor]: isFixed });
+    const classnamesValue = classnames('font-bold text-5xl', { [classnamesPlayerColor]: isFixed });
 
     return (
       <li className="inline-block mx-2.5" key={l}>

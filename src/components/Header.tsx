@@ -8,7 +8,7 @@ export interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = (props) => {
   const { className, text } = props;
-  const classes = classnames('font-bold my-5 text-xl', className);
+  const classes = classnames('font-bold my-5 text-xl text-lime-500', className);
 
   return <h3 className={classes}>{text}</h3>;
 };

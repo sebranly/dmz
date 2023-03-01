@@ -17,7 +17,6 @@ body {
 .timer-card-component {
   background-color: #222;
   font-family: 'Ra-Mono';
-  margin: 10px;
   width: 325px;
 }
 
@@ -30,52 +29,6 @@ body {
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   padding-inline-start: 0;
-}
-
-h1 {
-  color: #aaff55;
-  font-size: 40px;
-  margin-bottom: 5px;
-}
-
-h2 {
-  margin: 0;
-}
-
-h3 {
-  color: #aaff55;
-}
-
-.lightgreen {
-  color: #aaff55;
-}
-
-li span {
-  font-size: 50px;
-  font-weight: bold;
-}
-
-.money-value {
-  padding-right: 10px;
-  font-weight: bold;
-}
-
-.margin-flex-20 {
-  margin-right: 20px;
-}
-
-.flex-child {
-  background-color: #222;
-  border: 1px solid white;
-  border-radius: 10px;
-  padding: 10px;
-}
-
-.information {
-  padding-top: 10px;
-  font-size: 14px;
-  margin: 0 auto;
-  max-width: 175px;
 }
 
 .ribbon-child {
@@ -108,15 +61,6 @@ li span {
 
 .money-input {
   font-family: 'Ra-Mono';
-  text-align: center;
-}
-
-.time-equivalent-card {
-  min-width: 320px;
-}
-
-.xp-equivalent-card {
-  min-width: 200px;
 }
 
 input {
@@ -157,22 +101,7 @@ select {
   color: white;
 }
 
-@media screen and (max-width: 767px) {
-  .margin-flex-20 {
-    margin-bottom: 20px;
-    margin-right: 0px;
-  }
-
-  .flex-child {
-    min-width: 350px;
-  }
-}
-
 @media screen and (max-width: 401px) {
-  .flex-child {
-    min-width: 300px;
-  }
-
   .timer-card-component {
     width: 300px;
   }
@@ -187,17 +116,9 @@ select {
 }
 
 @media screen and (max-width: 351px) {
-  .flex-child {
-    font-size: 14px;
-    min-width: 250px;
-  }
-
-  .timer-card-component {
-    width: 250px;
-  }
-
   .timer-card-component {
     font-size: 16px;
+    width: 250px;
   }
 
   input {
