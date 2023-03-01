@@ -33,12 +33,15 @@ const FAQ = () => {
 
         return (
           <div key={question} className={classnamesQuestionAndAnswer}>
-            <div onClick={() => onToggle(question)} className="question">
-              {isNew && <div className="inline text-amber-500">[New] </div>}
+            <div
+              onClick={() => onToggle(question)}
+              className="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
+            >
+              {isNew && <div className="inline text-amber-500 hover:text-amber-600">[New] </div>}
               {questionBis}
             </div>
             {shown && (
-              <div className="answer mb-5">
+              <div className="text-left sm:text-justify mb-5">
                 {answer.map((answerParagraph: string, index: number) => {
                   const classnamesParagraph = classnames('mb-5', { inline: index === answer.length - 1 && yt });
                   return (
@@ -51,7 +54,7 @@ const FAQ = () => {
                   <>
                     {' '}
                     <a
-                      className="underline yt-video"
+                      className="underline text-white"
                       href={YOUTUBE_REFERENCE}
                       rel="noopener noreferrer"
                       title="YouTube reference for conversion functions"

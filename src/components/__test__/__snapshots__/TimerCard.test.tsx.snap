@@ -3,7 +3,7 @@
 exports[`TimerCard 1`] = `
 NodeList [
   <div
-    class="timer-card-component border-solid border-2 rounded-lg border-green-500 p-2.5 relative"
+    class="bg-neutral-800 border-solid border-2 rounded-lg border-green-500 m-2.5 p-2.5 relative w-72 sm:w-80"
   >
     <div
       class="ribbon-child"
@@ -27,7 +27,7 @@ NodeList [
         class="inline-block mx-2.5"
       >
         <span
-          class="text-green-500"
+          class="font-bold text-5xl text-green-500"
         >
           00
         </span>
@@ -41,7 +41,7 @@ NodeList [
         class="inline-block mx-2.5"
       >
         <span
-          class="text-green-500"
+          class="font-bold text-5xl text-green-500"
         >
           00
         </span>
@@ -55,7 +55,7 @@ NodeList [
         class="inline-block mx-2.5"
       >
         <span
-          class=""
+          class="font-bold text-5xl"
         >
           59
         </span>
@@ -76,7 +76,7 @@ NodeList [
       </div>
        
       <div
-        class="money-value text-green-500"
+        class="font-bold pr-1 text-green-500"
       >
         01:03 AM
       </div>
@@ -91,7 +91,7 @@ NodeList [
       </div>
        
       <div
-        class="money-value text-green-500"
+        class="font-bold pr-1 text-green-500"
       >
         $
         700
@@ -107,7 +107,7 @@ NodeList [
       </div>
        
       <div
-        class="money-value text-green-500"
+        class="font-bold pr-1 text-green-500"
       >
         $
         500

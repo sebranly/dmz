@@ -7,17 +7,20 @@
   src: local('Ra-Mono'), url('./fonts/Ra-Mono/Ra-Mono.otf');
 }
 
+#main {
+  background: radial-gradient(circle, #282c34, #282c34 50%, #282c34 0, #00050a 100%);
+  min-height: 90vh;
+}
+
+#footer {
+  min-height: 10vh;
+}
+
 body {
   margin: 0;
   font-family: 'Ra-Mono';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-.timer-card-component {
-  background-color: #222;
-  font-family: 'Ra-Mono';
-  width: 325px;
 }
 
 .timer-card {
@@ -59,73 +62,14 @@ body {
   );
 }
 
-.money-input {
-  font-family: 'Ra-Mono';
-}
-
 input {
   font-family: 'Ra-Mono';
-  font-size: 16px;
-  border-radius: 10px;
-  text-align: center;
 }
 
 select {
-  border-radius: 10px;
   font-family: 'Ra-Mono';
-  font-size: 16px;
-  padding: 5px;
-  text-align: center;
 }
 
 #faq {
   max-width: 900px;
-}
-
-.question {
-  color: #aaff55;
-  cursor: pointer;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-.question:hover {
-  color: #73d90d;
-}
-
-.answer {
-  text-align: justify;
-}
-
-.yt-video {
-  color: white;
-}
-
-@media screen and (max-width: 401px) {
-  .timer-card-component {
-    width: 300px;
-  }
-
-  .question {
-    text-align: left;
-  }
-
-  .answer {
-    text-align: left;
-  }
-}
-
-@media screen and (max-width: 351px) {
-  .timer-card-component {
-    font-size: 16px;
-    width: 250px;
-  }
-
-  input {
-    font-size: 14px;
-  }
-
-  select {
-    font-size: 14px;
-  }
 }

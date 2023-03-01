@@ -56,15 +56,16 @@ const TimerCard: React.FC<TimerCardProps> = (props) => {
   const classnamesPlayerColor = `text-${color}-500`;
   const classnamesPlayerTitle = classnames(classnamesTitle, classnamesPlayerColor);
   const classnamesComponent = classnames(
-    'timer-card-component',
     className,
+    'bg-neutral-800',
     'border-solid',
     'border-2',
     'rounded-lg',
     `border-${color}-500`,
     'm-2.5',
     'p-2.5',
-    'relative'
+    'relative',
+    'w-72 sm:w-80'
   );
 
   const classnamesMoney = classnames('font-bold pr-1', classnamesPlayerColor);

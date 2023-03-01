@@ -3,7 +3,8 @@
 exports[`Footer 1`] = `
 NodeList [
   <div
-    class="App-footer"
+    class="flex flex-col items-center justify-center text-sm text-black"
+    id="footer"
   >
     <div>
       Developed by

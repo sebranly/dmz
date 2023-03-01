@@ -2,7 +2,7 @@ import * as React from 'react';
 import { AUTHOR_NAME, CHANGELOG_URL, PROJECT_URL, WEBSITE_VERSION } from '../constants/general';
 
 const Footer = () => (
-  <div className="App-footer">
+  <div id="footer" className="flex flex-col items-center justify-center text-sm text-black">
     <div>
       Developed by{' '}
       <a

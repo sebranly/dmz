@@ -6,7 +6,7 @@ NodeList [
     id="faq"
   >
     <h3
-      class="font-bold my-5 text-xl"
+      class="font-bold my-5 text-xl text-lime-500"
     >
       FAQ
     </h3>
@@ -14,7 +14,7 @@ NodeList [
       class="mt-2.5"
     >
       <div
-        class="question"
+        class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
       >
         What is DMZ? [+]
       </div>
@@ -23,12 +23,12 @@ NodeList [
       class="my-5"
     >
       <div
-        class="question"
+        class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
       >
         What is this website? [-]
       </div>
       <div
-        class="answer mb-5"
+        class="text-left sm:text-justify mb-5"
       >
         <p
           class="mb-5"
@@ -46,7 +46,7 @@ NodeList [
       class="mt-2.5"
     >
       <div
-        class="question"
+        class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
       >
         What are the hourly rates? [+]
       </div>
@@ -55,7 +55,7 @@ NodeList [
       class="mt-2.5"
     >
       <div
-        class="question"
+        class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
       >
         What are dead drops? [+]
       </div>
@@ -64,7 +64,7 @@ NodeList [
       class="mt-2.5"
     >
       <div
-        class="question"
+        class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
       >
         What about items? [+]
       </div>
@@ -73,7 +73,7 @@ NodeList [
       class="mt-2.5"
     >
       <div
-        class="question"
+        class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
       >
         I don't understand the use-case(s) [+]
       </div>
@@ -82,10 +82,10 @@ NodeList [
       class="mt-2.5"
     >
       <div
-        class="question"
+        class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
       >
         <div
-          class="inline text-amber-500"
+          class="inline text-amber-500 hover:text-amber-600"
         >
           [New] 
         </div>
@@ -96,10 +96,10 @@ NodeList [
       class="mt-2.5"
     >
       <div
-        class="question"
+        class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
       >
         <div
-          class="inline text-amber-500"
+          class="inline text-amber-500 hover:text-amber-600"
         >
           [New] 
         </div>
@@ -110,10 +110,10 @@ NodeList [
       class="mt-2.5"
     >
       <div
-        class="question"
+        class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
       >
         <div
-          class="inline text-amber-500"
+          class="inline text-amber-500 hover:text-amber-600"
         >
           [New] 
         </div>
@@ -124,10 +124,10 @@ NodeList [
       class="mt-2.5"
     >
       <div
-        class="question"
+        class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
       >
         <div
-          class="inline text-amber-500"
+          class="inline text-amber-500 hover:text-amber-600"
         >
           [New] 
         </div>
@@ -138,7 +138,7 @@ NodeList [
       class="mt-2.5"
     >
       <div
-        class="question"
+        class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
       >
         Can I bake cakes with this website? [+]
       </div>
@@ -147,7 +147,7 @@ NodeList [
       class="mt-2.5"
     >
       <div
-        class="question"
+        class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
       >
         What about cookies? [+]
       </div>

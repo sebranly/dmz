@@ -13,7 +13,6 @@ import {
   REGULAR_HOURLY_RATE
 } from './constants/game';
 import { Footer } from './components/Footer';
-import './App.css';
 import { TimerCard } from './components/TimerCard';
 import { getCurrentTimestamp, isNullTimeValue, numberRange, sanitizeTimersCookie } from './utils';
 import {
@@ -204,15 +203,19 @@ function App() {
       );
     });
   };
-  
-  const classnamesCardBorderBis = 'mb-4 mr-0 md:mr-5 border border-solid border-white rounded-lg p-2.5 bg-neutral-800 text-lg md:text-base lg:text-lg';
+
+  const classnamesCardBorderBis =
+    'mb-4 mr-0 md:mr-5 border border-solid border-white rounded-lg p-2.5 bg-neutral-800 text-lg md:text-base lg:text-lg';
   const classnamesCardBorder = classnames(classnamesCardBorderBis, 'min-w-[300px] md:min-w-[350px]');
   const classnamesCardBorderXp = classnames(classnamesCardBorderBis, 'min-w-[300px] md:min-w-[200px]');
   const classnamesCardBorderAddTimer = classnames(classnamesCardBorderBis, 'min-w-[300px] md:min-w-[200px]');
-  const classesButtonTimer = classnames('mt-5 border-2 border-solid text-base md:text-sm lg:text-base rounded-lg p-1 text-center text-black', {
-    'border-white bg-white': !timerValuesAreNull,
-    'border-gray-800 bg-gray-600': timerValuesAreNull
-  });
+  const classesButtonTimer = classnames(
+    'mt-5 border-2 border-solid text-base md:text-sm lg:text-base rounded-lg p-1 text-center text-black',
+    {
+      'border-white bg-white': !timerValuesAreNull,
+      'border-gray-800 bg-gray-600': timerValuesAreNull
+    }
+  );
 
   const playerIndex = convertTimerIndexToPlayerIndex(timerIndex);
   const playerColor = getPlayerColor(playerIndex);
@@ -220,7 +223,7 @@ function App() {
   const isMaxTimer = timerValue[TimeUnit.Hour] === MAX_HOURS_FOR_TIMER;
 
   const textInformation = timerExists ? 'Existing timer will be edited.' : 'A new timer will be added.';
-  const classesInformation = classnames('information pt-2.5 text-sm m-0 m-auto', {
+  const classesInformation = classnames('pt-2.5 text-sm m-0 m-auto w-44', {
     'text-amber-500': timerExists,
     'text-lime-500': !timerExists
   });
@@ -236,10 +239,9 @@ function App() {
   const xpEquivalent = Math.floor(moneyInput / 10);
   const xpEquivalentTitle = `${xpEquivalent} points`;
 
-
   return (
-    <div className="App">
-      <section className="main">
+    <div className="text-center">
+      <section id="main" className="px-5 pb-5 text-white text-lg flex flex-col items-center justify-center">
         <h1 className="font-bold pt-5 my-5 text-lime-500 text-5xl">{WEBSITE_TITLE}</h1>
         <h2 className="font-bold text-2xl m-0">{WEBSITE_SUBTITLE}</h2>
         <div className="text-amber-500">{`Updated for Season ${displayWithTwoDigits(CURRENT_SEASON)}`}</div>
@@ -247,10 +249,10 @@ function App() {
           <Header text="Money to Time Converter" />
           <div className="flex flex-col md:flex-row justify-center">
             <div className={classnamesCardBorderBis}>
-              <div className="money-input-title">Enter Money Value</div>
-              <div className="inline text-lime-500">$</div>{' '}
+              <div>Enter Money Value</div>
+              <div className="inline text-lime-500 text-sm sm:text-base">$</div>{' '}
               <input
-                className="text-black mt-2.5 text-center money-input"
+                className="text-black mt-2.5 text-center rounded-lg text-sm sm:text-base"
                 min="0"
                 max="1000000"
                 step="100"
@@ -260,7 +262,7 @@ function App() {
               />
             </div>
             <div className={classnamesCardBorder}>
-              <div className="time-equivalent-title">Time equivalent</div>
+              <div>Time equivalent</div>
               <div className="mt-2.5">
                 <div className="flex text-left">
                   <div className="grow pr-5">Exfiltration:</div> {regularTimeEquivalentText}
@@ -285,21 +287,25 @@ function App() {
           <h4 className="font-bold mb-5">Add a timer</h4>
           <div className="flex flex-col md:flex-row justify-center">
             <div className={classnamesCardBorderAddTimer}>
-              <div className="new-timer-option">Select Insured Slot</div>
-              <div className={`mt-2.5 new-timer-option text-${playerColor}-500`}>{`Player ${playerIndex + 1}`}</div>
-              <select className="text-black mt-2.5 new-timer-select text-base md:text-sm lg:text-base" onChange={onChangeTimerIndex} value={timerIndex}>
+              <div>Select Insured Slot</div>
+              <div className={`mt-2.5 text-${playerColor}-500`}>{`Player ${playerIndex + 1}`}</div>
+              <select
+                className="text-black mt-2.5 rounded-lg text-center p-1 text-base md:text-sm lg:text-base"
+                onChange={onChangeTimerIndex}
+                value={timerIndex}
+              >
                 {renderPlayerIndexesOptionGroups()}
               </select>
               <div className={classesInformation}>{textInformation}</div>
             </div>
             <div className={classnamesCardBorderAddTimer}>
-              <div className="new-timer-option">Current remaining time</div>
+              <div>Current remaining time</div>
               <div className="mt-2.5">
                 {[TimeUnit.Hour, TimeUnit.Minute, TimeUnit.Second].map((timeLabel: TimeUnit) => {
                   return (
                     <div className="inline" key={timeLabel}>
                       <select
-                        className="text-black text-base md:text-sm lg:text-base"
+                        className="text-black text-base md:text-sm lg:text-base rounded-lg text-center p-1"
                         disabled={timeLabel !== TimeUnit.Hour && isMaxTimer}
                         onChange={onChangeTimerValue(timeLabel)}
                         value={timerValue[timeLabel]}
@@ -320,7 +326,7 @@ function App() {
               </button>
             </div>
             <div className={classnamesCardBorderAddTimer}>
-              <div className="new-timer-option">Quick option</div>
+              <div>Quick option</div>
               <button
                 className="mt-2.5 border-2 border-solid border-white text-base md:text-sm lg:text-base rounded-lg p-1 text-center bg-white text-black"
                 onClick={() => onClickEditTimer(quickOptionTimerValue)}
@@ -331,7 +337,12 @@ function App() {
           </div>
         </div>
         <h4 className="font-bold my-5">{`View all timers (${timers.length}/${MAX_TIMERS})`}</h4>
-        <select className="text-black" disabled={timers.length <= 1} onChange={onChangeSort} value={sort}>
+        <select
+          className="text-black rounded-lg text-base text-center p-1"
+          disabled={timers.length <= 1}
+          onChange={onChangeSort}
+          value={sort}
+        >
           {renderSortOptions()}
         </select>
         <div className="flex justify-center flex-wrap mt-2.5">{renderTimers()}</div>
