@@ -46,7 +46,7 @@ const questionsAnswers: QuestionAnswer[] = [
       )} into any dead drop will reduce the cooldown timer by an hour (even if you die in-game).`,
       `Both methods can also be combined (as a sum).`,
       'Note: exfiltrating thanks to a Rescue Hostage Contract will apply the same rates.',
-      'The following video (and its YouTube description) showcases how the formulae have been determined:'
+      'The following video (and its YouTube description) showcases how the formulae have been determined.'
     ]
   },
   {
@@ -56,6 +56,15 @@ const questionsAnswers: QuestionAnswer[] = [
       `Dead drops offer two advantages compared to exfiltrating with said money/items with the chopper (or elevator in Building 21): the cooldown timer decreases ${
         Math.round((REGULAR_HOURLY_RATE / DEAD_DROP_HOURLY_RATE) * 100) / 100
       }x faster thanks to dead drops, and dead drops will award you the time reduction even if you die afterwards.`
+    ]
+  },
+  {
+    isNew: true,
+    map: true,
+    question: 'Where are dead drops?',
+    answer: [
+      'There are several dead drops per map. For a specific season, they are always at the same spots. However with each new season, their locations change. For this reason, I invite you to take a look at two amazing websites that focus exclusively on locations.',
+      'Please note that Building 21 has a dead drop in the B staircase, on the B1 floor, in Season 02.'
     ]
   },
   {
@@ -89,7 +98,7 @@ const questionsAnswers: QuestionAnswer[] = [
       `On the other hand, there is an opposite bug regarding sensitive documents, most likely because they can now be retained in the stash. They show up in the total of the backpack but actually do not count towards time reduction. You need to subtract $${formatMoney(
         SENSITIVE_DOCUMENTS_VALUE
       )} per sensitive documents.`,
-      'The following video showcases how the formulae have been determined. Known bugs have been detailed in the video description:'
+      'The following video showcases how the formulae have been determined. Known bugs have been detailed in the video description.'
     ]
   },
   {
@@ -109,7 +118,7 @@ const questionsAnswers: QuestionAnswer[] = [
     isNew: true,
     question: 'Is there a time difference between the maps?',
     answer: [
-      'Al Mazrah, Ashika Island and Building 21 all share the same dollars-per-hour rates (for both exfiltration and dead drops).'
+      'No. Al Mazrah, Ashika Island and Building 21 all share the same dollars-per-hour rates (for both exfiltration and dead drops).'
     ]
   },
   {

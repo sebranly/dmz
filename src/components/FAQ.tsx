@@ -12,10 +12,10 @@ const FAQ = () => {
 
   const onToggle = (questionString: string) => {
     const newFaq = faq.map((qa: QuestionAnswer) => {
-      const { answer, isNew, question, shown, yt } = qa;
+      const { answer, isNew, question, map, shown, yt } = qa;
       const isClicked = question === questionString;
       const shownValue = isClicked ? !shown : false;
-      return { question, answer, isNew: !!isNew, shown: shownValue, yt: !!yt };
+      return { question, answer, isNew: !!isNew, shown: shownValue, map, yt: !!yt };
     });
 
     setFaq(newFaq);
@@ -25,11 +25,11 @@ const FAQ = () => {
     <div id="faq">
       <Header text="FAQ" />
       {faq.map((qa: QuestionAnswer) => {
-        const { answer, isNew, question, shown, yt } = qa;
+        const { answer, isNew, map, question, shown, yt } = qa;
 
         const questionSuffix = shown ? '-' : '+';
         const questionBis = `${question} [${questionSuffix}]`;
-        const classnamesQuestionAndAnswer = classnames({ 'mt-2.5': !shown }, { 'my-5': shown });
+        const classnamesQuestionAndAnswer = classnames('text-base lg:text-lg', { 'mt-2.5': !shown }, { 'my-5': shown });
 
         return (
           <div key={question} className={classnamesQuestionAndAnswer}>
@@ -51,18 +51,41 @@ const FAQ = () => {
                   );
                 })}
                 {yt && (
-                  <>
-                    {' '}
-                    <a
-                      className="underline text-white"
-                      href={YOUTUBE_REFERENCE}
-                      rel="noopener noreferrer"
-                      title="YouTube reference for conversion functions"
-                      target="_blank"
-                    >
-                      {`watch S${displayWithTwoDigits(CURRENT_SEASON)} video`}
-                    </a>
-                  </>
+                  <a
+                    className="underline block mt-5 text-center text-white"
+                    href={YOUTUBE_REFERENCE}
+                    rel="noopener noreferrer"
+                    title="YouTube reference for conversion functions"
+                    target="_blank"
+                  >
+                    {`Watch S${displayWithTwoDigits(CURRENT_SEASON)} video`}
+                  </a>
+                )}
+                {map && (
+                  <ul className="text-center">
+                    <li>
+                      <a
+                        className="underline text-white"
+                        href="https://dmzmap.net/"
+                        rel="noopener noreferrer"
+                        title="Hyperlink for a DMZ Interactive Map for finding the locations of dead drops"
+                        target="_blank"
+                      >
+                        DMZ Interactive Map 1
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        className="underline text-white"
+                        href="https://dmzkeys.com/"
+                        rel="noopener noreferrer"
+                        title="Hyperlink for another DMZ Interactive Map for finding the locations of dead drops"
+                        target="_blank"
+                      >
+                        DMZ Interactive Map 2
+                      </a>
+                    </li>
+                  </ul>
                 )}
               </div>
             )}

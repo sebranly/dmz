@@ -28,6 +28,7 @@ export type Timer = {
 export type QuestionAnswer = {
   question: string;
   answer: string[];
+  map?: boolean;
   shown?: boolean;
   isNew?: boolean;
   yt?: boolean;
