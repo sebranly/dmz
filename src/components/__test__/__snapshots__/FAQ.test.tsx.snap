@@ -11,7 +11,7 @@ NodeList [
       FAQ
     </h3>
     <div
-      class="mt-2.5"
+      class="text-base lg:text-lg mt-2.5"
     >
       <div
         class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
@@ -20,7 +20,7 @@ NodeList [
       </div>
     </div>
     <div
-      class="my-5"
+      class="text-base lg:text-lg my-5"
     >
       <div
         class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
@@ -43,7 +43,7 @@ NodeList [
       </div>
     </div>
     <div
-      class="mt-2.5"
+      class="text-base lg:text-lg mt-2.5"
     >
       <div
         class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
@@ -52,7 +52,7 @@ NodeList [
       </div>
     </div>
     <div
-      class="mt-2.5"
+      class="text-base lg:text-lg mt-2.5"
     >
       <div
         class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
@@ -61,7 +61,21 @@ NodeList [
       </div>
     </div>
     <div
-      class="mt-2.5"
+      class="text-base lg:text-lg mt-2.5"
+    >
+      <div
+        class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
+      >
+        <div
+          class="inline text-amber-500 hover:text-amber-600"
+        >
+          [New] 
+        </div>
+        Where are dead drops? [+]
+      </div>
+    </div>
+    <div
+      class="text-base lg:text-lg mt-2.5"
     >
       <div
         class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
@@ -70,7 +84,7 @@ NodeList [
       </div>
     </div>
     <div
-      class="mt-2.5"
+      class="text-base lg:text-lg mt-2.5"
     >
       <div
         class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
@@ -79,7 +93,7 @@ NodeList [
       </div>
     </div>
     <div
-      class="mt-2.5"
+      class="text-base lg:text-lg mt-2.5"
     >
       <div
         class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
@@ -93,7 +107,7 @@ NodeList [
       </div>
     </div>
     <div
-      class="mt-2.5"
+      class="text-base lg:text-lg mt-2.5"
     >
       <div
         class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
@@ -107,7 +121,7 @@ NodeList [
       </div>
     </div>
     <div
-      class="mt-2.5"
+      class="text-base lg:text-lg mt-2.5"
     >
       <div
         class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
@@ -121,7 +135,7 @@ NodeList [
       </div>
     </div>
     <div
-      class="mt-2.5"
+      class="text-base lg:text-lg mt-2.5"
     >
       <div
         class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
@@ -135,7 +149,7 @@ NodeList [
       </div>
     </div>
     <div
-      class="mt-2.5"
+      class="text-base lg:text-lg mt-2.5"
     >
       <div
         class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
@@ -144,7 +158,7 @@ NodeList [
       </div>
     </div>
     <div
-      class="mt-2.5"
+      class="text-base lg:text-lg mt-2.5"
     >
       <div
         class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
