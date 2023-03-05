@@ -16,6 +16,9 @@ test('displayTimeValue', () => {
   timeValue[TimeUnit.Minute] = 2;
   timeValue[TimeUnit.Second] = 24;
   expect(displayTimeValue(timeValue)).toBe('01h 02m 24s');
+
+  timeValue[TimeUnit.Day] = 3;
+  expect(displayTimeValue(timeValue)).toBe('03d 01h 02m 24s');
 });
 
 test('displayWithTwoDigits', () => {

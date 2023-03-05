@@ -103,6 +103,13 @@ test('convertSecondsToTimeValue', () => {
     [TimeUnit.Minute]: 0,
     [TimeUnit.Second]: 0
   });
+
+  expect(convertSecondsToTimeValue(49 * 3_600 + 74)).toStrictEqual({
+    [TimeUnit.Day]: 2,
+    [TimeUnit.Hour]: 1,
+    [TimeUnit.Minute]: 1,
+    [TimeUnit.Second]: 14
+  });
 });
 
 test('convertTimerIndexToPlayerIndex', () => {
@@ -187,9 +194,27 @@ test('convertTimeValueToSeconds', () => {
   expect(
     convertTimeValueToSeconds({
       [TimeUnit.Day]: 0,
-      [TimeUnit.Hour]: 24,
+      [TimeUnit.Hour]: 23,
+      [TimeUnit.Minute]: 0,
+      [TimeUnit.Second]: 0
+    })
+  ).toBe(82_800);
+
+  expect(
+    convertTimeValueToSeconds({
+      [TimeUnit.Day]: 1,
+      [TimeUnit.Hour]: 0,
       [TimeUnit.Minute]: 0,
       [TimeUnit.Second]: 0
     })
   ).toBe(86_400);
+
+  expect(
+    convertTimeValueToSeconds({
+      [TimeUnit.Day]: 2,
+      [TimeUnit.Hour]: 1,
+      [TimeUnit.Minute]: 1,
+      [TimeUnit.Second]: 14
+    })
+  ).toBe(176_474);
 });

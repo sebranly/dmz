@@ -94,7 +94,7 @@ const convertTimeValueToSeconds = (timeValue: TimeValue) => {
     [TimeUnit.Minute]: minutes,
     [TimeUnit.Second]: seconds
   } = timeValue;
-  const secondsBis = days * 24 * 3600 + hours * 3_600 + minutes * 60 + seconds;
+  const secondsBis = days * 24 * 3_600 + hours * 3_600 + minutes * 60 + seconds;
 
   return secondsBis;
 };

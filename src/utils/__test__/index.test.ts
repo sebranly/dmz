@@ -34,12 +34,19 @@ test('isNullTimeValue', () => {
   expect(isNullTimeValue({ [TimeUnit.Day]: 0, [TimeUnit.Hour]: 1, [TimeUnit.Minute]: 2, [TimeUnit.Second]: 3 })).toBe(
     false
   );
+
   expect(isNullTimeValue({ [TimeUnit.Day]: 0, [TimeUnit.Hour]: 1, [TimeUnit.Minute]: 0, [TimeUnit.Second]: 0 })).toBe(
     false
   );
+
+  expect(isNullTimeValue({ [TimeUnit.Day]: 1, [TimeUnit.Hour]: 1, [TimeUnit.Minute]: 0, [TimeUnit.Second]: 0 })).toBe(
+    false
+  );
+
   expect(isNullTimeValue({ [TimeUnit.Day]: 0, [TimeUnit.Hour]: 0, [TimeUnit.Minute]: 0, [TimeUnit.Second]: 0 })).toBe(
     true
   );
+
   expect(
     isNullTimeValue({ [TimeUnit.Day]: 0, [TimeUnit.Hour]: -1, [TimeUnit.Minute]: 10, [TimeUnit.Second]: 24 })
   ).toBe(true);
