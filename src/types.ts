@@ -8,12 +8,14 @@ export enum Color {
 }
 
 export enum TimeUnit {
+  Day = 'day',
   Hour = 'hour',
   Minute = 'minute',
   Second = 'second'
 }
 
 export type TimeValue = {
+  [TimeUnit.Day]: number;
   [TimeUnit.Hour]: number;
   [TimeUnit.Minute]: number;
   [TimeUnit.Second]: number;

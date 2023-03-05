@@ -9,7 +9,7 @@ import {
 } from '../display';
 
 test('displayTimeValue', () => {
-  let timeValue = { [TimeUnit.Hour]: 0, [TimeUnit.Minute]: 0, [TimeUnit.Second]: 0 };
+  let timeValue = { [TimeUnit.Day]: 0, [TimeUnit.Hour]: 0, [TimeUnit.Minute]: 0, [TimeUnit.Second]: 0 };
   expect(displayTimeValue(timeValue)).toBe('00h 00m 00s');
 
   timeValue[TimeUnit.Hour] = 1;

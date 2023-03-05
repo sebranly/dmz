@@ -42,49 +42,64 @@ test('convertSecondsToMoney', () => {
 
 test('convertSecondsToTimeValue', () => {
   expect(convertSecondsToTimeValue(-1)).toStrictEqual({
+    [TimeUnit.Day]: 0,
     [TimeUnit.Hour]: 0,
     [TimeUnit.Minute]: 0,
     [TimeUnit.Second]: 0
   });
 
   expect(convertSecondsToTimeValue(0)).toStrictEqual({
+    [TimeUnit.Day]: 0,
     [TimeUnit.Hour]: 0,
     [TimeUnit.Minute]: 0,
     [TimeUnit.Second]: 0
   });
 
   expect(convertSecondsToTimeValue(1)).toStrictEqual({
+    [TimeUnit.Day]: 0,
     [TimeUnit.Hour]: 0,
     [TimeUnit.Minute]: 0,
     [TimeUnit.Second]: 1
   });
 
   expect(convertSecondsToTimeValue(60)).toStrictEqual({
+    [TimeUnit.Day]: 0,
     [TimeUnit.Hour]: 0,
     [TimeUnit.Minute]: 1,
     [TimeUnit.Second]: 0
   });
 
   expect(convertSecondsToTimeValue(61)).toStrictEqual({
+    [TimeUnit.Day]: 0,
     [TimeUnit.Hour]: 0,
     [TimeUnit.Minute]: 1,
     [TimeUnit.Second]: 1
   });
 
   expect(convertSecondsToTimeValue(3_599)).toStrictEqual({
+    [TimeUnit.Day]: 0,
     [TimeUnit.Hour]: 0,
     [TimeUnit.Minute]: 59,
     [TimeUnit.Second]: 59
   });
 
   expect(convertSecondsToTimeValue(3_600)).toStrictEqual({
+    [TimeUnit.Day]: 0,
     [TimeUnit.Hour]: 1,
     [TimeUnit.Minute]: 0,
     [TimeUnit.Second]: 0
   });
 
+  expect(convertSecondsToTimeValue(23 * 3_600)).toStrictEqual({
+    [TimeUnit.Day]: 0,
+    [TimeUnit.Hour]: 23,
+    [TimeUnit.Minute]: 0,
+    [TimeUnit.Second]: 0
+  });
+
   expect(convertSecondsToTimeValue(24 * 3_600)).toStrictEqual({
-    [TimeUnit.Hour]: 24,
+    [TimeUnit.Day]: 1,
+    [TimeUnit.Hour]: 0,
     [TimeUnit.Minute]: 0,
     [TimeUnit.Second]: 0
   });
@@ -117,6 +132,7 @@ test('convertTimerIndexToPlayerTimerIndex', () => {
 test('convertTimeValueToSeconds', () => {
   expect(
     convertTimeValueToSeconds({
+      [TimeUnit.Day]: 0,
       [TimeUnit.Hour]: 0,
       [TimeUnit.Minute]: 0,
       [TimeUnit.Second]: 0
@@ -125,6 +141,7 @@ test('convertTimeValueToSeconds', () => {
 
   expect(
     convertTimeValueToSeconds({
+      [TimeUnit.Day]: 0,
       [TimeUnit.Hour]: 0,
       [TimeUnit.Minute]: 0,
       [TimeUnit.Second]: 1
@@ -133,6 +150,7 @@ test('convertTimeValueToSeconds', () => {
 
   expect(
     convertTimeValueToSeconds({
+      [TimeUnit.Day]: 0,
       [TimeUnit.Hour]: 0,
       [TimeUnit.Minute]: 1,
       [TimeUnit.Second]: 0
@@ -141,6 +159,7 @@ test('convertTimeValueToSeconds', () => {
 
   expect(
     convertTimeValueToSeconds({
+      [TimeUnit.Day]: 0,
       [TimeUnit.Hour]: 0,
       [TimeUnit.Minute]: 1,
       [TimeUnit.Second]: 1
@@ -149,6 +168,7 @@ test('convertTimeValueToSeconds', () => {
 
   expect(
     convertTimeValueToSeconds({
+      [TimeUnit.Day]: 0,
       [TimeUnit.Hour]: 0,
       [TimeUnit.Minute]: 59,
       [TimeUnit.Second]: 59
@@ -157,6 +177,7 @@ test('convertTimeValueToSeconds', () => {
 
   expect(
     convertTimeValueToSeconds({
+      [TimeUnit.Day]: 0,
       [TimeUnit.Hour]: 1,
       [TimeUnit.Minute]: 0,
       [TimeUnit.Second]: 0
@@ -165,6 +186,7 @@ test('convertTimeValueToSeconds', () => {
 
   expect(
     convertTimeValueToSeconds({
+      [TimeUnit.Day]: 0,
       [TimeUnit.Hour]: 24,
       [TimeUnit.Minute]: 0,
       [TimeUnit.Second]: 0

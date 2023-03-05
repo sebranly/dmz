@@ -12,20 +12,27 @@ const displayWithTwoDigits = (nb: number) => {
 
 /**
  * @name displayTimeValue
- * @description Displays a time value with two-digits for hours, minutes and seconds
+ * @description Displays a time value with two-digits for days, hours, minutes and seconds
  */
 const displayTimeValue = (timeValue: TimeValue) => {
   const timeValueIsNull = isNullTimeValue(timeValue);
 
   if (timeValueIsNull) return '00h 00m 00s';
 
-  const { [TimeUnit.Hour]: hours, [TimeUnit.Minute]: minutes, [TimeUnit.Second]: seconds } = timeValue;
+  const {
+    [TimeUnit.Day]: days,
+    [TimeUnit.Hour]: hours,
+    [TimeUnit.Minute]: minutes,
+    [TimeUnit.Second]: seconds
+  } = timeValue;
 
+  const daysString = `${displayWithTwoDigits(days)}d`;
   const hoursString = `${displayWithTwoDigits(hours)}h`;
   const minutesString = `${displayWithTwoDigits(minutes)}m`;
   const secondsString = `${displayWithTwoDigits(seconds)}s`;
 
-  const finalString = `${hoursString} ${minutesString} ${secondsString}`;
+  const daysStringSuffix = days > 0 ? `${daysString} ` : '';
+  const finalString = `${daysStringSuffix}${hoursString} ${minutesString} ${secondsString}`;
   return finalString;
 };
 

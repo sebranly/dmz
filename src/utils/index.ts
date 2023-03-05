@@ -40,11 +40,16 @@ const getEndTime = (timer: Timer) => {
  * @description Returns whether a time value is 0 seconds in total
  */
 const isNullTimeValue = (timeValue: TimeValue) => {
-  const { [TimeUnit.Hour]: hours, [TimeUnit.Minute]: minutes, [TimeUnit.Second]: seconds } = timeValue;
+  const {
+    [TimeUnit.Day]: days,
+    [TimeUnit.Hour]: hours,
+    [TimeUnit.Minute]: minutes,
+    [TimeUnit.Second]: seconds
+  } = timeValue;
 
-  if (hours < 0 || minutes < 0 || seconds < 0) return true;
+  if (days < 0 || hours < 0 || minutes < 0 || seconds < 0) return true;
 
-  return hours === 0 && minutes === 0 && seconds === 0;
+  return days === 0 && hours === 0 && minutes === 0 && seconds === 0;
 };
 
 /**
