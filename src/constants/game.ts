@@ -1,6 +1,12 @@
 // Any constant that comes from the DMZ official game itself
 export const BRONZE_DOG_TAG_VALUE = 2_500;
 export const CURRENT_SEASON = 2;
+// Obtained with `Math.floor((new Date("2023-03-06T05:00:00.000Z")).getTime() / 1000)`
+// The following three dates are examples of a reset time.
+// Paired with the frequency, the code will determine next future dates
+export const DAILY_CHALLENGES_RESET = 1678078800;
+export const WEEKLY_BUILDING_21_OPENING_TIME = 1678471200;
+export const WEEKLY_BUILDING_21_CLOSING_TIME = 1678125600;
 export const DEAD_DROP_HOURLY_RATE = 30_000;
 export const HOURS_PER_SLOT = 1;
 export const JERRYCAN_VALUE = 200;

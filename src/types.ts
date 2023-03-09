@@ -36,6 +36,7 @@ export type QuestionAnswer = {
   yt?: boolean;
 };
 
+// TODO: Capitalize
 export enum Sort {
   firstPlayerToLastPlayer = 'First player to Last player',
   lastPlayerToFirstPlayer = 'Last player to First player',
@@ -43,4 +44,9 @@ export enum Sort {
   newestToOldest = 'Newest to Oldest',
   oldestToNewest = 'Oldest to Newest',
   shortestToLongest = 'Shortest to Longest'
+}
+
+export enum TimeFrequency {
+  Daily = 'daily',
+  Weekly = 'weekly'
 }

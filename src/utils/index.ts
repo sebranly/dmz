@@ -1,5 +1,5 @@
 import { MAX_TIMERS } from '../constants/game';
-import { Timer, TimeUnit, TimeValue } from '../types';
+import { TimeFrequency, Timer, TimeUnit, TimeValue } from '../types';
 
 /**
  * @name calculateRemainingSeconds
@@ -103,10 +103,48 @@ const sanitizeTimersCookie = (cookieValue: any, maxTimers = MAX_TIMERS) => {
   return timers;
 };
 
+/**
+ * @name getUTCDayOffset
+ * @description Returns the offset, in days, relative to the previous Thursday
+ * Thu, 01 Jan 1970 00:00:00 GMT is the origin
+ * @param currentTimestamp is in seconds
+ */
+const getUTCDayOffset = (timestamp: number) => {
+  const currentDate = new Date(timestamp * 1000);
+  // 0 Sunday, 1 monday, 2 tuesday, 3 wednesday, 4 thursday, 5 friday, 6 saturday
+  const currentDay = currentDate.getUTCDay();
+
+  if ([0, 1, 2, 3].includes(currentDay)) return currentDay + 3;
+  if ([5, 6].includes(currentDay)) return currentDay - 4;
+
+  return 0;
+};
+
+/**
+ * @name getNextTime
+ * @description Returns the next timestamp, in seconds, that corresponds to a cycle tick based on a frequency
+ */
+const getNextTime = (currentTimestamp: number, resetTimestamp: number, frequency: TimeFrequency) => {
+  const isDaily = frequency === TimeFrequency.Daily;
+  const dayOffset = getUTCDayOffset(resetTimestamp);
+  const dailyOffset = resetTimestamp % 86_400;
+  const offset = isDaily ? dailyOffset : dailyOffset + dayOffset * 86_400;
+
+  const multiplier = isDaily ? 1 : 7;
+  const period = multiplier * 86_400;
+
+  const ratio = Math.floor((currentTimestamp - offset) / period) + 1;
+  const nextTime = ratio * period + offset;
+
+  return nextTime;
+};
+
 export {
   calculateRemainingSeconds,
   getCurrentTimestamp,
   getEndTime,
+  getNextTime,
+  getUTCDayOffset,
   isNullTimeValue,
   numberRange,
   sanitizeTimersCookie
