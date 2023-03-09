@@ -4,7 +4,6 @@ import {
   COOKIE_TIMERS,
   DEFAULT_SORT_OPTION,
   SORT_OPTIONS,
-  URL_DATA,
   WEBSITE_SUBTITLE,
   WEBSITE_TITLE
 } from './constants/general';
@@ -32,15 +31,15 @@ import {
 } from './utils/convert';
 import { displayTimeValue, displayWithTwoDigits, getPlayerColor } from './utils/display';
 import { sortTimers } from './utils/sort';
-import { APITime, Sort, Timer, TimeUnit, TimeValue } from './types';
+import { Sort, Timer, TimeUnit, TimeValue } from './types';
 import { excludeTimerByIndex, pickTimerByIndex } from './utils/filter';
 import { FAQ } from './components/FAQ';
 import classnames from 'classnames';
 import { Header } from './components/Header';
+import { OtherTimers } from './components/OtherTimers';
 
 function App() {
   const [cookies, setCookie] = useCookies([COOKIE_TIMERS]);
-  const [APITimes, setAPITimes] = React.useState<APITime[]>([]);
   const [moneyInput, setMoneyInput] = React.useState(REGULAR_HOURLY_RATE / 2);
   const [timers, setTimers] = React.useState<Timer[]>(
     sortTimers(sanitizeTimersCookie(cookies[COOKIE_TIMERS]), getCurrentTimestamp(), DEFAULT_SORT_OPTION)
@@ -73,20 +72,6 @@ function App() {
     const interval = setInterval(() => {
       setCurrentTimestamp(getCurrentTimestamp());
     }, 1000);
-
-    const fetchAPITimes = async () => {
-      try {
-        const response = await fetch(URL_DATA);
-        const data = await response.json();
-        const safeTimes = (data.times || []) as APITime[];
-        console.log(safeTimes);
-        setAPITimes(safeTimes);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchAPITimes();
 
     return () => clearInterval(interval);
   };
@@ -380,6 +365,7 @@ function App() {
           {renderSortOptions()}
         </select>
         <div className="flex justify-center flex-wrap mt-2.5">{renderTimers()}</div>
+        <OtherTimers currentTimestamp={currentTimestamp} />
         <FAQ />
       </section>
       <Footer />
