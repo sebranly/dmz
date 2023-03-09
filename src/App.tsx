@@ -32,7 +32,7 @@ import {
 } from './utils/convert';
 import { displayTimeValue, displayWithTwoDigits, getPlayerColor } from './utils/display';
 import { sortTimers } from './utils/sort';
-import { Sort, Timer, TimeUnit, TimeValue } from './types';
+import { APITime, Sort, Timer, TimeUnit, TimeValue } from './types';
 import { excludeTimerByIndex, pickTimerByIndex } from './utils/filter';
 import { FAQ } from './components/FAQ';
 import classnames from 'classnames';
@@ -40,7 +40,7 @@ import { Header } from './components/Header';
 
 function App() {
   const [cookies, setCookie] = useCookies([COOKIE_TIMERS]);
-  const [, setSeasons] = React.useState([]);
+  const [APITimes, setAPITimes] = React.useState<APITime[]>([]);
   const [moneyInput, setMoneyInput] = React.useState(REGULAR_HOURLY_RATE / 2);
   const [timers, setTimers] = React.useState<Timer[]>(
     sortTimers(sanitizeTimersCookie(cookies[COOKIE_TIMERS]), getCurrentTimestamp(), DEFAULT_SORT_OPTION)
@@ -74,18 +74,19 @@ function App() {
       setCurrentTimestamp(getCurrentTimestamp());
     }, 1000);
 
-    const fetchSeasons = async () => {
+    const fetchAPITimes = async () => {
       try {
         const response = await fetch(URL_DATA);
         const data = await response.json();
-        setSeasons(data.seasons || []);
-        console.log(data.seasons);
+        const safeTimes = (data.times || []) as APITime[];
+        console.log(safeTimes);
+        setAPITimes(safeTimes);
       } catch (error) {
         console.log(error);
       }
     };
 
-    fetchSeasons();
+    fetchAPITimes();
 
     return () => clearInterval(interval);
   };

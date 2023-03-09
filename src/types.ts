@@ -36,7 +36,6 @@ export type QuestionAnswer = {
   yt?: boolean;
 };
 
-// TODO: Capitalize
 export enum Sort {
   FirstPlayerToLastPlayer = 'First player to Last player',
   LastPlayerToFirstPlayer = 'Last player to First player',
@@ -50,3 +49,24 @@ export enum TimeFrequency {
   Daily = 'daily',
   Weekly = 'weekly'
 }
+
+export enum TimeType {
+  Challenges = 'challenges',
+  Map = 'map',
+  Season = 'season'
+}
+
+export enum TimeStatus {
+  Closing = 'closing',
+  Launch = 'launch',
+  Opening = 'opening',
+  Reset = 'reset',
+}
+
+export type APITime = {
+  frequency: TimeFrequency;
+  name: string;
+  status: TimeStatus;
+  time: number;
+  type: TimeType;
+};
