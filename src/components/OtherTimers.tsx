@@ -34,7 +34,11 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
 
   const { className, currentTimestamp } = props;
 
-  return <div className={className}><Header text="Other Timers" /></div>;
+  return (
+    <div className={className}>
+      <Header text="Other Timers" />
+    </div>
+  );
 };
 
 export { OtherTimers };

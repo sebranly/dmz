@@ -1,12 +1,6 @@
 import React from 'react';
 import { useCookies } from 'react-cookie';
-import {
-  COOKIE_TIMERS,
-  DEFAULT_SORT_OPTION,
-  SORT_OPTIONS,
-  WEBSITE_SUBTITLE,
-  WEBSITE_TITLE
-} from './constants/general';
+import { COOKIE_TIMERS, DEFAULT_SORT_OPTION, SORT_OPTIONS, WEBSITE_SUBTITLE, WEBSITE_TITLE } from './constants/general';
 import {
   CURRENT_SEASON,
   DEAD_DROP_HOURLY_RATE,

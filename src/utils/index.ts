@@ -151,7 +151,7 @@ const getNextStatus = (currentTimestamp: number, times: APITime[]) => {
   let minValue = Number.MAX_SAFE_INTEGER;
 
   times.forEach((timeBis: APITime) => {
-    const { frequency, status, time } = timeBis;
+    const { frequency, status, time } = timeBis;
     const nextTime = getNextTime(currentTimestamp, time, frequency);
     if (nextTime < minValue) {
       minValue = nextTime;

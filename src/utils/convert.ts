@@ -104,7 +104,7 @@ const convertTimeValueToSeconds = (timeValue: TimeValue) => {
  * @description Picks the season id based on a string describing the season
  */
 const getSeasonId = (text: string) => {
-  const id = text.match(/\d+/g)?.join('')
+  const id = text.match(/\d+/g)?.join('');
   const nb = Number(id);
   return isNaN(nb) ? -1 : nb;
 };

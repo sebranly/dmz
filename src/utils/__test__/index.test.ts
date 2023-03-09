@@ -83,26 +83,28 @@ test('getNextTime', () => {
 });
 
 test('getNextStatus', () => {
-  const times: APITime[] = [    {
-      "type": TimeType.Map,
-      "name": "Building 21",
-      "frequency": TimeFrequency.Weekly,
-      "status": TimeStatus.Opening,
-      "time": 1678471200
+  const times: APITime[] = [
+    {
+      type: TimeType.Map,
+      name: 'Building 21',
+      frequency: TimeFrequency.Weekly,
+      status: TimeStatus.Opening,
+      time: 1678471200
     },
     {
-      "type": TimeType.Map,
-      "name": "Building 21",
-      "frequency": TimeFrequency.Weekly,
-      "status": TimeStatus.Closing,
-      "time": 1678125600
-    }]
+      type: TimeType.Map,
+      name: 'Building 21',
+      frequency: TimeFrequency.Weekly,
+      status: TimeStatus.Closing,
+      time: 1678125600
+    }
+  ];
 
   expect(getNextStatus(0, [])).toBe(-1);
   expect(getNextStatus(0, [times[0]])).toBe(TimeStatus.Opening);
   expect(getNextStatus(0, [times[1]])).toBe(TimeStatus.Closing);
   expect(getNextStatus(0, times)).toBe(TimeStatus.Opening);
-  
+
   expect(getNextStatus(1678471199, times)).toBe(TimeStatus.Opening);
   expect(getNextStatus(1678471200, times)).toBe(TimeStatus.Closing);
   expect(getNextStatus(1678471201, times)).toBe(TimeStatus.Closing);
