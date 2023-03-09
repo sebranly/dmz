@@ -125,12 +125,12 @@ const getUTCDayOffset = (timestamp: number) => {
  * @description Returns the next timestamp, in seconds, that corresponds to a cycle tick based on a frequency
  */
 const getNextTime = (currentTimestamp: number, resetTimestamp: number, frequency: TimeFrequency) => {
-  const isDaily = frequency === TimeFrequency.Daily;
+  const isWeekly = frequency === TimeFrequency.Weekly;
   const dayOffset = getUTCDayOffset(resetTimestamp);
   const dailyOffset = resetTimestamp % 86_400;
-  const offset = isDaily ? dailyOffset : dailyOffset + dayOffset * 86_400;
+  const offset = isWeekly ? dailyOffset + dayOffset * 86_400 : dailyOffset;
 
-  const multiplier = isDaily ? 1 : 7;
+  const multiplier = isWeekly ? 7 : 1;
   const period = multiplier * 86_400;
 
   const ratio = Math.floor((currentTimestamp - offset) / period) + 1;

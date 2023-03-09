@@ -47,6 +47,7 @@ export enum Sort {
 
 export enum TimeFrequency {
   Daily = 'daily',
+  None = 'none',
   Weekly = 'weekly'
 }
 
@@ -60,7 +61,7 @@ export enum TimeStatus {
   Closing = 'closing',
   Launch = 'launch',
   Opening = 'opening',
-  Reset = 'reset',
+  Reset = 'reset'
 }
 
 export type APITime = {
