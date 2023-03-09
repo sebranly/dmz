@@ -1,6 +1,5 @@
 import React from 'react';
 import { useCookies } from 'react-cookie';
-import axios from 'axios';
 import {
   COOKIE_TIMERS,
   DEFAULT_SORT_OPTION,
@@ -38,10 +37,6 @@ import { excludeTimerByIndex, pickTimerByIndex } from './utils/filter';
 import { FAQ } from './components/FAQ';
 import classnames from 'classnames';
 import { Header } from './components/Header';
-
-const client = axios.create({
-  baseURL: URL_DATA
-});
 
 function App() {
   const [cookies, setCookie] = useCookies([COOKIE_TIMERS]);
@@ -81,8 +76,10 @@ function App() {
 
     const fetchSeasons = async () => {
       try {
-        let response = await client.get('/index.json');
-        setSeasons(response.data.seasons || []);
+        const response = await fetch(URL_DATA);
+        const data = await response.json();
+        setSeasons(data.seasons || []);
+        console.log(data.seasons);
       } catch (error) {
         console.log(error);
       }
