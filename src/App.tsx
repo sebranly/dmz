@@ -1,6 +1,14 @@
 import React from 'react';
 import { useCookies } from 'react-cookie';
-import { COOKIE_TIMERS, DEFAULT_SORT_OPTION, SORT_OPTIONS, WEBSITE_SUBTITLE, WEBSITE_TITLE } from './constants/general';
+import axios from 'axios';
+import {
+  COOKIE_TIMERS,
+  DEFAULT_SORT_OPTION,
+  SORT_OPTIONS,
+  URL_DATA,
+  WEBSITE_SUBTITLE,
+  WEBSITE_TITLE
+} from './constants/general';
 import {
   CURRENT_SEASON,
   DEAD_DROP_HOURLY_RATE,
@@ -31,8 +39,13 @@ import { FAQ } from './components/FAQ';
 import classnames from 'classnames';
 import { Header } from './components/Header';
 
+const client = axios.create({
+  baseURL: URL_DATA
+});
+
 function App() {
   const [cookies, setCookie] = useCookies([COOKIE_TIMERS]);
+  const [, setSeasons] = React.useState([]);
   const [moneyInput, setMoneyInput] = React.useState(REGULAR_HOURLY_RATE / 2);
   const [timers, setTimers] = React.useState<Timer[]>(
     sortTimers(sanitizeTimersCookie(cookies[COOKIE_TIMERS]), getCurrentTimestamp(), DEFAULT_SORT_OPTION)
@@ -65,6 +78,17 @@ function App() {
     const interval = setInterval(() => {
       setCurrentTimestamp(getCurrentTimestamp());
     }, 1000);
+
+    const fetchSeasons = async () => {
+      try {
+        let response = await client.get('/index.json');
+        setSeasons(response.data.seasons || []);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchSeasons();
 
     return () => clearInterval(interval);
   };
