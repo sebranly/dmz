@@ -2,7 +2,7 @@ import { Sort } from '../types';
 
 export const AUTHOR_NAME = 'sebranly';
 export const AUTHOR_GITHUB = `https://${AUTHOR_NAME}.github.io`;
-export const DEFAULT_SORT_OPTION = Sort.oldestToNewest;
+export const DEFAULT_SORT_OPTION = Sort.OldestToNewest;
 export const PROJECT_NAME = 'dmz';
 export const PROJECT_URL = `https://github.com/${AUTHOR_NAME}/${PROJECT_NAME}`;
 export const CHANGELOG_URL = `${PROJECT_URL}/releases`;
@@ -16,9 +16,9 @@ export const WEBSITE_VERSION = '1.6.0';
 
 export const SORT_OPTIONS = [
   DEFAULT_SORT_OPTION,
-  Sort.newestToOldest,
-  Sort.shortestToLongest,
-  Sort.longestToShortest,
-  Sort.firstPlayerToLastPlayer,
-  Sort.lastPlayerToFirstPlayer
+  Sort.NewestToOldest,
+  Sort.ShortestToLongest,
+  Sort.LongestToShortest,
+  Sort.FirstPlayerToLastPlayer,
+  Sort.LastPlayerToFirstPlayer
 ];
