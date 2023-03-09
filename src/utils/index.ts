@@ -1,5 +1,5 @@
 import { MAX_TIMERS } from '../constants/game';
-import { TimeFrequency, Timer, TimeUnit, TimeValue } from '../types';
+import { APITime, TimeFrequency, Timer, TimeUnit, TimeValue } from '../types';
 
 /**
  * @name calculateRemainingSeconds
@@ -139,11 +139,35 @@ const getNextTime = (currentTimestamp: number, resetTimestamp: number, frequency
   return nextTime;
 };
 
+/**
+ * @name getNextTimeStatus
+ * @description For an element that can have several statuses, it returns the closer one in the future
+ */
+const getNextStatus = (currentTimestamp: number, times: APITime[]) => {
+  if (times.length === 0) return -1;
+  if (times.length === 1) return times[0].status;
+
+  let closerStatus;
+  let minValue = Number.MAX_SAFE_INTEGER;
+
+  times.forEach((timeBis: APITime) => {
+    const { frequency, status, time } = timeBis;
+    const nextTime = getNextTime(currentTimestamp, time, frequency);
+    if (nextTime < minValue) {
+      minValue = nextTime;
+      closerStatus = status;
+    }
+  });
+
+  return closerStatus;
+};
+
 export {
   calculateRemainingSeconds,
   getCurrentTimestamp,
   getEndTime,
   getNextTime,
+  getNextStatus,
   getUTCDayOffset,
   isNullTimeValue,
   numberRange,

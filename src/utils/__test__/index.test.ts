@@ -1,8 +1,9 @@
-import { TimeFrequency, TimeUnit } from '../../types';
+import { APITime, TimeFrequency, TimeStatus, TimeType, TimeUnit } from '../../types';
 import {
   calculateRemainingSeconds,
   getCurrentTimestamp,
   getEndTime,
+  getNextStatus,
   getNextTime,
   getUTCDayOffset,
   isNullTimeValue,
@@ -79,6 +80,36 @@ test('getNextTime', () => {
   expect(getNextTime(1678125599, 1678125600, TimeFrequency.Weekly)).toBe(1678125600);
   expect(getNextTime(1678125600, 1678125600, TimeFrequency.Weekly)).toBe(1678730400);
   expect(getNextTime(2678032694, 1678125600, TimeFrequency.Weekly)).toBe(2678464800);
+});
+
+test('getNextStatus', () => {
+  const times: APITime[] = [    {
+      "type": TimeType.Map,
+      "name": "Building 21",
+      "frequency": TimeFrequency.Weekly,
+      "status": TimeStatus.Opening,
+      "time": 1678471200
+    },
+    {
+      "type": TimeType.Map,
+      "name": "Building 21",
+      "frequency": TimeFrequency.Weekly,
+      "status": TimeStatus.Closing,
+      "time": 1678125600
+    }]
+
+  expect(getNextStatus(0, [])).toBe(-1);
+  expect(getNextStatus(0, [times[0]])).toBe(TimeStatus.Opening);
+  expect(getNextStatus(0, [times[1]])).toBe(TimeStatus.Closing);
+  expect(getNextStatus(0, times)).toBe(TimeStatus.Opening);
+  
+  expect(getNextStatus(1678471199, times)).toBe(TimeStatus.Opening);
+  expect(getNextStatus(1678471200, times)).toBe(TimeStatus.Closing);
+  expect(getNextStatus(1678471201, times)).toBe(TimeStatus.Closing);
+
+  expect(getNextStatus(1678125599, times)).toBe(TimeStatus.Closing);
+  expect(getNextStatus(1678125600, times)).toBe(TimeStatus.Opening);
+  expect(getNextStatus(1678125601, times)).toBe(TimeStatus.Opening);
 });
 
 test('isNullTimeValue', () => {
