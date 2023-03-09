@@ -99,6 +99,16 @@ const convertTimeValueToSeconds = (timeValue: TimeValue) => {
   return secondsBis;
 };
 
+/**
+ * @name getSeasonId
+ * @description Picks the season id based on a string describing the season
+ */
+const getSeasonId = (text: string) => {
+  const id = text.match(/\d+/g)?.join('')
+  const nb = Number(id);
+  return isNaN(nb) ? -1 : nb;
+};
+
 export {
   convertMoneyToSeconds,
   convertPlayerTimerIndexToHourTimer,
@@ -106,5 +116,6 @@ export {
   convertSecondsToTimeValue,
   convertTimerIndexToPlayerIndex,
   convertTimerIndexToPlayerTimerIndex,
-  convertTimeValueToSeconds
+  convertTimeValueToSeconds,
+  getSeasonId
 };
