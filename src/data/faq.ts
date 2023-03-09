@@ -63,8 +63,7 @@ const questionsAnswers: QuestionAnswer[] = [
     map: true,
     question: 'Where are dead drops?',
     answer: [
-      'There are several dead drops per map. For a specific season, they are always at the same spots. However with each new season, their locations change. For this reason, I invite you to take a look at two amazing websites that focus exclusively on locations.',
-      'Please note that Building 21 has a dead drop in the B staircase, on the B1 floor, in Season 02.'
+      'There are several dead drops per map. For a specific season, they are always at the same spots. However with each new season, their locations change. For this reason, I invite you to take a look at two amazing websites that focus exclusively on locations.'
     ]
   },
   {
