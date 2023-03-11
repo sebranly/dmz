@@ -1,10 +1,14 @@
-import { Color, TimeUnit } from '../../types';
+import { Color, TimeStatus, TimeUnit } from '../../types';
 import {
   displayTimeValue,
   displayWithTwoDigits,
   formatMoney,
   getPlayerColor,
   getPlayersSize,
+  getStatusAdjective,
+  getStatusColor,
+  getStatusVerb,
+  getTimeUnitAbbreviation,
   pluralize
 } from '../display';
 
@@ -56,6 +60,34 @@ test('getPlayersSize', () => {
   expect(getPlayersSize(3)).toBe('trios');
   expect(getPlayersSize(4)).toBe('quatuors');
   expect(getPlayersSize(5)).toBe('');
+});
+
+test('getStatusColor', () => {
+  expect(getStatusColor(TimeStatus.Closing)).toBe(Color.Green);
+  expect(getStatusColor(TimeStatus.Opening)).toBe(Color.Orange);
+  expect(getStatusColor(TimeStatus.Launch)).toBe(Color.Orange);
+  expect(getStatusColor(TimeStatus.Reset)).toBe(Color.Orange);
+});
+
+test('getStatusAdjective', () => {
+  expect(getStatusAdjective(TimeStatus.Closing)).toBe('open');
+  expect(getStatusAdjective(TimeStatus.Opening)).toBe('closed');
+  expect(getStatusAdjective(TimeStatus.Launch)).toBe('closed');
+  expect(getStatusAdjective(TimeStatus.Reset)).toBe('closed');
+});
+
+test('getStatusVerb', () => {
+  expect(getStatusVerb(TimeStatus.Closing)).toBe('closes');
+  expect(getStatusVerb(TimeStatus.Opening)).toBe('opens');
+  expect(getStatusVerb(TimeStatus.Launch)).toBe('opens');
+  expect(getStatusVerb(TimeStatus.Reset)).toBe('opens');
+});
+
+test('getTimeUnitAbbreviation', () => {
+  expect(getTimeUnitAbbreviation(TimeUnit.Day)).toBe('days');
+  expect(getTimeUnitAbbreviation(TimeUnit.Hour)).toBe('hrs');
+  expect(getTimeUnitAbbreviation(TimeUnit.Minute)).toBe('min');
+  expect(getTimeUnitAbbreviation(TimeUnit.Second)).toBe('sec');
 });
 
 test('pluralize', () => {

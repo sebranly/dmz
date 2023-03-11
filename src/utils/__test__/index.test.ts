@@ -6,6 +6,7 @@ import {
   getNextStatus,
   getNextTime,
   getUTCDayOffset,
+  getWeeklyTime,
   isNullTimeValue,
   numberRange,
   sanitizeTimersCookie
@@ -112,6 +113,11 @@ test('getNextStatus', () => {
   expect(getNextStatus(1678125599, times)).toBe(TimeStatus.Closing);
   expect(getNextStatus(1678125600, times)).toBe(TimeStatus.Opening);
   expect(getNextStatus(1678125601, times)).toBe(TimeStatus.Opening);
+});
+
+test('getWeeklyTime', () => {
+  expect(getWeeklyTime(1678471200)).toBe('Fri 07:00 PM');
+  expect(getWeeklyTime(1678125600)).toBe('Mon 07:00 PM');
 });
 
 test('isNullTimeValue', () => {
