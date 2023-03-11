@@ -94,8 +94,8 @@ const convertTimeValueToSeconds = (timeValue: TimeValue) => {
     [TimeUnit.Minute]: minutes,
     [TimeUnit.Second]: seconds
   } = timeValue;
-  const secondsBis = days * 24 * 3_600 + hours * 3_600 + minutes * 60 + seconds;
 
+  const secondsBis = days * 24 * 3_600 + hours * 3_600 + minutes * 60 + seconds;
   return secondsBis;
 };
 
@@ -104,9 +104,11 @@ const convertTimeValueToSeconds = (timeValue: TimeValue) => {
  * @description Picks the season id based on a string describing the season
  */
 const getSeasonId = (text: string) => {
-  const id = text.match(/\d+/g)?.join('');
+  const id = text.match(/[\d.]+/g)?.join('');
   const nb = Number(id);
-  return isNaN(nb) ? -1 : nb;
+  const isReloaded = text.toLowerCase().includes('reloaded');
+  const reloadedOffset = isReloaded ? 0.5 : 0;
+  return isNaN(nb) ? -1 : nb + reloadedOffset;
 };
 
 export {

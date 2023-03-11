@@ -229,6 +229,9 @@ test('getSeasonId', () => {
   expect(getSeasonId('Season 01')).toBe(1);
   expect(getSeasonId('Season 02')).toBe(2);
   expect(getSeasonId('Season 2')).toBe(2);
+  expect(getSeasonId('Season 2.5')).toBe(2.5);
+  expect(getSeasonId('Season 02.5')).toBe(2.5);
+  expect(getSeasonId('Season 2 Reloaded')).toBe(2.5);
   expect(getSeasonId('Season 000000000000000000003')).toBe(3);
   expect(getSeasonId('Season 20')).toBe(20);
   expect(getSeasonId('Season 020')).toBe(20);
