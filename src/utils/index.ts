@@ -36,6 +36,19 @@ const getEndTime = (timer: Timer) => {
 };
 
 /**
+ * @name getWeeklyTime
+ * @description Returns the expected weekly time (with the weekday)
+ */
+const getWeeklyTime = (nextTimestamp: number) => {
+  return new Date(nextTimestamp * 1000).toLocaleString('en-US', {
+    weekday: 'short',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: true
+  });
+};
+
+/**
  * @name isNullTimeValue
  * @description Returns whether a time value is 0 seconds in total
  */
@@ -169,6 +182,7 @@ export {
   getNextTime,
   getNextStatus,
   getUTCDayOffset,
+  getWeeklyTime,
   isNullTimeValue,
   numberRange,
   sanitizeTimersCookie

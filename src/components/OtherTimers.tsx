@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { URL_DATA } from '../constants/general';
-import { APITime } from '../types';
+import { APITime, TimeType } from '../types';
 import { Header } from './Header';
+import { OpenClosedTimer } from './OpenClosedTimer';
 
 export interface OtherTimersProps {
   className?: string;
@@ -17,7 +18,6 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
         const response = await fetch(URL_DATA);
         const data = await response.json();
         const safeTimes = (data.times || []) as APITime[];
-        console.log(safeTimes);
         setTimes(safeTimes);
       } catch (error) {
         console.log(error);
@@ -34,9 +34,17 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
 
   const { className, currentTimestamp } = props;
 
+  const timesBuilding21 = times.filter((time: APITime) => {
+    const { name, type } = time;
+    return type === TimeType.Map && name === 'Building 21';
+  });
+
   return (
     <div className={className}>
       <Header text="Other Timers" />
+      <div>
+        <OpenClosedTimer currentTimestamp={currentTimestamp} times={timesBuilding21} />
+      </div>
     </div>
   );
 };

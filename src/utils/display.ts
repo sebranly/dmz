@@ -1,5 +1,5 @@
 import { isNullTimeValue } from '.';
-import { Color, TimeUnit, TimeValue } from '../types';
+import { Color, TimeStatus, TimeUnit, TimeValue } from '../types';
 
 /**
  * @name displayWithTwoDigits
@@ -66,6 +66,34 @@ const getPlayerColor = (playerIndex: number) => {
   }
 };
 
+/**
+ * @name getStatusColor
+ * @description Returns the current color based on next status
+ */
+const getStatusColor = (nextStatus: TimeStatus) => {
+  return nextStatus === TimeStatus.Closing ? Color.Green : Color.Orange;
+};
+
+/**
+ * @name getStatusAdjective
+ * @description Returns the adjective for current status based on next status
+ */
+const getStatusAdjective = (nextStatus: TimeStatus) => {
+  return nextStatus === TimeStatus.Closing ? 'open' : 'closed';
+};
+
+/**
+ * @name getStatusVerb
+ * @description Returns the verb for next status based on next status
+ */
+const getStatusVerb = (nextStatus: TimeStatus) => {
+  return nextStatus === TimeStatus.Closing ? 'closes' : 'opens';
+};
+
+/**
+ * @name getPlayersSize
+ * @description Returns a word describing the size of the squad
+ */
 const getPlayersSize = (length: number) => {
   switch (length) {
     case 0:
@@ -83,6 +111,25 @@ const getPlayersSize = (length: number) => {
 };
 
 /**
+ * @name getTimeUnitAbbreviation
+ * @description Returns an abbreviation for a time unit
+ */
+const getTimeUnitAbbreviation = (unit: TimeUnit) => {
+  switch (unit) {
+    case TimeUnit.Day:
+      return 'days';
+    case TimeUnit.Hour:
+      return 'hrs';
+    case TimeUnit.Minute:
+      return 'min';
+    case TimeUnit.Second:
+      return 'sec';
+    default:
+      return '';
+  }
+};
+
+/**
  * @name pluralize
  * @description Returns the same string or plural version if applicable
  */
@@ -92,4 +139,15 @@ const pluralize = (str: string, nb: number) => {
   return `${str}s`;
 };
 
-export { displayTimeValue, displayWithTwoDigits, formatMoney, getPlayerColor, getPlayersSize, pluralize };
+export {
+  displayTimeValue,
+  displayWithTwoDigits,
+  formatMoney,
+  getPlayerColor,
+  getPlayersSize,
+  getStatusAdjective,
+  getStatusColor,
+  getStatusVerb,
+  getTimeUnitAbbreviation,
+  pluralize
+};
