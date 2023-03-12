@@ -14,18 +14,18 @@ const sortTimers = (
   maxTimersPerPlayer = MAX_TIMERS_PER_PLAYER
 ) => {
   switch (sort) {
-    case Sort.longestToShortest:
+    case Sort.LongestToShortest:
       return sortTimersByDuration(timers, currentTimestamp, true);
-    case Sort.shortestToLongest:
+    case Sort.ShortestToLongest:
       return sortTimersByDuration(timers, currentTimestamp);
-    case Sort.oldestToNewest:
+    case Sort.OldestToNewest:
     default:
       return sortTimersByCreationDate(timers);
-    case Sort.newestToOldest:
+    case Sort.NewestToOldest:
       return sortTimersByCreationDate(timers, true);
-    case Sort.firstPlayerToLastPlayer:
+    case Sort.FirstPlayerToLastPlayer:
       return sortTimersByPlayer(timers, false, maxTimersPerPlayer);
-    case Sort.lastPlayerToFirstPlayer:
+    case Sort.LastPlayerToFirstPlayer:
       return sortTimersByPlayer(timers, true, maxTimersPerPlayer);
   }
 };

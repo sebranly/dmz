@@ -8,12 +8,14 @@ export enum Color {
 }
 
 export enum TimeUnit {
+  Day = 'day',
   Hour = 'hour',
   Minute = 'minute',
   Second = 'second'
 }
 
 export type TimeValue = {
+  [TimeUnit.Day]: number;
   [TimeUnit.Hour]: number;
   [TimeUnit.Minute]: number;
   [TimeUnit.Second]: number;
@@ -35,10 +37,37 @@ export type QuestionAnswer = {
 };
 
 export enum Sort {
-  firstPlayerToLastPlayer = 'First player to Last player',
-  lastPlayerToFirstPlayer = 'Last player to First player',
-  longestToShortest = 'Longest to Shortest',
-  newestToOldest = 'Newest to Oldest',
-  oldestToNewest = 'Oldest to Newest',
-  shortestToLongest = 'Shortest to Longest'
+  FirstPlayerToLastPlayer = 'First player to Last player',
+  LastPlayerToFirstPlayer = 'Last player to First player',
+  LongestToShortest = 'Longest to Shortest',
+  NewestToOldest = 'Newest to Oldest',
+  OldestToNewest = 'Oldest to Newest',
+  ShortestToLongest = 'Shortest to Longest'
 }
+
+export enum TimeFrequency {
+  Daily = 'daily',
+  None = 'none',
+  Weekly = 'weekly'
+}
+
+export enum TimeType {
+  Challenges = 'challenges',
+  Map = 'map',
+  Season = 'season'
+}
+
+export enum TimeStatus {
+  Closing = 'closing',
+  Launch = 'launch',
+  Opening = 'opening',
+  Reset = 'reset'
+}
+
+export type APITime = {
+  frequency: TimeFrequency;
+  name: string;
+  status: TimeStatus;
+  time: number;
+  type: TimeType;
+};

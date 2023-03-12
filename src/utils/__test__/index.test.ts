@@ -1,8 +1,12 @@
-import { TimeUnit } from '../../types';
+import { APITime, TimeFrequency, TimeStatus, TimeType, TimeUnit } from '../../types';
 import {
   calculateRemainingSeconds,
   getCurrentTimestamp,
   getEndTime,
+  getNextStatus,
+  getNextTime,
+  getUTCDayOffset,
+  getWeeklyTime,
   isNullTimeValue,
   numberRange,
   sanitizeTimersCookie
@@ -30,11 +34,112 @@ test('getEndTime', () => {
   expect(getEndTime({ timerIndex: 0, timestampStart: 13 * 3_600 + 60, durationSec: 7_200 + 24 * 60 })).toBe('04:25 PM');
 });
 
+test('getUTCDayOffset', () => {
+  expect(getUTCDayOffset(0)).toBe(0);
+  expect(getUTCDayOffset(1 * 86_400)).toBe(1);
+  expect(getUTCDayOffset(2 * 86_400)).toBe(2);
+  expect(getUTCDayOffset(3 * 86_400)).toBe(3);
+  expect(getUTCDayOffset(4 * 86_400)).toBe(4);
+  expect(getUTCDayOffset(5 * 86_400)).toBe(5);
+  expect(getUTCDayOffset(6 * 86_400)).toBe(6);
+  expect(getUTCDayOffset(7 * 86_400)).toBe(0);
+
+  expect(getUTCDayOffset(1.5 * 86_400)).toBe(1);
+  expect(getUTCDayOffset(1678471200)).toBe(1);
+  expect(getUTCDayOffset(1678125600)).toBe(4);
+});
+
+test('getNextTime', () => {
+  expect(getNextTime(0, 0, TimeFrequency.None)).toBe(86_400);
+
+  expect(getNextTime(0, 0, TimeFrequency.Daily)).toBe(86_400);
+  expect(getNextTime(86_399, 0, TimeFrequency.Daily)).toBe(86_400);
+  expect(getNextTime(86_400, 0, TimeFrequency.Daily)).toBe(172_800);
+  expect(getNextTime(86_401, 0, TimeFrequency.Daily)).toBe(172_800);
+  expect(getNextTime(172_799, 0, TimeFrequency.Daily)).toBe(172800);
+
+  expect(getNextTime(0, 1678078800, TimeFrequency.Daily)).toBe(18_000);
+  expect(getNextTime(1678032694, 1678078800, TimeFrequency.Daily)).toBe(1678078800);
+  expect(getNextTime(1678078799, 1678078800, TimeFrequency.Daily)).toBe(1678078800);
+  expect(getNextTime(1678078800, 1678078800, TimeFrequency.Daily)).toBe(1678165200);
+  expect(getNextTime(2678032694, 1678078800, TimeFrequency.Daily)).toBe(2678072400);
+  expect(getNextTime(2678072400, 1678078800, TimeFrequency.Daily)).toBe(2678158800);
+
+  expect(getNextTime(0, 0, TimeFrequency.Weekly)).toBe(604_800);
+  expect(getNextTime(86_399, 0, TimeFrequency.Weekly)).toBe(604_800);
+  expect(getNextTime(604_799, 0, TimeFrequency.Weekly)).toBe(604_800);
+  expect(getNextTime(604_800, 0, TimeFrequency.Weekly)).toBe(1_209_600);
+  expect(getNextTime(604_801, 0, TimeFrequency.Weekly)).toBe(1_209_600);
+  expect(getNextTime(1_209_599, 0, TimeFrequency.Weekly)).toBe(1_209_600);
+
+  expect(getNextTime(0, 1678471200, TimeFrequency.Weekly)).toBe(151_200);
+  expect(getNextTime(1678471199, 1678471200, TimeFrequency.Weekly)).toBe(1678471200);
+  expect(getNextTime(1678471200, 1678471200, TimeFrequency.Weekly)).toBe(1679076000);
+  expect(getNextTime(2678032694, 1678471200, TimeFrequency.Weekly)).toBe(2678205600);
+
+  expect(getNextTime(0, 1678125600, TimeFrequency.Weekly)).toBe(410400);
+  expect(getNextTime(1678125599, 1678125600, TimeFrequency.Weekly)).toBe(1678125600);
+  expect(getNextTime(1678125600, 1678125600, TimeFrequency.Weekly)).toBe(1678730400);
+  expect(getNextTime(2678032694, 1678125600, TimeFrequency.Weekly)).toBe(2678464800);
+});
+
+test('getNextStatus', () => {
+  const times: APITime[] = [
+    {
+      type: TimeType.Map,
+      name: 'Building 21',
+      frequency: TimeFrequency.Weekly,
+      status: TimeStatus.Opening,
+      time: 1678471200
+    },
+    {
+      type: TimeType.Map,
+      name: 'Building 21',
+      frequency: TimeFrequency.Weekly,
+      status: TimeStatus.Closing,
+      time: 1678125600
+    }
+  ];
+
+  expect(getNextStatus(0, [])).toBe(-1);
+  expect(getNextStatus(0, [times[0]])).toBe(TimeStatus.Opening);
+  expect(getNextStatus(0, [times[1]])).toBe(TimeStatus.Closing);
+  expect(getNextStatus(0, times)).toBe(TimeStatus.Opening);
+
+  expect(getNextStatus(1678471199, times)).toBe(TimeStatus.Opening);
+  expect(getNextStatus(1678471200, times)).toBe(TimeStatus.Closing);
+  expect(getNextStatus(1678471201, times)).toBe(TimeStatus.Closing);
+
+  expect(getNextStatus(1678125599, times)).toBe(TimeStatus.Closing);
+  expect(getNextStatus(1678125600, times)).toBe(TimeStatus.Opening);
+  expect(getNextStatus(1678125601, times)).toBe(TimeStatus.Opening);
+});
+
+test('getWeeklyTime', () => {
+  expect(getWeeklyTime(1678471200)).toBe('Fri 07:00 PM');
+  expect(getWeeklyTime(1678125600)).toBe('Mon 07:00 PM');
+});
+
 test('isNullTimeValue', () => {
-  expect(isNullTimeValue({ [TimeUnit.Hour]: 1, [TimeUnit.Minute]: 2, [TimeUnit.Second]: 3 })).toBe(false);
-  expect(isNullTimeValue({ [TimeUnit.Hour]: 1, [TimeUnit.Minute]: 0, [TimeUnit.Second]: 0 })).toBe(false);
-  expect(isNullTimeValue({ [TimeUnit.Hour]: 0, [TimeUnit.Minute]: 0, [TimeUnit.Second]: 0 })).toBe(true);
-  expect(isNullTimeValue({ [TimeUnit.Hour]: -1, [TimeUnit.Minute]: 10, [TimeUnit.Second]: 24 })).toBe(true);
+  expect(isNullTimeValue({ [TimeUnit.Day]: 0, [TimeUnit.Hour]: 1, [TimeUnit.Minute]: 2, [TimeUnit.Second]: 3 })).toBe(
+    false
+  );
+
+  expect(isNullTimeValue({ [TimeUnit.Day]: 0, [TimeUnit.Hour]: 1, [TimeUnit.Minute]: 0, [TimeUnit.Second]: 0 })).toBe(
+    false
+  );
+
+  expect(isNullTimeValue({ [TimeUnit.Day]: 1, [TimeUnit.Hour]: 1, [TimeUnit.Minute]: 0, [TimeUnit.Second]: 0 })).toBe(
+    false
+  );
+
+  expect(isNullTimeValue({ [TimeUnit.Day]: 0, [TimeUnit.Hour]: 0, [TimeUnit.Minute]: 0, [TimeUnit.Second]: 0 })).toBe(
+    true
+  );
+
+  expect(
+    isNullTimeValue({ [TimeUnit.Day]: 0, [TimeUnit.Hour]: -1, [TimeUnit.Minute]: 10, [TimeUnit.Second]: 24 })
+  ).toBe(true);
 });
 
 test('numberRange', () => {

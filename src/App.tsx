@@ -30,6 +30,7 @@ import { excludeTimerByIndex, pickTimerByIndex } from './utils/filter';
 import { FAQ } from './components/FAQ';
 import classnames from 'classnames';
 import { Header } from './components/Header';
+import { OtherTimers } from './components/OtherTimers';
 
 function App() {
   const [cookies, setCookie] = useCookies([COOKIE_TIMERS]);
@@ -42,6 +43,7 @@ function App() {
   const [timerIndex, setTimerIndex] = React.useState(0);
   const [currentTimestamp, setCurrentTimestamp] = React.useState(getCurrentTimestamp());
   const [timerValue, setTimerValue] = React.useState<TimeValue>({
+    [TimeUnit.Day]: 0,
     [TimeUnit.Hour]: HOURS_PER_SLOT,
     [TimeUnit.Minute]: 0,
     [TimeUnit.Second]: 0
@@ -49,7 +51,13 @@ function App() {
 
   const playerTimerIndex = convertTimerIndexToPlayerTimerIndex(timerIndex);
   const hoursForTimer = convertPlayerTimerIndexToHourTimer(playerTimerIndex);
-  const quickOptionTimerValue = { [TimeUnit.Hour]: hoursForTimer, [TimeUnit.Minute]: 0, [TimeUnit.Second]: 0 };
+  const quickOptionTimerValue: TimeValue = {
+    [TimeUnit.Day]: 0,
+    [TimeUnit.Hour]: hoursForTimer,
+    [TimeUnit.Minute]: 0,
+    [TimeUnit.Second]: 0
+  };
+
   const copyLostWeapon = `Add new ${hoursForTimer}-hour timer`;
   const copyLostWeaponEdit = `Edit to ${hoursForTimer}-hour timer`;
   const timerValuesAreNull = isNullTimeValue(timerValue);
@@ -88,7 +96,12 @@ function App() {
     const newValue = Number(value);
     const isMaxHour = timeLabel === TimeUnit.Hour && newValue === MAX_HOURS_FOR_TIMER;
     const newTimerValue = isMaxHour
-      ? { [TimeUnit.Hour]: MAX_HOURS_FOR_TIMER, [TimeUnit.Minute]: 0, [TimeUnit.Second]: 0 }
+      ? {
+          [TimeUnit.Day]: 0,
+          [TimeUnit.Hour]: MAX_HOURS_FOR_TIMER,
+          [TimeUnit.Minute]: 0,
+          [TimeUnit.Second]: 0
+        }
       : { ...timerValue, [timeLabel]: newValue };
 
     setTimerValue(newTimerValue);
@@ -346,6 +359,7 @@ function App() {
           {renderSortOptions()}
         </select>
         <div className="flex justify-center flex-wrap mt-2.5">{renderTimers()}</div>
+        <OtherTimers currentTimestamp={currentTimestamp} />
         <FAQ />
       </section>
       <Footer />

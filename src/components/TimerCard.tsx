@@ -74,7 +74,7 @@ const TimerCard: React.FC<TimerCardProps> = (props) => {
     { value: hours, label: TimeUnit.Hour },
     { value: minutes, label: TimeUnit.Minute },
     { value: seconds, label: TimeUnit.Second }
-  ].map((element: { value: number; label: string }) => {
+  ].map((element: { value: number; label: TimeUnit }) => {
     const { value, label: l } = element;
     const isFixed =
       (l === TimeUnit.Hour && isFixedHours) ||

@@ -1,0 +1,227 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OpenClosedTimer 1`] = `
+NodeList [
+  <div
+    class="bg-neutral-800 border-solid border-2 rounded-lg border-green-500 m-2.5 p-2.5 relative w-72 sm:w-80"
+  >
+    <div
+      class="font-bold my-1 text-lg text-green-500"
+    >
+      Building 21 is open
+    </div>
+    <div
+      class="font-bold my-1 text-lg"
+    >
+      It closes in
+    </div>
+    <ul
+      class="timer-card flex justify-center"
+    >
+      <li
+        class="inline-block mx-2.5"
+      >
+        <span
+          class="font-bold text-4xl"
+        >
+          02
+        </span>
+        <div
+          class="text-sm"
+        >
+          days
+        </div>
+      </li>
+      <li
+        class="inline-block mx-2.5"
+      >
+        <span
+          class="font-bold text-4xl"
+        >
+          23
+        </span>
+        <div
+          class="text-sm"
+        >
+          hrs
+        </div>
+      </li>
+      <li
+        class="inline-block mx-2.5"
+      >
+        <span
+          class="font-bold text-4xl"
+        >
+          59
+        </span>
+        <div
+          class="text-sm"
+        >
+          min
+        </div>
+      </li>
+      <li
+        class="inline-block mx-2.5"
+      >
+        <span
+          class="font-bold text-4xl"
+        >
+          59
+        </span>
+        <div
+          class="text-sm"
+        >
+          sec
+        </div>
+      </li>
+    </ul>
+    <div
+      class="text-sm"
+    >
+      <div
+        class="flex text-left pl-2.5"
+      >
+        <div
+          class="grow"
+        >
+          Weekly Opening:
+        </div>
+         
+        <div
+          class="font-bold pr-1 text-green-500"
+        >
+          Fri 07:00 PM
+        </div>
+      </div>
+      <div
+        class="flex text-left pl-2.5"
+      >
+        <div
+          class="grow"
+        >
+          Weekly Closing:
+        </div>
+         
+        <div
+          class="font-bold pr-1 text-orange-500"
+        >
+          Mon 07:00 PM
+        </div>
+      </div>
+    </div>
+  </div>,
+]
+`;
+
+exports[`OpenClosedTimer 2`] = `
+NodeList [
+  <div
+    class="bg-neutral-800 border-solid border-2 rounded-lg border-orange-500 m-2.5 p-2.5 relative w-72 sm:w-80"
+  >
+    <div
+      class="font-bold my-1 text-lg text-orange-500"
+    >
+      Building 21 is closed
+    </div>
+    <div
+      class="font-bold my-1 text-lg"
+    >
+      It opens in
+    </div>
+    <ul
+      class="timer-card flex justify-center"
+    >
+      <li
+        class="inline-block mx-2.5"
+      >
+        <span
+          class="font-bold text-4xl"
+        >
+          03
+        </span>
+        <div
+          class="text-sm"
+        >
+          days
+        </div>
+      </li>
+      <li
+        class="inline-block mx-2.5"
+      >
+        <span
+          class="font-bold text-4xl"
+        >
+          23
+        </span>
+        <div
+          class="text-sm"
+        >
+          hrs
+        </div>
+      </li>
+      <li
+        class="inline-block mx-2.5"
+      >
+        <span
+          class="font-bold text-4xl"
+        >
+          59
+        </span>
+        <div
+          class="text-sm"
+        >
+          min
+        </div>
+      </li>
+      <li
+        class="inline-block mx-2.5"
+      >
+        <span
+          class="font-bold text-4xl"
+        >
+          59
+        </span>
+        <div
+          class="text-sm"
+        >
+          sec
+        </div>
+      </li>
+    </ul>
+    <div
+      class="text-sm"
+    >
+      <div
+        class="flex text-left pl-2.5"
+      >
+        <div
+          class="grow"
+        >
+          Weekly Opening:
+        </div>
+         
+        <div
+          class="font-bold pr-1 text-green-500"
+        >
+          Fri 07:00 PM
+        </div>
+      </div>
+      <div
+        class="flex text-left pl-2.5"
+      >
+        <div
+          class="grow"
+        >
+          Weekly Closing:
+        </div>
+         
+        <div
+          class="font-bold pr-1 text-orange-500"
+        >
+          Mon 07:00 PM
+        </div>
+      </div>
+    </div>
+  </div>,
+]
+`;
