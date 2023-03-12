@@ -126,10 +126,10 @@ const getUTCDayOffset = (timestamp: number) => {
   const date = new Date(timestamp * 1000);
 
   // 0 Sunday, 1 Monday, 2 Tuesday, 3 Wednesday, 4 Thursday, 5 Friday, 6 Saturday
-  const currentDay = date.getUTCDay();
+  const day = date.getUTCDay();
 
-  if ([0, 1, 2, 3].includes(currentDay)) return currentDay + 3;
-  if ([5, 6].includes(currentDay)) return currentDay - 4;
+  if ([0, 1, 2, 3].includes(day)) return day + 3;
+  if ([5, 6].includes(day)) return day - 4;
 
   return 0;
 };
