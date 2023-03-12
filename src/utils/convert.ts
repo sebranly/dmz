@@ -40,8 +40,8 @@ const convertSecondsToMoney = (seconds: number, hourlyRate: number) => {
  * @name convertSecondsToTimeValue
  * @description Returns the same time value but in days, hours, minutes and seconds
  */
-const convertSecondsToTimeValue = (seconds: number): TimeValue => {
-  if (seconds <= 0) {
+const convertSecondsToTimeValue = (secondsTotal: number): TimeValue => {
+  if (secondsTotal <= 0) {
     return {
       [TimeUnit.Day]: 0,
       [TimeUnit.Hour]: 0,
@@ -50,16 +50,16 @@ const convertSecondsToTimeValue = (seconds: number): TimeValue => {
     };
   }
 
-  const days = Math.floor(seconds / (3_600 * 24));
-  const hours = Math.floor((seconds % (3_600 * 24)) / 3_600);
-  const minutes = Math.floor((seconds % 3_600) / 60);
-  const secondsBis = Math.floor(seconds % 60);
+  const days = Math.floor(secondsTotal / (3_600 * 24));
+  const hours = Math.floor((secondsTotal % (3_600 * 24)) / 3_600);
+  const minutes = Math.floor((secondsTotal % 3_600) / 60);
+  const seconds = Math.floor(secondsTotal % 60);
 
   return {
     [TimeUnit.Day]: days,
     [TimeUnit.Hour]: hours,
     [TimeUnit.Minute]: minutes,
-    [TimeUnit.Second]: secondsBis
+    [TimeUnit.Second]: seconds
   };
 };
 
@@ -95,11 +95,12 @@ const convertTimeValueToSeconds = (timeValue: TimeValue) => {
     [TimeUnit.Second]: seconds
   } = timeValue;
 
-  const secondsBis = days * 24 * 3_600 + hours * 3_600 + minutes * 60 + seconds;
-  return secondsBis;
+  const secondsTotal = days * 24 * 3_600 + hours * 3_600 + minutes * 60 + seconds;
+  return secondsTotal;
 };
 
 /**
+ * TODO: delete if not used
  * @name getSeasonId
  * @description Picks the season id based on a string describing the season
  */
@@ -108,7 +109,10 @@ const getSeasonId = (text: string) => {
   const nb = Number(id);
   const isReloaded = text.toLowerCase().includes('reloaded');
   const reloadedOffset = isReloaded ? 0.5 : 0;
-  return isNaN(nb) ? -1 : nb + reloadedOffset;
+
+  if (isNaN(nb)) return isReloaded ? reloadedOffset : -1;
+
+  return nb + reloadedOffset;
 };
 
 export {

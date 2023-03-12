@@ -34,10 +34,14 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
 
   const { className, currentTimestamp } = props;
 
+  if (times.length === 0) return null;
+
   const timesBuilding21 = times.filter((time: APITime) => {
     const { name, type } = time;
     return type === TimeType.Map && name === 'Building 21';
   });
+
+  if (timesBuilding21.length !== 2) return null;
 
   return (
     <div className={className}>

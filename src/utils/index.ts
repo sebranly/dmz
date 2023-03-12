@@ -120,12 +120,13 @@ const sanitizeTimersCookie = (cookieValue: any, maxTimers = MAX_TIMERS) => {
  * @name getUTCDayOffset
  * @description Returns the offset, in days, relative to the previous Thursday
  * Thu, 01 Jan 1970 00:00:00 GMT is the origin
- * @param currentTimestamp is in seconds
+ * @param timestamp is in seconds
  */
 const getUTCDayOffset = (timestamp: number) => {
-  const currentDate = new Date(timestamp * 1000);
-  // 0 Sunday, 1 monday, 2 tuesday, 3 wednesday, 4 thursday, 5 friday, 6 saturday
-  const currentDay = currentDate.getUTCDay();
+  const date = new Date(timestamp * 1000);
+
+  // 0 Sunday, 1 Monday, 2 Tuesday, 3 Wednesday, 4 Thursday, 5 Friday, 6 Saturday
+  const currentDay = date.getUTCDay();
 
   if ([0, 1, 2, 3].includes(currentDay)) return currentDay + 3;
   if ([5, 6].includes(currentDay)) return currentDay - 4;
@@ -154,13 +155,13 @@ const getNextTime = (currentTimestamp: number, resetTimestamp: number, frequency
 
 /**
  * @name getNextTimeStatus
- * @description For an element that can have several statuses, it returns the closer one in the future
+ * @description For an element that can have several statuses, it returns the closest next status
  */
 const getNextStatus = (currentTimestamp: number, times: APITime[]) => {
   if (times.length === 0) return -1;
   if (times.length === 1) return times[0].status;
 
-  let closerStatus;
+  let closestStatus;
   let minValue = Number.MAX_SAFE_INTEGER;
 
   times.forEach((timeBis: APITime) => {
@@ -168,11 +169,11 @@ const getNextStatus = (currentTimestamp: number, times: APITime[]) => {
     const nextTime = getNextTime(currentTimestamp, time, frequency);
     if (nextTime < minValue) {
       minValue = nextTime;
-      closerStatus = status;
+      closestStatus = status;
     }
   });
 
-  return closerStatus;
+  return closestStatus;
 };
 
 export {

@@ -31,8 +31,8 @@ const displayTimeValue = (timeValue: TimeValue) => {
   const minutesString = `${displayWithTwoDigits(minutes)}m`;
   const secondsString = `${displayWithTwoDigits(seconds)}s`;
 
-  const daysStringSuffix = days > 0 ? `${daysString} ` : '';
-  const finalString = `${daysStringSuffix}${hoursString} ${minutesString} ${secondsString}`;
+  const daysStringPrefix = days > 0 ? `${daysString} ` : '';
+  const finalString = `${daysStringPrefix}${hoursString} ${minutesString} ${secondsString}`;
   return finalString;
 };
 
