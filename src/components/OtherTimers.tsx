@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { URL_DATA } from '../constants/general';
-import { APITime, TimeType } from '../types';
+import { APITime, TimeStatus, TimeType } from '../types';
 import { Header } from './Header';
 import { OpenClosedTimer } from './OpenClosedTimer';
+import { PeriodicTimer } from './PeriodicTimer';
 
 export interface OtherTimersProps {
   className?: string;
@@ -18,6 +19,7 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
         const response = await fetch(URL_DATA);
         const data = await response.json();
         const safeTimes = (data.times || []) as APITime[];
+
         setTimes(safeTimes);
       } catch (error) {
         console.log(error);
@@ -36,18 +38,37 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
 
   if (times.length === 0) return null;
 
+  const periodicTimers = times.filter((time: APITime) => {
+    const { status } = time;
+    return status === TimeStatus.Reset;
+  });
+
   const timesBuilding21 = times.filter((time: APITime) => {
     const { name, type } = time;
     return type === TimeType.Map && name === 'Building 21';
   });
 
-  if (timesBuilding21.length !== 2) return null;
+  const renderPeriodicTimers = (times: APITime[]) => {
+    if (times.length === 0) return null;
+
+    return times.map((time: APITime) => {
+      const { frequency, name, type } = time;
+      const key = `${frequency}-${name}-${type}`;
+
+      return <PeriodicTimer currentTimestamp={currentTimestamp} key={key} time={time} />;
+    });
+  };
 
   return (
     <div className={className}>
       <Header text="Other Timers" />
       <div>
-        <OpenClosedTimer currentTimestamp={currentTimestamp} times={timesBuilding21} />
+        <div className="flex justify-center flex-wrap mt-2.5">
+          {renderPeriodicTimers(periodicTimers)}
+          {timesBuilding21.length === 2 && (
+            <OpenClosedTimer currentTimestamp={currentTimestamp} times={timesBuilding21} />
+          )}
+        </div>
       </div>
     </div>
   );

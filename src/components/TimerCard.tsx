@@ -11,6 +11,7 @@ import {
 } from '../utils/convert';
 import { displayWithTwoDigits, formatMoney, getPlayerColor, pluralize } from '../utils/display';
 import classnames from 'classnames';
+import { getTimerClasses } from '../utils/tailwind';
 
 export interface TimerCardProps {
   className?: string;
@@ -55,18 +56,7 @@ const TimerCard: React.FC<TimerCardProps> = (props) => {
   const classnamesTitle = 'font-bold my-1 text-lg';
   const classnamesPlayerColor = `text-${color}-500`;
   const classnamesPlayerTitle = classnames(classnamesTitle, classnamesPlayerColor);
-  const classnamesComponent = classnames(
-    className,
-    'bg-neutral-800',
-    'border-solid',
-    'border-2',
-    'rounded-lg',
-    `border-${color}-500`,
-    'm-2.5',
-    'p-2.5',
-    'relative',
-    'w-72 sm:w-80'
-  );
+  const classnamesComponent = getTimerClasses(color, className);
 
   const classnamesMoney = classnames('font-bold pr-1', classnamesPlayerColor);
 

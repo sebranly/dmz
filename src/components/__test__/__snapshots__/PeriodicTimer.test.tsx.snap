@@ -1,19 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`OpenClosedTimer 1`] = `
+exports[`PeriodicTimer 1`] = `
 NodeList [
   <div
-    class="bg-neutral-800 border-solid border-2 rounded-lg border-green-500 m-2.5 p-2.5 relative w-72 sm:w-80"
+    class="bg-neutral-800 border-solid border-2 rounded-lg border-blue-500 m-2.5 p-2.5 relative w-72 sm:w-80"
   >
     <div
-      class="font-bold my-1 text-lg text-green-500"
+      class="font-bold my-1 text-lg text-blue-500"
     >
-      Building 21 is open
+      Daily Challenges
     </div>
     <div
       class="font-bold my-1 text-lg"
     >
-      It closes in
+      It resets in
     </div>
     <ul
       class="timer-card flex justify-center"
@@ -22,61 +22,47 @@ NodeList [
         class="inline-block mx-2.5"
       >
         <span
-          class="font-bold text-4xl"
-        >
-          02
-        </span>
-        <div
-          class="text-sm"
-        >
-          days
-        </div>
-      </li>
-      <li
-        class="inline-block mx-2.5"
-      >
-        <span
-          class="font-bold text-4xl"
+          class="font-bold text-5xl"
         >
           23
         </span>
         <div
           class="text-sm"
         >
-          hrs
+          hours
         </div>
       </li>
       <li
         class="inline-block mx-2.5"
       >
         <span
-          class="font-bold text-4xl"
+          class="font-bold text-5xl"
         >
           59
         </span>
         <div
           class="text-sm"
         >
-          min
+          minutes
         </div>
       </li>
       <li
         class="inline-block mx-2.5"
       >
         <span
-          class="font-bold text-4xl"
+          class="font-bold text-5xl"
         >
           59
         </span>
         <div
           class="text-sm"
         >
-          sec
+          seconds
         </div>
       </li>
     </ul>
     <div
-      class="text-xs sm:text-sm"
+      class="text-sm"
     >
       <div
         class="flex text-left pl-2.5"
@@ -84,28 +70,12 @@ NodeList [
         <div
           class="grow"
         >
-          Weekly Opening:
+          Daily Reset:
         </div>
-         
         <div
-          class="font-bold pr-1 text-green-500"
+          class="font-bold pr-1 text-blue-500"
         >
-          Fri 07:00 PM
-        </div>
-      </div>
-      <div
-        class="flex text-left pl-2.5"
-      >
-        <div
-          class="grow"
-        >
-          Weekly Closing:
-        </div>
-         
-        <div
-          class="font-bold pr-1 text-orange-500"
-        >
-          Mon 07:00 PM
+          06:00 AM
         </div>
       </div>
     </div>
@@ -113,20 +83,20 @@ NodeList [
 ]
 `;
 
-exports[`OpenClosedTimer 2`] = `
+exports[`PeriodicTimer 2`] = `
 NodeList [
   <div
-    class="bg-neutral-800 border-solid border-2 rounded-lg border-orange-500 m-2.5 p-2.5 relative w-72 sm:w-80"
+    class="bg-neutral-800 border-solid border-2 rounded-lg border-blue-500 m-2.5 p-2.5 relative w-72 sm:w-80"
   >
     <div
-      class="font-bold my-1 text-lg text-orange-500"
+      class="font-bold my-1 text-lg text-blue-500"
     >
-      Building 21 is closed
+      Weekly Challenges
     </div>
     <div
       class="font-bold my-1 text-lg"
     >
-      It opens in
+      It resets in
     </div>
     <ul
       class="timer-card flex justify-center"
@@ -137,7 +107,7 @@ NodeList [
         <span
           class="font-bold text-4xl"
         >
-          03
+          06
         </span>
         <div
           class="text-sm"
@@ -189,7 +159,7 @@ NodeList [
       </li>
     </ul>
     <div
-      class="text-xs sm:text-sm"
+      class="text-sm"
     >
       <div
         class="flex text-left pl-2.5"
@@ -197,28 +167,12 @@ NodeList [
         <div
           class="grow"
         >
-          Weekly Opening:
+          Weekly Reset:
         </div>
-         
         <div
-          class="font-bold pr-1 text-green-500"
+          class="font-bold pr-1 text-blue-500"
         >
-          Fri 07:00 PM
-        </div>
-      </div>
-      <div
-        class="flex text-left pl-2.5"
-      >
-        <div
-          class="grow"
-        >
-          Weekly Closing:
-        </div>
-         
-        <div
-          class="font-bold pr-1 text-orange-500"
-        >
-          Mon 07:00 PM
+          Mon 06:00 AM
         </div>
       </div>
     </div>
