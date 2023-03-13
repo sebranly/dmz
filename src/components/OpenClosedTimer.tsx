@@ -10,6 +10,7 @@ import {
   getStatusVerb,
   getTimeUnitAbbreviation
 } from '../utils/display';
+import { getTimerClasses } from '../utils/tailwind';
 
 export interface OpenClosedTimerProps {
   className?: string;
@@ -28,8 +29,8 @@ const OpenClosedTimer: React.FC<OpenClosedTimerProps> = (props) => {
   if (!nextStatusTime) return null;
 
   const { name, time: resetTime, frequency } = nextStatusTime;
-  const nextTime = getNextTime(currentTimestamp, resetTime, frequency);
 
+  const nextTime = getNextTime(currentTimestamp, resetTime, frequency);
   const remainingSeconds = nextTime - currentTimestamp;
 
   const statusTitle = `${name} is ${getStatusAdjective(nextStatus)}`;
@@ -66,19 +67,7 @@ const OpenClosedTimer: React.FC<OpenClosedTimerProps> = (props) => {
 
   const weeklyOpeningTime = nextStatus === TimeStatus.Opening ? getWeeklyTime(nextTime) : getWeeklyTime(nextOtherTime);
   const weeklyClosingTime = nextStatus === TimeStatus.Closing ? getWeeklyTime(nextTime) : getWeeklyTime(nextOtherTime);
-
-  const classnamesComponent = classnames(
-    className,
-    'bg-neutral-800',
-    'border-solid',
-    'border-2',
-    'rounded-lg',
-    `border-${color}-500`,
-    'm-2.5',
-    'p-2.5',
-    'relative',
-    'w-72 sm:w-80'
-  );
+  const classnamesComponent = getTimerClasses(color, className);
 
   const items = [
     { value: days, label: TimeUnit.Day },
@@ -109,7 +98,7 @@ const OpenClosedTimer: React.FC<OpenClosedTimerProps> = (props) => {
       <div className={classnamesSubtitle}>{statusSubtitle}</div>
       <ul className="timer-card flex justify-center">{items}</ul>
       {frequency === TimeFrequency.Weekly && (
-        <div className="text-sm">
+        <div className="text-xs sm:text-sm">
           <div className="flex text-left pl-2.5">
             <div className="grow">Weekly Opening:</div> <div className={classnamesOpeningTime}>{weeklyOpeningTime}</div>
           </div>

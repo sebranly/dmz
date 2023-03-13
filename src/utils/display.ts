@@ -71,6 +71,8 @@ const getPlayerColor = (playerIndex: number) => {
  * @description Returns the current color based on next status
  */
 const getStatusColor = (nextStatus: TimeStatus) => {
+  if (nextStatus === TimeStatus.Reset) return Color.Blue;
+
   return nextStatus === TimeStatus.Closing ? Color.Green : Color.Orange;
 };
 
@@ -87,6 +89,8 @@ const getStatusAdjective = (nextStatus: TimeStatus) => {
  * @description Returns the verb for next status based on next status
  */
 const getStatusVerb = (nextStatus: TimeStatus) => {
+  if (nextStatus === TimeStatus.Reset) return 'resets';
+
   return nextStatus === TimeStatus.Closing ? 'closes' : 'opens';
 };
 
@@ -139,6 +143,18 @@ const pluralize = (str: string, nb: number) => {
   return `${str}s`;
 };
 
+/**
+ * @name titleize
+ * @description Returns the same string but starting with a capital letter
+ */
+const titleize = (str: string) => {
+  if (!str) return '';
+
+  const capitalLetter = str.charAt(0).toUpperCase();
+
+  return `${capitalLetter}${str.substring(1)}`;
+};
+
 export {
   displayTimeValue,
   displayWithTwoDigits,
@@ -149,5 +165,6 @@ export {
   getStatusColor,
   getStatusVerb,
   getTimeUnitAbbreviation,
-  pluralize
+  pluralize,
+  titleize
 };

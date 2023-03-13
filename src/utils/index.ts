@@ -1,6 +1,12 @@
 import { MAX_TIMERS } from '../constants/game';
 import { APITime, TimeFrequency, Timer, TimeUnit, TimeValue } from '../types';
 
+const commonDateOptions: Intl.DateTimeFormatOptions = {
+  hour: '2-digit',
+  minute: '2-digit',
+  hour12: true
+};
+
 /**
  * @name calculateRemainingSeconds
  * @description Calculates how many more seconds are left before a timer runs out
@@ -26,26 +32,30 @@ const calculateRemainingSeconds = (timer: Timer, currentTimestamp: number) => {
 const getCurrentTimestamp = () => Math.floor(Date.now() / 1000);
 
 /**
+ * @name getDailyTime
+ * @description Returns the expected daily time (without the weekday)
+ */
+const getDailyTime = (timestamp: number) => {
+  return new Date(timestamp * 1000).toLocaleString('en-US', commonDateOptions);
+};
+
+/**
  * @name getEndTime
  * @description Returns the expected end time of a timer (if no money is being used)
  */
 const getEndTime = (timer: Timer) => {
   const { durationSec, timestampStart } = timer;
-  const endTime = (timestampStart + durationSec) * 1000;
-  return new Date(endTime).toLocaleString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+  const endTime = timestampStart + durationSec;
+  return getDailyTime(endTime);
 };
 
 /**
  * @name getWeeklyTime
  * @description Returns the expected weekly time (with the weekday)
  */
-const getWeeklyTime = (nextTimestamp: number) => {
-  return new Date(nextTimestamp * 1000).toLocaleString('en-US', {
-    weekday: 'short',
-    hour: '2-digit',
-    minute: '2-digit',
-    hour12: true
-  });
+const getWeeklyTime = (timestamp: number) => {
+  const options: Intl.DateTimeFormatOptions = { ...commonDateOptions, weekday: 'short' };
+  return new Date(timestamp * 1000).toLocaleString('en-US', options);
 };
 
 /**
@@ -179,6 +189,7 @@ const getNextStatus = (currentTimestamp: number, times: APITime[]) => {
 export {
   calculateRemainingSeconds,
   getCurrentTimestamp,
+  getDailyTime,
   getEndTime,
   getNextTime,
   getNextStatus,
