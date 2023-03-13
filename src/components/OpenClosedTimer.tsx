@@ -34,7 +34,7 @@ const OpenClosedTimer: React.FC<OpenClosedTimerProps> = (props) => {
   const remainingSeconds = nextTime - currentTimestamp;
 
   const statusTitle = `${name} is ${getStatusAdjective(nextStatus)}`;
-  const statusSubtitle = `It ${getStatusVerb(nextStatus)} in`;
+  const statusSubtitle = `It ${getStatusVerb(nextStatus)}s in`;
 
   const otherStatus = nextStatus === TimeStatus.Closing ? TimeStatus.Opening : TimeStatus.Closing;
   const otherStatusTime = times.find((time: APITime) => time.status === otherStatus);

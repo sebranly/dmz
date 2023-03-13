@@ -71,7 +71,7 @@ const getPlayerColor = (playerIndex: number) => {
  * @description Returns the current color based on next status
  */
 const getStatusColor = (nextStatus: TimeStatus) => {
-  if (nextStatus === TimeStatus.Reset) return Color.Blue;
+  if (nextStatus === TimeStatus.Reset) return Color.Yellow;
 
   return nextStatus === TimeStatus.Closing ? Color.Green : Color.Orange;
 };
@@ -89,9 +89,9 @@ const getStatusAdjective = (nextStatus: TimeStatus) => {
  * @description Returns the verb for next status based on next status
  */
 const getStatusVerb = (nextStatus: TimeStatus) => {
-  if (nextStatus === TimeStatus.Reset) return 'resets';
+  if (nextStatus === TimeStatus.Reset) return 'reset';
 
-  return nextStatus === TimeStatus.Closing ? 'closes' : 'opens';
+  return nextStatus === TimeStatus.Closing ? 'close' : 'open';
 };
 
 /**

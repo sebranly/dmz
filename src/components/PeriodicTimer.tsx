@@ -27,7 +27,7 @@ const PeriodicTimer: React.FC<PeriodicTimerProps> = (props) => {
   const remainingSeconds = nextTime - currentTimestamp;
 
   const isDaily = frequency === TimeFrequency.Daily;
-  const subtitle = `It ${getStatusVerb(status)} in`;
+  const subtitle = `They ${getStatusVerb(status)} in`;
   const color = getStatusColor(status);
 
   const classnamesColor = `text-${color}-500`;
