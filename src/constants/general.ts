@@ -12,7 +12,7 @@ export const URL_DATA = `${AUTHOR_GITHUB}/json/${PROJECT_NAME}/times.json`;
 export const YOUTUBE_REFERENCE = 'https://youtu.be/XtsRwpnUNAY';
 export const WEBSITE_TITLE = 'DMZ';
 export const WEBSITE_SUBTITLE = 'Currency to Cooldown Converter';
-export const WEBSITE_VERSION = '1.7.1';
+export const WEBSITE_VERSION = '1.8.0';
 
 export const SORT_OPTIONS = [
   DEFAULT_SORT_OPTION,
