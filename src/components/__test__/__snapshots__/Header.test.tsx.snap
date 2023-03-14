@@ -3,7 +3,7 @@
 exports[`Header 1`] = `
 NodeList [
   <h3
-    class="font-bold my-5 text-xl"
+    class="font-bold my-5 text-xl text-lime-500"
   >
     Bonjour
   </h3>,
