@@ -51,12 +51,12 @@ const PeriodicTimer: React.FC<PeriodicTimerProps> = (props) => {
   const resetTimeString = isDaily ? getDailyTime(nextTime) : getWeeklyTime(nextTime);
 
   const classnamesComponent = getTimerClasses(color, className);
-
   const commonItemsObj = [
     { value: hours, label: TimeUnit.Hour },
     { value: minutes, label: TimeUnit.Minute },
     { value: seconds, label: TimeUnit.Second }
   ];
+
   const itemsObj = isDaily ? commonItemsObj : [{ value: days, label: TimeUnit.Day }, ...commonItemsObj];
 
   const items = itemsObj.map((element: { value: number; label: TimeUnit }) => {

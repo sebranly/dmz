@@ -101,6 +101,7 @@ test('pluralize', () => {
 
 test('titleize', () => {
   expect(titleize('')).toBe('');
+  expect(titleize('a')).toBe('A');
   expect(titleize('ab')).toBe('Ab');
   expect(titleize('Ab')).toBe('Ab');
   expect(titleize('aB')).toBe('AB');

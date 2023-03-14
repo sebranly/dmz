@@ -52,8 +52,8 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
     if (times.length === 0) return null;
 
     return times.map((time: APITime) => {
-      const { frequency, name, type } = time;
-      const key = `${frequency}-${name}-${type}`;
+      const { frequency, name, time: resetTime, type } = time;
+      const key = `${frequency}-${name}-${type}-${resetTime}`;
 
       return <PeriodicTimer currentTimestamp={currentTimestamp} key={key} time={time} />;
     });
