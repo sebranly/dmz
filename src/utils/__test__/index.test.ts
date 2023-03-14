@@ -2,6 +2,7 @@ import { APITime, TimeFrequency, TimeStatus, TimeType, TimeUnit } from '../../ty
 import {
   calculateRemainingSeconds,
   getCurrentTimestamp,
+  getDailyTime,
   getEndTime,
   getNextStatus,
   getNextTime,
@@ -113,6 +114,10 @@ test('getNextStatus', () => {
   expect(getNextStatus(1678125599, times)).toBe(TimeStatus.Closing);
   expect(getNextStatus(1678125600, times)).toBe(TimeStatus.Opening);
   expect(getNextStatus(1678125601, times)).toBe(TimeStatus.Opening);
+});
+
+test('getDailyTime', () => {
+  expect(getDailyTime(1678471200)).toBe('07:00 PM');
 });
 
 test('getWeeklyTime', () => {
