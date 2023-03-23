@@ -40,7 +40,7 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
   if (times.length === 0) return null;
 
   const seasonTimer = times.find((time: APITime) => {
-    const { frequency, status, type } = time;
+    const { frequency, status, type } = time;
     const isNoneFrequency = frequency === TimeFrequency.None;
     const isLaunchStatus = status === TimeStatus.Launch;
     const isSeason = type === TimeType.Season;

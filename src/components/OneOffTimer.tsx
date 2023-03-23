@@ -68,9 +68,9 @@ const OneOffTimer: React.FC<OneOffTimerProps> = (props) => {
       <div className={classnamesTitle}>{name}</div>
       <div className={classnamesSubtitle}>{subtitle}</div>
       <ul className="timer-card flex justify-center">{items}</ul>
-      {isPast && <div className='text-sm'>The website will be updated in the next few days</div>}
+      {isPast && <div className="text-sm">The website will be updated in the next few days</div>}
     </div>
   );
-}
+};
 
-export { OneOffTimer };
+export { OneOffTimer };
