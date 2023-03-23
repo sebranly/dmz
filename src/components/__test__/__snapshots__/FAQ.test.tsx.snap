@@ -98,11 +98,6 @@ NodeList [
       <div
         class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
       >
-        <div
-          class="inline text-amber-500 hover:text-amber-600"
-        >
-          [New] 
-        </div>
         I think your formulae are incorrect [+]
       </div>
     </div>
@@ -126,11 +121,6 @@ NodeList [
       <div
         class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
       >
-        <div
-          class="inline text-amber-500 hover:text-amber-600"
-        >
-          [New] 
-        </div>
         Is there a time difference between the maps? [+]
       </div>
     </div>
@@ -140,11 +130,6 @@ NodeList [
       <div
         class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
       >
-        <div
-          class="inline text-amber-500 hover:text-amber-600"
-        >
-          [New] 
-        </div>
         Why is the maximum number of players high on this website? [+]
       </div>
     </div>

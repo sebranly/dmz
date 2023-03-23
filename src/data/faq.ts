@@ -84,7 +84,6 @@ const questionsAnswers: QuestionAnswer[] = [
     ]
   },
   {
-    isNew: true,
     yt: true,
     question: 'I think your formulae are incorrect',
     answer: [
@@ -114,14 +113,12 @@ const questionsAnswers: QuestionAnswer[] = [
     ]
   },
   {
-    isNew: true,
     question: 'Is there a time difference between the maps?',
     answer: [
       'No. Al Mazrah, Ashika Island and Building 21 all share the same dollars-per-hour rates (for both exfiltration and dead drops).'
     ]
   },
   {
-    isNew: true,
     question: `Why is the maximum number of players high on this website?`,
     answer: [
       `Although the maximum that DMZ mode accepts is ${getPlayersSize(
