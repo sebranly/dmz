@@ -1,6 +1,7 @@
 // Any constant that comes from the DMZ official game itself
 export const BRONZE_DOG_TAG_VALUE = 2_500;
-export const CURRENT_SEASON = 2;
+export const CURRENT_SEASON = 2.5;
+export const VIDEO_SEASON = 2;
 export const DEAD_DROP_HOURLY_RATE = 30_000;
 export const HOURS_PER_SLOT = 1;
 export const JERRYCAN_VALUE = 200;

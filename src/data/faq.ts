@@ -9,7 +9,7 @@ import {
   REGULAR_HOURLY_RATE,
   SENSITIVE_DOCUMENTS_VALUE
 } from '../constants/game';
-import { displayWithTwoDigits, formatMoney, getPlayersSize } from '../utils/display';
+import { displaySeason, formatMoney, getPlayersSize } from '../utils/display';
 import { QuestionAnswer } from '../types';
 import { COOKIE_TIMERS } from '../constants/general';
 
@@ -37,7 +37,7 @@ const questionsAnswers: QuestionAnswer[] = [
     question: 'What are the hourly rates?',
     answer: [
       `Dollars-per-hour rates have been determined by playing DMZ for several games during all seasons. It is a proportional function (linear function that includes the origin).`,
-      `The current season (Season ${displayWithTwoDigits(
+      `The current season (Season ${displaySeason(
         CURRENT_SEASON
       )}) is known to have the following rates: exfiltrating with the chopper (or elevator in Building 21) with $${formatMoney(
         REGULAR_HOURLY_RATE
@@ -84,11 +84,10 @@ const questionsAnswers: QuestionAnswer[] = [
     ]
   },
   {
-    isNew: true,
     yt: true,
     question: 'I think your formulae are incorrect',
     answer: [
-      `The formulae have been verified several times for all seasons including Season ${displayWithTwoDigits(
+      `The formulae have been verified several times for all seasons including Season ${displaySeason(
         CURRENT_SEASON
       )}.`,
       `The game is known to have multiple bugs affecting how the backpack total is being displayed (e.g. some items don't count in the total up until the end result screen). A bug happening on the result screen, is dog tags counting for time reduction, but not being reflected in the total money being exfiltrated with. Each bronze dog tag awards you $${formatMoney(
@@ -102,26 +101,24 @@ const questionsAnswers: QuestionAnswer[] = [
   },
   {
     isNew: true,
-    question: 'What changed since Season 01?',
+    question: `What changed between Season 01 and Season ${displaySeason(CURRENT_SEASON)}?`,
     answer: [
       'In Season 01, the cooldown periods for Insured Slots 1, 2 and 3 were respectively 2, 4 and 6 hours.',
       'In Season 02, the cooldown periods for Insured Slots 1, 2 and 3 have all been reduced by half.',
       'They are now respectively 1, 2 and 3 hours.',
       'The locations of dead drops in Al Mazrah and Building 21 have changed in Season 02.',
       'A new map called Ashika Island is available since Season 02.',
-      'The Access Card for Building 21 is now single-use in Season 02.',
-      'Note: the dollars-per-hour rates have not changed in Season 02 (for both exfiltration and dead drops).'
+      `The Access Card for Building 21 is now single-use since Season 02 (since Season 02 Reloaded, it doesn't have to be equipped in the backpack anymore though).`,
+      'Note: the dollars-per-hour rates have never changed since Season 01 (for both exfiltration and dead drops).'
     ]
   },
   {
-    isNew: true,
     question: 'Is there a time difference between the maps?',
     answer: [
       'No. Al Mazrah, Ashika Island and Building 21 all share the same dollars-per-hour rates (for both exfiltration and dead drops).'
     ]
   },
   {
-    isNew: true,
     question: `Why is the maximum number of players high on this website?`,
     answer: [
       `Although the maximum that DMZ mode accepts is ${getPlayersSize(

@@ -59,6 +59,20 @@ const getWeeklyTime = (timestamp: number) => {
 };
 
 /**
+ * @name getDateTime
+ * @description Returns the expected date time for an event
+ */
+const getDateTime = (timestamp: number) => {
+  const options: Intl.DateTimeFormatOptions = {
+    ...commonDateOptions,
+    weekday: 'short',
+    day: 'numeric',
+    month: 'numeric'
+  };
+  return new Date(timestamp * 1000).toLocaleString('en-US', options).replace(/,/g, '');
+};
+
+/**
  * @name isNullTimeValue
  * @description Returns whether a time value is 0 seconds in total
  */
@@ -190,6 +204,7 @@ export {
   calculateRemainingSeconds,
   getCurrentTimestamp,
   getDailyTime,
+  getDateTime,
   getEndTime,
   getNextTime,
   getNextStatus,

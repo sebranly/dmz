@@ -1,0 +1,183 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OneOffTimer 1`] = `
+NodeList [
+  <div
+    class="bg-neutral-800 border-solid border-2 rounded-lg border-red-500 m-2.5 p-2.5 relative w-72 sm:w-80"
+  >
+    <div
+      class="font-bold my-1 text-lg text-red-500"
+    >
+      Season 03
+    </div>
+    <div
+      class="font-bold my-1 text-lg"
+    >
+      It launched already
+    </div>
+    <ul
+      class="timer-card flex justify-center"
+    >
+      <li
+        class="inline-block mx-2.5"
+      >
+        <span
+          class="font-bold text-4xl text-red-500"
+        >
+          00
+        </span>
+        <div
+          class="text-sm"
+        >
+          days
+        </div>
+      </li>
+      <li
+        class="inline-block mx-2.5"
+      >
+        <span
+          class="font-bold text-4xl text-red-500"
+        >
+          00
+        </span>
+        <div
+          class="text-sm"
+        >
+          hrs
+        </div>
+      </li>
+      <li
+        class="inline-block mx-2.5"
+      >
+        <span
+          class="font-bold text-4xl text-red-500"
+        >
+          00
+        </span>
+        <div
+          class="text-sm"
+        >
+          min
+        </div>
+      </li>
+      <li
+        class="inline-block mx-2.5"
+      >
+        <span
+          class="font-bold text-4xl text-red-500"
+        >
+          00
+        </span>
+        <div
+          class="text-sm"
+        >
+          sec
+        </div>
+      </li>
+    </ul>
+    <div
+      class="text-xs sm:text-sm"
+    >
+      The website will be updated in the next few days
+    </div>
+  </div>,
+]
+`;
+
+exports[`OneOffTimer 2`] = `
+NodeList [
+  <div
+    class="bg-neutral-800 border-solid border-2 rounded-lg border-red-500 m-2.5 p-2.5 relative w-72 sm:w-80"
+  >
+    <div
+      class="font-bold my-1 text-lg text-red-500"
+    >
+      Season 03
+    </div>
+    <div
+      class="font-bold my-1 text-lg"
+    >
+      It launches in
+    </div>
+    <ul
+      class="timer-card flex justify-center"
+    >
+      <li
+        class="inline-block mx-2.5"
+      >
+        <span
+          class="font-bold text-4xl"
+        >
+          01
+        </span>
+        <div
+          class="text-sm"
+        >
+          days
+        </div>
+      </li>
+      <li
+        class="inline-block mx-2.5"
+      >
+        <span
+          class="font-bold text-4xl"
+        >
+          23
+        </span>
+        <div
+          class="text-sm"
+        >
+          hrs
+        </div>
+      </li>
+      <li
+        class="inline-block mx-2.5"
+      >
+        <span
+          class="font-bold text-4xl"
+        >
+          59
+        </span>
+        <div
+          class="text-sm"
+        >
+          min
+        </div>
+      </li>
+      <li
+        class="inline-block mx-2.5"
+      >
+        <span
+          class="font-bold text-4xl"
+        >
+          59
+        </span>
+        <div
+          class="text-sm"
+        >
+          sec
+        </div>
+      </li>
+    </ul>
+    <div
+      class="text-xs sm:text-sm"
+    >
+      <div
+        class="flex text-left pl-2.5"
+      >
+        <div
+          class="grow"
+        >
+          Release Date:
+        </div>
+         
+        <div
+          class="font-bold pr-1 text-red-500"
+        >
+          Mon 3/6 07:00 PM
+        </div>
+      </div>
+    </div>
+  </div>,
+]
+`;

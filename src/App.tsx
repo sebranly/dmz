@@ -23,7 +23,7 @@ import {
   convertTimerIndexToPlayerTimerIndex,
   convertTimeValueToSeconds
 } from './utils/convert';
-import { displayTimeValue, displayWithTwoDigits, getPlayerColor } from './utils/display';
+import { displaySeason, displayTimeValue, displayWithTwoDigits, getPlayerColor } from './utils/display';
 import { sortTimers } from './utils/sort';
 import { Sort, Timer, TimeUnit, TimeValue } from './types';
 import { excludeTimerByIndex, pickTimerByIndex } from './utils/filter';
@@ -257,7 +257,7 @@ function App() {
       <section id="main" className="px-5 pb-5 text-white text-lg flex flex-col items-center justify-center">
         <h1 className="font-bold pt-5 my-5 text-lime-500 text-5xl">{WEBSITE_TITLE}</h1>
         <h2 className="font-bold text-2xl m-0">{WEBSITE_SUBTITLE}</h2>
-        <div className="text-amber-500">{`Updated for Season ${displayWithTwoDigits(CURRENT_SEASON)}`}</div>
+        <div className="text-amber-500">{`Updated for Season ${displaySeason(CURRENT_SEASON)}`}</div>
         <div>
           <Header text="Money to Time Converter" />
           <div className="flex flex-col md:flex-row justify-center">

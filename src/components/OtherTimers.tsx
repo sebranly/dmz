@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { URL_DATA } from '../constants/general';
-import { APITime, TimeStatus, TimeType } from '../types';
+import { APITime, TimeFrequency, TimeStatus, TimeType } from '../types';
 import { Header } from './Header';
+import { OneOffTimer } from './OneOffTimer';
 import { OpenClosedTimer } from './OpenClosedTimer';
 import { PeriodicTimer } from './PeriodicTimer';
 
@@ -38,6 +39,15 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
 
   if (times.length === 0) return null;
 
+  const seasonTimer = times.find((time: APITime) => {
+    const { frequency, status, type } = time;
+    const isNoneFrequency = frequency === TimeFrequency.None;
+    const isLaunchStatus = status === TimeStatus.Launch;
+    const isSeason = type === TimeType.Season;
+
+    return isNoneFrequency && isLaunchStatus && isSeason;
+  });
+
   const periodicTimers = times.filter((time: APITime) => {
     const { status } = time;
     return status === TimeStatus.Reset;
@@ -68,6 +78,7 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
           {timesBuilding21.length === 2 && (
             <OpenClosedTimer currentTimestamp={currentTimestamp} times={timesBuilding21} />
           )}
+          {seasonTimer && <OneOffTimer currentTimestamp={currentTimestamp} time={seasonTimer} />}
         </div>
       </div>
     </div>
