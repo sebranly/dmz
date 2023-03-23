@@ -1,10 +1,10 @@
 import classnames from 'classnames';
 import * as React from 'react';
-import { CURRENT_SEASON } from '../constants/game';
+import { VIDEO_SEASON } from '../constants/game';
 import { YOUTUBE_REFERENCE } from '../constants/general';
 import { questionsAnswers } from '../data/faq';
 import { QuestionAnswer } from '../types';
-import { displayWithTwoDigits } from '../utils/display';
+import { displaySeason } from '../utils/display';
 import { Header } from './Header';
 
 const FAQ = () => {
@@ -58,7 +58,7 @@ const FAQ = () => {
                     title="YouTube reference for conversion functions"
                     target="_blank"
                   >
-                    {`Watch S${displayWithTwoDigits(CURRENT_SEASON)} video`}
+                    {`Watch S${displaySeason(VIDEO_SEASON)} video`}
                   </a>
                 )}
                 {map && (

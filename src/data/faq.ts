@@ -9,7 +9,7 @@ import {
   REGULAR_HOURLY_RATE,
   SENSITIVE_DOCUMENTS_VALUE
 } from '../constants/game';
-import { displayWithTwoDigits, formatMoney, getPlayersSize } from '../utils/display';
+import { displaySeason, formatMoney, getPlayersSize } from '../utils/display';
 import { QuestionAnswer } from '../types';
 import { COOKIE_TIMERS } from '../constants/general';
 
@@ -37,7 +37,7 @@ const questionsAnswers: QuestionAnswer[] = [
     question: 'What are the hourly rates?',
     answer: [
       `Dollars-per-hour rates have been determined by playing DMZ for several games during all seasons. It is a proportional function (linear function that includes the origin).`,
-      `The current season (Season ${displayWithTwoDigits(
+      `The current season (Season ${displaySeason(
         CURRENT_SEASON
       )}) is known to have the following rates: exfiltrating with the chopper (or elevator in Building 21) with $${formatMoney(
         REGULAR_HOURLY_RATE
@@ -88,7 +88,7 @@ const questionsAnswers: QuestionAnswer[] = [
     yt: true,
     question: 'I think your formulae are incorrect',
     answer: [
-      `The formulae have been verified several times for all seasons including Season ${displayWithTwoDigits(
+      `The formulae have been verified several times for all seasons including Season ${displaySeason(
         CURRENT_SEASON
       )}.`,
       `The game is known to have multiple bugs affecting how the backpack total is being displayed (e.g. some items don't count in the total up until the end result screen). A bug happening on the result screen, is dog tags counting for time reduction, but not being reflected in the total money being exfiltrated with. Each bronze dog tag awards you $${formatMoney(

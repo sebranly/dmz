@@ -1,5 +1,6 @@
 import { Color, TimeStatus, TimeUnit } from '../../types';
 import {
+  displaySeason,
   displayTimeValue,
   displayWithTwoDigits,
   formatMoney,
@@ -24,6 +25,14 @@ test('displayTimeValue', () => {
 
   timeValue[TimeUnit.Day] = 3;
   expect(displayTimeValue(timeValue)).toBe('03d 01h 02m 24s');
+});
+
+test('displaySeason', () => {
+  expect(displaySeason(0)).toBe('00');
+  expect(displaySeason(2.5)).toBe('02 Reloaded');
+  expect(displaySeason(5)).toBe('05');
+  expect(displaySeason(10)).toBe('10');
+  expect(displaySeason(100)).toBe('100');
 });
 
 test('displayWithTwoDigits', () => {

@@ -2,6 +2,18 @@ import { isNullTimeValue } from '.';
 import { Color, TimeStatus, TimeUnit, TimeValue } from '../types';
 
 /**
+ * @name displaySeason
+ * @description Displays the season title with two digits and reloaded if applicable
+ */
+const displaySeason = (nb: number) => {
+  const floor = Math.floor(nb);
+
+  if (nb === floor) return displayWithTwoDigits(nb);
+
+  return `${displayWithTwoDigits(floor)} Reloaded`;
+};
+
+/**
  * @name displayWithTwoDigits
  * @description Ensures a number is being displayed with at least two digits
  */
@@ -156,6 +168,7 @@ const titleize = (str: string) => {
 };
 
 export {
+  displaySeason,
   displayTimeValue,
   displayWithTwoDigits,
   formatMoney,
