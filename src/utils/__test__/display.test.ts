@@ -75,7 +75,7 @@ test('getPlayersSize', () => {
 test('getStatusColor', () => {
   expect(getStatusColor(TimeStatus.Closing)).toBe(Color.Green);
   expect(getStatusColor(TimeStatus.Opening)).toBe(Color.Orange);
-  expect(getStatusColor(TimeStatus.Launch)).toBe(Color.Orange);
+  expect(getStatusColor(TimeStatus.Launch)).toBe(Color.Red);
   expect(getStatusColor(TimeStatus.Reset)).toBe(Color.Yellow);
 });
 
@@ -89,7 +89,7 @@ test('getStatusAdjective', () => {
 test('getStatusVerb', () => {
   expect(getStatusVerb(TimeStatus.Closing)).toBe('close');
   expect(getStatusVerb(TimeStatus.Opening)).toBe('open');
-  expect(getStatusVerb(TimeStatus.Launch)).toBe('open');
+  expect(getStatusVerb(TimeStatus.Launch)).toBe('launch');
   expect(getStatusVerb(TimeStatus.Reset)).toBe('reset');
 });
 
