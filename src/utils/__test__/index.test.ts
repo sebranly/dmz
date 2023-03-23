@@ -3,6 +3,7 @@ import {
   calculateRemainingSeconds,
   getCurrentTimestamp,
   getDailyTime,
+  getDateTime,
   getEndTime,
   getNextStatus,
   getNextTime,
@@ -118,6 +119,10 @@ test('getNextStatus', () => {
 
 test('getDailyTime', () => {
   expect(getDailyTime(1678471200)).toBe('07:00 PM');
+});
+
+test('getDateTime', () => {
+  expect(getDateTime(1681286400)).toBe('Wed 4/12 10:00 AM');
 });
 
 test('getWeeklyTime', () => {

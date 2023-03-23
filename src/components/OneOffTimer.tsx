@@ -1,6 +1,7 @@
 import classnames from 'classnames';
 import * as React from 'react';
 import { APITime, TimeUnit } from '../types';
+import { getDateTime } from '../utils';
 import { convertSecondsToTimeValue } from '../utils/convert';
 import { displayWithTwoDigits, getStatusColor, getStatusVerb, getTimeUnitAbbreviation } from '../utils/display';
 import { getTimerClasses } from '../utils/tailwind';
@@ -25,6 +26,7 @@ const OneOffTimer: React.FC<OneOffTimerProps> = (props) => {
   const classnamesColor = `text-${color}-500`;
   const classnamesSubtitle = 'font-bold my-1 text-lg';
   const classnamesTitle = classnames(classnamesSubtitle, classnamesColor);
+  const classnamesTime = classnames('font-bold pr-1', classnamesColor);
 
   const {
     [TimeUnit.Day]: days,
@@ -68,7 +70,15 @@ const OneOffTimer: React.FC<OneOffTimerProps> = (props) => {
       <div className={classnamesTitle}>{name}</div>
       <div className={classnamesSubtitle}>{subtitle}</div>
       <ul className="timer-card flex justify-center">{items}</ul>
-      {isPast && <div className="text-sm">The website will be updated in the next few days</div>}
+      {isPast ? (
+        <div className="text-xs sm:text-sm">The website will be updated in the next few days</div>
+      ) : (
+        <div className="text-xs sm:text-sm">
+          <div className="flex text-left pl-2.5">
+            <div className="grow">Release Date:</div> <div className={classnamesTime}>{getDateTime(oneOffTime)}</div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

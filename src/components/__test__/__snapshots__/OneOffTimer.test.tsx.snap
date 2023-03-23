@@ -76,7 +76,7 @@ NodeList [
       </li>
     </ul>
     <div
-      class="text-sm"
+      class="text-xs sm:text-sm"
     >
       The website will be updated in the next few days
     </div>
@@ -159,6 +159,25 @@ NodeList [
         </div>
       </li>
     </ul>
+    <div
+      class="text-xs sm:text-sm"
+    >
+      <div
+        class="flex text-left pl-2.5"
+      >
+        <div
+          class="grow"
+        >
+          Release Date:
+        </div>
+         
+        <div
+          class="font-bold pr-1 text-red-500"
+        >
+          Mon 3/6 07:00 PM
+        </div>
+      </div>
+    </div>
   </div>,
 ]
 `;
