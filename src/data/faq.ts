@@ -101,15 +101,15 @@ const questionsAnswers: QuestionAnswer[] = [
   },
   {
     isNew: true,
-    question: 'What changed since Season 01?',
+    question: `What changed between Season 01 and Season ${displaySeason(CURRENT_SEASON)}?`,
     answer: [
       'In Season 01, the cooldown periods for Insured Slots 1, 2 and 3 were respectively 2, 4 and 6 hours.',
       'In Season 02, the cooldown periods for Insured Slots 1, 2 and 3 have all been reduced by half.',
       'They are now respectively 1, 2 and 3 hours.',
       'The locations of dead drops in Al Mazrah and Building 21 have changed in Season 02.',
       'A new map called Ashika Island is available since Season 02.',
-      'The Access Card for Building 21 is now single-use in Season 02.',
-      'Note: the dollars-per-hour rates have not changed in Season 02 (for both exfiltration and dead drops).'
+      `The Access Card for Building 21 is now single-use since Season 02 (since Season 02 Reloaded, it doesn't have to be equipped in the backpack anymore though).`,
+      'Note: the dollars-per-hour rates have never changed since Season 01 (for both exfiltration and dead drops).'
     ]
   },
   {
