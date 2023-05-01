@@ -22,7 +22,7 @@ const FAQ = () => {
   };
 
   return (
-    <div id="faq">
+    <div id="faq-section">
       <Header text="FAQ" />
       {faq.map((qa: QuestionAnswer) => {
         const { answer, isNew, map, question, shown, yt } = qa;
@@ -44,10 +44,13 @@ const FAQ = () => {
               <div className="text-left sm:text-justify mb-5">
                 {answer.map((answerParagraph: string, index: number) => {
                   const classnamesParagraph = classnames('mb-5', { inline: index === answer.length - 1 && yt });
+
                   return (
-                    <p className={classnamesParagraph} key={index}>
-                      {answerParagraph}
-                    </p>
+                    <div
+                      className={classnamesParagraph}
+                      key={index}
+                      dangerouslySetInnerHTML={{ __html: answerParagraph }}
+                    />
                   );
                 })}
                 {yt && (

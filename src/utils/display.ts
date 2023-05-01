@@ -26,10 +26,13 @@ const displayWithTwoDigits = (nb: number) => {
  * @name displayTimeValue
  * @description Displays a time value with two-digits for days, hours, minutes and seconds
  */
-const displayTimeValue = (timeValue: TimeValue) => {
+const displayTimeValue = (timeValue: TimeValue, shouldCompact = false) => {
   const timeValueIsNull = isNullTimeValue(timeValue);
 
-  if (timeValueIsNull) return '00h 00m 00s';
+  if (timeValueIsNull) {
+    if (shouldCompact) return '0s';
+    return '00h 00m 00s';
+  }
 
   const {
     [TimeUnit.Day]: days,
@@ -39,21 +42,33 @@ const displayTimeValue = (timeValue: TimeValue) => {
   } = timeValue;
 
   const daysString = `${displayWithTwoDigits(days)}d`;
-  const hoursString = `${displayWithTwoDigits(hours)}h`;
-  const minutesString = `${displayWithTwoDigits(minutes)}m`;
-  const secondsString = `${displayWithTwoDigits(seconds)}s`;
+  const hoursString = hours === 0 && shouldCompact ? '' : `${displayWithTwoDigits(hours)}h`;
+  const minutesString = minutes === 0 && shouldCompact ? '' : `${displayWithTwoDigits(minutes)}m`;
+  const secondsString = seconds === 0 && shouldCompact ? '' : `${displayWithTwoDigits(seconds)}s`;
 
-  const daysStringPrefix = days > 0 ? `${daysString} ` : '';
-  const finalString = `${daysStringPrefix}${hoursString} ${minutesString} ${secondsString}`;
+  const daysStringPrefix = days > 0 ? `${daysString}${shouldCompact ? '' : ' '}` : '';
+  const finalString = shouldCompact
+    ? `${daysStringPrefix}${hoursString}${minutesString}${secondsString}`
+    : `${daysStringPrefix}${hoursString} ${minutesString} ${secondsString}`;
+
+  if (finalString === '') return '0s';
+
   return finalString;
 };
 
 /**
  * @name formatMoney
- * @description Ensures money is being displayed with thousands being comma-separated
+ * @description Ensures money is being displayed with thousands being comma-separated or shortened with k symbol
  */
-const formatMoney = (value: number) => {
-  return new Intl.NumberFormat('en-US').format(value);
+const formatMoney = (value: number, shortenThousands = false): string => {
+  const thousands = value / 1_000;
+
+  if (shortenThousands && thousands >= 1) {
+    return `${formatMoney(thousands)}k`;
+  }
+
+  const formattedValue = new Intl.NumberFormat('en-US').format(value);
+  return `$${formattedValue}`;
 };
 
 /**

@@ -70,6 +70,10 @@ select {
   font-family: 'Ra-Mono';
 }
 
-#faq {
+#faq-section {
+  max-width: 900px;
+}
+
+#tldr-section {
   max-width: 900px;
 }

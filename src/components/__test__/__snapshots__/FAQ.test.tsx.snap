@@ -3,12 +3,17 @@
 exports[`FAQ 1`] = `
 NodeList [
   <div
-    id="faq"
+    id="faq-section"
   >
     <h3
-      class="font-bold my-5 text-xl text-lime-500"
+      class="font-bold my-5 py-1 text-xl text-lime-500"
+      id="faq"
     >
-      FAQ
+      <a
+        href="#faq"
+      >
+        FAQ
+      </a>
     </h3>
     <div
       class="text-base lg:text-lg mt-2.5"
@@ -30,16 +35,30 @@ NodeList [
       <div
         class="text-left sm:text-justify mb-5"
       >
-        <p
+        <div
           class="mb-5"
         >
-          DMZ: Currency to Cooldown Converter is an unofficial website which focuses on getting your lost, insured weapons back as efficiently as possible. In the game, dying on the battlefield with an insured weapon means that the weapon gets locked behind a cooldown timer. By default, the player has to wait for a certain amount of hours before selecting this same weapon.
-        </p>
-        <p
+          DMZ: 
+          <span
+            class="text-lime-400"
+          >
+            Currency to Cooldown Converter
+          </span>
+           is an unofficial website which focuses primarily on getting your lost, insured weapons back as efficiently as possible. In the game, dying on the battlefield with an insured weapon means that the weapon gets locked behind a cooldown timer. By default, the player has to wait for a certain amount of hours before selecting this same weapon.
+        </div>
+        <div
           class="mb-5"
         >
-          The player can make this process faster by using money to reduce said cooldown timer. This website provides money-to-time and time-to-money conversions for these lost, insured weapons.
-        </p>
+          The player can make this process faster by using money to reduce said cooldown timer. This website provides 
+          <b>
+            money-to-time
+          </b>
+           and 
+          <b>
+            time-to-money
+          </b>
+           conversions for these lost, insured weapons.
+        </div>
       </div>
     </div>
     <div
@@ -66,11 +85,6 @@ NodeList [
       <div
         class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
       >
-        <div
-          class="inline text-amber-500 hover:text-amber-600"
-        >
-          [New] 
-        </div>
         Where are dead drops? [+]
       </div>
     </div>
@@ -80,6 +94,11 @@ NodeList [
       <div
         class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
       >
+        <div
+          class="inline text-amber-500 hover:text-amber-600"
+        >
+          [New] 
+        </div>
         What about items? [+]
       </div>
     </div>
@@ -112,7 +131,7 @@ NodeList [
         >
           [New] 
         </div>
-        What changed between Season 01 and Season 02 Reloaded? [+]
+        What changed between Season 01 and Season 03? [+]
       </div>
     </div>
     <div

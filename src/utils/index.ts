@@ -141,6 +141,17 @@ const sanitizeTimersCookie = (cookieValue: any, maxTimers = MAX_TIMERS) => {
 };
 
 /**
+ * @name getAnchorLink
+ * @description Returns an anchor link (jump link)
+ */
+const getAnchorLink = (text: string) => {
+  return text
+    .toLowerCase()
+    .replace(/[ ]+/g, '-')
+    .replace(/[^a-z0-9-]/g, '');
+};
+
+/**
  * @name getUTCDayOffset
  * @description Returns the offset, in days, relative to the previous Thursday
  * Thu, 01 Jan 1970 00:00:00 GMT is the origin
@@ -202,6 +213,7 @@ const getNextStatus = (currentTimestamp: number, times: APITime[]) => {
 
 export {
   calculateRemainingSeconds,
+  getAnchorLink,
   getCurrentTimestamp,
   getDailyTime,
   getDateTime,

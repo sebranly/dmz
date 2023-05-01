@@ -3,9 +3,14 @@
 exports[`Header 1`] = `
 NodeList [
   <h3
-    class="font-bold my-5 text-xl text-lime-500"
+    class="font-bold my-5 py-1 text-xl text-lime-500"
+    id="bonjour"
   >
-    Bonjour
+    <a
+      href="#bonjour"
+    >
+      Bonjour
+    </a>
   </h3>,
 ]
 `;

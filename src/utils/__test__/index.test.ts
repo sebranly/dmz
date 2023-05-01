@@ -1,6 +1,7 @@
 import { APITime, TimeFrequency, TimeStatus, TimeType, TimeUnit } from '../../types';
 import {
   calculateRemainingSeconds,
+  getAnchorLink,
   getCurrentTimestamp,
   getDailyTime,
   getDateTime,
@@ -25,6 +26,15 @@ test('calculateRemainingSeconds', () => {
   expect(calculateRemainingSeconds(timer, 4)).toBe(1);
   expect(calculateRemainingSeconds(timer, 5)).toBe(0);
   expect(calculateRemainingSeconds(timer, 6)).toBe(0);
+});
+
+test('getAnchorLink', () => {
+  expect(getAnchorLink('')).toBe('');
+  expect(getAnchorLink('test')).toBe('test');
+  expect(getAnchorLink('TEST')).toBe('test');
+  expect(getAnchorLink('TEST     anD   Something')).toBe('test-and-something');
+  expect(getAnchorLink('test-and-something')).toBe('test-and-something');
+  expect(getAnchorLink('testé;-and-something-01_^£234$6')).toBe('test-and-something-012346');
 });
 
 test('getCurrentTimestamp', () => {

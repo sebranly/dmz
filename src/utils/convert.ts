@@ -99,22 +99,6 @@ const convertTimeValueToSeconds = (timeValue: TimeValue) => {
   return secondsTotal;
 };
 
-/**
- * TODO: delete if not used
- * @name getSeasonId
- * @description Picks the season id based on a string describing the season
- */
-const getSeasonId = (text: string) => {
-  const id = text.match(/[\d.]+/g)?.join('');
-  const nb = Number(id);
-  const isReloaded = text.toLowerCase().includes('reloaded');
-  const reloadedOffset = isReloaded ? 0.5 : 0;
-
-  if (isNaN(nb)) return isReloaded ? reloadedOffset : -1;
-
-  return nb + reloadedOffset;
-};
-
 export {
   convertMoneyToSeconds,
   convertPlayerTimerIndexToHourTimer,
@@ -122,6 +106,5 @@ export {
   convertSecondsToTimeValue,
   convertTimerIndexToPlayerIndex,
   convertTimerIndexToPlayerTimerIndex,
-  convertTimeValueToSeconds,
-  getSeasonId
+  convertTimeValueToSeconds
 };

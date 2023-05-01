@@ -92,14 +92,12 @@ const TimerCard: React.FC<TimerCardProps> = (props) => {
       </div>
       <div className="flex text-left pl-2.5">
         <div className="grow">Exfiltration:</div>{' '}
-        <div className={classnamesMoney}>
-          ${formatMoney(convertSecondsToMoney(remainingSeconds, regularHourlyRate))}
-        </div>
+        <div className={classnamesMoney}>{formatMoney(convertSecondsToMoney(remainingSeconds, regularHourlyRate))}</div>
       </div>
       <div className="flex text-left pl-2.5">
         <div className="grow">Dead Drop:</div>{' '}
         <div className={classnamesMoney}>
-          ${formatMoney(convertSecondsToMoney(remainingSeconds, deadDropHourlyRate))}
+          {formatMoney(convertSecondsToMoney(remainingSeconds, deadDropHourlyRate))}
         </div>
       </div>
       <button
