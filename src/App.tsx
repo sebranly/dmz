@@ -255,7 +255,9 @@ function App() {
   return (
     <div className="text-center">
       <section id="main" className="px-5 pb-5 text-white text-lg flex flex-col items-center justify-center">
-        <h1 className="font-bold pt-5 my-5 text-lime-500 text-5xl">{WEBSITE_TITLE}</h1>
+        <h1 className="font-bold pt-5 my-5 text-lime-500 text-5xl" id="dmz">
+          <a href="#dmz">{WEBSITE_TITLE}</a>
+        </h1>
         <h2 className="font-bold text-2xl m-0">{WEBSITE_SUBTITLE}</h2>
         <div className="text-amber-500">{`Updated for Season ${displaySeason(CURRENT_SEASON)}`}</div>
         <div>

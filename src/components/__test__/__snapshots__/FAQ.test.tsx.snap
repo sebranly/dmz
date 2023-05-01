@@ -6,9 +6,14 @@ NodeList [
     id="faq"
   >
     <h3
-      class="font-bold my-5 text-xl text-lime-500"
+      class="font-bold my-5 py-1 text-xl text-lime-500"
+      id="faq"
     >
-      FAQ
+      <a
+        href="#faq"
+      >
+        FAQ
+      </a>
     </h3>
     <div
       class="text-base lg:text-lg mt-2.5"
