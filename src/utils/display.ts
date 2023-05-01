@@ -50,10 +50,17 @@ const displayTimeValue = (timeValue: TimeValue) => {
 
 /**
  * @name formatMoney
- * @description Ensures money is being displayed with thousands being comma-separated
+ * @description Ensures money is being displayed with thousands being comma-separated or shortened with k
  */
-const formatMoney = (value: number) => {
-  return new Intl.NumberFormat('en-US').format(value);
+const formatMoney = (value: number, shortenThousands = false): string => {
+  const thousands = value / 1000;
+
+  if (shortenThousands && thousands >= 1) {
+    return `${formatMoney(thousands)}k`;
+  }
+
+  const formattedValue = new Intl.NumberFormat('en-US').format(value);
+  return `$${formattedValue}`;
 };
 
 /**

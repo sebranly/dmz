@@ -43,13 +43,23 @@ test('displayWithTwoDigits', () => {
 });
 
 test('formatMoney', () => {
-  expect(formatMoney(0)).toBe('0');
-  expect(formatMoney(10)).toBe('10');
-  expect(formatMoney(100)).toBe('100');
-  expect(formatMoney(1_000)).toBe('1,000');
-  expect(formatMoney(10_000)).toBe('10,000');
-  expect(formatMoney(100_000)).toBe('100,000');
-  expect(formatMoney(1_000_000)).toBe('1,000,000');
+  expect(formatMoney(0)).toBe('$0');
+  expect(formatMoney(10)).toBe('$10');
+  expect(formatMoney(100)).toBe('$100');
+  expect(formatMoney(1_000)).toBe('$1,000');
+  expect(formatMoney(2_500)).toBe('$2,500');
+  expect(formatMoney(10_000)).toBe('$10,000');
+  expect(formatMoney(100_000)).toBe('$100,000');
+  expect(formatMoney(1_000_000)).toBe('$1,000,000');
+
+  expect(formatMoney(0, true)).toBe('$0');
+  expect(formatMoney(10, true)).toBe('$10');
+  expect(formatMoney(100, true)).toBe('$100');
+  expect(formatMoney(1_000, true)).toBe('$1k');
+  expect(formatMoney(2_500, true)).toBe('$2.5k');
+  expect(formatMoney(10_000, true)).toBe('$10k');
+  expect(formatMoney(100_000, true)).toBe('$100k');
+  expect(formatMoney(1_000_000, true)).toBe('$1,000k');
 });
 
 test('getPlayerColor', () => {
