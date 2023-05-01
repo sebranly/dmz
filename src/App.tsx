@@ -62,7 +62,7 @@ function App() {
   };
 
   const copyLostWeaponBundle = `Add new ${BUNDLE_TIMER_MIN}-min timer`;
-  const copyLostWeaponEditBundle = `Edit to ${BUNDLE_TIMER_MIN}-min timer`;
+  const copyLostWeaponBundleEdit = `Edit to ${BUNDLE_TIMER_MIN}-min timer`;
   const copyLostWeapon = `Add new ${hoursForTimer}-hour timer`;
   const copyLostWeaponEdit = `Edit to ${hoursForTimer}-hour timer`;
   const timerValuesAreNull = isNullTimeValue(timerValue);
@@ -391,7 +391,7 @@ function App() {
                 {timerExists ? copyLostWeaponEdit : copyLostWeapon}
               </button>
               <button className={classnamesQuickOptions} onClick={() => onClickEditTimer(BUNDLE_TIMER_VALUE)}>
-                {timerExists ? copyLostWeaponEditBundle : copyLostWeaponBundle}
+                {timerExists ? copyLostWeaponBundleEdit : copyLostWeaponBundle}
               </button>
             </div>
           </div>

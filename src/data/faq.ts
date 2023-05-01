@@ -1,15 +1,15 @@
 import {
+  BUNDLE_TIMER_MIN,
   CURRENT_SEASON,
   DEAD_DROP_HOURLY_RATE,
   DOG_TAG_VALUES,
-  WEAPON_VALUE,
+  HEARTBEAT_SENSOR_VALUE,
   MAX_HOURS_FOR_TIMER,
   MAX_PLAYERS,
   MAX_PLAYERS_WITHOUT_ASSIMILATION,
   REGULAR_HOURLY_RATE,
   SENSITIVE_DOCUMENTS_VALUE,
-  HEARTBEAT_SENSOR_VALUE,
-  BUNDLE_TIMER_MIN
+  WEAPON_VALUE
 } from '../constants/game';
 import { displaySeason, formatMoney, getPlayersSize } from '../utils/display';
 import { QuestionAnswer } from '../types';
@@ -55,9 +55,9 @@ const questionsAnswers: QuestionAnswer[] = [
     question: 'What are dead drops?',
     answer: [
       `These are white dumpsters that are present in all three maps of DMZ and that can be interacted with. Players can drop money, weapons and/or items into them in order to reduce the cooldown timer in exchange.`,
-      `Dead drops offer two advantages compared to exfiltrating with said money/items with the chopper (or elevator in Building 21): <b>the cooldown timer decreases ${
+      `Dead drops offer two advantages compared to exfiltrating with said money/items with the chopper (or elevator in Building 21): <b>the cooldown timer decreases <span class='text-lime-500'>${
         Math.round((REGULAR_HOURLY_RATE / DEAD_DROP_HOURLY_RATE) * 100) / 100
-      }x faster thanks to dead drops</b>, and dead drops will award you the time reduction even if you die afterwards.`
+      }x faster</span> thanks to dead drops</b>, and dead drops will award you the time reduction even if you die afterwards.`
     ]
   },
   {
@@ -68,6 +68,7 @@ const questionsAnswers: QuestionAnswer[] = [
     ]
   },
   {
+    isNew: true,
     question: 'What about items?',
     answer: [
       'Items sometimes have a displayed value underneath (in your backpack) which corresponds to the equivalent amount of money they give you when exfiltrating or deposited into dead drops.',
@@ -78,7 +79,7 @@ const questionsAnswers: QuestionAnswer[] = [
       `Even better, <b>depositing a heartbeat sensor will award you <span class='text-lime-500'>${formatMoney(
         HEARTBEAT_SENSOR_VALUE,
         true
-      )}</span></b>, which should cover all of your needs.`
+      )}</span></b>, which should cover all of your needs for time reduction.`
     ]
   },
   {
@@ -86,7 +87,7 @@ const questionsAnswers: QuestionAnswer[] = [
     answer: [
       `Once a timer is set up on the website, it decreases on the website every second like the in-game cooldown timer. However, the latter is only visible on the game menu. So, after some time spent fighting into DMZ, <b>this website allows you to accurately know how much time is left and, more importantly, how to split money within your squad in order not to waste any dollar</b>.`,
       `Everyone may be able to get their insured weapons back. You can then use the remaining money you saved for better things such as buying and upgrading contraband weapons at the Workbench, buying strikes or UAVs. Or even buying a Building 21 Access Card.`,
-      `Another example is that you can exfiltrate from the battlefield as soon as you have the required money to get your lost weapon back (rather than risking it all). Or if you're that rich, you can get yourself a Private Exfil instead.`
+      `Another example is that you can exfiltrate from the battlefield as soon as you have the required money to get your lost weapon back (rather than risking it all). Or if you're that rich, you can even get yourself a Private Exfil instead.`
     ]
   },
   {
@@ -109,9 +110,10 @@ const questionsAnswers: QuestionAnswer[] = [
         DOG_TAG_VALUES['damascus'],
         true
       )}</span> respectively.`,
-      `On the other hand, there is an opposite bug regarding sensitive documents, most likely because they can now be retained in the stash. They show up in the total of the backpack but actually do not count towards time reduction. You need to subtract ${formatMoney(
-        SENSITIVE_DOCUMENTS_VALUE
-      )} per sensitive documents.`,
+      `On the other hand, there is an opposite bug regarding sensitive documents, most likely because they can now be retained in the stash. They show up in the total of the backpack but actually do not count towards time reduction. You need to subtract <span class='text-lime-500'>${formatMoney(
+        SENSITIVE_DOCUMENTS_VALUE,
+        true
+      )}</span> per sensitive documents.`,
       'The following video showcases how the formulae have been determined. Known bugs have been detailed in the video description, when possible.'
     ]
   },
@@ -126,7 +128,7 @@ const questionsAnswers: QuestionAnswer[] = [
       'A new map called Ashika Island is available since Season 02.',
       `The Access Card for Building 21 is now single-use since Season 02 (since Season 02 Reloaded, it doesn't have to be equipped in the backpack anymore though).`,
       `In <span class='text-amber-500'>Season 03</span>, lots of changes happened including the introduction of Bartering, Contraband Workbenches, New Backpacks, New Plate Carriers as well as Active Duty Operator Slots. However, for the purpose of this website, most updates don't have an influence, as Contraband Weapons are shared between Active Duty Operators.`,
-      `However, some bundles (that need to be purchased) give the advantage of using a weapon with its own ${BUNDLE_TIMER_MIN}-min cooldown timer (no matter the insured slot), so we updated the website to reflect that (in Quick Options section).`,
+      `However, some bundles (that need to be purchased) give the advantage of using a weapon with its own <b>${BUNDLE_TIMER_MIN}-min cooldown timer</b> (no matter the insured slot), so we updated the website to reflect that (in Quick Options section).`,
       '<b>Note: the dollars-per-hour rates have never changed since Season 01 (for both exfiltration and dead drops).</b>'
     ]
   },

@@ -44,10 +44,13 @@ const FAQ = () => {
               <div className="text-left sm:text-justify mb-5">
                 {answer.map((answerParagraph: string, index: number) => {
                   const classnamesParagraph = classnames('mb-5', { inline: index === answer.length - 1 && yt });
+
                   return (
-                    <div className={classnamesParagraph} key={index}>
-                      <div dangerouslySetInnerHTML={{ __html: answerParagraph }} />
-                    </div>
+                    <div
+                      className={classnamesParagraph}
+                      key={index}
+                      dangerouslySetInnerHTML={{ __html: answerParagraph }}
+                    />
                   );
                 })}
                 {yt && (

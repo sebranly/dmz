@@ -58,10 +58,10 @@ const displayTimeValue = (timeValue: TimeValue, shouldCompact = false) => {
 
 /**
  * @name formatMoney
- * @description Ensures money is being displayed with thousands being comma-separated or shortened with k
+ * @description Ensures money is being displayed with thousands being comma-separated or shortened with k symbol
  */
 const formatMoney = (value: number, shortenThousands = false): string => {
-  const thousands = value / 1000;
+  const thousands = value / 1_000;
 
   if (shortenThousands && thousands >= 1) {
     return `${formatMoney(thousands)}k`;

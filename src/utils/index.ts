@@ -142,7 +142,7 @@ const sanitizeTimersCookie = (cookieValue: any, maxTimers = MAX_TIMERS) => {
 
 /**
  * @name getAnchorLink
- * @description Returns a anchor link (jump link)
+ * @description Returns an anchor link (jump link)
  */
 const getAnchorLink = (text: string) => {
   return text
