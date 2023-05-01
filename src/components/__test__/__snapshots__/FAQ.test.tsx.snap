@@ -30,16 +30,34 @@ NodeList [
       <div
         class="text-left sm:text-justify mb-5"
       >
-        <p
+        <div
           class="mb-5"
         >
-          DMZ: Currency to Cooldown Converter is an unofficial website which focuses primarily on getting your lost, insured weapons back as efficiently as possible. In the game, dying on the battlefield with an insured weapon means that the weapon gets locked behind a cooldown timer. By default, the player has to wait for a certain amount of hours before selecting this same weapon.
-        </p>
-        <p
+          <div>
+            DMZ: 
+            <span
+              class="text-lime-400"
+            >
+              Currency to Cooldown Converter
+            </span>
+             is an unofficial website which focuses primarily on getting your lost, insured weapons back as efficiently as possible. In the game, dying on the battlefield with an insured weapon means that the weapon gets locked behind a cooldown timer. By default, the player has to wait for a certain amount of hours before selecting this same weapon.
+          </div>
+        </div>
+        <div
           class="mb-5"
         >
-          The player can make this process faster by using money to reduce said cooldown timer. This website provides money-to-time and time-to-money conversions for these lost, insured weapons.
-        </p>
+          <div>
+            The player can make this process faster by using money to reduce said cooldown timer. This website provides 
+            <b>
+              money-to-time
+            </b>
+             and 
+            <b>
+              time-to-money
+            </b>
+             conversions for these lost, insured weapons.
+          </div>
+        </div>
       </div>
     </div>
     <div

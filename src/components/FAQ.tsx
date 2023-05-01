@@ -45,9 +45,9 @@ const FAQ = () => {
                 {answer.map((answerParagraph: string, index: number) => {
                   const classnamesParagraph = classnames('mb-5', { inline: index === answer.length - 1 && yt });
                   return (
-                    <p className={classnamesParagraph} key={index}>
-                      {answerParagraph}
-                    </p>
+                    <div className={classnamesParagraph} key={index}>
+                      <div dangerouslySetInnerHTML={{ __html: answerParagraph }} />
+                    </div>
                   );
                 })}
                 {yt && (
