@@ -34,6 +34,7 @@ test('getAnchorLink', () => {
   expect(getAnchorLink('TEST')).toBe('test');
   expect(getAnchorLink('TEST     anD   Something')).toBe('test-and-something');
   expect(getAnchorLink('test-and-something')).toBe('test-and-something');
+  expect(getAnchorLink('testé;-and-something-01_^£234$6')).toBe('test-and-something-012346');
 });
 
 test('getCurrentTimestamp', () => {

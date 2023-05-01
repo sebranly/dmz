@@ -17,14 +17,21 @@ import {
 test('displayTimeValue', () => {
   let timeValue = { [TimeUnit.Day]: 0, [TimeUnit.Hour]: 0, [TimeUnit.Minute]: 0, [TimeUnit.Second]: 0 };
   expect(displayTimeValue(timeValue)).toBe('00h 00m 00s');
+  expect(displayTimeValue(timeValue, true)).toBe('0s');
 
   timeValue[TimeUnit.Hour] = 1;
   timeValue[TimeUnit.Minute] = 2;
   timeValue[TimeUnit.Second] = 24;
   expect(displayTimeValue(timeValue)).toBe('01h 02m 24s');
+  expect(displayTimeValue(timeValue, true)).toBe('01h02m24s');
 
   timeValue[TimeUnit.Day] = 3;
   expect(displayTimeValue(timeValue)).toBe('03d 01h 02m 24s');
+  expect(displayTimeValue(timeValue, true)).toBe('03d01h02m24s');
+
+  timeValue[TimeUnit.Second] = 0;
+  expect(displayTimeValue(timeValue)).toBe('03d 01h 02m 00s');
+  expect(displayTimeValue(timeValue, true)).toBe('03d01h02m');
 });
 
 test('displaySeason', () => {

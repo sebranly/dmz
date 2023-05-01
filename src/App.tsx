@@ -2,8 +2,11 @@ import React from 'react';
 import { useCookies } from 'react-cookie';
 import { COOKIE_TIMERS, DEFAULT_SORT_OPTION, SORT_OPTIONS, WEBSITE_SUBTITLE, WEBSITE_TITLE } from './constants/general';
 import {
+  BUNDLE_TIMER_MIN,
+  BUNDLE_TIMER_VALUE,
   CURRENT_SEASON,
   DEAD_DROP_HOURLY_RATE,
+  HEARTBEAT_SENSOR_VALUE,
   HOURS_PER_SLOT,
   MAX_HOURS_FOR_TIMER,
   MAX_PLAYERS,
@@ -58,9 +61,13 @@ function App() {
     [TimeUnit.Second]: 0
   };
 
+  const copyLostWeaponBundle = `Add new bundle timer (${BUNDLE_TIMER_MIN}-min)`;
+  const copyLostWeaponEditBundle = `Edit to bundle timer (${BUNDLE_TIMER_MIN}-min)`;
   const copyLostWeapon = `Add new ${hoursForTimer}-hour timer`;
   const copyLostWeaponEdit = `Edit to ${hoursForTimer}-hour timer`;
   const timerValuesAreNull = isNullTimeValue(timerValue);
+  const classnamesQuickOptions =
+    'block m-auto mt-2.5 border-2 border-solid border-white text-base md:text-sm lg:text-base rounded-lg p-1 text-center bg-white text-black';
 
   const onMount = () => {
     const interval = setInterval(() => {
@@ -260,6 +267,36 @@ function App() {
         </h1>
         <h2 className="font-bold text-2xl m-0">{WEBSITE_SUBTITLE}</h2>
         <div className="text-amber-500">{`Updated for Season ${displaySeason(CURRENT_SEASON)}`}</div>
+        <div id="tldr-section" className="text-base lg:text-lg mt-2.5">
+          <Header text="TL;DR" />
+          <div className="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500">
+            You lost your insured weapon and want to get it back asap?
+          </div>
+          <div className="text-left sm:text-justify mb-5">
+            <div className="mb-5">
+              We got you. The quickest way is to jump into any map, head to a dead drop location (you'll find them{' '}
+              <a
+                className="underline text-white"
+                href="https://dmzmap.net/"
+                rel="noopener noreferrer"
+                title="Hyperlink for a DMZ Interactive Map for finding the locations of dead drops"
+                target="_blank"
+              >
+                here
+              </a>
+              ), then deposit cash, weapon and items inside the white dumpster.
+            </div>
+            <div>
+              Even if you die, it will reduce your weapon cooldown timer. For instance, depositing a heartbeat sensor
+              will reduce your weapon cooldown timer by{' '}
+              {displayTimeValue(
+                convertSecondsToTimeValue(convertMoneyToSeconds(HEARTBEAT_SENSOR_VALUE, DEAD_DROP_HOURLY_RATE)),
+                true
+              )}
+              .
+            </div>
+          </div>
+        </div>
         <div>
           <Header text="Money to Time Converter" />
           <div className="flex flex-col md:flex-row justify-center">
@@ -341,12 +378,12 @@ function App() {
               </button>
             </div>
             <div className={classnamesCardBorderAddTimer}>
-              <div>Quick option</div>
-              <button
-                className="mt-2.5 border-2 border-solid border-white text-base md:text-sm lg:text-base rounded-lg p-1 text-center bg-white text-black"
-                onClick={() => onClickEditTimer(quickOptionTimerValue)}
-              >
+              <div>Quick options</div>
+              <button className={classnamesQuickOptions} onClick={() => onClickEditTimer(quickOptionTimerValue)}>
                 {timerExists ? copyLostWeaponEdit : copyLostWeapon}
+              </button>
+              <button className={classnamesQuickOptions} onClick={() => onClickEditTimer(BUNDLE_TIMER_VALUE)}>
+                {timerExists ? copyLostWeaponEditBundle : copyLostWeaponBundle}
               </button>
             </div>
           </div>

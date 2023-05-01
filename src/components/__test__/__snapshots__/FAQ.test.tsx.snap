@@ -3,7 +3,7 @@
 exports[`FAQ 1`] = `
 NodeList [
   <div
-    id="faq"
+    id="faq-section"
   >
     <h3
       class="font-bold my-5 py-1 text-xl text-lime-500"

@@ -2,12 +2,14 @@ import {
   CURRENT_SEASON,
   DEAD_DROP_HOURLY_RATE,
   DOG_TAG_VALUES,
-  JERRYCAN_VALUE,
+  WEAPON_VALUE,
   MAX_HOURS_FOR_TIMER,
   MAX_PLAYERS,
   MAX_PLAYERS_WITHOUT_ASSIMILATION,
   REGULAR_HOURLY_RATE,
-  SENSITIVE_DOCUMENTS_VALUE
+  SENSITIVE_DOCUMENTS_VALUE,
+  HEARTBEAT_SENSOR_VALUE,
+  BUNDLE_TIMER_MIN
 } from '../constants/game';
 import { displaySeason, formatMoney, getPlayersSize } from '../utils/display';
 import { QuestionAnswer } from '../types';
@@ -52,7 +54,7 @@ const questionsAnswers: QuestionAnswer[] = [
   {
     question: 'What are dead drops?',
     answer: [
-      `These are dumpsters that are present in all three maps of DMZ and that can be interacted with. Players can drop money, weapons and/or items into them in order to reduce the cooldown timer in exchange.`,
+      `These are white dumpsters that are present in all three maps of DMZ and that can be interacted with. Players can drop money, weapons and/or items into them in order to reduce the cooldown timer in exchange.`,
       `Dead drops offer two advantages compared to exfiltrating with said money/items with the chopper (or elevator in Building 21): <b>the cooldown timer decreases ${
         Math.round((REGULAR_HOURLY_RATE / DEAD_DROP_HOURLY_RATE) * 100) / 100
       }x faster thanks to dead drops</b>, and dead drops will award you the time reduction even if you die afterwards.`
@@ -62,16 +64,21 @@ const questionsAnswers: QuestionAnswer[] = [
     map: true,
     question: 'Where are dead drops?',
     answer: [
-      'There are several dead drops per map. For a specific season, they are always at the same spots (except for Building 21 which has locations changing per game). However with each new season, their locations may change. For this reason, I invite you to take a look at two amazing websites that focus exclusively on locations.'
+      'There are several dead drops per map. For a specific season, they are always at the same spots (except for Building 21 which has locations changing per game). However with each new season, their locations may change. For this reason, we invite you to take a look at two amazing websites that focus exclusively on locations.'
     ]
   },
   {
     question: 'What about items?',
     answer: [
       'Items sometimes have a displayed value underneath (in your backpack) which corresponds to the equivalent amount of money they give you when exfiltrating or deposited into dead drops.',
-      `Some other items don't have a displayed value but one exists anyway. I don't have a definite list but for instance depositing a jerrycan into dead drops will award you ${formatMoney(
-        JERRYCAN_VALUE
-      )} (which is then converted for time reduction).`
+      `Some other items don't have a displayed value but one exists anyway. We don't have a definite list but for instance depositing a weapon into dead drops will award you <span class='text-lime-500'>${formatMoney(
+        WEAPON_VALUE,
+        true
+      )}</span> (which is then converted for time reduction). The number of attachments does not matter.`,
+      `Even better, <b>depositing a heartbeat sensor will award you <span class='text-lime-500'>${formatMoney(
+        HEARTBEAT_SENSOR_VALUE,
+        true
+      )}</span></b>, which should cover all of your needs.`
     ]
   },
   {
@@ -114,11 +121,12 @@ const questionsAnswers: QuestionAnswer[] = [
     answer: [
       'In Season 01, the cooldown periods for Insured Slots 1, 2 and 3 were respectively 2, 4 and 6 hours.',
       'In Season 02, the cooldown periods for Insured Slots 1, 2 and 3 have all been reduced by half.',
-      'They are now respectively 1, 2 and 3 hours.',
+      '<b>They are now respectively 1, 2 and 3 hours.</b>',
       'The locations of dead drops in Al Mazrah and Building 21 have changed in Season 02.',
       'A new map called Ashika Island is available since Season 02.',
       `The Access Card for Building 21 is now single-use since Season 02 (since Season 02 Reloaded, it doesn't have to be equipped in the backpack anymore though).`,
-      `In <span class='text-amber-500'>Season 03</span>, lots of changes happened including the introduction of Bartering, Contraband Workbenches, New Backpacks, New Plate Carriers as well as Active Duty Operator Slots. However for the purpose of this website, such updates don't have an influence, as Contraband Weapons are shared between Active Duty Operators.`,
+      `In <span class='text-amber-500'>Season 03</span>, lots of changes happened including the introduction of Bartering, Contraband Workbenches, New Backpacks, New Plate Carriers as well as Active Duty Operator Slots. However for the purpose of this website, most updates don't have an influence, as Contraband Weapons are shared between Active Duty Operators.`,
+      `However some bundles (that need to be purchased) give the advantage of using a weapon with its own ${BUNDLE_TIMER_MIN}-min cooldown timer (no matter the insured slot), so we updated the website to reflect that (in Quick Options section).`,
       '<b>Note: the dollars-per-hour rates have never changed since Season 01 (for both exfiltration and dead drops).</b>'
     ]
   },

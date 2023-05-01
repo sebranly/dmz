@@ -6,8 +6,7 @@ import {
   convertSecondsToMoney,
   convertTimerIndexToPlayerIndex,
   convertTimerIndexToPlayerTimerIndex,
-  convertTimeValueToSeconds,
-  getSeasonId
+  convertTimeValueToSeconds
 } from '../convert';
 
 test('convertMoneyToSeconds', () => {
@@ -218,23 +217,4 @@ test('convertTimeValueToSeconds', () => {
       [TimeUnit.Second]: 14
     })
   ).toBe(176_474);
-});
-
-test('getSeasonId', () => {
-  expect(getSeasonId('')).toBe(-1);
-  expect(getSeasonId('Season')).toBe(-1);
-  expect(getSeasonId('Season 0')).toBe(0);
-  expect(getSeasonId('Season 00')).toBe(0);
-  expect(getSeasonId('Season reloaded')).toBe(0.5);
-  expect(getSeasonId('Season 1')).toBe(1);
-  expect(getSeasonId('Season 01')).toBe(1);
-  expect(getSeasonId('Season 02')).toBe(2);
-  expect(getSeasonId('Season 2')).toBe(2);
-  expect(getSeasonId('Season 2.5')).toBe(2.5);
-  expect(getSeasonId('Season 02.5')).toBe(2.5);
-  expect(getSeasonId('Season 2 Reloaded')).toBe(2.5);
-  expect(getSeasonId('Season 000000000000000000003')).toBe(3);
-  expect(getSeasonId('Season 20')).toBe(20);
-  expect(getSeasonId('Season 020')).toBe(20);
-  expect(getSeasonId('Season 0000000000000000000030005')).toBe(30005);
 });

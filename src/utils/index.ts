@@ -145,7 +145,10 @@ const sanitizeTimersCookie = (cookieValue: any, maxTimers = MAX_TIMERS) => {
  * @description Returns a anchor link (jump link)
  */
 const getAnchorLink = (text: string) => {
-  return text.toLowerCase().replace(/[ ]+/g, '-');
+  return text
+    .toLowerCase()
+    .replace(/[ ]+/g, '-')
+    .replace(/[^a-z0-9-]/g, '');
 };
 
 /**

@@ -22,7 +22,7 @@ const FAQ = () => {
   };
 
   return (
-    <div id="faq">
+    <div id="faq-section">
       <Header text="FAQ" />
       {faq.map((qa: QuestionAnswer) => {
         const { answer, isNew, map, question, shown, yt } = qa;
