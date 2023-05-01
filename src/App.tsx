@@ -61,8 +61,8 @@ function App() {
     [TimeUnit.Second]: 0
   };
 
-  const copyLostWeaponBundle = `Add new bundle timer (${BUNDLE_TIMER_MIN}-min)`;
-  const copyLostWeaponEditBundle = `Edit to bundle timer (${BUNDLE_TIMER_MIN}-min)`;
+  const copyLostWeaponBundle = `Add new ${BUNDLE_TIMER_MIN}-min timer`;
+  const copyLostWeaponEditBundle = `Edit to ${BUNDLE_TIMER_MIN}-min timer`;
   const copyLostWeapon = `Add new ${hoursForTimer}-hour timer`;
   const copyLostWeaponEdit = `Edit to ${hoursForTimer}-hour timer`;
   const timerValuesAreNull = isNullTimeValue(timerValue);
@@ -70,6 +70,14 @@ function App() {
     'block m-auto mt-2.5 border-2 border-solid border-white text-base md:text-sm lg:text-base rounded-lg p-1 text-center bg-white text-black';
 
   const onMount = () => {
+    const anchor = window.location.hash.slice(1);
+    if (anchor) {
+      const anchorEl = document.getElementById(anchor);
+      if (anchorEl) {
+        anchorEl.scrollIntoView();
+      }
+    }
+
     const interval = setInterval(() => {
       setCurrentTimestamp(getCurrentTimestamp());
     }, 1000);
@@ -284,7 +292,7 @@ function App() {
               >
                 here
               </a>
-              ), then deposit cash, weapon and items inside the white dumpster.
+              ), then drop money, weapons and/or items into the white dumpster.
             </div>
             <div>
               Even if you die, it will reduce your weapon cooldown timer. For instance, depositing a heartbeat sensor

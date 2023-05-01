@@ -64,7 +64,7 @@ const questionsAnswers: QuestionAnswer[] = [
     map: true,
     question: 'Where are dead drops?',
     answer: [
-      'There are several dead drops per map. For a specific season, they are always at the same spots (except for Building 21 which has locations changing per game). However with each new season, their locations may change. For this reason, we invite you to take a look at two amazing websites that focus exclusively on locations.'
+      'There are several dead drops per map. For a specific season, they are always at the same spots (except for Building 21 which has locations changing per game). However, with each new season, their locations may change. For this reason, we invite you to take a look at two amazing websites that focus exclusively on locations.'
     ]
   },
   {
@@ -86,7 +86,7 @@ const questionsAnswers: QuestionAnswer[] = [
     answer: [
       `Once a timer is set up on the website, it decreases on the website every second like the in-game cooldown timer. However, the latter is only visible on the game menu. So, after some time spent fighting into DMZ, <b>this website allows you to accurately know how much time is left and, more importantly, how to split money within your squad in order not to waste any dollar</b>.`,
       `Everyone may be able to get their insured weapons back. You can then use the remaining money you saved for better things such as buying and upgrading contraband weapons at the Workbench, buying strikes or UAVs. Or even buying a Building 21 Access Card.`,
-      `Another example is that you can exfiltrate from the battlefield as soon as you have the required money to get your lost weapon back (rather than risking it all), including by buying this sweet Private Exfil if you're that rich.`
+      `Another example is that you can exfiltrate from the battlefield as soon as you have the required money to get your lost weapon back (rather than risking it all). Or if you're that rich, you can get yourself a Private Exfil instead.`
     ]
   },
   {
@@ -125,8 +125,8 @@ const questionsAnswers: QuestionAnswer[] = [
       'The locations of dead drops in Al Mazrah and Building 21 have changed in Season 02.',
       'A new map called Ashika Island is available since Season 02.',
       `The Access Card for Building 21 is now single-use since Season 02 (since Season 02 Reloaded, it doesn't have to be equipped in the backpack anymore though).`,
-      `In <span class='text-amber-500'>Season 03</span>, lots of changes happened including the introduction of Bartering, Contraband Workbenches, New Backpacks, New Plate Carriers as well as Active Duty Operator Slots. However for the purpose of this website, most updates don't have an influence, as Contraband Weapons are shared between Active Duty Operators.`,
-      `However some bundles (that need to be purchased) give the advantage of using a weapon with its own ${BUNDLE_TIMER_MIN}-min cooldown timer (no matter the insured slot), so we updated the website to reflect that (in Quick Options section).`,
+      `In <span class='text-amber-500'>Season 03</span>, lots of changes happened including the introduction of Bartering, Contraband Workbenches, New Backpacks, New Plate Carriers as well as Active Duty Operator Slots. However, for the purpose of this website, most updates don't have an influence, as Contraband Weapons are shared between Active Duty Operators.`,
+      `However, some bundles (that need to be purchased) give the advantage of using a weapon with its own ${BUNDLE_TIMER_MIN}-min cooldown timer (no matter the insured slot), so we updated the website to reflect that (in Quick Options section).`,
       '<b>Note: the dollars-per-hour rates have never changed since Season 01 (for both exfiltration and dead drops).</b>'
     ]
   },
