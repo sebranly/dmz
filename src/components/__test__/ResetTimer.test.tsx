@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { render } from '@testing-library/react';
-import { PeriodicTimer } from '../PeriodicTimer';
+import { ResetTimer } from '../ResetTimer';
 import { APITime, TimeFrequency, TimeStatus, TimeType } from '../../types';
 
-test('PeriodicTimer', () => {
+test('ResetTimer', () => {
   const time: APITime = {
     type: TimeType.Challenges,
     name: 'Daily Challenges',
@@ -13,7 +13,7 @@ test('PeriodicTimer', () => {
   };
 
   const createComponent = (currentTimestamp: number, time: APITime) => (
-    <PeriodicTimer currentTimestamp={currentTimestamp} time={time} />
+    <ResetTimer currentTimestamp={currentTimestamp} time={time} />
   );
 
   const { container: containerDaily } = render(createComponent(1678078801, time));

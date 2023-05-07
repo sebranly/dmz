@@ -4,7 +4,7 @@ import { APITime, TimeFrequency, TimeStatus, TimeType } from '../types';
 import { Header } from './Header';
 import { EventTimer } from './EventTimer';
 import { OpenClosedTimer } from './OpenClosedTimer';
-import { PeriodicTimer } from './PeriodicTimer';
+import { ResetTimer } from './ResetTimer';
 
 export interface OtherTimersProps {
   className?: string;
@@ -48,7 +48,7 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
     return isNoneFrequency && isLaunchStatus && isSeason;
   });
 
-  const periodicTimers = times.filter((time: APITime) => {
+  const resetTimers = times.filter((time: APITime) => {
     const { status } = time;
     return status === TimeStatus.Reset;
   });
@@ -58,14 +58,14 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
     return type === TimeType.Map && name === 'Building 21';
   });
 
-  const renderPeriodicTimers = (times: APITime[]) => {
+  const renderResetTimers = (times: APITime[]) => {
     if (times.length === 0) return null;
 
     return times.map((time: APITime) => {
       const { frequency, name, time: resetTime, type } = time;
       const key = `${frequency}-${name}-${type}-${resetTime}`;
 
-      return <PeriodicTimer currentTimestamp={currentTimestamp} key={key} time={time} />;
+      return <ResetTimer currentTimestamp={currentTimestamp} key={key} time={time} />;
     });
   };
 
@@ -74,7 +74,7 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
       <Header text="Other Timers" />
       <div>
         <div className="flex justify-center flex-wrap mt-2.5">
-          {renderPeriodicTimers(periodicTimers)}
+          {renderResetTimers(resetTimers)}
           {timesBuilding21.length === 2 && (
             <OpenClosedTimer currentTimestamp={currentTimestamp} times={timesBuilding21} />
           )}

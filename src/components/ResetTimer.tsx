@@ -13,13 +13,13 @@ import {
 } from '../utils/display';
 import { getTimerClasses } from '../utils/tailwind';
 
-export interface PeriodicTimerProps {
+export interface ResetTimerProps {
   className?: string;
   currentTimestamp: number;
   time: APITime;
 }
 
-const PeriodicTimer: React.FC<PeriodicTimerProps> = (props) => {
+const ResetTimer: React.FC<ResetTimerProps> = (props) => {
   const { className, currentTimestamp, time } = props;
   const { name, time: resetTime, status, frequency } = time;
 
@@ -97,4 +97,4 @@ const PeriodicTimer: React.FC<PeriodicTimerProps> = (props) => {
   );
 };
 
-export { PeriodicTimer };
+export { ResetTimer };
