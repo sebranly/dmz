@@ -3,8 +3,8 @@ import { URL_DATA } from '../constants/general';
 import { APITime, TimeFrequency, TimeStatus, TimeType } from '../types';
 import { Header } from './Header';
 import { EventTimer } from './EventTimer';
-import { StatusTimer } from './StatusTimer';
 import { ResetTimer } from './ResetTimer';
+import { StatusTimer } from './StatusTimer';
 
 export interface OtherTimersProps {
   className?: string;
