@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 import * as React from 'react';
-import { APITime, APITimeData, Color, TimeFrequency, TimeStatus, TimeUnit } from '../types';
+import { APITime, APITimeData, Color, TimeFrequency, TimeUnit } from '../types';
 import { getNextStatus, getNextTime, getWeeklyTime } from '../utils';
 import { convertSecondsToTimeValue } from '../utils/convert';
 import { displayWithTwoDigits, getTimeUnitAbbreviation } from '../utils/display';
@@ -28,33 +28,18 @@ const StatusTimer: React.FC<StatusTimerProps> = (props) => {
   if (!dataElement) return null;
 
   // TODO: do not name it resetTime
-  const { color: tempColor, subtitlePrefix, subtitleSuffix, time: resetTime, titlePrefix, titleSuffix } = dataElement;
+  const { color: tempColor, time: resetTime, textOverride } = dataElement;
   const color = tempColor || Color.Red;
 
   const nextTime = getNextTime(currentTimestamp, resetTime, frequency);
   const remainingSeconds = nextTime - currentTimestamp;
 
-  // TODO: compact?
-  const statusTitle = [titlePrefix, title, titleSuffix].join(' ');
-  const statusSubtitle = [subtitlePrefix, subtitle, subtitleSuffix].join(' ');
-
-  const otherStatus = nextStatus === TimeStatus.Closing ? TimeStatus.Opening : TimeStatus.Closing;
-  const otherDataElement = data.find((d: APITimeData) => d.status === otherStatus);
-
-  if (!otherDataElement) return null;
-
-  const { color: tempOtherColor, time: otherResetTime } = otherDataElement;
-  const otherColor = tempOtherColor || Color.Red;
-  const nextOtherTime = getNextTime(currentTimestamp, otherResetTime, frequency);
+  const statusTitle = textOverride?.title ?? title;
+  const statusSubtitle = textOverride?.subtitle ?? subtitle;
 
   const classnamesStatusColor = `text-${color}-500`;
   const classnamesSubtitle = 'font-bold my-1 text-lg';
   const classnamesTitle = classnames(classnamesSubtitle, classnamesStatusColor);
-
-  const classnamesTime = 'font-bold pr-1';
-  // TODO: red should not be hardcoded
-  const classnamesOpeningTime = classnames(classnamesTime, `text-${color}-500`);
-  const classnamesClosingTime = classnames(classnamesTime, `text-${otherColor}-500`);
 
   const {
     [TimeUnit.Day]: days,
@@ -68,8 +53,6 @@ const StatusTimer: React.FC<StatusTimerProps> = (props) => {
   const isFixedMinutes = isFixedHours && minutes === 0;
   const isFixedSeconds = isFixedMinutes && seconds === 0;
 
-  const weeklyOpeningTime = nextStatus === TimeStatus.Opening ? getWeeklyTime(nextTime) : getWeeklyTime(nextOtherTime);
-  const weeklyClosingTime = nextStatus === TimeStatus.Closing ? getWeeklyTime(nextTime) : getWeeklyTime(nextOtherTime);
   const classnamesComponent = getTimerClasses(color, className);
 
   const items = [
@@ -101,15 +84,14 @@ const StatusTimer: React.FC<StatusTimerProps> = (props) => {
       {statusSubtitle && <div className={classnamesSubtitle}>{statusSubtitle}</div>}
       <ul className="timer-card flex justify-center">{items}</ul>
       {/** TODO: Why is weekly forced here? */}
-      {/** TODO: Use description here */}
       {frequency === TimeFrequency.Weekly && (
         <div className="text-xs sm:text-sm">
-          <div className="flex text-left pl-2.5">
-            <div className="grow">Weekly Opening:</div> <div className={classnamesOpeningTime}>{weeklyOpeningTime}</div>
-          </div>
-          <div className="flex text-left pl-2.5">
-            <div className="grow">Weekly Closing:</div> <div className={classnamesClosingTime}>{weeklyClosingTime}</div>
-          </div>
+          {data.map((dataEl: APITimeData) => {
+            const { color, description, time } = dataEl;
+            const classnamesTime = classnames('font-bold pr-1', `text-${color}-500`);
+          return <div className="flex text-left pl-2.5" key={dataEl.time}>
+            <div className="grow">{description}</div> <div className={classnamesTime}>{getWeeklyTime(time)}</div>
+          </div>})}
         </div>
       )}
     </div>

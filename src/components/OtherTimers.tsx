@@ -57,18 +57,24 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
             frequency: TimeFrequency.Weekly,
             data: [
               {
-                color: Color.Orange, // TODO: invert?
+                color: Color.Green, // TODO: invert?
                 time: 1678467600,
+                description: 'Weekly Opening:',
                 status: TimeStatus.Opening,
-                subtitlePrefix: 'It opens in',
-                titleSuffix: 'is closed' // TODO: invert?
+                textOverride: {
+                  title: 'Building 21 is closed',
+                  subtitle: 'It opens in'
+                }
               },
               {
-                color: Color.Green, // TODO: invert?
+                color: Color.Orange, // TODO: invert?
                 time: 1678122000,
+                description: 'Weekly Closing:',
                 status: TimeStatus.Closing,
-                subtitleSuffix: 'It closes in',
-                titleSuffix: 'is open'
+                textOverride: {
+                  title: 'Building 21 is open',
+                  subtitle: 'It closes in'
+                }
               }
             ]
           }

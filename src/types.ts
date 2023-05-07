@@ -63,16 +63,19 @@ export enum TimeStatus {
   Opening = 'opening'
 }
 
+// TODO: rename to APITimer...
+export type APITimerDataTextOverride = {
+  title?: string;
+  subtitle?: string;
+};
+
 // TODO: rename to APITimerData
 export type APITimeData = {
   color?: string;
   description?: string; // TODO: make it MANDATORY. If not, look at EventTimer first
   time: number;
   status?: TimeStatus; // TODO: make it string in the end
-  subtitlePrefix?: string;
-  subtitleSuffix?: string;
-  titlePrefix?: string;
-  titleSuffix?: string;
+  textOverride?: APITimerDataTextOverride;
 };
 
 // TODO: rename to APITimer
