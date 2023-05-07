@@ -60,7 +60,6 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
                 color: Color.Green, // TODO: invert?
                 time: 1678467600,
                 description: 'Weekly Opening:',
-                status: 'opening',
                 textOverride: {
                   title: 'Building 21 is closed',
                   subtitle: 'It opens in'
@@ -70,7 +69,6 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
                 color: Color.Orange, // TODO: invert?
                 time: 1678122000,
                 description: 'Weekly Closing:',
-                status: 'closing',
                 textOverride: {
                   title: 'Building 21 is open',
                   subtitle: 'It closes in'

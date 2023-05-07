@@ -96,8 +96,8 @@ test('getNextTime', () => {
 });
 
 test('getNextStatus', () => {
-  const timeOpening: APITimeData = { time: 1678471200, status: 'opening' };
-  const timeClosing: APITimeData = { time: 1678125600, status: 'closing' };
+  const timeOpening: APITimeData = { time: 1678471200 };
+  const timeClosing: APITimeData = { time: 1678125600 };
 
   const timeOpeningOnly: APITime = {
     type: TimeType.Status,

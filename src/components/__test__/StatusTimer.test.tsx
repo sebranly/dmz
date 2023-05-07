@@ -11,8 +11,8 @@ test('StatusTimer', () => {
     frequency: TimeFrequency.Weekly,
     // TODO: add color
     data: [
-      { time: 1678471200, status: 'opening' },
-      { time: 1678125600, status: 'closing' }
+      { time: 1678471200 },
+      { time: 1678125600 }
     ]
   };
   const createComponent = (currentTimestamp: number) => <StatusTimer currentTimestamp={currentTimestamp} time={time} />;

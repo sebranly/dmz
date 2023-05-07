@@ -70,7 +70,6 @@ export type APITimeData = {
   color?: string;
   description?: string; // TODO: make it MANDATORY. If not, look at EventTimer first
   time: number;
-  status?: string;
   textOverride?: APITimerDataTextOverride;
 };
 
