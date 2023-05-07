@@ -6,13 +6,13 @@ import { APITime, TimeFrequency, TimeStatus, TimeType } from '../../types';
 test('StatusTimer', () => {
   const times: APITime[] = [
     {
-      type: TimeType.Map,
+      type: TimeType.Status,
       title: 'Building 21',
       frequency: TimeFrequency.Weekly,
       data: [{time: 1678471200, status: TimeStatus.Opening,}]
     },
     {
-      type: TimeType.Map,
+      type: TimeType.Status,
       title: 'Building 21',
       frequency: TimeFrequency.Weekly,
       data: [{time: 1678125600, status: TimeStatus.Closing,}]

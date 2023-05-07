@@ -53,9 +53,6 @@ export enum TimeFrequency {
 }
 
 export enum TimeType {
-  // TODO: remove others
-  Challenges = 'challenges',
-  Map = 'map',
   Event = 'event',
   Reset = 'reset',
   Status = 'status'
