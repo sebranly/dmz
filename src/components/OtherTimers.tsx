@@ -43,23 +43,17 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
           },
           {
             type: TimeType.Status,
-            title: 'Building 21-1', // TODO: remove suffix
+            title: 'Building 21',
             frequency: TimeFrequency.Weekly,
             data: [{
-              color: Color.Orange, // TODO: invert
+              color: Color.Orange, // TODO: invert?
               time: 1678467600,
               status: TimeStatus.Opening
-          }]
-          },
-          {
-            type: TimeType.Status,
-            title: 'Building 21-2',
-            frequency: TimeFrequency.Weekly,
-            data: [{
-              color: Color.Green, // TODO: invert
-              time: 1678122000,
-              status: TimeStatus.Closing,
-          }]
+          }, {
+            color: Color.Green, // TODO: invert?
+            time: 1678122000,
+            status: TimeStatus.Closing,
+        }]
           }
         ]);
       } catch (error) {
@@ -93,13 +87,14 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
       };
 
       // TODO: rename in JSON to timers, also add a versioning
+      // TODO: rename each prop to timer
       switch (type) {
         case TimeType.Event:
           return <EventTimer {...commonProps} time={timer} />;
         case TimeType.Reset:
           return <ResetTimer {...commonProps} time={timer} />;
         case TimeType.Status:
-          return <StatusTimer {...commonProps} time={[timer]} />;
+          return <StatusTimer {...commonProps} time={timer} />;
         default:
           return null;
       }

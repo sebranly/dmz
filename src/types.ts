@@ -67,7 +67,7 @@ export enum TimeStatus {
 export type APITimeData = {
   color?: string;
   time: number;
-  status?: string;
+  status?: TimeStatus; // TODO: make it string in the end
 }
 
 // TODO: rename to APITimer

@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 import * as React from 'react';
-import { APITime, Color, TimeFrequency, TimeStatus, TimeUnit } from '../types';
+import { APITime, APITimeData, Color, TimeFrequency, TimeStatus, TimeUnit } from '../types';
 import { getNextStatus, getNextTime, getWeeklyTime } from '../utils';
 import { convertSecondsToTimeValue } from '../utils/convert';
 import {
@@ -13,24 +13,26 @@ import { getTimerClasses } from '../utils/tailwind';
 export interface StatusTimerProps {
   className?: string;
   currentTimestamp: number;
-  time: APITime[];
+  time: APITime;
 }
 
 const StatusTimer: React.FC<StatusTimerProps> = (props) => {
   const { className, currentTimestamp, time } = props;
+
+  const { data, frequency, title } = time;
+
+  if (!data || data.length < 2) return null;
+
   const nextStatus = getNextStatus(currentTimestamp, time);
 
   if (nextStatus === -1 || !nextStatus) return null;
 
-  // TODO: data[0] will change here
-  const nextStatusTime = time.find((t: APITime) => t.data[0].status === nextStatus);
+  const dataElement = data.find((d: APITimeData) => d.status === nextStatus);
 
-  if (!nextStatusTime) return null;
-
-  const { title, frequency, data } = nextStatusTime;
+  if (!dataElement) return null;
 
   // TODO: do not name it resetTime
-  const { color: tempColor, time: resetTime } = data[0];
+  const { color: tempColor, time: resetTime } = dataElement;
   const color = tempColor || Color.Red;
 
   const nextTime = getNextTime(currentTimestamp, resetTime, frequency);
@@ -41,15 +43,13 @@ const StatusTimer: React.FC<StatusTimerProps> = (props) => {
   const statusSubtitle = `It opens/closes in`;
 
   const otherStatus = nextStatus === TimeStatus.Closing ? TimeStatus.Opening : TimeStatus.Closing;
-  // TODO: data[0] will change here
-  const otherStatusTime = time.find((t: APITime) => t.data[0].status === otherStatus);
+  const otherDataElement = data.find((d: APITimeData) => d.status === otherStatus);
 
-  if (!otherStatusTime) return null;
+  if (!otherDataElement) return null;
 
-  const { frequency: otherFrequency, data: otherData } = otherStatusTime;
-  // TODO: otherData length is risky
-  const { time: otherResetTime} = otherData[0]
-  const nextOtherTime = getNextTime(currentTimestamp, otherResetTime, otherFrequency);
+  const { color: tempOtherColor, time: otherResetTime} = otherDataElement;
+  const otherColor = tempOtherColor || Color.Red;
+  const nextOtherTime = getNextTime(currentTimestamp, otherResetTime, frequency);
 
   const classnamesStatusColor = `text-${color}-500`;
   const classnamesSubtitle = 'font-bold my-1 text-lg';
@@ -57,8 +57,8 @@ const StatusTimer: React.FC<StatusTimerProps> = (props) => {
 
   const classnamesTime = 'font-bold pr-1';
   // TODO: red should not be hardcoded
-  const classnamesOpeningTime = classnames(classnamesTime, `text-red-500`);
-  const classnamesClosingTime = classnames(classnamesTime, `text-red-500`);
+  const classnamesOpeningTime = classnames(classnamesTime, `text-${color}-500`);
+  const classnamesClosingTime = classnames(classnamesTime, `text-${otherColor}-500`);
 
   const {
     [TimeUnit.Day]: days,

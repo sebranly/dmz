@@ -1,5 +1,5 @@
 import { MAX_TIMERS } from '../constants/game';
-import { APITime, TimeFrequency, Timer, TimeUnit, TimeValue } from '../types';
+import { APITime,APITimeData, TimeFrequency, Timer, TimeUnit, TimeValue } from '../types';
 
 const commonDateOptions: Intl.DateTimeFormatOptions = {
   hour: '2-digit',
@@ -193,18 +193,18 @@ const getNextTime = (currentTimestamp: number, resetTimestamp: number, frequency
  * @name getNextTimeStatus
  * @description For an element that can have several statuses, it returns the closest next status
  */
-const getNextStatus = (currentTimestamp: number, times: APITime[]) => {
-  if (times.length === 0) return -1;
-  // TODO: reactivate
-  // if (times.length === 1) return times[0].status;
+const getNextStatus = (currentTimestamp: number, time: APITime) => {
+  const { data } = time;
+  if (data.length === 0) return -1;
+  if (data.length === 1) return data[0].status;
+
+  const { frequency } = time;
 
   let closestStatus;
   let minValue = Number.MAX_SAFE_INTEGER;
 
-  times.forEach((timeBis: APITime) => {
-    const { frequency, data } = timeBis;
-    // TODO: data[0] will change here
-    const { status, time } = data[0];
+  data.forEach((dataElement: APITimeData) => {
+    const { status, time } = dataElement;
     const nextTime = getNextTime(currentTimestamp, time, frequency);
     if (nextTime < minValue) {
       minValue = nextTime;

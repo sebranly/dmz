@@ -4,23 +4,19 @@ import { StatusTimer } from '../StatusTimer';
 import { APITime, TimeFrequency, TimeStatus, TimeType } from '../../types';
 
 test('StatusTimer', () => {
-  const times: APITime[] = [
+  // TODO: rename to timer
+  const time: APITime = 
     {
       type: TimeType.Status,
       title: 'Building 21',
       frequency: TimeFrequency.Weekly,
-      data: [{time: 1678471200, status: TimeStatus.Opening,}]
-    },
-    {
-      type: TimeType.Status,
-      title: 'Building 21',
-      frequency: TimeFrequency.Weekly,
-      data: [{time: 1678125600, status: TimeStatus.Closing,}]
+      // TODO: add color
+      data: [{time: 1678471200, status: TimeStatus.Opening,}, {time: 1678125600, status: TimeStatus.Closing,}]
     }
-  ];
+  ;
 
   const createComponent = (currentTimestamp: number) => (
-    <StatusTimer currentTimestamp={currentTimestamp} time={times} />
+    <StatusTimer currentTimestamp={currentTimestamp} time={time} />
   );
 
   const { container: containerOpen } = render(createComponent(1678471201));

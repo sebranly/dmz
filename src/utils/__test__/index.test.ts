@@ -96,33 +96,41 @@ test('getNextTime', () => {
 });
 
 test('getNextStatus', () => {
-  const times: APITime[] = [
+  const timeOpeningOnly: APITime = {
+    type: TimeType.Status,
+    title: 'Building 21',
+    frequency: TimeFrequency.Weekly,
+    data: [{time: 1678471200, status: TimeStatus.Opening}]
+  }
+
+  const timeClosingOnly: APITime =
+  {
+    type: TimeType.Status,
+    title: 'Building 21',
+    frequency: TimeFrequency.Weekly,
+    data: [{ time: 1678125600, status: TimeStatus.Closing}]
+  }
+
+  const time: APITime =
     {
       type: TimeType.Status,
       title: 'Building 21',
       frequency: TimeFrequency.Weekly,
-      data: [{time: 1678471200, status: TimeStatus.Opening}]
-    },
-    {
-      type: TimeType.Status,
-      title: 'Building 21',
-      frequency: TimeFrequency.Weekly,
-      data: [{ time: 1678125600, status: TimeStatus.Closing}]
+      data: [{time: 1678471200, status: TimeStatus.Opening}, { time: 1678125600, status: TimeStatus.Closing}]
     }
-  ];
+  ;
 
-  expect(getNextStatus(0, [])).toBe(-1);
-  expect(getNextStatus(0, [times[0]])).toBe(TimeStatus.Opening);
-  expect(getNextStatus(0, [times[1]])).toBe(TimeStatus.Closing);
-  expect(getNextStatus(0, times)).toBe(TimeStatus.Opening);
+  expect(getNextStatus(0, timeOpeningOnly)).toBe(TimeStatus.Opening);
+  expect(getNextStatus(0, timeClosingOnly)).toBe(TimeStatus.Closing);
+  expect(getNextStatus(0, time)).toBe(TimeStatus.Opening);
 
-  expect(getNextStatus(1678471199, times)).toBe(TimeStatus.Opening);
-  expect(getNextStatus(1678471200, times)).toBe(TimeStatus.Closing);
-  expect(getNextStatus(1678471201, times)).toBe(TimeStatus.Closing);
+  expect(getNextStatus(1678471199, time)).toBe(TimeStatus.Opening);
+  expect(getNextStatus(1678471200, time)).toBe(TimeStatus.Closing);
+  expect(getNextStatus(1678471201, time)).toBe(TimeStatus.Closing);
 
-  expect(getNextStatus(1678125599, times)).toBe(TimeStatus.Closing);
-  expect(getNextStatus(1678125600, times)).toBe(TimeStatus.Opening);
-  expect(getNextStatus(1678125601, times)).toBe(TimeStatus.Opening);
+  expect(getNextStatus(1678125599, time)).toBe(TimeStatus.Closing);
+  expect(getNextStatus(1678125600, time)).toBe(TimeStatus.Opening);
+  expect(getNextStatus(1678125601, time)).toBe(TimeStatus.Opening);
 });
 
 test('getDailyTime', () => {
