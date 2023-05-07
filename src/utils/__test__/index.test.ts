@@ -62,7 +62,7 @@ test('getUTCDayOffset', () => {
 });
 
 test('getNextTime', () => {
-  expect(getNextTime(0, 0, TimeFrequency.None)).toBe(86_400);
+  expect(getNextTime(0, 0)).toBe(86_400);
 
   expect(getNextTime(0, 0, TimeFrequency.Daily)).toBe(86_400);
   expect(getNextTime(86_399, 0, TimeFrequency.Daily)).toBe(86_400);

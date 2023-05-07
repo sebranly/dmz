@@ -48,7 +48,6 @@ export enum Sort {
 
 export enum TimeFrequency {
   Daily = 'daily',
-  None = 'none',
   Weekly = 'weekly'
 }
 
@@ -66,7 +65,7 @@ export enum TimeStatus {
 }
 
 export type APITime = {
-  frequency: TimeFrequency;
+  frequency?: TimeFrequency;
   name: string;
   status: TimeStatus;
   time: number;

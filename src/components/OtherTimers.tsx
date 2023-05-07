@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { URL_DATA } from '../constants/general';
-import { APITime, TimeFrequency, TimeStatus, TimeType } from '../types';
+import { APITime, TimeStatus, TimeType } from '../types';
 import { Header } from './Header';
 import { EventTimer } from './EventTimer';
 import { ResetTimer } from './ResetTimer';
@@ -41,7 +41,7 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
 
   const seasonTimer = times.find((time: APITime) => {
     const { frequency, status, type } = time;
-    const isNoneFrequency = frequency === TimeFrequency.None;
+    const isNoneFrequency = !!frequency;
     const isLaunchStatus = status === TimeStatus.Launch;
     const isSeason = type === TimeType.Season;
 

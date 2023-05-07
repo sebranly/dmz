@@ -172,8 +172,9 @@ const getUTCDayOffset = (timestamp: number) => {
 /**
  * @name getNextTime
  * @description Returns the next timestamp, in seconds, that corresponds to a cycle tick based on a frequency
+ * If no frequency is provided, daily is assumed
  */
-const getNextTime = (currentTimestamp: number, resetTimestamp: number, frequency: TimeFrequency) => {
+const getNextTime = (currentTimestamp: number, resetTimestamp: number, frequency?: TimeFrequency) => {
   const isWeekly = frequency === TimeFrequency.Weekly;
   const dayOffset = getUTCDayOffset(resetTimestamp);
   const dailyOffset = resetTimestamp % 86_400;
