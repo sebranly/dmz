@@ -1,33 +1,26 @@
 import classnames from 'classnames';
 import * as React from 'react';
-import { APITime, TimeFrequency, TimeUnit } from '../types';
-import { getDailyTime, getNextTime, getWeeklyTime } from '../utils';
+import { APITime, TimeUnit } from '../types';
+import { getDateTime } from '../utils';
 import { convertSecondsToTimeValue } from '../utils/convert';
-import {
-  displayWithTwoDigits,
-  getStatusColor,
-  getStatusVerb,
-  getTimeUnitAbbreviation,
-  pluralize,
-  titleize
-} from '../utils/display';
+import { displayWithTwoDigits, getStatusColor, getStatusVerb, getTimeUnitAbbreviation } from '../utils/display';
 import { getTimerClasses } from '../utils/tailwind';
 
-export interface PeriodicTimerProps {
+export interface EventTimerProps {
   className?: string;
   currentTimestamp: number;
   time: APITime;
 }
 
-const PeriodicTimer: React.FC<PeriodicTimerProps> = (props) => {
+const EventTimer: React.FC<EventTimerProps> = (props) => {
   const { className, currentTimestamp, time } = props;
-  const { name, time: resetTime, status, frequency } = time;
+  const { name, time: eventTime, status } = time;
 
-  const nextTime = getNextTime(currentTimestamp, resetTime, frequency);
-  const remainingSeconds = nextTime - currentTimestamp;
+  const remainingSeconds = eventTime - currentTimestamp;
+  const isPast = remainingSeconds <= 0;
+  const statusVerb = getStatusVerb(status);
 
-  const isDaily = frequency === TimeFrequency.Daily;
-  const subtitle = `They ${getStatusVerb(status)} in`;
+  const subtitle = isPast ? `It ${statusVerb}ed already` : `It ${statusVerb}es in`;
   const color = getStatusColor(status);
 
   const classnamesColor = `text-${color}-500`;
@@ -46,38 +39,28 @@ const PeriodicTimer: React.FC<PeriodicTimerProps> = (props) => {
   const isFixedHours = isFixedDays && hours === 0;
   const isFixedMinutes = isFixedHours && minutes === 0;
   const isFixedSeconds = isFixedMinutes && seconds === 0;
-  const isFixedReset = isDaily && days === 1 && hours === 0 && minutes === 0 && seconds === 0;
-
-  const resetTimeString = isDaily ? getDailyTime(nextTime) : getWeeklyTime(nextTime);
 
   const classnamesComponent = getTimerClasses(color, className);
-  const commonItemsObj = [
+
+  const items = [
+    { value: days, label: TimeUnit.Day },
     { value: hours, label: TimeUnit.Hour },
     { value: minutes, label: TimeUnit.Minute },
     { value: seconds, label: TimeUnit.Second }
-  ];
-
-  const itemsObj = isDaily ? commonItemsObj : [{ value: days, label: TimeUnit.Day }, ...commonItemsObj];
-
-  const items = itemsObj.map((element: { value: number; label: TimeUnit }) => {
+  ].map((element: { value: number; label: TimeUnit }) => {
     const { value, label: l } = element;
     const isFixed =
-      isFixedReset ||
       (l === TimeUnit.Day && isFixedDays) ||
       (l === TimeUnit.Hour && isFixedHours) ||
       (l === TimeUnit.Minute && isFixedMinutes) ||
       (l === TimeUnit.Second && isFixedSeconds);
 
-    const classnamesValue = classnames('font-bold', {
-      [classnamesColor]: isFixed,
-      'text-4xl': !isDaily,
-      'text-5xl': isDaily
-    });
+    const classnamesValue = classnames('font-bold text-4xl', { [classnamesColor]: isFixed });
 
     return (
       <li className="inline-block mx-2.5" key={l}>
         <span className={classnamesValue}>{displayWithTwoDigits(value)}</span>
-        <div className="text-sm">{isDaily ? pluralize(l, value) : getTimeUnitAbbreviation(l)}</div>
+        <div className="text-sm">{getTimeUnitAbbreviation(l)}</div>
       </li>
     );
   });
@@ -87,14 +70,17 @@ const PeriodicTimer: React.FC<PeriodicTimerProps> = (props) => {
       <div className={classnamesTitle}>{name}</div>
       <div className={classnamesSubtitle}>{subtitle}</div>
       <ul className="timer-card flex justify-center">{items}</ul>
-      <div className="text-sm">
-        <div className="flex text-left pl-2.5">
-          <div className="grow">{`${titleize(frequency)} ${titleize(status)}:`}</div>
-          <div className={classnamesTime}>{resetTimeString}</div>
+      {isPast ? (
+        <div className="text-xs sm:text-sm">The website will be updated in the next few days</div>
+      ) : (
+        <div className="text-xs sm:text-sm">
+          <div className="flex text-left pl-2.5">
+            <div className="grow">Release Date:</div> <div className={classnamesTime}>{getDateTime(eventTime)}</div>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
 
-export { PeriodicTimer };
+export { EventTimer };

@@ -12,13 +12,13 @@ import {
 } from '../utils/display';
 import { getTimerClasses } from '../utils/tailwind';
 
-export interface OpenClosedTimerProps {
+export interface StatusTimerProps {
   className?: string;
   currentTimestamp: number;
   times: APITime[];
 }
 
-const OpenClosedTimer: React.FC<OpenClosedTimerProps> = (props) => {
+const StatusTimer: React.FC<StatusTimerProps> = (props) => {
   const { className, currentTimestamp, times } = props;
   const nextStatus = getNextStatus(currentTimestamp, times);
 
@@ -111,4 +111,4 @@ const OpenClosedTimer: React.FC<OpenClosedTimerProps> = (props) => {
   );
 };
 
-export { OpenClosedTimer };
+export { StatusTimer };

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`OpenClosedTimer 1`] = `
+exports[`StatusTimer 1`] = `
 NodeList [
   <div
     class="bg-neutral-800 border-solid border-2 rounded-lg border-green-500 m-2.5 p-2.5 relative w-72 sm:w-80"
@@ -113,7 +113,7 @@ NodeList [
 ]
 `;
 
-exports[`OpenClosedTimer 2`] = `
+exports[`StatusTimer 2`] = `
 NodeList [
   <div
     class="bg-neutral-800 border-solid border-2 rounded-lg border-orange-500 m-2.5 p-2.5 relative w-72 sm:w-80"
