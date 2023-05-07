@@ -7,9 +7,7 @@ test('EventTimer', () => {
   const time: APITime = {
     type: TimeType.Event,
     title: 'Season 03',
-    data: [
-      { time: 1678125600 }
-    ]
+    data: [{ time: 1678125600 }]
   };
 
   const createComponent = (currentTimestamp: number) => <EventTimer currentTimestamp={currentTimestamp} time={time} />;

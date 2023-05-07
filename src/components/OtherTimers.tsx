@@ -28,36 +28,43 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
             type: TimeType.Reset,
             title: 'Daily Challenges',
             frequency: TimeFrequency.Daily,
-            data: [{
-              color: Color.Green,
-              description: 'Daily Reset:',
-              time: 1678078800
-            }]
+            data: [
+              {
+                color: Color.Green,
+                description: 'Daily Reset:',
+                time: 1678078800
+              }
+            ]
           },
           {
             type: TimeType.Event,
             title: 'Season 03 Reloaded',
-            data: [{
-              color: Color.Red,
-              description: 'Release Date:',
-              time: 1683702000 // TODO: test with 0
-          }]
+            data: [
+              {
+                color: Color.Red,
+                description: 'Release Date:',
+                time: 1683702000 // TODO: test with 0
+              }
+            ]
           },
           {
             type: TimeType.Status,
             title: 'Building 21',
             frequency: TimeFrequency.Weekly,
-            data: [{
-              color: Color.Orange, // TODO: invert?
-              time: 1678467600,
-              status: TimeStatus.Opening,
-              titleSuffix: 'is closed' // TODO: invert?
-          }, {
-            color: Color.Green, // TODO: invert?
-            time: 1678122000,
-            status: TimeStatus.Closing,
-            titleSuffix: 'is open'
-        }]
+            data: [
+              {
+                color: Color.Orange, // TODO: invert?
+                time: 1678467600,
+                status: TimeStatus.Opening,
+                titleSuffix: 'is closed' // TODO: invert?
+              },
+              {
+                color: Color.Green, // TODO: invert?
+                time: 1678122000,
+                status: TimeStatus.Closing,
+                titleSuffix: 'is open'
+              }
+            ]
           }
         ]);
       } catch (error) {

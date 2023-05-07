@@ -1,5 +1,5 @@
 import { MAX_TIMERS } from '../constants/game';
-import { APITime,APITimeData, TimeFrequency, Timer, TimeUnit, TimeValue } from '../types';
+import { APITime, APITimeData, TimeFrequency, Timer, TimeUnit, TimeValue } from '../types';
 
 const commonDateOptions: Intl.DateTimeFormatOptions = {
   hour: '2-digit',

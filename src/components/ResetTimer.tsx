@@ -3,11 +3,7 @@ import * as React from 'react';
 import { APITime, Color, TimeFrequency, TimeUnit } from '../types';
 import { getDailyTime, getNextTime, getWeeklyTime } from '../utils';
 import { convertSecondsToTimeValue } from '../utils/convert';
-import {
-  displayWithTwoDigits,
-  getTimeUnitAbbreviation,
-  pluralize
-} from '../utils/display';
+import { displayWithTwoDigits, getTimeUnitAbbreviation, pluralize } from '../utils/display';
 import { getTimerClasses } from '../utils/tailwind';
 
 export interface ResetTimerProps {
@@ -23,7 +19,7 @@ const ResetTimer: React.FC<ResetTimerProps> = (props) => {
   if (!data || data.length !== 1) return null;
 
   // TODO: improve tempColor
-  const { time: resetTime, color: tempColor, description } = data[0];
+  const { time: resetTime, color: tempColor, description } = data[0];
   const color = tempColor || Color.Red;
 
   const nextTime = getNextTime(currentTimestamp, resetTime, frequency);

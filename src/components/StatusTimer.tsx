@@ -3,11 +3,7 @@ import * as React from 'react';
 import { APITime, APITimeData, Color, TimeFrequency, TimeStatus, TimeUnit } from '../types';
 import { getNextStatus, getNextTime, getWeeklyTime } from '../utils';
 import { convertSecondsToTimeValue } from '../utils/convert';
-import {
-  displayWithTwoDigits,
-  getStatusAdjective,
-  getTimeUnitAbbreviation
-} from '../utils/display';
+import { displayWithTwoDigits, getStatusAdjective, getTimeUnitAbbreviation } from '../utils/display';
 import { getTimerClasses } from '../utils/tailwind';
 
 export interface StatusTimerProps {
@@ -32,7 +28,7 @@ const StatusTimer: React.FC<StatusTimerProps> = (props) => {
   if (!dataElement) return null;
 
   // TODO: do not name it resetTime
-  const { color: tempColor, time: resetTime, titlePrefix, titleSuffix } = dataElement;
+  const { color: tempColor, time: resetTime, titlePrefix, titleSuffix } = dataElement;
   const color = tempColor || Color.Red;
 
   const nextTime = getNextTime(currentTimestamp, resetTime, frequency);
@@ -48,7 +44,7 @@ const StatusTimer: React.FC<StatusTimerProps> = (props) => {
 
   if (!otherDataElement) return null;
 
-  const { color: tempOtherColor, time: otherResetTime} = otherDataElement;
+  const { color: tempOtherColor, time: otherResetTime } = otherDataElement;
   const otherColor = tempOtherColor || Color.Red;
   const nextOtherTime = getNextTime(currentTimestamp, otherResetTime, frequency);
 

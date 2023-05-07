@@ -100,26 +100,25 @@ test('getNextStatus', () => {
     type: TimeType.Status,
     title: 'Building 21',
     frequency: TimeFrequency.Weekly,
-    data: [{time: 1678471200, status: TimeStatus.Opening}]
-  }
+    data: [{ time: 1678471200, status: TimeStatus.Opening }]
+  };
 
-  const timeClosingOnly: APITime =
-  {
+  const timeClosingOnly: APITime = {
     type: TimeType.Status,
     title: 'Building 21',
     frequency: TimeFrequency.Weekly,
-    data: [{ time: 1678125600, status: TimeStatus.Closing}]
-  }
+    data: [{ time: 1678125600, status: TimeStatus.Closing }]
+  };
 
-  const time: APITime =
-    {
-      type: TimeType.Status,
-      title: 'Building 21',
-      frequency: TimeFrequency.Weekly,
-      data: [{time: 1678471200, status: TimeStatus.Opening}, { time: 1678125600, status: TimeStatus.Closing}]
-    }
-  ;
-
+  const time: APITime = {
+    type: TimeType.Status,
+    title: 'Building 21',
+    frequency: TimeFrequency.Weekly,
+    data: [
+      { time: 1678471200, status: TimeStatus.Opening },
+      { time: 1678125600, status: TimeStatus.Closing }
+    ]
+  };
   expect(getNextStatus(0, timeOpeningOnly)).toBe(TimeStatus.Opening);
   expect(getNextStatus(0, timeClosingOnly)).toBe(TimeStatus.Closing);
   expect(getNextStatus(0, time)).toBe(TimeStatus.Opening);

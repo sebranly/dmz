@@ -71,7 +71,7 @@ export type APITimeData = {
   status?: TimeStatus; // TODO: make it string in the end
   titlePrefix?: string;
   titleSuffix?: string;
-}
+};
 
 // TODO: rename to APITimer
 export type APITime = {
