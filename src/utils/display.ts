@@ -1,5 +1,5 @@
 import { isNullTimeValue } from '.';
-import { Color, TimeStatus, TimeUnit, TimeValue } from '../types';
+import { Color, TimeUnit, TimeValue } from '../types';
 
 /**
  * @name displaySeason
@@ -94,14 +94,6 @@ const getPlayerColor = (playerIndex: number) => {
 };
 
 /**
- * @name getStatusAdjective
- * @description Returns the adjective for current status based on next status
- */
-const getStatusAdjective = (nextStatus: TimeStatus) => {
-  return nextStatus === TimeStatus.Closing ? 'open' : 'closed';
-};
-
-/**
  * @name getPlayersSize
  * @description Returns a word describing the size of the squad
  */
@@ -170,7 +162,6 @@ export {
   formatMoney,
   getPlayerColor,
   getPlayersSize,
-  getStatusAdjective,
   getTimeUnitAbbreviation,
   pluralize,
   titleize

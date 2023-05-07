@@ -3,7 +3,7 @@ import * as React from 'react';
 import { APITime, APITimeData, Color, TimeFrequency, TimeStatus, TimeUnit } from '../types';
 import { getNextStatus, getNextTime, getWeeklyTime } from '../utils';
 import { convertSecondsToTimeValue } from '../utils/convert';
-import { displayWithTwoDigits, getStatusAdjective, getTimeUnitAbbreviation } from '../utils/display';
+import { displayWithTwoDigits, getTimeUnitAbbreviation } from '../utils/display';
 import { getTimerClasses } from '../utils/tailwind';
 
 export interface StatusTimerProps {

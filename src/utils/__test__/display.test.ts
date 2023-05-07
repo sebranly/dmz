@@ -6,7 +6,6 @@ import {
   formatMoney,
   getPlayerColor,
   getPlayersSize,
-  getStatusAdjective,
   getTimeUnitAbbreviation,
   pluralize,
   titleize
@@ -85,12 +84,6 @@ test('getPlayersSize', () => {
   expect(getPlayersSize(3)).toBe('trios');
   expect(getPlayersSize(4)).toBe('quatuors');
   expect(getPlayersSize(5)).toBe('');
-});
-
-test('getStatusAdjective', () => {
-  expect(getStatusAdjective(TimeStatus.Closing)).toBe('open');
-  expect(getStatusAdjective(TimeStatus.Opening)).toBe('closed');
-  expect(getStatusAdjective('bonjour' as TimeStatus)).toBe('closed');
 });
 
 test('getTimeUnitAbbreviation', () => {
