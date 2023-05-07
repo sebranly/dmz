@@ -3,7 +3,7 @@ import { URL_DATA } from '../constants/general';
 import { APITime, TimeFrequency, TimeStatus, TimeType } from '../types';
 import { Header } from './Header';
 import { EventTimer } from './EventTimer';
-import { OpenClosedTimer } from './OpenClosedTimer';
+import { StatusTimer } from './StatusTimer';
 import { ResetTimer } from './ResetTimer';
 
 export interface OtherTimersProps {
@@ -76,7 +76,7 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
         <div className="flex justify-center flex-wrap mt-2.5">
           {renderResetTimers(resetTimers)}
           {timesBuilding21.length === 2 && (
-            <OpenClosedTimer currentTimestamp={currentTimestamp} times={timesBuilding21} />
+            <StatusTimer currentTimestamp={currentTimestamp} times={timesBuilding21} />
           )}
           {seasonTimer && <EventTimer currentTimestamp={currentTimestamp} time={seasonTimer} />}
         </div>

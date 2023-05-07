@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { render } from '@testing-library/react';
-import { OpenClosedTimer } from '../OpenClosedTimer';
+import { StatusTimer } from '../StatusTimer';
 import { APITime, TimeFrequency, TimeStatus, TimeType } from '../../types';
 
-test('OpenClosedTimer', () => {
+test('StatusTimer', () => {
   const times: APITime[] = [
     {
       type: TimeType.Map,
@@ -22,7 +22,7 @@ test('OpenClosedTimer', () => {
   ];
 
   const createComponent = (currentTimestamp: number) => (
-    <OpenClosedTimer currentTimestamp={currentTimestamp} times={times} />
+    <StatusTimer currentTimestamp={currentTimestamp} times={times} />
   );
 
   const { container: containerOpen } = render(createComponent(1678471201));
