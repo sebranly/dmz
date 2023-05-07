@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { render } from '@testing-library/react';
-import { OneOffTimer } from '../OneOffTimer';
+import { EventTimer } from '../EventTimer';
 import { APITime, TimeFrequency, TimeStatus, TimeType } from '../../types';
 
-test('OneOffTimer', () => {
+test('EventTimer', () => {
   const time: APITime = {
     type: TimeType.Season,
     name: 'Season 03',
@@ -12,7 +12,7 @@ test('OneOffTimer', () => {
     time: 1678125600
   };
 
-  const createComponent = (currentTimestamp: number) => <OneOffTimer currentTimestamp={currentTimestamp} time={time} />;
+  const createComponent = (currentTimestamp: number) => <EventTimer currentTimestamp={currentTimestamp} time={time} />;
 
   const { container: containerPast } = render(createComponent(1678125601));
   expect(containerPast.childNodes).toMatchSnapshot();

@@ -6,17 +6,17 @@ import { convertSecondsToTimeValue } from '../utils/convert';
 import { displayWithTwoDigits, getStatusColor, getStatusVerb, getTimeUnitAbbreviation } from '../utils/display';
 import { getTimerClasses } from '../utils/tailwind';
 
-export interface OneOffTimerProps {
+export interface EventTimerProps {
   className?: string;
   currentTimestamp: number;
   time: APITime;
 }
 
-const OneOffTimer: React.FC<OneOffTimerProps> = (props) => {
+const EventTimer: React.FC<EventTimerProps> = (props) => {
   const { className, currentTimestamp, time } = props;
-  const { name, time: oneOffTime, status } = time;
+  const { name, time: eventTime, status } = time;
 
-  const remainingSeconds = oneOffTime - currentTimestamp;
+  const remainingSeconds = eventTime - currentTimestamp;
   const isPast = remainingSeconds <= 0;
   const statusVerb = getStatusVerb(status);
 
@@ -75,7 +75,7 @@ const OneOffTimer: React.FC<OneOffTimerProps> = (props) => {
       ) : (
         <div className="text-xs sm:text-sm">
           <div className="flex text-left pl-2.5">
-            <div className="grow">Release Date:</div> <div className={classnamesTime}>{getDateTime(oneOffTime)}</div>
+            <div className="grow">Release Date:</div> <div className={classnamesTime}>{getDateTime(eventTime)}</div>
           </div>
         </div>
       )}
@@ -83,4 +83,4 @@ const OneOffTimer: React.FC<OneOffTimerProps> = (props) => {
   );
 };
 
-export { OneOffTimer };
+export { EventTimer };

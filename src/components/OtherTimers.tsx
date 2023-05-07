@@ -2,7 +2,7 @@ import * as React from 'react';
 import { URL_DATA } from '../constants/general';
 import { APITime, TimeFrequency, TimeStatus, TimeType } from '../types';
 import { Header } from './Header';
-import { OneOffTimer } from './OneOffTimer';
+import { EventTimer } from './EventTimer';
 import { OpenClosedTimer } from './OpenClosedTimer';
 import { PeriodicTimer } from './PeriodicTimer';
 
@@ -78,7 +78,7 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
           {timesBuilding21.length === 2 && (
             <OpenClosedTimer currentTimestamp={currentTimestamp} times={timesBuilding21} />
           )}
-          {seasonTimer && <OneOffTimer currentTimestamp={currentTimestamp} time={seasonTimer} />}
+          {seasonTimer && <EventTimer currentTimestamp={currentTimestamp} time={seasonTimer} />}
         </div>
       </div>
     </div>
