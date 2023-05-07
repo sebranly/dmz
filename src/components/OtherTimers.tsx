@@ -27,6 +27,7 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
           {
             type: TimeType.Reset,
             title: 'Daily Challenges',
+            subtitle: 'They reset in',
             frequency: TimeFrequency.Daily,
             data: [
               {
@@ -39,11 +40,14 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
           {
             type: TimeType.Event,
             title: 'Season 03 Reloaded',
+            showPostEvent: false,
+            subtitle: 'It launches in',
+            subtitlePostEvent: 'It launched already',
             data: [
               {
                 color: Color.Red,
                 description: 'Release Date:',
-                time: 1683702000 // TODO: test with 0
+                time: 1683702000 // TODO: test with 0,
               }
             ]
           },
@@ -56,12 +60,14 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
                 color: Color.Orange, // TODO: invert?
                 time: 1678467600,
                 status: TimeStatus.Opening,
+                subtitlePrefix: 'It opens in',
                 titleSuffix: 'is closed' // TODO: invert?
               },
               {
                 color: Color.Green, // TODO: invert?
                 time: 1678122000,
                 status: TimeStatus.Closing,
+                subtitleSuffix: 'It closes in',
                 titleSuffix: 'is open'
               }
             ]

@@ -69,6 +69,8 @@ export type APITimeData = {
   description?: string; // TODO: make it MANDATORY. If not, look at EventTimer first
   time: number;
   status?: TimeStatus; // TODO: make it string in the end
+  subtitlePrefix?: string;
+  subtitleSuffix?: string;
   titlePrefix?: string;
   titleSuffix?: string;
 };
@@ -77,6 +79,9 @@ export type APITimeData = {
 export type APITime = {
   frequency?: TimeFrequency;
   title: string;
+  showPostEvent?: boolean;
+  subtitle?: string; // TODO: optional or mandatory
+  subtitlePostEvent?: string;
   data: APITimeData[];
   type: TimeType;
 };

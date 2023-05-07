@@ -14,7 +14,7 @@ export interface ResetTimerProps {
 
 const ResetTimer: React.FC<ResetTimerProps> = (props) => {
   const { className, currentTimestamp, time } = props;
-  const { title, frequency, data } = time;
+  const { subtitle, title, frequency, data } = time;
 
   if (!data || data.length !== 1) return null;
 
@@ -27,8 +27,6 @@ const ResetTimer: React.FC<ResetTimerProps> = (props) => {
 
   // TODO: create utils for default frequency
   const isDaily = frequency === TimeFrequency.Daily || !frequency;
-  // TODO: reset should not be hardcoded
-  const subtitle = `They reset in`;
 
   const classnamesColor = `text-${color}-500`;
   const classnamesSubtitle = 'font-bold my-1 text-lg';
@@ -85,7 +83,7 @@ const ResetTimer: React.FC<ResetTimerProps> = (props) => {
   return (
     <div className={classnamesComponent}>
       <div className={classnamesTitle}>{title}</div>
-      <div className={classnamesSubtitle}>{subtitle}</div>
+      {subtitle && <div className={classnamesSubtitle}>{subtitle}</div>}
       <ul className="timer-card flex justify-center">{items}</ul>
       <div className="text-sm">
         <div className="flex text-left pl-2.5">

@@ -14,7 +14,7 @@ export interface EventTimerProps {
 
 const EventTimer: React.FC<EventTimerProps> = (props) => {
   const { className, currentTimestamp, time } = props;
-  const { title, data } = time;
+  const { title, subtitlePostEvent, subtitle: subtitleNotDone, data, showPostEvent } = time;
 
   if (!data || data.length !== 1) return null;
 
@@ -25,8 +25,9 @@ const EventTimer: React.FC<EventTimerProps> = (props) => {
   const remainingSeconds = eventTime - currentTimestamp;
   const isPast = remainingSeconds <= 0;
 
-  // TODO: launch should not be hardcoded
-  const subtitle = isPast ? `It launched already` : `It launches in`;
+  if (isPast && !showPostEvent) return null;
+
+  const subtitle = isPast ? subtitlePostEvent : subtitleNotDone;
 
   const classnamesColor = `text-${color}-500`;
   const classnamesSubtitle = 'font-bold my-1 text-lg';
@@ -73,17 +74,13 @@ const EventTimer: React.FC<EventTimerProps> = (props) => {
   return (
     <div className={classnamesComponent}>
       <div className={classnamesTitle}>{title}</div>
-      <div className={classnamesSubtitle}>{subtitle}</div>
+      {subtitle && <div className={classnamesSubtitle}>{subtitle}</div>}
       <ul className="timer-card flex justify-center">{items}</ul>
-      {isPast ? (
-        <div className="text-xs sm:text-sm">The website will be updated in the next few days</div>
-      ) : (
-        <div className="text-xs sm:text-sm">
-          <div className="flex text-left pl-2.5">
-            <div className="grow">{description}</div> <div className={classnamesTime}>{getDateTime(eventTime)}</div>
-          </div>
+      <div className="text-xs sm:text-sm">
+        <div className="flex text-left pl-2.5">
+          <div className="grow">{description}</div> <div className={classnamesTime}>{getDateTime(eventTime)}</div>
         </div>
-      )}
+      </div>
     </div>
   );
 };

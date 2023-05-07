@@ -15,7 +15,7 @@ export interface StatusTimerProps {
 const StatusTimer: React.FC<StatusTimerProps> = (props) => {
   const { className, currentTimestamp, time } = props;
 
-  const { data, frequency, title } = time;
+  const { data, frequency, subtitle, title } = time;
 
   if (!data || data.length < 2) return null;
 
@@ -28,7 +28,7 @@ const StatusTimer: React.FC<StatusTimerProps> = (props) => {
   if (!dataElement) return null;
 
   // TODO: do not name it resetTime
-  const { color: tempColor, time: resetTime, titlePrefix, titleSuffix } = dataElement;
+  const { color: tempColor, subtitlePrefix, subtitleSuffix, time: resetTime, titlePrefix, titleSuffix } = dataElement;
   const color = tempColor || Color.Red;
 
   const nextTime = getNextTime(currentTimestamp, resetTime, frequency);
@@ -36,8 +36,7 @@ const StatusTimer: React.FC<StatusTimerProps> = (props) => {
 
   // TODO: compact?
   const statusTitle = [titlePrefix, title, titleSuffix].join(' ');
-  // TODO: should not be hardcoded
-  const statusSubtitle = `It opens/closes in`;
+  const statusSubtitle = [subtitlePrefix, subtitle, subtitleSuffix].join(' ');
 
   const otherStatus = nextStatus === TimeStatus.Closing ? TimeStatus.Opening : TimeStatus.Closing;
   const otherDataElement = data.find((d: APITimeData) => d.status === otherStatus);
@@ -99,7 +98,7 @@ const StatusTimer: React.FC<StatusTimerProps> = (props) => {
   return (
     <div className={classnamesComponent}>
       <div className={classnamesTitle}>{statusTitle}</div>
-      <div className={classnamesSubtitle}>{statusSubtitle}</div>
+      {statusSubtitle && <div className={classnamesSubtitle}>{statusSubtitle}</div>}
       <ul className="timer-card flex justify-center">{items}</ul>
       {/** TODO: Why is weekly forced here? */}
       {/** TODO: Use description here */}
