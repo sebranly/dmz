@@ -19,16 +19,12 @@ const StatusTimer: React.FC<StatusTimerProps> = (props) => {
 
   if (!data || data.length < 2) return null;
 
-  const nextStatus = getNextStatus(currentTimestamp, time);
+  const nextStatusTime = getNextStatus(currentTimestamp, time);
 
-  if (nextStatus === -1 || !nextStatus) return null;
-
-  const dataElement = data.find((d: APITimeData) => d.status === nextStatus);
-
-  if (!dataElement) return null;
+  if (!nextStatusTime) return null;
 
   // TODO: do not name it resetTime
-  const { color: tempColor, time: resetTime, textOverride } = dataElement;
+  const { color: tempColor, time: resetTime, textOverride } = nextStatusTime;
   const color = tempColor || Color.Red;
 
   const nextTime = getNextTime(currentTimestamp, resetTime, frequency);

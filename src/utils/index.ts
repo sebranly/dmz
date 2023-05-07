@@ -190,29 +190,29 @@ const getNextTime = (currentTimestamp: number, resetTimestamp: number, frequency
 };
 
 /**
+ * // TODO: rename to getNextStatusTime
  * @name getNextTimeStatus
- * @description For an element that can have several statuses, it returns the closest next status
+ * @description For an element that can have several statuses, it returns the closest one
  */
 const getNextStatus = (currentTimestamp: number, time: APITime) => {
   const { data } = time;
-  if (data.length === 0) return -1;
-  if (data.length === 1) return data[0].status;
+  if (data.length <= 1) return data[0];
 
   const { frequency } = time;
 
-  let closestStatus;
+  let closestStatusTimeIndex = 0;
   let minValue = Number.MAX_SAFE_INTEGER;
 
-  data.forEach((dataElement: APITimeData) => {
-    const { status, time } = dataElement;
+  data.forEach((dataElement: APITimeData, index: number) => {
+    const { time } = dataElement;
     const nextTime = getNextTime(currentTimestamp, time, frequency);
     if (nextTime < minValue) {
       minValue = nextTime;
-      closestStatus = status;
+      closestStatusTimeIndex = index;
     }
   });
 
-  return closestStatus;
+  return data[closestStatusTimeIndex];
 };
 
 export {
