@@ -28,12 +28,12 @@ const StatusTimer: React.FC<StatusTimerProps> = (props) => {
 
   if (!nextStatusTime) return null;
 
-  const { name, time: resetTime, frequency } = nextStatusTime;
+  const { title, time: resetTime, frequency } = nextStatusTime;
 
   const nextTime = getNextTime(currentTimestamp, resetTime, frequency);
   const remainingSeconds = nextTime - currentTimestamp;
 
-  const statusTitle = `${name} is ${getStatusAdjective(nextStatus)}`;
+  const statusTitle = `${title} is ${getStatusAdjective(nextStatus)}`;
   const statusSubtitle = `It ${getStatusVerb(nextStatus)}s in`;
 
   const otherStatus = nextStatus === TimeStatus.Closing ? TimeStatus.Opening : TimeStatus.Closing;

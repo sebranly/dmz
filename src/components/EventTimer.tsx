@@ -14,7 +14,7 @@ export interface EventTimerProps {
 
 const EventTimer: React.FC<EventTimerProps> = (props) => {
   const { className, currentTimestamp, time } = props;
-  const { name, time: eventTime, status } = time;
+  const { title, time: eventTime, status } = time;
 
   const remainingSeconds = eventTime - currentTimestamp;
   const isPast = remainingSeconds <= 0;
@@ -67,7 +67,7 @@ const EventTimer: React.FC<EventTimerProps> = (props) => {
 
   return (
     <div className={classnamesComponent}>
-      <div className={classnamesTitle}>{name}</div>
+      <div className={classnamesTitle}>{title}</div>
       <div className={classnamesSubtitle}>{subtitle}</div>
       <ul className="timer-card flex justify-center">{items}</ul>
       {isPast ? (

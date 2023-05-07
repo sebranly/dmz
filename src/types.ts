@@ -66,7 +66,7 @@ export enum TimeStatus {
 
 export type APITime = {
   frequency?: TimeFrequency;
-  name: string;
+  title: string;
   status: TimeStatus;
   time: number;
   type: TimeType;

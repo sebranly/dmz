@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { URL_DATA } from '../constants/general';
-import { APITime, TimeStatus, TimeType } from '../types';
+import { APITime, TimeFrequency, TimeStatus, TimeType } from '../types';
 import { Header } from './Header';
 import { EventTimer } from './EventTimer';
 import { ResetTimer } from './ResetTimer';
@@ -21,7 +21,34 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
         const data = await response.json();
         const safeTimes = (data.times || []) as APITime[];
 
-        setTimes(safeTimes);
+        // TODO: reset
+        setTimes([{
+          "type": TimeType.Challenges,
+          "title": "Daily Challenges",
+          "frequency": TimeFrequency.Daily,
+          "status": TimeStatus.Reset,
+          "time": 1678078800
+        },
+        {
+          "type": TimeType.Season,
+          "title": "Season 03 Reloaded",
+          "status": TimeStatus.Launch,
+          "time": 1683702000
+        },
+        {
+          "type": TimeType.Map,
+          "title": "Building 21",
+          "frequency": TimeFrequency.Weekly,
+          "status": TimeStatus.Opening,
+          "time": 1678467600
+        },
+        {
+          "type": TimeType.Map,
+          "title": "Building 21",
+          "frequency": TimeFrequency.Weekly,
+          "status": TimeStatus.Closing,
+          "time": 1678122000
+        }]);
       } catch (error) {
         console.log(error);
       }
@@ -41,7 +68,7 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
 
   const seasonTimer = times.find((time: APITime) => {
     const { frequency, status, type } = time;
-    const isNoneFrequency = !!frequency;
+    const isNoneFrequency = !frequency;
     const isLaunchStatus = status === TimeStatus.Launch;
     const isSeason = type === TimeType.Season;
 
@@ -54,16 +81,16 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
   });
 
   const timesBuilding21 = times.filter((time: APITime) => {
-    const { name, type } = time;
-    return type === TimeType.Map && name === 'Building 21';
+    const { title, type } = time;
+    return type === TimeType.Map && title === 'Building 21';
   });
 
   const renderResetTimers = (times: APITime[]) => {
     if (times.length === 0) return null;
 
     return times.map((time: APITime) => {
-      const { frequency, name, time: resetTime, type } = time;
-      const key = `${frequency}-${name}-${type}-${resetTime}`;
+      const { frequency, title, time: resetTime, type } = time;
+      const key = `${frequency}-${title}-${type}-${resetTime}`;
 
       return <ResetTimer currentTimestamp={currentTimestamp} key={key} time={time} />;
     });

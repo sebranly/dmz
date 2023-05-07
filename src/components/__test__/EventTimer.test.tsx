@@ -6,7 +6,7 @@ import { APITime, TimeStatus, TimeType } from '../../types';
 test('EventTimer', () => {
   const time: APITime = {
     type: TimeType.Season,
-    name: 'Season 03',
+    title: 'Season 03',
     status: TimeStatus.Launch,
     time: 1678125600
   };

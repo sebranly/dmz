@@ -21,13 +21,13 @@ export interface ResetTimerProps {
 
 const ResetTimer: React.FC<ResetTimerProps> = (props) => {
   const { className, currentTimestamp, time } = props;
-  const { name, time: resetTime, status, frequency } = time;
+  const { title, time: resetTime, status, frequency } = time;
 
   const nextTime = getNextTime(currentTimestamp, resetTime, frequency);
   const remainingSeconds = nextTime - currentTimestamp;
 
   // TODO: create utils for default frequency
-  const isDaily = frequency === TimeFrequency.Daily || !!frequency;
+  const isDaily = frequency === TimeFrequency.Daily || !frequency;
   const subtitle = `They ${getStatusVerb(status)} in`;
   const color = getStatusColor(status);
 
@@ -86,7 +86,7 @@ const ResetTimer: React.FC<ResetTimerProps> = (props) => {
   // TODO: use utils below
   return (
     <div className={classnamesComponent}>
-      <div className={classnamesTitle}>{name}</div>
+      <div className={classnamesTitle}>{title}</div>
       <div className={classnamesSubtitle}>{subtitle}</div>
       <ul className="timer-card flex justify-center">{items}</ul>
       <div className="text-sm">

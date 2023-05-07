@@ -7,14 +7,14 @@ test('StatusTimer', () => {
   const times: APITime[] = [
     {
       type: TimeType.Map,
-      name: 'Building 21',
+      title: 'Building 21',
       frequency: TimeFrequency.Weekly,
       status: TimeStatus.Opening,
       time: 1678471200
     },
     {
       type: TimeType.Map,
-      name: 'Building 21',
+      title: 'Building 21',
       frequency: TimeFrequency.Weekly,
       status: TimeStatus.Closing,
       time: 1678125600
