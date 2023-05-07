@@ -78,7 +78,6 @@ export type APITimeData = {
 export type APITime = {
   frequency?: TimeFrequency;
   title: string;
-  status?: TimeStatus;
   time: number;
   data: APITimeData[];
   type: TimeType;

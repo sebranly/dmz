@@ -22,7 +22,8 @@ const StatusTimer: React.FC<StatusTimerProps> = (props) => {
 
   if (nextStatus === -1 || !nextStatus) return null;
 
-  const nextStatusTime = time.find((t: APITime) => t.status === nextStatus);
+  // TODO: data[0] will change here
+  const nextStatusTime = time.find((t: APITime) => t.data[0].status === nextStatus);
 
   if (!nextStatusTime) return null;
 
@@ -39,7 +40,8 @@ const StatusTimer: React.FC<StatusTimerProps> = (props) => {
   const statusSubtitle = `It opens/closes in`;
 
   const otherStatus = nextStatus === TimeStatus.Closing ? TimeStatus.Opening : TimeStatus.Closing;
-  const otherStatusTime = time.find((t: APITime) => t.status === otherStatus);
+  // TODO: data[0] will change here
+  const otherStatusTime = time.find((t: APITime) => t.data[0].status === otherStatus);
 
   if (!otherStatusTime) return null;
 

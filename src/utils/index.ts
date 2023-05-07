@@ -195,13 +195,16 @@ const getNextTime = (currentTimestamp: number, resetTimestamp: number, frequency
  */
 const getNextStatus = (currentTimestamp: number, times: APITime[]) => {
   if (times.length === 0) return -1;
-  if (times.length === 1) return times[0].status;
+  // TODO: reactivate
+  // if (times.length === 1) return times[0].status;
 
   let closestStatus;
   let minValue = Number.MAX_SAFE_INTEGER;
 
   times.forEach((timeBis: APITime) => {
-    const { frequency, status, time } = timeBis;
+    const { frequency, time, data } = timeBis;
+    // TODO: data[0] will change here
+    const { status } = data[0];
     const nextTime = getNextTime(currentTimestamp, time, frequency);
     if (nextTime < minValue) {
       minValue = nextTime;

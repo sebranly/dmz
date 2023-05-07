@@ -28,7 +28,6 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
             type: TimeType.Reset,
             title: 'Daily Challenges',
             frequency: TimeFrequency.Daily,
-            status: TimeStatus.Reset,
             time: 1678078800,
             data: [{
               color: Color.Green,
@@ -38,7 +37,6 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
           {
             type: TimeType.Event,
             title: 'Season 03 Reloaded',
-            status: TimeStatus.Launch,
             time: 1683702000,
             data: [{
               color: Color.Red,
@@ -49,22 +47,22 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
             type: TimeType.Status,
             title: 'Building 21',
             frequency: TimeFrequency.Weekly,
-            status: TimeStatus.Opening,
             time: 1678467600,
             data: [{
               color: Color.Orange, // TODO: invert
-              time: 1678467600
+              time: 1678467600,
+              status: TimeStatus.Opening
           }]
           },
           {
             type: TimeType.Status,
             title: 'Building 21',
             frequency: TimeFrequency.Weekly,
-            status: TimeStatus.Closing,
             time: 1678122000,
             data: [{
-              color: Color.Green,
-              time: 1678122000
+              color: Color.Green, // TODO: invert
+              time: 1678122000,
+              status: TimeStatus.Closing,
           }]
           }
         ]);

@@ -90,8 +90,7 @@ test('getPlayersSize', () => {
 test('getStatusAdjective', () => {
   expect(getStatusAdjective(TimeStatus.Closing)).toBe('open');
   expect(getStatusAdjective(TimeStatus.Opening)).toBe('closed');
-  expect(getStatusAdjective(TimeStatus.Launch)).toBe('closed');
-  expect(getStatusAdjective(TimeStatus.Reset)).toBe('closed');
+  expect(getStatusAdjective('bonjour' as TimeStatus)).toBe('closed');
 });
 
 test('getTimeUnitAbbreviation', () => {
