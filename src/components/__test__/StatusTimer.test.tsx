@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { render } from '@testing-library/react';
 import { StatusTimer } from '../StatusTimer';
-import { APITime, TimeFrequency, TimeStatus, TimeType } from '../../types';
+import { APITime, TimeFrequency, TimeType } from '../../types';
 
 test('StatusTimer', () => {
   // TODO: rename to timer
@@ -11,8 +11,8 @@ test('StatusTimer', () => {
     frequency: TimeFrequency.Weekly,
     // TODO: add color
     data: [
-      { time: 1678471200, status: TimeStatus.Opening },
-      { time: 1678125600, status: TimeStatus.Closing }
+      { time: 1678471200, status: 'opening' },
+      { time: 1678125600, status: 'closing' }
     ]
   };
   const createComponent = (currentTimestamp: number) => <StatusTimer currentTimestamp={currentTimestamp} time={time} />;

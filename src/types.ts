@@ -47,6 +47,7 @@ export enum Sort {
 }
 
 // TODO: rename to TimerFrequency etc.
+// TODO: have Monthly etc.?
 export enum TimeFrequency {
   Daily = 'daily',
   Weekly = 'weekly'
@@ -56,11 +57,6 @@ export enum TimeType {
   Event = 'event',
   Reset = 'reset',
   Status = 'status'
-}
-
-export enum TimeStatus {
-  Closing = 'closing',
-  Opening = 'opening'
 }
 
 // TODO: rename to APITimer...
@@ -74,7 +70,7 @@ export type APITimeData = {
   color?: string;
   description?: string; // TODO: make it MANDATORY. If not, look at EventTimer first
   time: number;
-  status?: TimeStatus; // TODO: make it string in the end
+  status?: string;
   textOverride?: APITimerDataTextOverride;
 };
 

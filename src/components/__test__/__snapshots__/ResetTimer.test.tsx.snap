@@ -3,17 +3,12 @@
 exports[`ResetTimer 1`] = `
 NodeList [
   <div
-    class="bg-neutral-800 border-solid border-2 rounded-lg border-yellow-500 m-2.5 p-2.5 relative w-72 sm:w-80"
+    class="bg-neutral-800 border-solid border-2 rounded-lg border-red-500 m-2.5 p-2.5 relative w-72 sm:w-80"
   >
     <div
-      class="font-bold my-1 text-lg text-yellow-500"
+      class="font-bold my-1 text-lg text-red-500"
     >
       Daily Challenges
-    </div>
-    <div
-      class="font-bold my-1 text-lg"
-    >
-      They reset in
     </div>
     <ul
       class="timer-card flex justify-center"
@@ -69,11 +64,9 @@ NodeList [
       >
         <div
           class="grow"
-        >
-          Daily Reset:
-        </div>
+        />
         <div
-          class="font-bold pr-1 text-yellow-500"
+          class="font-bold pr-1 text-red-500"
         >
           06:00 AM
         </div>
@@ -86,17 +79,12 @@ NodeList [
 exports[`ResetTimer 2`] = `
 NodeList [
   <div
-    class="bg-neutral-800 border-solid border-2 rounded-lg border-yellow-500 m-2.5 p-2.5 relative w-72 sm:w-80"
+    class="bg-neutral-800 border-solid border-2 rounded-lg border-red-500 m-2.5 p-2.5 relative w-72 sm:w-80"
   >
     <div
-      class="font-bold my-1 text-lg text-yellow-500"
+      class="font-bold my-1 text-lg text-red-500"
     >
       Weekly Challenges
-    </div>
-    <div
-      class="font-bold my-1 text-lg"
-    >
-      They reset in
     </div>
     <ul
       class="timer-card flex justify-center"
@@ -166,11 +154,9 @@ NodeList [
       >
         <div
           class="grow"
-        >
-          Weekly Reset:
-        </div>
+        />
         <div
-          class="font-bold pr-1 text-yellow-500"
+          class="font-bold pr-1 text-red-500"
         >
           Mon 06:00 AM
         </div>

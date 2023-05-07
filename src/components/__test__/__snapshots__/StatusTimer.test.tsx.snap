@@ -3,17 +3,12 @@
 exports[`StatusTimer 1`] = `
 NodeList [
   <div
-    class="bg-neutral-800 border-solid border-2 rounded-lg border-green-500 m-2.5 p-2.5 relative w-72 sm:w-80"
+    class="bg-neutral-800 border-solid border-2 rounded-lg border-red-500 m-2.5 p-2.5 relative w-72 sm:w-80"
   >
     <div
-      class="font-bold my-1 text-lg text-green-500"
+      class="font-bold my-1 text-lg text-red-500"
     >
-      Building 21 is open
-    </div>
-    <div
-      class="font-bold my-1 text-lg"
-    >
-      It closes in
+      Building 21
     </div>
     <ul
       class="timer-card flex justify-center"
@@ -83,12 +78,10 @@ NodeList [
       >
         <div
           class="grow"
-        >
-          Weekly Opening:
-        </div>
+        />
          
         <div
-          class="font-bold pr-1 text-green-500"
+          class="font-bold pr-1 text-undefined-500"
         >
           Fri 07:00 PM
         </div>
@@ -98,12 +91,10 @@ NodeList [
       >
         <div
           class="grow"
-        >
-          Weekly Closing:
-        </div>
+        />
          
         <div
-          class="font-bold pr-1 text-orange-500"
+          class="font-bold pr-1 text-undefined-500"
         >
           Mon 07:00 PM
         </div>
@@ -116,17 +107,12 @@ NodeList [
 exports[`StatusTimer 2`] = `
 NodeList [
   <div
-    class="bg-neutral-800 border-solid border-2 rounded-lg border-orange-500 m-2.5 p-2.5 relative w-72 sm:w-80"
+    class="bg-neutral-800 border-solid border-2 rounded-lg border-red-500 m-2.5 p-2.5 relative w-72 sm:w-80"
   >
     <div
-      class="font-bold my-1 text-lg text-orange-500"
+      class="font-bold my-1 text-lg text-red-500"
     >
-      Building 21 is closed
-    </div>
-    <div
-      class="font-bold my-1 text-lg"
-    >
-      It opens in
+      Building 21
     </div>
     <ul
       class="timer-card flex justify-center"
@@ -196,12 +182,10 @@ NodeList [
       >
         <div
           class="grow"
-        >
-          Weekly Opening:
-        </div>
+        />
          
         <div
-          class="font-bold pr-1 text-green-500"
+          class="font-bold pr-1 text-undefined-500"
         >
           Fri 07:00 PM
         </div>
@@ -211,12 +195,10 @@ NodeList [
       >
         <div
           class="grow"
-        >
-          Weekly Closing:
-        </div>
+        />
          
         <div
-          class="font-bold pr-1 text-orange-500"
+          class="font-bold pr-1 text-undefined-500"
         >
           Mon 07:00 PM
         </div>

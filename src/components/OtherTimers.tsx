@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { URL_DATA } from '../constants/general';
-import { APITime, Color, TimeFrequency, TimeStatus, TimeType } from '../types';
+import { APITime, Color, TimeFrequency, TimeType } from '../types';
 import { Header } from './Header';
 import { EventTimer } from './EventTimer';
 import { ResetTimer } from './ResetTimer';
@@ -60,7 +60,7 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
                 color: Color.Green, // TODO: invert?
                 time: 1678467600,
                 description: 'Weekly Opening:',
-                status: TimeStatus.Opening,
+                status: 'opening',
                 textOverride: {
                   title: 'Building 21 is closed',
                   subtitle: 'It opens in'
@@ -70,7 +70,7 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
                 color: Color.Orange, // TODO: invert?
                 time: 1678122000,
                 description: 'Weekly Closing:',
-                status: TimeStatus.Closing,
+                status: 'closing',
                 textOverride: {
                   title: 'Building 21 is open',
                   subtitle: 'It closes in'
