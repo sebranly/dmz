@@ -6,8 +6,7 @@ import { convertSecondsToTimeValue } from '../utils/convert';
 import {
   displayWithTwoDigits,
   getTimeUnitAbbreviation,
-  pluralize,
-  titleize
+  pluralize
 } from '../utils/display';
 import { getTimerClasses } from '../utils/tailwind';
 
@@ -21,10 +20,10 @@ const ResetTimer: React.FC<ResetTimerProps> = (props) => {
   const { className, currentTimestamp, time } = props;
   const { title, frequency, data } = time;
 
-  if (!data || data.length === 0) return null;
+  if (!data || data.length !== 1) return null;
 
   // TODO: improve tempColor
-  const { time: resetTime, color: tempColor } = data[0];
+  const { time: resetTime, color: tempColor, description } = data[0];
   const color = tempColor || Color.Red;
 
   const nextTime = getNextTime(currentTimestamp, resetTime, frequency);
@@ -87,8 +86,6 @@ const ResetTimer: React.FC<ResetTimerProps> = (props) => {
     );
   });
 
-  // TODO: use utils below for frequency
-  // TODO: remove hardcoded Launch
   return (
     <div className={classnamesComponent}>
       <div className={classnamesTitle}>{title}</div>
@@ -96,7 +93,7 @@ const ResetTimer: React.FC<ResetTimerProps> = (props) => {
       <ul className="timer-card flex justify-center">{items}</ul>
       <div className="text-sm">
         <div className="flex text-left pl-2.5">
-          <div className="grow">{`${titleize(frequency || TimeFrequency.Daily)} Launch:`}</div>
+          <div className="grow">{description}</div>
           <div className={classnamesTime}>{resetTimeString}</div>
         </div>
       </div>

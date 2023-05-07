@@ -150,6 +150,7 @@ const pluralize = (str: string, nb: number) => {
   return `${str}s`;
 };
 
+// TODO: do we still need it?
 /**
  * @name titleize
  * @description Returns the same string but starting with a capital letter

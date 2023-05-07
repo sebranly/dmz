@@ -16,10 +16,10 @@ const EventTimer: React.FC<EventTimerProps> = (props) => {
   const { className, currentTimestamp, time } = props;
   const { title,  data } = time;
 
-  if (!data || data.length === 0) return null;
+  if (!data || data.length !== 1) return null;
 
   // TODO: improve tempColor
-  const { time: eventTime, color: tempColor } = data[0];
+  const { time: eventTime, color: tempColor, description } = data[0];
   const color = tempColor || Color.Red;
 
   const remainingSeconds = eventTime - currentTimestamp;
@@ -80,7 +80,7 @@ const EventTimer: React.FC<EventTimerProps> = (props) => {
       ) : (
         <div className="text-xs sm:text-sm">
           <div className="flex text-left pl-2.5">
-            <div className="grow">Release Date:</div> <div className={classnamesTime}>{getDateTime(eventTime)}</div>
+            <div className="grow">{description}</div> <div className={classnamesTime}>{getDateTime(eventTime)}</div>
           </div>
         </div>
       )}

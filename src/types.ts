@@ -66,8 +66,11 @@ export enum TimeStatus {
 // TODO: rename to APITimerData
 export type APITimeData = {
   color?: string;
+  description?: string; // TODO: make it MANDATORY. If not, look at EventTimer first
   time: number;
   status?: TimeStatus; // TODO: make it string in the end
+  titlePrefix?: string;
+  titleSuffix?: string;
 }
 
 // TODO: rename to APITimer
