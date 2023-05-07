@@ -28,7 +28,6 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
             type: TimeType.Reset,
             title: 'Daily Challenges',
             frequency: TimeFrequency.Daily,
-            time: 1678078800,
             data: [{
               color: Color.Green,
               time: 1678078800
@@ -37,7 +36,6 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
           {
             type: TimeType.Event,
             title: 'Season 03 Reloaded',
-            time: 1683702000,
             data: [{
               color: Color.Red,
               time: 1683702000
@@ -45,9 +43,8 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
           },
           {
             type: TimeType.Status,
-            title: 'Building 21',
+            title: 'Building 21-1', // TODO: remove suffix
             frequency: TimeFrequency.Weekly,
-            time: 1678467600,
             data: [{
               color: Color.Orange, // TODO: invert
               time: 1678467600,
@@ -56,9 +53,8 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
           },
           {
             type: TimeType.Status,
-            title: 'Building 21',
+            title: 'Building 21-2',
             frequency: TimeFrequency.Weekly,
-            time: 1678122000,
             data: [{
               color: Color.Green, // TODO: invert
               time: 1678122000,
@@ -88,8 +84,9 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
 
     // TODO: rename to APITimer ?
     return timers.map((timer: APITime) => {
-      const { frequency, title, time: resetTime, type } = timer;
-      const key = `${frequency}-${title}-${type}-${resetTime}`;
+      const { frequency, title, type } = timer;
+      // TODO: add stringified data as key
+      const key = `${frequency}-${title}-${type}`;
       const commonProps = {
         currentTimestamp,
         key

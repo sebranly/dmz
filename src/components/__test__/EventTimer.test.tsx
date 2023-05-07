@@ -7,7 +7,6 @@ test('EventTimer', () => {
   const time: APITime = {
     type: TimeType.Event,
     title: 'Season 03',
-    time: 1678125600,
     data: [
       { time: 1678125600 }
     ]

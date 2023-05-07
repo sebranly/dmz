@@ -8,7 +8,6 @@ test('ResetTimer', () => {
     type: TimeType.Reset,
     title: 'Daily Challenges',
     frequency: TimeFrequency.Daily,
-    time: 1678078800,
     data: [{ time: 1678078800 }]
   };
 

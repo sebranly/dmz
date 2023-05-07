@@ -9,14 +9,12 @@ test('StatusTimer', () => {
       type: TimeType.Map,
       title: 'Building 21',
       frequency: TimeFrequency.Weekly,
-      time: 1678471200,
       data: [{time: 1678471200, status: TimeStatus.Opening,}]
     },
     {
       type: TimeType.Map,
       title: 'Building 21',
       frequency: TimeFrequency.Weekly,
-      time: 1678125600,
       data: [{time: 1678125600, status: TimeStatus.Closing,}]
     }
   ];

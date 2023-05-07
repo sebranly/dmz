@@ -27,9 +27,10 @@ const StatusTimer: React.FC<StatusTimerProps> = (props) => {
 
   if (!nextStatusTime) return null;
 
-  const { title, time: resetTime, frequency, data } = nextStatusTime;
+  const { title, frequency, data } = nextStatusTime;
 
-  const { color: tempColor } = data[0];
+  // TODO: do not name it resetTime
+  const { color: tempColor, time: resetTime } = data[0];
   const color = tempColor || Color.Red;
 
   const nextTime = getNextTime(currentTimestamp, resetTime, frequency);
@@ -45,7 +46,9 @@ const StatusTimer: React.FC<StatusTimerProps> = (props) => {
 
   if (!otherStatusTime) return null;
 
-  const { time: otherResetTime, frequency: otherFrequency } = otherStatusTime;
+  const { frequency: otherFrequency, data: otherData } = otherStatusTime;
+  // TODO: otherData length is risky
+  const { time: otherResetTime} = otherData[0]
   const nextOtherTime = getNextTime(currentTimestamp, otherResetTime, otherFrequency);
 
   const classnamesStatusColor = `text-${color}-500`;

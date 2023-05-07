@@ -14,9 +14,12 @@ export interface EventTimerProps {
 
 const EventTimer: React.FC<EventTimerProps> = (props) => {
   const { className, currentTimestamp, time } = props;
-  const { title, time: eventTime, data } = time;
+  const { title,  data } = time;
+
+  if (!data || data.length === 0) return null;
+
   // TODO: improve tempColor
-  const { color: tempColor } = data[0];
+  const { time: eventTime, color: tempColor } = data[0];
   const color = tempColor || Color.Red;
 
   const remainingSeconds = eventTime - currentTimestamp;

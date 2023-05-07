@@ -19,9 +19,12 @@ export interface ResetTimerProps {
 
 const ResetTimer: React.FC<ResetTimerProps> = (props) => {
   const { className, currentTimestamp, time } = props;
-  const { title, time: resetTime, frequency, data } = time;
+  const { title, frequency, data } = time;
+
+  if (!data || data.length === 0) return null;
+
   // TODO: improve tempColor
-  const { color: tempColor } = data[0];
+  const { time: resetTime, color: tempColor } = data[0];
   const color = tempColor || Color.Red;
 
   const nextTime = getNextTime(currentTimestamp, resetTime, frequency);
