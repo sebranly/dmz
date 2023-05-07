@@ -60,9 +60,7 @@ export enum TimeType {
 
 export enum TimeStatus {
   Closing = 'closing',
-  Launch = 'launch',
-  Opening = 'opening',
-  Reset = 'reset'
+  Opening = 'opening'
 }
 
 // TODO: rename to APITimerData
@@ -72,6 +70,7 @@ export type APITimeData = {
   status?: string;
 }
 
+// TODO: rename to APITimer
 export type APITime = {
   frequency?: TimeFrequency;
   title: string;
