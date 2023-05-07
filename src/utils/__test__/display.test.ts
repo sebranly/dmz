@@ -7,8 +7,6 @@ import {
   getPlayerColor,
   getPlayersSize,
   getStatusAdjective,
-  getStatusColor,
-  getStatusVerb,
   getTimeUnitAbbreviation,
   pluralize,
   titleize
@@ -89,25 +87,11 @@ test('getPlayersSize', () => {
   expect(getPlayersSize(5)).toBe('');
 });
 
-test('getStatusColor', () => {
-  expect(getStatusColor(TimeStatus.Closing)).toBe(Color.Green);
-  expect(getStatusColor(TimeStatus.Opening)).toBe(Color.Orange);
-  expect(getStatusColor(TimeStatus.Launch)).toBe(Color.Red);
-  expect(getStatusColor(TimeStatus.Reset)).toBe(Color.Yellow);
-});
-
 test('getStatusAdjective', () => {
   expect(getStatusAdjective(TimeStatus.Closing)).toBe('open');
   expect(getStatusAdjective(TimeStatus.Opening)).toBe('closed');
   expect(getStatusAdjective(TimeStatus.Launch)).toBe('closed');
   expect(getStatusAdjective(TimeStatus.Reset)).toBe('closed');
-});
-
-test('getStatusVerb', () => {
-  expect(getStatusVerb(TimeStatus.Closing)).toBe('close');
-  expect(getStatusVerb(TimeStatus.Opening)).toBe('open');
-  expect(getStatusVerb(TimeStatus.Launch)).toBe('launch');
-  expect(getStatusVerb(TimeStatus.Reset)).toBe('reset');
 });
 
 test('getTimeUnitAbbreviation', () => {

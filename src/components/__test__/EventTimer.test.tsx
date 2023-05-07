@@ -5,10 +5,13 @@ import { APITime, TimeStatus, TimeType } from '../../types';
 
 test('EventTimer', () => {
   const time: APITime = {
-    type: TimeType.Season,
+    type: TimeType.Event,
     title: 'Season 03',
     status: TimeStatus.Launch,
-    time: 1678125600
+    time: 1678125600,
+    data: [
+      { time: 1678125600 }
+    ]
   };
 
   const createComponent = (currentTimestamp: number) => <EventTimer currentTimestamp={currentTimestamp} time={time} />;

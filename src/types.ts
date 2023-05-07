@@ -46,15 +46,19 @@ export enum Sort {
   ShortestToLongest = 'Shortest to Longest'
 }
 
+// TODO: rename to TimerFrequency etc.
 export enum TimeFrequency {
   Daily = 'daily',
   Weekly = 'weekly'
 }
 
 export enum TimeType {
+  // TODO: remove others
   Challenges = 'challenges',
   Map = 'map',
-  Season = 'season'
+  Event = 'event',
+  Reset = 'reset',
+  Status = 'status'
 }
 
 export enum TimeStatus {
@@ -64,10 +68,18 @@ export enum TimeStatus {
   Reset = 'reset'
 }
 
+// TODO: rename to APITimerData
+export type APITimeData = {
+  color?: string;
+  time: number;
+  status?: string;
+}
+
 export type APITime = {
   frequency?: TimeFrequency;
   title: string;
-  status: TimeStatus;
+  status?: TimeStatus;
   time: number;
+  data: APITimeData[];
   type: TimeType;
 };

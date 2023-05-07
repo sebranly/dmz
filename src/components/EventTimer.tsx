@@ -1,9 +1,9 @@
 import classnames from 'classnames';
 import * as React from 'react';
-import { APITime, TimeUnit } from '../types';
+import { APITime, Color, TimeUnit } from '../types';
 import { getDateTime } from '../utils';
 import { convertSecondsToTimeValue } from '../utils/convert';
-import { displayWithTwoDigits, getStatusColor, getStatusVerb, getTimeUnitAbbreviation } from '../utils/display';
+import { displayWithTwoDigits, getTimeUnitAbbreviation } from '../utils/display';
 import { getTimerClasses } from '../utils/tailwind';
 
 export interface EventTimerProps {
@@ -14,14 +14,16 @@ export interface EventTimerProps {
 
 const EventTimer: React.FC<EventTimerProps> = (props) => {
   const { className, currentTimestamp, time } = props;
-  const { title, time: eventTime, status } = time;
+  const { title, time: eventTime, data } = time;
+  // TODO: improve tempColor
+  const { color: tempColor } = data[0];
+  const color = tempColor || Color.Red;
 
   const remainingSeconds = eventTime - currentTimestamp;
   const isPast = remainingSeconds <= 0;
-  const statusVerb = getStatusVerb(status);
 
-  const subtitle = isPast ? `It ${statusVerb}ed already` : `It ${statusVerb}es in`;
-  const color = getStatusColor(status);
+  // TODO: launch should not be hardcoded
+  const subtitle = isPast ? `It launched already` : `It launches in`;
 
   const classnamesColor = `text-${color}-500`;
   const classnamesSubtitle = 'font-bold my-1 text-lg';

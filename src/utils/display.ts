@@ -94,47 +94,11 @@ const getPlayerColor = (playerIndex: number) => {
 };
 
 /**
- * @name getStatusColor
- * @description Returns the current color based on next status
- */
-const getStatusColor = (nextStatus: TimeStatus) => {
-  switch (nextStatus) {
-    case TimeStatus.Closing:
-      return Color.Green;
-    case TimeStatus.Launch:
-      return Color.Red;
-    case TimeStatus.Opening:
-    default:
-      return Color.Orange;
-    case TimeStatus.Reset:
-      return Color.Yellow;
-  }
-};
-
-/**
  * @name getStatusAdjective
  * @description Returns the adjective for current status based on next status
  */
 const getStatusAdjective = (nextStatus: TimeStatus) => {
   return nextStatus === TimeStatus.Closing ? 'open' : 'closed';
-};
-
-/**
- * @name getStatusVerb
- * @description Returns the verb for next status based on next status
- */
-const getStatusVerb = (nextStatus: TimeStatus) => {
-  switch (nextStatus) {
-    case TimeStatus.Closing:
-      return 'close';
-    case TimeStatus.Launch:
-      return 'launch';
-    case TimeStatus.Opening:
-    default:
-      return 'open';
-    case TimeStatus.Reset:
-      return 'reset';
-  }
 };
 
 /**
@@ -206,8 +170,6 @@ export {
   getPlayerColor,
   getPlayersSize,
   getStatusAdjective,
-  getStatusColor,
-  getStatusVerb,
   getTimeUnitAbbreviation,
   pluralize,
   titleize

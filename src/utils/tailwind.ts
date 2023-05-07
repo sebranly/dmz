@@ -1,11 +1,11 @@
 import classnames from 'classnames';
-import { Color } from '../types';
 
 /**
  * @name getTimerClasses
  * @description Returns the generic classes used for timers
  */
-const getTimerClasses = (color: Color, className?: string) => {
+// TODO: have protection for color?? cause coming from API
+const getTimerClasses = (color: string, className?: string) => {
   const classnamesTimer = classnames(
     className,
     'bg-neutral-800',

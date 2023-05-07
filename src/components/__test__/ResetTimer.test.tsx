@@ -5,11 +5,12 @@ import { APITime, TimeFrequency, TimeStatus, TimeType } from '../../types';
 
 test('ResetTimer', () => {
   const time: APITime = {
-    type: TimeType.Challenges,
+    type: TimeType.Reset,
     title: 'Daily Challenges',
     frequency: TimeFrequency.Daily,
     status: TimeStatus.Reset,
-    time: 1678078800
+    time: 1678078800,
+    data: [{ time: 1678078800 }]
   };
 
   const createComponent = (currentTimestamp: number, time: APITime) => (

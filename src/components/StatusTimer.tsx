@@ -1,13 +1,11 @@
 import classnames from 'classnames';
 import * as React from 'react';
-import { APITime, TimeFrequency, TimeStatus, TimeUnit } from '../types';
+import { APITime, Color, TimeFrequency, TimeStatus, TimeUnit } from '../types';
 import { getNextStatus, getNextTime, getWeeklyTime } from '../utils';
 import { convertSecondsToTimeValue } from '../utils/convert';
 import {
   displayWithTwoDigits,
   getStatusAdjective,
-  getStatusColor,
-  getStatusVerb,
   getTimeUnitAbbreviation
 } from '../utils/display';
 import { getTimerClasses } from '../utils/tailwind';
@@ -15,43 +13,47 @@ import { getTimerClasses } from '../utils/tailwind';
 export interface StatusTimerProps {
   className?: string;
   currentTimestamp: number;
-  times: APITime[];
+  time: APITime[];
 }
 
 const StatusTimer: React.FC<StatusTimerProps> = (props) => {
-  const { className, currentTimestamp, times } = props;
-  const nextStatus = getNextStatus(currentTimestamp, times);
+  const { className, currentTimestamp, time } = props;
+  const nextStatus = getNextStatus(currentTimestamp, time);
 
   if (nextStatus === -1 || !nextStatus) return null;
 
-  const nextStatusTime = times.find((time: APITime) => time.status === nextStatus);
+  const nextStatusTime = time.find((t: APITime) => t.status === nextStatus);
 
   if (!nextStatusTime) return null;
 
-  const { title, time: resetTime, frequency } = nextStatusTime;
+  const { title, time: resetTime, frequency, data } = nextStatusTime;
+
+  const { color: tempColor } = data[0];
+  const color = tempColor || Color.Red;
 
   const nextTime = getNextTime(currentTimestamp, resetTime, frequency);
   const remainingSeconds = nextTime - currentTimestamp;
 
   const statusTitle = `${title} is ${getStatusAdjective(nextStatus)}`;
-  const statusSubtitle = `It ${getStatusVerb(nextStatus)}s in`;
+  // TODO: should not be hardcoded
+  const statusSubtitle = `It opens/closes in`;
 
   const otherStatus = nextStatus === TimeStatus.Closing ? TimeStatus.Opening : TimeStatus.Closing;
-  const otherStatusTime = times.find((time: APITime) => time.status === otherStatus);
+  const otherStatusTime = time.find((t: APITime) => t.status === otherStatus);
 
   if (!otherStatusTime) return null;
 
   const { time: otherResetTime, frequency: otherFrequency } = otherStatusTime;
   const nextOtherTime = getNextTime(currentTimestamp, otherResetTime, otherFrequency);
 
-  const color = getStatusColor(nextStatus);
   const classnamesStatusColor = `text-${color}-500`;
   const classnamesSubtitle = 'font-bold my-1 text-lg';
   const classnamesTitle = classnames(classnamesSubtitle, classnamesStatusColor);
 
   const classnamesTime = 'font-bold pr-1';
-  const classnamesOpeningTime = classnames(classnamesTime, `text-${getStatusColor(TimeStatus.Closing)}-500`);
-  const classnamesClosingTime = classnames(classnamesTime, `text-${getStatusColor(TimeStatus.Opening)}-500`);
+  // TODO: red should not be hardcoded
+  const classnamesOpeningTime = classnames(classnamesTime, `text-red-500`);
+  const classnamesClosingTime = classnames(classnamesTime, `text-red-500`);
 
   const {
     [TimeUnit.Day]: days,

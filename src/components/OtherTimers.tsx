@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { URL_DATA } from '../constants/general';
-import { APITime, TimeFrequency, TimeStatus, TimeType } from '../types';
+import { APITime, Color, TimeFrequency, TimeStatus, TimeType } from '../types';
 import { Header } from './Header';
 import { EventTimer } from './EventTimer';
 import { ResetTimer } from './ResetTimer';
@@ -21,34 +21,53 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
         const data = await response.json();
         const safeTimes = (data.times || []) as APITime[];
 
-        // TODO: reset
-        setTimes([{
-          "type": TimeType.Challenges,
-          "title": "Daily Challenges",
-          "frequency": TimeFrequency.Daily,
-          "status": TimeStatus.Reset,
-          "time": 1678078800
-        },
-        {
-          "type": TimeType.Season,
-          "title": "Season 03 Reloaded",
-          "status": TimeStatus.Launch,
-          "time": 1683702000
-        },
-        {
-          "type": TimeType.Map,
-          "title": "Building 21",
-          "frequency": TimeFrequency.Weekly,
-          "status": TimeStatus.Opening,
-          "time": 1678467600
-        },
-        {
-          "type": TimeType.Map,
-          "title": "Building 21",
-          "frequency": TimeFrequency.Weekly,
-          "status": TimeStatus.Closing,
-          "time": 1678122000
-        }]);
+        // TODO: reset to actual API fetch
+        // TODO: have function filtering out API response
+        setTimes([
+          {
+            type: TimeType.Reset,
+            title: 'Daily Challenges',
+            frequency: TimeFrequency.Daily,
+            status: TimeStatus.Reset,
+            time: 1678078800,
+            data: [{
+              color: Color.Green,
+              time: 1678078800
+            }]
+          },
+          {
+            type: TimeType.Event,
+            title: 'Season 03 Reloaded',
+            status: TimeStatus.Launch,
+            time: 1683702000,
+            data: [{
+              color: Color.Red,
+              time: 1683702000
+          }]
+          },
+          {
+            type: TimeType.Status,
+            title: 'Building 21',
+            frequency: TimeFrequency.Weekly,
+            status: TimeStatus.Opening,
+            time: 1678467600,
+            data: [{
+              color: Color.Orange, // TODO: invert
+              time: 1678467600
+          }]
+          },
+          {
+            type: TimeType.Status,
+            title: 'Building 21',
+            frequency: TimeFrequency.Weekly,
+            status: TimeStatus.Closing,
+            time: 1678122000,
+            data: [{
+              color: Color.Green,
+              time: 1678122000
+          }]
+          }
+        ]);
       } catch (error) {
         console.log(error);
       }
@@ -66,33 +85,29 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
 
   if (times.length === 0) return null;
 
-  const seasonTimer = times.find((time: APITime) => {
-    const { frequency, status, type } = time;
-    const isNoneFrequency = !frequency;
-    const isLaunchStatus = status === TimeStatus.Launch;
-    const isSeason = type === TimeType.Season;
+  const renderTimers = (timers: APITime[]) => {
+    if (timers.length === 0) return null;
 
-    return isNoneFrequency && isLaunchStatus && isSeason;
-  });
-
-  const resetTimers = times.filter((time: APITime) => {
-    const { status } = time;
-    return status === TimeStatus.Reset;
-  });
-
-  const timesBuilding21 = times.filter((time: APITime) => {
-    const { title, type } = time;
-    return type === TimeType.Map && title === 'Building 21';
-  });
-
-  const renderResetTimers = (times: APITime[]) => {
-    if (times.length === 0) return null;
-
-    return times.map((time: APITime) => {
-      const { frequency, title, time: resetTime, type } = time;
+    // TODO: rename to APITimer ?
+    return timers.map((timer: APITime) => {
+      const { frequency, title, time: resetTime, type } = timer;
       const key = `${frequency}-${title}-${type}-${resetTime}`;
+      const commonProps = {
+        currentTimestamp,
+        key
+      };
 
-      return <ResetTimer currentTimestamp={currentTimestamp} key={key} time={time} />;
+      // TODO: rename in JSON to timers, also add a versioning
+      switch (type) {
+        case TimeType.Event:
+          return <EventTimer {...commonProps} time={timer} />;
+        case TimeType.Reset:
+          return <ResetTimer {...commonProps} time={timer} />;
+        case TimeType.Status:
+          return <StatusTimer {...commonProps} time={[timer]} />;
+        default:
+          return null;
+      }
     });
   };
 
@@ -100,13 +115,7 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
     <div className={className}>
       <Header text="Other Timers" />
       <div>
-        <div className="flex justify-center flex-wrap mt-2.5">
-          {renderResetTimers(resetTimers)}
-          {timesBuilding21.length === 2 && (
-            <StatusTimer currentTimestamp={currentTimestamp} times={timesBuilding21} />
-          )}
-          {seasonTimer && <EventTimer currentTimestamp={currentTimestamp} time={seasonTimer} />}
-        </div>
+        <div className="flex justify-center flex-wrap mt-2.5">{renderTimers(times)}</div>
       </div>
     </div>
   );
