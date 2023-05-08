@@ -142,19 +142,6 @@ const pluralize = (str: string, nb: number) => {
   return `${str}s`;
 };
 
-// TODO: do we still need it?
-/**
- * @name titleize
- * @description Returns the same string but starting with a capital letter
- */
-const titleize = (str: string) => {
-  if (!str) return '';
-
-  const capitalLetter = str.charAt(0).toUpperCase();
-
-  return `${capitalLetter}${str.substring(1)}`;
-};
-
 export {
   displaySeason,
   displayTimeValue,
@@ -163,6 +150,5 @@ export {
   getPlayerColor,
   getPlayersSize,
   getTimeUnitAbbreviation,
-  pluralize,
-  titleize
+  pluralize
 };

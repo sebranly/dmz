@@ -7,8 +7,7 @@ import {
   getPlayerColor,
   getPlayersSize,
   getTimeUnitAbbreviation,
-  pluralize,
-  titleize
+  pluralize
 } from '../display';
 
 test('displayTimeValue', () => {
@@ -99,14 +98,4 @@ test('pluralize', () => {
   expect(pluralize('word', 1)).toBe('word');
   expect(pluralize('word', 2)).toBe('words');
   expect(pluralize('word', 100)).toBe('words');
-});
-
-test('titleize', () => {
-  expect(titleize('')).toBe('');
-  expect(titleize('a')).toBe('A');
-  expect(titleize('ab')).toBe('Ab');
-  expect(titleize('Ab')).toBe('Ab');
-  expect(titleize('aB')).toBe('AB');
-  expect(titleize('AB')).toBe('AB');
-  expect(titleize('bonjour')).toBe('Bonjour');
 });
