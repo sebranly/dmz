@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 import * as React from 'react';
-import { APITime, Color, TimeFrequency, TimeUnit } from '../types';
+import { APITime, Color, TimerFrequency, TimeUnit } from '../types';
 import { getDailyTime, getNextTime, getWeeklyTime } from '../utils';
 import { convertSecondsToTimeValue } from '../utils/convert';
 import { displayWithTwoDigits, getTimeUnitAbbreviation, pluralize } from '../utils/display';
@@ -26,7 +26,7 @@ const ResetTimer: React.FC<ResetTimerProps> = (props) => {
   const remainingSeconds = nextTime - currentTimestamp;
 
   // TODO: create utils for default frequency
-  const isDaily = frequency === TimeFrequency.Daily || !frequency;
+  const isDaily = frequency === TimerFrequency.Daily || !frequency;
 
   const classnamesColor = `text-${color}-500`;
   const classnamesSubtitle = 'font-bold my-1 text-lg';

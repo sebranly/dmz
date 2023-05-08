@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { URL_DATA } from '../constants/general';
-import { APITime, Color, TimeFrequency, TimeType } from '../types';
+import { APITime, Color, TimerFrequency, TimeType } from '../types';
 import { Header } from './Header';
 import { EventTimer } from './EventTimer';
 import { ResetTimer } from './ResetTimer';
@@ -28,7 +28,7 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
             type: TimeType.Reset,
             title: 'Daily Challenges',
             subtitle: 'They reset in',
-            frequency: TimeFrequency.Daily,
+            frequency: TimerFrequency.Daily,
             data: [
               {
                 color: Color.Green,
@@ -54,7 +54,7 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
           {
             type: TimeType.Status,
             title: 'Building 21',
-            frequency: TimeFrequency.Weekly,
+            frequency: TimerFrequency.Weekly,
             data: [
               {
                 color: Color.Green, // TODO: invert?

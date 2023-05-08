@@ -1,5 +1,5 @@
 import { MAX_TIMERS } from '../constants/game';
-import { APITime, APITimeData, TimeFrequency, Timer, TimeUnit, TimeValue } from '../types';
+import { APITime, APITimeData, TimerFrequency, Timer, TimeUnit, TimeValue } from '../types';
 
 const commonDateOptions: Intl.DateTimeFormatOptions = {
   hour: '2-digit',
@@ -174,8 +174,8 @@ const getUTCDayOffset = (timestamp: number) => {
  * @description Returns the next timestamp, in seconds, that corresponds to a cycle tick based on a frequency
  * If no frequency is provided, daily is assumed
  */
-const getNextTime = (currentTimestamp: number, resetTimestamp: number, frequency?: TimeFrequency) => {
-  const isWeekly = frequency === TimeFrequency.Weekly;
+const getNextTime = (currentTimestamp: number, resetTimestamp: number, frequency?: TimerFrequency) => {
+  const isWeekly = frequency === TimerFrequency.Weekly;
   const dayOffset = getUTCDayOffset(resetTimestamp);
   const dailyOffset = resetTimestamp % 86_400;
   const offset = isWeekly ? dailyOffset + dayOffset * 86_400 : dailyOffset;

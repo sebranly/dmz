@@ -1,4 +1,4 @@
-import { APITime, APITimeData, TimeFrequency, TimeType, TimeUnit } from '../../types';
+import { APITime, APITimeData, TimerFrequency, TimeType, TimeUnit } from '../../types';
 import {
   calculateRemainingSeconds,
   getAnchorLink,
@@ -64,35 +64,35 @@ test('getUTCDayOffset', () => {
 test('getNextTime', () => {
   expect(getNextTime(0, 0)).toBe(86_400);
 
-  expect(getNextTime(0, 0, TimeFrequency.Daily)).toBe(86_400);
-  expect(getNextTime(86_399, 0, TimeFrequency.Daily)).toBe(86_400);
-  expect(getNextTime(86_400, 0, TimeFrequency.Daily)).toBe(172_800);
-  expect(getNextTime(86_401, 0, TimeFrequency.Daily)).toBe(172_800);
-  expect(getNextTime(172_799, 0, TimeFrequency.Daily)).toBe(172800);
+  expect(getNextTime(0, 0, TimerFrequency.Daily)).toBe(86_400);
+  expect(getNextTime(86_399, 0, TimerFrequency.Daily)).toBe(86_400);
+  expect(getNextTime(86_400, 0, TimerFrequency.Daily)).toBe(172_800);
+  expect(getNextTime(86_401, 0, TimerFrequency.Daily)).toBe(172_800);
+  expect(getNextTime(172_799, 0, TimerFrequency.Daily)).toBe(172800);
 
-  expect(getNextTime(0, 1678078800, TimeFrequency.Daily)).toBe(18_000);
-  expect(getNextTime(1678032694, 1678078800, TimeFrequency.Daily)).toBe(1678078800);
-  expect(getNextTime(1678078799, 1678078800, TimeFrequency.Daily)).toBe(1678078800);
-  expect(getNextTime(1678078800, 1678078800, TimeFrequency.Daily)).toBe(1678165200);
-  expect(getNextTime(2678032694, 1678078800, TimeFrequency.Daily)).toBe(2678072400);
-  expect(getNextTime(2678072400, 1678078800, TimeFrequency.Daily)).toBe(2678158800);
+  expect(getNextTime(0, 1678078800, TimerFrequency.Daily)).toBe(18_000);
+  expect(getNextTime(1678032694, 1678078800, TimerFrequency.Daily)).toBe(1678078800);
+  expect(getNextTime(1678078799, 1678078800, TimerFrequency.Daily)).toBe(1678078800);
+  expect(getNextTime(1678078800, 1678078800, TimerFrequency.Daily)).toBe(1678165200);
+  expect(getNextTime(2678032694, 1678078800, TimerFrequency.Daily)).toBe(2678072400);
+  expect(getNextTime(2678072400, 1678078800, TimerFrequency.Daily)).toBe(2678158800);
 
-  expect(getNextTime(0, 0, TimeFrequency.Weekly)).toBe(604_800);
-  expect(getNextTime(86_399, 0, TimeFrequency.Weekly)).toBe(604_800);
-  expect(getNextTime(604_799, 0, TimeFrequency.Weekly)).toBe(604_800);
-  expect(getNextTime(604_800, 0, TimeFrequency.Weekly)).toBe(1_209_600);
-  expect(getNextTime(604_801, 0, TimeFrequency.Weekly)).toBe(1_209_600);
-  expect(getNextTime(1_209_599, 0, TimeFrequency.Weekly)).toBe(1_209_600);
+  expect(getNextTime(0, 0, TimerFrequency.Weekly)).toBe(604_800);
+  expect(getNextTime(86_399, 0, TimerFrequency.Weekly)).toBe(604_800);
+  expect(getNextTime(604_799, 0, TimerFrequency.Weekly)).toBe(604_800);
+  expect(getNextTime(604_800, 0, TimerFrequency.Weekly)).toBe(1_209_600);
+  expect(getNextTime(604_801, 0, TimerFrequency.Weekly)).toBe(1_209_600);
+  expect(getNextTime(1_209_599, 0, TimerFrequency.Weekly)).toBe(1_209_600);
 
-  expect(getNextTime(0, 1678471200, TimeFrequency.Weekly)).toBe(151_200);
-  expect(getNextTime(1678471199, 1678471200, TimeFrequency.Weekly)).toBe(1678471200);
-  expect(getNextTime(1678471200, 1678471200, TimeFrequency.Weekly)).toBe(1679076000);
-  expect(getNextTime(2678032694, 1678471200, TimeFrequency.Weekly)).toBe(2678205600);
+  expect(getNextTime(0, 1678471200, TimerFrequency.Weekly)).toBe(151_200);
+  expect(getNextTime(1678471199, 1678471200, TimerFrequency.Weekly)).toBe(1678471200);
+  expect(getNextTime(1678471200, 1678471200, TimerFrequency.Weekly)).toBe(1679076000);
+  expect(getNextTime(2678032694, 1678471200, TimerFrequency.Weekly)).toBe(2678205600);
 
-  expect(getNextTime(0, 1678125600, TimeFrequency.Weekly)).toBe(410400);
-  expect(getNextTime(1678125599, 1678125600, TimeFrequency.Weekly)).toBe(1678125600);
-  expect(getNextTime(1678125600, 1678125600, TimeFrequency.Weekly)).toBe(1678730400);
-  expect(getNextTime(2678032694, 1678125600, TimeFrequency.Weekly)).toBe(2678464800);
+  expect(getNextTime(0, 1678125600, TimerFrequency.Weekly)).toBe(410400);
+  expect(getNextTime(1678125599, 1678125600, TimerFrequency.Weekly)).toBe(1678125600);
+  expect(getNextTime(1678125600, 1678125600, TimerFrequency.Weekly)).toBe(1678730400);
+  expect(getNextTime(2678032694, 1678125600, TimerFrequency.Weekly)).toBe(2678464800);
 });
 
 test('getNextStatus', () => {
@@ -102,21 +102,21 @@ test('getNextStatus', () => {
   const timeOpeningOnly: APITime = {
     type: TimeType.Status,
     title: 'Building 21',
-    frequency: TimeFrequency.Weekly,
+    frequency: TimerFrequency.Weekly,
     data: [timeOpening]
   };
 
   const timeClosingOnly: APITime = {
     type: TimeType.Status,
     title: 'Building 21',
-    frequency: TimeFrequency.Weekly,
+    frequency: TimerFrequency.Weekly,
     data: [timeClosing]
   };
 
   const time: APITime = {
     type: TimeType.Status,
     title: 'Building 21',
-    frequency: TimeFrequency.Weekly,
+    frequency: TimerFrequency.Weekly,
     data: [timeOpening, timeClosing]
   };
   expect(getNextStatus(0, timeOpeningOnly)).toStrictEqual(timeOpening);

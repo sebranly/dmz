@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { render } from '@testing-library/react';
 import { StatusTimer } from '../StatusTimer';
-import { APITime, TimeFrequency, TimeType } from '../../types';
+import { APITime, TimerFrequency, TimeType } from '../../types';
 
 test('StatusTimer', () => {
   // TODO: rename to timer
   const time: APITime = {
     type: TimeType.Status,
     title: 'Building 21',
-    frequency: TimeFrequency.Weekly,
+    frequency: TimerFrequency.Weekly,
     // TODO: add color
     data: [
       { time: 1678471200 },

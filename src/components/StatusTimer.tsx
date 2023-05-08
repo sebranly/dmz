@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 import * as React from 'react';
-import { APITime, APITimeData, Color, TimeFrequency, TimeUnit } from '../types';
+import { APITime, APITimeData, Color, TimerFrequency, TimeUnit } from '../types';
 import { getNextStatus, getNextTime, getWeeklyTime } from '../utils';
 import { convertSecondsToTimeValue } from '../utils/convert';
 import { displayWithTwoDigits, getTimeUnitAbbreviation } from '../utils/display';
@@ -79,7 +79,7 @@ const StatusTimer: React.FC<StatusTimerProps> = (props) => {
       {statusSubtitle && <div className={classnamesSubtitle}>{statusSubtitle}</div>}
       <ul className="timer-card flex justify-center">{items}</ul>
       {/** TODO: Why is weekly forced here? */}
-      {frequency === TimeFrequency.Weekly && (
+      {frequency === TimerFrequency.Weekly && (
         <div className="text-xs sm:text-sm">
           {data.map((dataEl: APITimeData) => {
             const { color, description, time } = dataEl;
