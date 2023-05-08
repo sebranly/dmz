@@ -7,6 +7,7 @@ test('EventTimer', () => {
   const timer: APITimer = {
     type: TimerType.Event,
     title: 'Season 03',
+    showPostEvent: true,
     subtitle: 'It launches in',
     subtitlePostEvent: 'It launched already',
     data: [{
@@ -20,9 +21,9 @@ test('EventTimer', () => {
     <EventTimer currentTimestamp={currentTimestamp} timer={timer} />
   );
 
-  const { container: containerPast } = render(createComponent(1678125601));
-  expect(containerPast.childNodes).toMatchSnapshot();
+  const { container: containerPostEvent } = render(createComponent(1678125601));
+  expect(containerPostEvent.childNodes).toMatchSnapshot();
 
-  const { container: containerFuture } = render(createComponent(1677952801));
-  expect(containerFuture.childNodes).toMatchSnapshot();
+  const { container: containerEventIncoming } = render(createComponent(1677952801));
+  expect(containerEventIncoming.childNodes).toMatchSnapshot();
 });

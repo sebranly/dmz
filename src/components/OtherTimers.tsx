@@ -31,7 +31,7 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
             frequency: TimerFrequency.Daily,
             data: [
               {
-                color: Color.Green,
+                color: Color.Yellow,
                 description: 'Daily Reset:',
                 time: 1678078800
               }
@@ -40,7 +40,7 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
           {
             type: TimerType.Event,
             title: 'Season 03 Reloaded',
-            showPostEvent: false,
+            showPostEvent: true,
             subtitle: 'It launches in',
             subtitlePostEvent: 'It launched already',
             data: [

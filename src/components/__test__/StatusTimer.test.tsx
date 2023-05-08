@@ -11,7 +11,7 @@ test('StatusTimer', () => {
     data: [
       {
         color: 'green', // TODO: invert?
-        time: 1678467600,
+        time: 1678471200,
         description: 'Weekly Opening:',
         textOverride: {
           title: 'Building 21 is closed',
@@ -20,7 +20,7 @@ test('StatusTimer', () => {
       },
       {
         color: 'orange', // TODO: invert?
-        time: 1678122000,
+        time: 1678125600,
         description: 'Weekly Closing:',
         textOverride: {
           title: 'Building 21 is open',

@@ -38,7 +38,7 @@ NodeList [
         <span
           class="font-bold text-4xl"
         >
-          22
+          23
         </span>
         <div
           class="text-sm"
@@ -90,7 +90,7 @@ NodeList [
         <div
           class="font-bold pr-1 text-green-500"
         >
-          Fri 06:00 PM
+          Fri 07:00 PM
         </div>
       </div>
       <div
@@ -105,7 +105,7 @@ NodeList [
         <div
           class="font-bold pr-1 text-orange-500"
         >
-          Mon 06:00 PM
+          Mon 07:00 PM
         </div>
       </div>
     </div>
@@ -151,7 +151,7 @@ NodeList [
         <span
           class="font-bold text-4xl"
         >
-          22
+          23
         </span>
         <div
           class="text-sm"
@@ -203,7 +203,7 @@ NodeList [
         <div
           class="font-bold pr-1 text-green-500"
         >
-          Fri 06:00 PM
+          Fri 07:00 PM
         </div>
       </div>
       <div
@@ -218,7 +218,7 @@ NodeList [
         <div
           class="font-bold pr-1 text-orange-500"
         >
-          Mon 06:00 PM
+          Mon 07:00 PM
         </div>
       </div>
     </div>

@@ -10,7 +10,7 @@ test('ResetTimer', () => {
     subtitle: 'They reset in',
     frequency: TimerFrequency.Daily,
     data: [{
-      color: 'green',
+      color: 'yellow',
       description: 'Daily Reset:',
       time: 1678078800
     }]
