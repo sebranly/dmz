@@ -102,17 +102,18 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
       const key = `${frequency}-${title}-${type}-${JSON.stringify(data)}`;
       const commonProps = {
         currentTimestamp,
-        key
+        key,
+        timer
       };
 
       // TODO: rename in JSON to timers, also add a versioning
       switch (type) {
         case TimerType.Event:
-          return <EventTimer {...commonProps} timer={timer} />;
+          return <EventTimer {...commonProps} />;
         case TimerType.Reset:
-          return <ResetTimer {...commonProps} timer={timer} />;
+          return <ResetTimer {...commonProps} />;
         case TimerType.Status:
-          return <StatusTimer {...commonProps} timer={timer} />;
+          return <StatusTimer {...commonProps} />;
         default:
           return null;
       }
