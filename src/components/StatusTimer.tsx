@@ -23,11 +23,10 @@ const StatusTimer: React.FC<StatusTimerProps> = (props) => {
 
   if (!nextStatusTime) return null;
 
-  // TODO: do not name it resetTime
-  const { color: tempColor, time: resetTime, textOverride } = nextStatusTime;
+  const { color: tempColor, time: statusTime, textOverride } = nextStatusTime;
   const color = tempColor || Color.Red;
 
-  const nextTime = getNextTime(currentTimestamp, resetTime, frequency);
+  const nextTime = getNextTime(currentTimestamp, statusTime, frequency);
   const remainingSeconds = nextTime - currentTimestamp;
 
   const statusTitle = textOverride?.title ?? title;
