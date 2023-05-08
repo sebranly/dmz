@@ -9,11 +9,13 @@ test('ResetTimer', () => {
     title: 'Daily Challenges',
     subtitle: 'They reset in',
     frequency: TimerFrequency.Daily,
-    data: [{
-      color: 'yellow',
-      description: 'Daily Reset:',
-      time: 1678078800
-    }]
+    data: [
+      {
+        color: 'yellow',
+        description: 'Daily Reset:',
+        time: 1678078800
+      }
+    ]
   };
 
   const createComponent = (currentTimestamp: number, timer: APITimer) => (

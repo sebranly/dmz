@@ -46,7 +46,7 @@ export enum Sort {
   ShortestToLongest = 'Shortest to Longest'
 }
 
-// TODO: have Monthly etc.?
+// TODO: LATER: have Monthly etc.?
 export enum TimerFrequency {
   Daily = 'daily',
   Weekly = 'weekly'
@@ -70,7 +70,7 @@ export type APITimerData = {
   textOverride?: APITimerDataTextOverride;
 };
 
-// TODO: have showPreEvent and subtitlePreEvent
+// TODO: LATER: have showPreEvent and subtitlePreEvent
 export type APITimer = {
   frequency?: TimerFrequency;
   title: string;

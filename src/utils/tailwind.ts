@@ -1,18 +1,31 @@
 import classnames from 'classnames';
+import { Color } from '../types';
+
+/**
+ * @name getSafeColor
+ * @description Returns a color supported by our Tailwind setup
+ */
+const getSafeColor = (color?: string) => {
+  const isSafe = [Color.Blue, Color.Gray, Color.Green, Color.Orange, Color.Pink, Color.Red, Color.Yellow].includes(
+    color as Color
+  );
+
+  return isSafe ? (color as Color) : Color.Red;
+};
 
 /**
  * @name getTimerClasses
  * @description Returns the generic classes used for timers
  */
-// TODO: have protection for color?? cause coming from API
 const getTimerClasses = (color: string, className?: string) => {
+  const colorSafe = getSafeColor(color);
   const classnamesTimer = classnames(
     className,
     'bg-neutral-800',
     'border-solid',
     'border-2',
     'rounded-lg',
-    `border-${color}-500`,
+    `border-${colorSafe}-500`,
     'm-2.5',
     'p-2.5',
     'relative',
@@ -22,4 +35,4 @@ const getTimerClasses = (color: string, className?: string) => {
   return classnamesTimer;
 };
 
-export { getTimerClasses };
+export { getSafeColor, getTimerClasses };

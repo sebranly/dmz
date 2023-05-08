@@ -98,16 +98,14 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
     if (timers.length === 0) return null;
 
     return timers.map((timer: APITimer) => {
-      const { frequency, title, type } = timer;
-      // TODO: add stringified data as key
-      const key = `${frequency}-${title}-${type}`;
+      const { data, frequency, title, type } = timer;
+      const key = `${frequency}-${title}-${type}-${JSON.stringify(data)}`;
       const commonProps = {
         currentTimestamp,
         key
       };
 
       // TODO: rename in JSON to timers, also add a versioning
-      // TODO: rename each prop to timer
       switch (type) {
         case TimerType.Event:
           return <EventTimer {...commonProps} timer={timer} />;

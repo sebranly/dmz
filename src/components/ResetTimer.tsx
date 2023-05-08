@@ -4,7 +4,7 @@ import { APITimer, Color, TimerFrequency, TimeUnit } from '../types';
 import { getDailyTime, getNextTime, getWeeklyTime } from '../utils';
 import { convertSecondsToTimeValue } from '../utils/convert';
 import { displayWithTwoDigits, getTimeUnitAbbreviation, pluralize } from '../utils/display';
-import { getTimerClasses } from '../utils/tailwind';
+import { getSafeColor, getTimerClasses } from '../utils/tailwind';
 
 export interface ResetTimerProps {
   className?: string;
@@ -18,9 +18,8 @@ const ResetTimer: React.FC<ResetTimerProps> = (props) => {
 
   if (!data || data.length !== 1) return null;
 
-  // TODO: improve tempColor
-  const { time: resetTime, color: tempColor, description } = data[0];
-  const color = tempColor || Color.Red;
+  const { time: resetTime, color: colorUnsafe, description } = data[0];
+  const color = getSafeColor(colorUnsafe);
 
   const nextTime = getNextTime(currentTimestamp, resetTime, frequency);
   const remainingSeconds = nextTime - currentTimestamp;

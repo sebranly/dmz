@@ -10,11 +10,13 @@ test('EventTimer', () => {
     showPostEvent: true,
     subtitle: 'It launches in',
     subtitlePostEvent: 'It launched already',
-    data: [{
-      color: 'red',
-      description: 'Release Date:',
-      time: 1678125600
-    }]
+    data: [
+      {
+        color: 'red',
+        description: 'Release Date:',
+        time: 1678125600
+      }
+    ]
   };
 
   const createComponent = (currentTimestamp: number) => (

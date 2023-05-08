@@ -4,7 +4,7 @@ import { APITimer, Color, TimeUnit } from '../types';
 import { getDateTime } from '../utils';
 import { convertSecondsToTimeValue } from '../utils/convert';
 import { displayWithTwoDigits, getTimeUnitAbbreviation } from '../utils/display';
-import { getTimerClasses } from '../utils/tailwind';
+import { getSafeColor, getTimerClasses } from '../utils/tailwind';
 
 export interface EventTimerProps {
   className?: string;
@@ -18,9 +18,8 @@ const EventTimer: React.FC<EventTimerProps> = (props) => {
 
   if (!data || data.length !== 1) return null;
 
-  // TODO: improve tempColor
-  const { time: eventTime, color: tempColor, description } = data[0];
-  const color = tempColor || Color.Red;
+  const { time: eventTime, color: colorUnsafe, description } = data[0];
+  const color = getSafeColor(colorUnsafe);
 
   const remainingSeconds = eventTime - currentTimestamp;
   const isPostEvent = remainingSeconds <= 0;

@@ -4,7 +4,7 @@ import { StatusTimer } from '../StatusTimer';
 import { APITimer, TimerFrequency, TimerType } from '../../types';
 
 test('StatusTimer', () => {
-  const timer: APITimer =           {
+  const timer: APITimer = {
     type: TimerType.Status,
     title: 'Building 21',
     frequency: TimerFrequency.Weekly,
@@ -28,7 +28,7 @@ test('StatusTimer', () => {
         }
       }
     ]
-  }
+  };
 
   const createComponent = (currentTimestamp: number) => (
     <StatusTimer currentTimestamp={currentTimestamp} timer={timer} />
