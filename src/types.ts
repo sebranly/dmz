@@ -58,14 +58,12 @@ export enum TimerType {
   Status = 'status'
 }
 
-// TODO: rename to APITimer...
 export type APITimerDataTextOverride = {
   title?: string;
   subtitle?: string;
 };
 
-// TODO: rename to APITimerData
-export type APITimeData = {
+export type APITimerData = {
   color?: string;
   description?: string;
   time: number;
@@ -79,6 +77,6 @@ export type APITimer = {
   showPostEvent?: boolean;
   subtitle?: string;
   subtitlePostEvent?: string;
-  data: APITimeData[];
+  data: APITimerData[];
   type: TimerType;
 };

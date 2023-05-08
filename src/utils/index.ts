@@ -1,5 +1,5 @@
 import { MAX_TIMERS } from '../constants/game';
-import { APITimer, APITimeData, TimerFrequency, Timer, TimeUnit, TimeValue } from '../types';
+import { APITimer, APITimerData, TimerFrequency, Timer, TimeUnit, TimeValue } from '../types';
 
 const commonDateOptions: Intl.DateTimeFormatOptions = {
   hour: '2-digit',
@@ -203,7 +203,7 @@ const getNextStatus = (currentTimestamp: number, timer: APITimer) => {
   let closestStatusTimeIndex = 0;
   let minValue = Number.MAX_SAFE_INTEGER;
 
-  data.forEach((dataElement: APITimeData, index: number) => {
+  data.forEach((dataElement: APITimerData, index: number) => {
     const { time } = dataElement;
     const nextTime = getNextTime(currentTimestamp, time, frequency);
     if (nextTime < minValue) {
