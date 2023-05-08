@@ -68,17 +68,18 @@ export type APITimerDataTextOverride = {
 // TODO: rename to APITimerData
 export type APITimeData = {
   color?: string;
-  description?: string; // TODO: make it MANDATORY. If not, look at EventTimer first
+  description?: string;
   time: number;
   textOverride?: APITimerDataTextOverride;
 };
 
 // TODO: rename to APITimer
+// TODO: have showPreEvent and subtitlePreEvent
 export type APITime = {
   frequency?: TimeFrequency;
   title: string;
   showPostEvent?: boolean;
-  subtitle?: string; // TODO: optional or mandatory
+  subtitle?: string;
   subtitlePostEvent?: string;
   data: APITimeData[];
   type: TimeType;

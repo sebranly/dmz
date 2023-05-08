@@ -85,12 +85,12 @@ const ResetTimer: React.FC<ResetTimerProps> = (props) => {
       <div className={classnamesTitle}>{title}</div>
       {subtitle && <div className={classnamesSubtitle}>{subtitle}</div>}
       <ul className="timer-card flex justify-center">{items}</ul>
-      <div className="text-sm">
+      {description && <div className="text-sm">
         <div className="flex text-left pl-2.5">
           <div className="grow">{description}</div>
           <div className={classnamesTime}>{resetTimeString}</div>
         </div>
-      </div>
+      </div>}
     </div>
   );
 };

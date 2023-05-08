@@ -85,9 +85,9 @@ const StatusTimer: React.FC<StatusTimerProps> = (props) => {
           {data.map((dataEl: APITimeData) => {
             const { color, description, time } = dataEl;
             const classnamesTime = classnames('font-bold pr-1', `text-${color}-500`);
-          return <div className="flex text-left pl-2.5" key={dataEl.time}>
+          return description ? <div className="flex text-left pl-2.5" key={dataEl.time}>
             <div className="grow">{description}</div> <div className={classnamesTime}>{getWeeklyTime(time)}</div>
-          </div>})}
+          </div> : null})}
         </div>
       )}
     </div>

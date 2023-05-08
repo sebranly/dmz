@@ -23,11 +23,11 @@ const EventTimer: React.FC<EventTimerProps> = (props) => {
   const color = tempColor || Color.Red;
 
   const remainingSeconds = eventTime - currentTimestamp;
-  const isPast = remainingSeconds <= 0;
+  const isPostEvent = remainingSeconds <= 0;
 
-  if (isPast && !showPostEvent) return null;
+  if (isPostEvent && !showPostEvent) return null;
 
-  const subtitle = isPast ? subtitlePostEvent : subtitleNotDone;
+  const subtitle = isPostEvent ? subtitlePostEvent : subtitleNotDone;
 
   const classnamesColor = `text-${color}-500`;
   const classnamesSubtitle = 'font-bold my-1 text-lg';
@@ -76,11 +76,11 @@ const EventTimer: React.FC<EventTimerProps> = (props) => {
       <div className={classnamesTitle}>{title}</div>
       {subtitle && <div className={classnamesSubtitle}>{subtitle}</div>}
       <ul className="timer-card flex justify-center">{items}</ul>
-      <div className="text-xs sm:text-sm">
+      {description && <div className="text-xs sm:text-sm">
         <div className="flex text-left pl-2.5">
           <div className="grow">{description}</div> <div className={classnamesTime}>{getDateTime(eventTime)}</div>
         </div>
-      </div>
+      </div>}
     </div>
   );
 };
