@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { render } from '@testing-library/react';
 import { ResetTimer } from '../ResetTimer';
-import { APITime, TimerFrequency, TimeType } from '../../types';
+import { APITime, TimerFrequency, TimerType } from '../../types';
 
 test('ResetTimer', () => {
   const time: APITime = {
-    type: TimeType.Reset,
+    type: TimerType.Reset,
     title: 'Daily Challenges',
     frequency: TimerFrequency.Daily,
     data: [{ time: 1678078800 }]

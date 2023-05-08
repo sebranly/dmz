@@ -1,4 +1,4 @@
-import { APITime, APITimeData, TimerFrequency, TimeType, TimeUnit } from '../../types';
+import { APITime, APITimeData, TimerFrequency, TimerType, TimeUnit } from '../../types';
 import {
   calculateRemainingSeconds,
   getAnchorLink,
@@ -100,21 +100,21 @@ test('getNextStatus', () => {
   const timeClosing: APITimeData = { time: 1678125600 };
 
   const timeOpeningOnly: APITime = {
-    type: TimeType.Status,
+    type: TimerType.Status,
     title: 'Building 21',
     frequency: TimerFrequency.Weekly,
     data: [timeOpening]
   };
 
   const timeClosingOnly: APITime = {
-    type: TimeType.Status,
+    type: TimerType.Status,
     title: 'Building 21',
     frequency: TimerFrequency.Weekly,
     data: [timeClosing]
   };
 
   const time: APITime = {
-    type: TimeType.Status,
+    type: TimerType.Status,
     title: 'Building 21',
     frequency: TimerFrequency.Weekly,
     data: [timeOpening, timeClosing]

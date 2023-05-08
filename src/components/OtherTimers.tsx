@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { URL_DATA } from '../constants/general';
-import { APITime, Color, TimerFrequency, TimeType } from '../types';
+import { APITime, Color, TimerFrequency, TimerType } from '../types';
 import { Header } from './Header';
 import { EventTimer } from './EventTimer';
 import { ResetTimer } from './ResetTimer';
@@ -25,7 +25,7 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
         // TODO: have function filtering out API response
         setTimes([
           {
-            type: TimeType.Reset,
+            type: TimerType.Reset,
             title: 'Daily Challenges',
             subtitle: 'They reset in',
             frequency: TimerFrequency.Daily,
@@ -38,7 +38,7 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
             ]
           },
           {
-            type: TimeType.Event,
+            type: TimerType.Event,
             title: 'Season 03 Reloaded',
             showPostEvent: false,
             subtitle: 'It launches in',
@@ -52,7 +52,7 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
             ]
           },
           {
-            type: TimeType.Status,
+            type: TimerType.Status,
             title: 'Building 21',
             frequency: TimerFrequency.Weekly,
             data: [
@@ -110,11 +110,11 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
       // TODO: rename in JSON to timers, also add a versioning
       // TODO: rename each prop to timer
       switch (type) {
-        case TimeType.Event:
+        case TimerType.Event:
           return <EventTimer {...commonProps} time={timer} />;
-        case TimeType.Reset:
+        case TimerType.Reset:
           return <ResetTimer {...commonProps} time={timer} />;
-        case TimeType.Status:
+        case TimerType.Status:
           return <StatusTimer {...commonProps} time={timer} />;
         default:
           return null;
