@@ -1,10 +1,10 @@
 import classnames from 'classnames';
 import * as React from 'react';
-import { APITimer, APITimerData, Color, TimerFrequency, TimeUnit } from '../types';
+import { APITimer, APITimerData, TimerFrequency, TimeUnit } from '../types';
 import { getNextStatus, getNextTime, getWeeklyTime } from '../utils';
 import { convertSecondsToTimeValue } from '../utils/convert';
 import { displayWithTwoDigits, getTimeUnitAbbreviation } from '../utils/display';
-import { getTimerClasses } from '../utils/tailwind';
+import { getSafeColor, getTimerClasses } from '../utils/tailwind';
 
 export interface StatusTimerProps {
   className?: string;
@@ -23,8 +23,8 @@ const StatusTimer: React.FC<StatusTimerProps> = (props) => {
 
   if (!nextStatusTime) return null;
 
-  const { color: tempColor, time: statusTime, textOverride } = nextStatusTime;
-  const color = tempColor || Color.Red;
+  const { color: colorUnsafe, time: statusTime, textOverride } = nextStatusTime;
+  const color = getSafeColor(colorUnsafe);
 
   const nextTime = getNextTime(currentTimestamp, statusTime, frequency);
   const remainingSeconds = nextTime - currentTimestamp;
@@ -82,7 +82,9 @@ const StatusTimer: React.FC<StatusTimerProps> = (props) => {
       {frequency === TimerFrequency.Weekly && (
         <div className="text-xs sm:text-sm">
           {data.map((dataEl: APITimerData) => {
-            const { color, description, time } = dataEl;
+            const { color: colorUnsafe, description, time } = dataEl;
+            const color = getSafeColor(colorUnsafe);
+
             const classnamesTime = classnames('font-bold pr-1', `text-${color}-500`);
             return description ? (
               <div className="flex text-left pl-2.5" key={dataEl.time}>

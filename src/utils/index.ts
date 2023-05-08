@@ -191,6 +191,7 @@ const getNextTime = (currentTimestamp: number, resetTimestamp: number, frequency
 
 /**
  * // TODO: rename to getNextStatusTime or something similar
+ * // TODO: have tests for more than two statuses
  * @name getNextStatus
  * @description For an element that can have several statuses, it returns the closest one
  */
