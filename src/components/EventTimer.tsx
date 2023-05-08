@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 import * as React from 'react';
-import { APITime, Color, TimeUnit } from '../types';
+import { APITimer, Color, TimeUnit } from '../types';
 import { getDateTime } from '../utils';
 import { convertSecondsToTimeValue } from '../utils/convert';
 import { displayWithTwoDigits, getTimeUnitAbbreviation } from '../utils/display';
@@ -9,12 +9,12 @@ import { getTimerClasses } from '../utils/tailwind';
 export interface EventTimerProps {
   className?: string;
   currentTimestamp: number;
-  time: APITime;
+  timer: APITimer;
 }
 
 const EventTimer: React.FC<EventTimerProps> = (props) => {
-  const { className, currentTimestamp, time } = props;
-  const { title, subtitlePostEvent, subtitle: subtitleNotDone, data, showPostEvent } = time;
+  const { className, currentTimestamp, timer } = props;
+  const { title, subtitlePostEvent, subtitle: subtitleNotDone, data, showPostEvent } = timer;
 
   if (!data || data.length !== 1) return null;
 

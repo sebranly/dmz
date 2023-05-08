@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { URL_DATA } from '../constants/general';
-import { APITime, Color, TimerFrequency, TimerType } from '../types';
+import { APITimer, Color, TimerFrequency, TimerType } from '../types';
 import { Header } from './Header';
 import { EventTimer } from './EventTimer';
 import { ResetTimer } from './ResetTimer';
@@ -12,14 +12,14 @@ export interface OtherTimersProps {
 }
 
 const OtherTimers: React.FC<OtherTimersProps> = (props) => {
-  const [times, setTimes] = React.useState<APITime[]>([]);
+  const [times, setTimes] = React.useState<APITimer[]>([]);
 
   const onMount = () => {
-    const fetchAPITimes = async () => {
+    const fetchAPITimers = async () => {
       try {
         const response = await fetch(URL_DATA);
         const data = await response.json();
-        const safeTimes = (data.times || []) as APITime[];
+        const safeTimes = (data.times || []) as APITimer[];
 
         // TODO: reset to actual API fetch
         // TODO: have function filtering out API response
@@ -82,7 +82,7 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
       }
     };
 
-    fetchAPITimes();
+    fetchAPITimers();
   };
 
   React.useEffect(() => {
@@ -94,11 +94,10 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
 
   if (times.length === 0) return null;
 
-  const renderTimers = (timers: APITime[]) => {
+  const renderTimers = (timers: APITimer[]) => {
     if (timers.length === 0) return null;
 
-    // TODO: rename to APITimer ?
-    return timers.map((timer: APITime) => {
+    return timers.map((timer: APITimer) => {
       const { frequency, title, type } = timer;
       // TODO: add stringified data as key
       const key = `${frequency}-${title}-${type}`;
@@ -111,11 +110,11 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
       // TODO: rename each prop to timer
       switch (type) {
         case TimerType.Event:
-          return <EventTimer {...commonProps} time={timer} />;
+          return <EventTimer {...commonProps} timer={timer} />;
         case TimerType.Reset:
-          return <ResetTimer {...commonProps} time={timer} />;
+          return <ResetTimer {...commonProps} timer={timer} />;
         case TimerType.Status:
-          return <StatusTimer {...commonProps} time={timer} />;
+          return <StatusTimer {...commonProps} timer={timer} />;
         default:
           return null;
       }

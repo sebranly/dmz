@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { render } from '@testing-library/react';
 import { StatusTimer } from '../StatusTimer';
-import { APITime, TimerFrequency, TimerType } from '../../types';
+import { APITimer, TimerFrequency, TimerType } from '../../types';
 
 test('StatusTimer', () => {
-  // TODO: rename to timer
-  const time: APITime = {
+  const timer: APITimer = {
     type: TimerType.Status,
     title: 'Building 21',
     frequency: TimerFrequency.Weekly,
@@ -15,7 +14,7 @@ test('StatusTimer', () => {
       { time: 1678125600 }
     ]
   };
-  const createComponent = (currentTimestamp: number) => <StatusTimer currentTimestamp={currentTimestamp} time={time} />;
+  const createComponent = (currentTimestamp: number) => <StatusTimer currentTimestamp={currentTimestamp} timer={timer} />;
 
   const { container: containerOpen } = render(createComponent(1678471201));
   expect(containerOpen.childNodes).toMatchSnapshot();

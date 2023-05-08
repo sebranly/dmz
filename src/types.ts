@@ -72,9 +72,8 @@ export type APITimeData = {
   textOverride?: APITimerDataTextOverride;
 };
 
-// TODO: rename to APITimer
 // TODO: have showPreEvent and subtitlePreEvent
-export type APITime = {
+export type APITimer = {
   frequency?: TimerFrequency;
   title: string;
   showPostEvent?: boolean;

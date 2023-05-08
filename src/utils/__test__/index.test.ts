@@ -1,4 +1,4 @@
-import { APITime, APITimeData, TimerFrequency, TimerType, TimeUnit } from '../../types';
+import { APITimer, APITimeData, TimerFrequency, TimerType, TimeUnit } from '../../types';
 import {
   calculateRemainingSeconds,
   getAnchorLink,
@@ -99,37 +99,37 @@ test('getNextStatus', () => {
   const timeOpening: APITimeData = { time: 1678471200 };
   const timeClosing: APITimeData = { time: 1678125600 };
 
-  const timeOpeningOnly: APITime = {
+  const timerOpeningOnly: APITimer = {
     type: TimerType.Status,
     title: 'Building 21',
     frequency: TimerFrequency.Weekly,
     data: [timeOpening]
   };
 
-  const timeClosingOnly: APITime = {
+  const timerClosingOnly: APITimer = {
     type: TimerType.Status,
     title: 'Building 21',
     frequency: TimerFrequency.Weekly,
     data: [timeClosing]
   };
 
-  const time: APITime = {
+  const timer: APITimer = {
     type: TimerType.Status,
     title: 'Building 21',
     frequency: TimerFrequency.Weekly,
     data: [timeOpening, timeClosing]
   };
-  expect(getNextStatus(0, timeOpeningOnly)).toStrictEqual(timeOpening);
-  expect(getNextStatus(0, timeClosingOnly)).toStrictEqual(timeClosing);
-  expect(getNextStatus(0, time)).toStrictEqual(timeOpening);
+  expect(getNextStatus(0, timerOpeningOnly)).toStrictEqual(timeOpening);
+  expect(getNextStatus(0, timerClosingOnly)).toStrictEqual(timeClosing);
+  expect(getNextStatus(0, timer)).toStrictEqual(timeOpening);
 
-  expect(getNextStatus(1678471199, time)).toStrictEqual(timeOpening);
-  expect(getNextStatus(1678471200, time)).toStrictEqual(timeClosing);
-  expect(getNextStatus(1678471201, time)).toStrictEqual(timeClosing);
+  expect(getNextStatus(1678471199, timer)).toStrictEqual(timeOpening);
+  expect(getNextStatus(1678471200, timer)).toStrictEqual(timeClosing);
+  expect(getNextStatus(1678471201, timer)).toStrictEqual(timeClosing);
 
-  expect(getNextStatus(1678125599, time)).toStrictEqual(timeClosing);
-  expect(getNextStatus(1678125600, time)).toStrictEqual(timeOpening);
-  expect(getNextStatus(1678125601, time)).toStrictEqual(timeOpening);
+  expect(getNextStatus(1678125599, timer)).toStrictEqual(timeClosing);
+  expect(getNextStatus(1678125600, timer)).toStrictEqual(timeOpening);
+  expect(getNextStatus(1678125601, timer)).toStrictEqual(timeOpening);
 });
 
 test('getDailyTime', () => {

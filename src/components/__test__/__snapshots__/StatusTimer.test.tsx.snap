@@ -72,34 +72,7 @@ NodeList [
     </ul>
     <div
       class="text-xs sm:text-sm"
-    >
-      <div
-        class="flex text-left pl-2.5"
-      >
-        <div
-          class="grow"
-        />
-         
-        <div
-          class="font-bold pr-1 text-undefined-500"
-        >
-          Fri 07:00 PM
-        </div>
-      </div>
-      <div
-        class="flex text-left pl-2.5"
-      >
-        <div
-          class="grow"
-        />
-         
-        <div
-          class="font-bold pr-1 text-undefined-500"
-        >
-          Mon 07:00 PM
-        </div>
-      </div>
-    </div>
+    />
   </div>,
 ]
 `;
@@ -176,34 +149,7 @@ NodeList [
     </ul>
     <div
       class="text-xs sm:text-sm"
-    >
-      <div
-        class="flex text-left pl-2.5"
-      >
-        <div
-          class="grow"
-        />
-         
-        <div
-          class="font-bold pr-1 text-undefined-500"
-        >
-          Fri 07:00 PM
-        </div>
-      </div>
-      <div
-        class="flex text-left pl-2.5"
-      >
-        <div
-          class="grow"
-        />
-         
-        <div
-          class="font-bold pr-1 text-undefined-500"
-        >
-          Mon 07:00 PM
-        </div>
-      </div>
-    </div>
+    />
   </div>,
 ]
 `;

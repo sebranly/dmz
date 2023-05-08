@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 import * as React from 'react';
-import { APITime, APITimeData, Color, TimerFrequency, TimeUnit } from '../types';
+import { APITimer, APITimeData, Color, TimerFrequency, TimeUnit } from '../types';
 import { getNextStatus, getNextTime, getWeeklyTime } from '../utils';
 import { convertSecondsToTimeValue } from '../utils/convert';
 import { displayWithTwoDigits, getTimeUnitAbbreviation } from '../utils/display';
@@ -9,17 +9,17 @@ import { getTimerClasses } from '../utils/tailwind';
 export interface StatusTimerProps {
   className?: string;
   currentTimestamp: number;
-  time: APITime;
+  timer: APITimer;
 }
 
 const StatusTimer: React.FC<StatusTimerProps> = (props) => {
-  const { className, currentTimestamp, time } = props;
+  const { className, currentTimestamp, timer } = props;
 
-  const { data, frequency, subtitle, title } = time;
+  const { data, frequency, subtitle, title } = timer;
 
   if (!data || data.length < 2) return null;
 
-  const nextStatusTime = getNextStatus(currentTimestamp, time);
+  const nextStatusTime = getNextStatus(currentTimestamp, timer);
 
   if (!nextStatusTime) return null;
 

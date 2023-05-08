@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 import * as React from 'react';
-import { APITime, Color, TimerFrequency, TimeUnit } from '../types';
+import { APITimer, Color, TimerFrequency, TimeUnit } from '../types';
 import { getDailyTime, getNextTime, getWeeklyTime } from '../utils';
 import { convertSecondsToTimeValue } from '../utils/convert';
 import { displayWithTwoDigits, getTimeUnitAbbreviation, pluralize } from '../utils/display';
@@ -9,12 +9,12 @@ import { getTimerClasses } from '../utils/tailwind';
 export interface ResetTimerProps {
   className?: string;
   currentTimestamp: number;
-  time: APITime;
+  timer: APITimer;
 }
 
 const ResetTimer: React.FC<ResetTimerProps> = (props) => {
-  const { className, currentTimestamp, time } = props;
-  const { subtitle, title, frequency, data } = time;
+  const { className, currentTimestamp, timer } = props;
+  const { subtitle, title, frequency, data } = timer;
 
   if (!data || data.length !== 1) return null;
 

@@ -56,22 +56,6 @@ NodeList [
         </div>
       </li>
     </ul>
-    <div
-      class="text-sm"
-    >
-      <div
-        class="flex text-left pl-2.5"
-      >
-        <div
-          class="grow"
-        />
-        <div
-          class="font-bold pr-1 text-red-500"
-        >
-          06:00 AM
-        </div>
-      </div>
-    </div>
   </div>,
 ]
 `;
@@ -146,22 +130,6 @@ NodeList [
         </div>
       </li>
     </ul>
-    <div
-      class="text-sm"
-    >
-      <div
-        class="flex text-left pl-2.5"
-      >
-        <div
-          class="grow"
-        />
-        <div
-          class="font-bold pr-1 text-red-500"
-        >
-          Mon 06:00 AM
-        </div>
-      </div>
-    </div>
   </div>,
 ]
 `;
