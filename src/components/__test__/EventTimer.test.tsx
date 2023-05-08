@@ -7,7 +7,13 @@ test('EventTimer', () => {
   const timer: APITimer = {
     type: TimerType.Event,
     title: 'Season 03',
-    data: [{ time: 1678125600 }]
+    subtitle: 'It launches in',
+    subtitlePostEvent: 'It launched already',
+    data: [{
+      color: 'red',
+      description: 'Release Date:',
+      time: 1678125600
+    }]
   };
 
   const createComponent = (currentTimestamp: number) => (
