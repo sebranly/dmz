@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 import * as React from 'react';
-import { APITimer, Color, TimerFrequency, TimeUnit } from '../types';
+import { APITimer, TimerFrequency, TimeUnit } from '../types';
 import { getDailyTime, getNextTime, getWeeklyTime } from '../utils';
 import { convertSecondsToTimeValue } from '../utils/convert';
 import { displayWithTwoDigits, getTimeUnitAbbreviation, pluralize } from '../utils/display';

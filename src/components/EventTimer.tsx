@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 import * as React from 'react';
-import { APITimer, Color, TimeUnit } from '../types';
+import { APITimer, TimeUnit } from '../types';
 import { getDateTime } from '../utils';
 import { convertSecondsToTimeValue } from '../utils/convert';
 import { displayWithTwoDigits, getTimeUnitAbbreviation } from '../utils/display';
