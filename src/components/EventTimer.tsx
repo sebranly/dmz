@@ -76,11 +76,13 @@ const EventTimer: React.FC<EventTimerProps> = (props) => {
       <div className={classnamesTitle}>{title}</div>
       {subtitle && <div className={classnamesSubtitle}>{subtitle}</div>}
       <ul className="timer-card flex justify-center">{items}</ul>
-      {description && <div className="text-xs sm:text-sm">
-        <div className="flex text-left pl-2.5">
-          <div className="grow">{description}</div> <div className={classnamesTime}>{getDateTime(eventTime)}</div>
+      {description && (
+        <div className="text-xs sm:text-sm">
+          <div className="flex text-left pl-2.5">
+            <div className="grow">{description}</div> <div className={classnamesTime}>{getDateTime(eventTime)}</div>
+          </div>
         </div>
-      </div>}
+      )}
     </div>
   );
 };

@@ -9,12 +9,11 @@ test('StatusTimer', () => {
     title: 'Building 21',
     frequency: TimerFrequency.Weekly,
     // TODO: add color
-    data: [
-      { time: 1678471200 },
-      { time: 1678125600 }
-    ]
+    data: [{ time: 1678471200 }, { time: 1678125600 }]
   };
-  const createComponent = (currentTimestamp: number) => <StatusTimer currentTimestamp={currentTimestamp} timer={timer} />;
+  const createComponent = (currentTimestamp: number) => (
+    <StatusTimer currentTimestamp={currentTimestamp} timer={timer} />
+  );
 
   const { container: containerOpen } = render(createComponent(1678471201));
   expect(containerOpen.childNodes).toMatchSnapshot();
