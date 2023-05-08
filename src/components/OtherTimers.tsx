@@ -19,10 +19,11 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
       try {
         const response = await fetch(URL_DATA);
         const data = await response.json();
+
+        // TODO: have function filtering out API response
         const safeTimes = (data.times || []) as APITimer[];
 
         // TODO: reset to actual API fetch
-        // TODO: have function filtering out API response
         setTimes([
           {
             type: TimerType.Reset,
@@ -34,20 +35,6 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
                 color: Color.Yellow,
                 description: 'Daily Reset:',
                 time: 1678078800
-              }
-            ]
-          },
-          {
-            type: TimerType.Event,
-            title: 'Season 03 Reloaded',
-            showPostEvent: true,
-            subtitle: 'It launches in',
-            subtitlePostEvent: 'It launched already',
-            data: [
-              {
-                color: Color.Red,
-                description: 'Release Date:',
-                time: 1683702000 // TODO: test with 0,
               }
             ]
           },
@@ -73,6 +60,20 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
                   title: 'Building 21 is open',
                   subtitle: 'It closes in'
                 }
+              }
+            ]
+          },
+          {
+            type: TimerType.Event,
+            title: 'Season 03 Reloaded',
+            showPostEvent: true,
+            subtitle: 'It launches in',
+            subtitlePostEvent: 'It launched already',
+            data: [
+              {
+                color: Color.Red,
+                description: 'Release Date:',
+                time: 1683702000 // TODO: test with 0,
               }
             ]
           }

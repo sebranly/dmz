@@ -172,7 +172,7 @@ const getUTCDayOffset = (timestamp: number) => {
 /**
  * @name getNextTime
  * @description Returns the next timestamp, in seconds, that corresponds to a cycle tick based on a frequency
- * If no frequency is provided, daily is assumed
+ * If no frequency is provided, daily is assumed by default
  */
 const getNextTime = (currentTimestamp: number, resetTimestamp: number, frequency?: TimerFrequency) => {
   const isWeekly = frequency === TimerFrequency.Weekly;
@@ -190,8 +190,8 @@ const getNextTime = (currentTimestamp: number, resetTimestamp: number, frequency
 };
 
 /**
- * // TODO: rename to getNextStatusTime
- * @name getNextTimeStatus
+ * // TODO: rename to getNextStatusTime or something similar
+ * @name getNextStatus
  * @description For an element that can have several statuses, it returns the closest one
  */
 const getNextStatus = (currentTimestamp: number, timer: APITimer) => {

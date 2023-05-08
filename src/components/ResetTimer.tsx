@@ -24,8 +24,8 @@ const ResetTimer: React.FC<ResetTimerProps> = (props) => {
   const nextTime = getNextTime(currentTimestamp, resetTime, frequency);
   const remainingSeconds = nextTime - currentTimestamp;
 
-  // TODO: create utils for default frequency
-  const isDaily = frequency === TimerFrequency.Daily || !frequency;
+  const isWeekly = frequency === TimerFrequency.Weekly;
+  const isDaily = !isWeekly;
 
   const classnamesColor = `text-${color}-500`;
   const classnamesSubtitle = 'font-bold my-1 text-lg';
