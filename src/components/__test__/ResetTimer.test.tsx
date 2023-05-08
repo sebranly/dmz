@@ -25,6 +25,7 @@ test('ResetTimer', () => {
 
   timer.title = 'Weekly Challenges';
   timer.frequency = TimerFrequency.Weekly;
+  timer.data[0].description = 'Weekly Reset:';
 
   const { container: containerWeekly } = render(createComponent(1678078801, timer));
   expect(containerWeekly.childNodes).toMatchSnapshot();
