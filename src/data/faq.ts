@@ -147,7 +147,7 @@ const questionsAnswers: QuestionAnswer[] = [
       )} when launching a game, the squad size can grow <b>up to ${MAX_PLAYERS} players</b> thanks to assimilation in-game (opponents can join your squad).`,
       'It applies to Al Mazrah and Ashika Island.',
       'Thanks to in-game textual chat and voice chat, you can always help your new friends by setting up a timer for them if they roughly remember how much time they had left for their insured slots before starting the game.',
-      'Please note that neither Building 21 nor Koschei Complex offers this assimilation concept.'
+      `Please note that neither Building 21 nor Koschei Complex offers this assimilation concept. However, from Al Mazrah you can enter Koschei Complex with a full squad of ${MAX_PLAYERS} players.`
     ]
   },
   {
