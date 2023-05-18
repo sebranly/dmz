@@ -40,7 +40,7 @@ const questionsAnswers: QuestionAnswer[] = [
       `Dollars-per-hour rates have been determined by playing DMZ for several games during all seasons. It is a proportional function (linear function that includes the origin).`,
       `The current season (<span class='text-amber-500'>Season ${displaySeason(
         CURRENT_SEASON
-      )}</span>) is known to have the following rates: exfiltrating with any chopper in Al Mazrah or Ashika Island (or any elevator in Building 21 and Koschei Complex) with <span class='text-lime-500'>${formatMoney(
+      )}</span>) is known to have the following rates: exfiltrating with any chopper in Al Mazrah or Ashika Island (or any elevator in Building 21 or Koschei Complex) with <span class='text-lime-500'>${formatMoney(
         REGULAR_HOURLY_RATE
       )}</span> will reduce the cooldown timer by <b>an hour</b>. Alternatively, depositing <span class='text-lime-500'>${formatMoney(
         DEAD_DROP_HOURLY_RATE
