@@ -67,7 +67,6 @@ const questionsAnswers: QuestionAnswer[] = [
     ]
   },
   {
-    isNew: true,
     question: 'What about items?',
     answer: [
       'Items sometimes have a displayed value underneath (in your backpack) which corresponds to the equivalent amount of money they give you when exfiltrating or deposited into dead drops.',
@@ -125,6 +124,7 @@ const questionsAnswers: QuestionAnswer[] = [
       `In Season 03, lots of changes happened including the introduction of Bartering, Contraband Workbenches, New Backpacks, New Plate Carriers as well as Active Duty Operator Slots. However, for the purpose of this website, most updates don't have an influence, as Contraband Weapons are shared between Active Duty Operators.`,
       `However, some bundles (that need to be purchased) give the advantage of using a weapon with its own <b>${BUNDLE_TIMER_MIN}-min cooldown timer</b> (no matter the insured slot), so we updated the website to reflect that (in Quick Options section).`,
       `In <span class='text-amber-500'>Season 03 Reloaded</span>, a new Exclusion Zone called Koschei Complex has been introduced. It is available exclusively from Al Mazrah.`,
+      `The glitch about heartbeat sensors awarding lots of time reduction has been patched (unfortunately).`,
       '<b>Note: the dollars-per-hour rates have never changed since Season 01 (for both exfiltration and dead drops).</b>'
     ]
   },
