@@ -75,9 +75,7 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
       <div>
         <div className="flex justify-center flex-wrap mt-2.5">
           {renderResetTimers(resetTimers)}
-          {timesBuilding21.length === 2 && (
-            <StatusTimer currentTimestamp={currentTimestamp} times={timesBuilding21} />
-          )}
+          {timesBuilding21.length === 2 && <StatusTimer currentTimestamp={currentTimestamp} times={timesBuilding21} />}
           {seasonTimer && <EventTimer currentTimestamp={currentTimestamp} time={seasonTimer} />}
         </div>
       </div>

@@ -6,7 +6,6 @@ import {
   BUNDLE_TIMER_VALUE,
   CURRENT_SEASON,
   DEAD_DROP_HOURLY_RATE,
-  HEARTBEAT_SENSOR_VALUE,
   HOURS_PER_SLOT,
   MAX_HOURS_FOR_TIMER,
   MAX_PLAYERS,
@@ -292,16 +291,8 @@ function App() {
               >
                 here
               </a>
-              ), then drop money, weapons and/or items into the white dumpster.
-            </div>
-            <div>
-              Even if you die, it will reduce your weapon cooldown timer. For instance, depositing a heartbeat sensor
-              will reduce your weapon cooldown timer by{' '}
-              {displayTimeValue(
-                convertSecondsToTimeValue(convertMoneyToSeconds(HEARTBEAT_SENSOR_VALUE, DEAD_DROP_HOURLY_RATE)),
-                true
-              )}
-              .
+              ), then drop money, weapons and/or items into the white dumpster. Even if you die, it will reduce your
+              weapon cooldown timer.
             </div>
           </div>
         </div>

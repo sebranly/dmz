@@ -1,10 +1,9 @@
 import { TimeUnit, TimeValue } from '../types';
 
 // Any constant that comes from the DMZ official game itself
-export const CURRENT_SEASON = 3;
+export const CURRENT_SEASON = 3.5;
 export const VIDEO_SEASON = 2;
 export const DEAD_DROP_HOURLY_RATE = 30_000;
-export const HEARTBEAT_SENSOR_VALUE = 80_000;
 export const HOURS_PER_SLOT = 1;
 export const WEAPON_VALUE = 4_000;
 export const MAX_PLAYERS = 6;
