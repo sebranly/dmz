@@ -3,7 +3,6 @@ import {
   CURRENT_SEASON,
   DEAD_DROP_HOURLY_RATE,
   DOG_TAG_VALUES,
-  HEARTBEAT_SENSOR_VALUE,
   MAX_HOURS_FOR_TIMER,
   MAX_PLAYERS,
   MAX_PLAYERS_WITHOUT_ASSIMILATION,
@@ -75,11 +74,7 @@ const questionsAnswers: QuestionAnswer[] = [
       `Some other items don't have a displayed value but one exists anyway. We don't have a definite list but for instance depositing a weapon into dead drops will award you <span class='text-lime-500'>${formatMoney(
         WEAPON_VALUE,
         true
-      )}</span> (which is then converted for time reduction). The number of attachments does not matter.`,
-      `Even better, <b>depositing a heartbeat sensor will award you <span class='text-lime-500'>${formatMoney(
-        HEARTBEAT_SENSOR_VALUE,
-        true
-      )}</span></b>, which should cover all of your needs for time reduction.`
+      )}</span> (which is then converted for time reduction). The number of attachments does not matter.`
     ]
   },
   {
