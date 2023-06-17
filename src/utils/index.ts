@@ -12,7 +12,7 @@ const commonDateOptions: Intl.DateTimeFormatOptions = {
  * @description Returns a reduced number of seconds after applying a percent off upgrade to an initial number of seconds
  */
 const applyPercentOffToSeconds = (seconds: number, percentOff: number) => {
-  return Math.max(0, Math.floor(seconds * (100 - percentOff) / 100));
+  return Math.max(0, Math.floor((seconds * (100 - percentOff)) / 100));
 };
 
 /**

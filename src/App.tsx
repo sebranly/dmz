@@ -18,7 +18,13 @@ import {
 } from './constants/game';
 import { Footer } from './components/Footer';
 import { TimerCard } from './components/TimerCard';
-import { applyPercentOffToSeconds, getCurrentTimestamp, isNullTimeValue, numberRange, sanitizeTimersCookie } from './utils';
+import {
+  applyPercentOffToSeconds,
+  getCurrentTimestamp,
+  isNullTimeValue,
+  numberRange,
+  sanitizeTimersCookie
+} from './utils';
 import {
   convertMoneyToSeconds,
   convertPlayerTimerIndexToSeconds,
@@ -370,24 +376,29 @@ function App() {
             </div>
             <div className={classnamesCardBorderAddTimer}>
               <div>Quick options</div>
-              <div className='text-sm'>{timerExists ? 'Modify existing timer' : 'Add new timer'}</div>
+              <div className="text-sm">{timerExists ? 'Modify existing timer' : 'Add new timer'}</div>
               <button className={classnamesQuickOptions} onClick={() => onClickEditTimer(BUNDLE_TIMER_VALUE)}>
                 {copyLostWeaponBundle}
               </button>
-              {Array.from({ length: UPGRADES_COUNT_PER_SLOT + 1 }, (v, i) => UPGRADES_COUNT_PER_SLOT - i).map((value: number) => {
-                const percentOff = value * UPGRADE_PERCENT;
-                const secondsAfterUpgrade = applyPercentOffToSeconds(secondsForTimer, percentOff);
-                const quickOptionTimerValue = convertSecondsToTimeValue(secondsAfterUpgrade);
-                const copyLostWeapon = displayTimeValue(quickOptionTimerValue, true);
-                const key = `${secondsAfterUpgrade}-${value}`
+              {Array.from({ length: UPGRADES_COUNT_PER_SLOT + 1 }, (v, i) => UPGRADES_COUNT_PER_SLOT - i).map(
+                (value: number) => {
+                  const percentOff = value * UPGRADE_PERCENT;
+                  const secondsAfterUpgrade = applyPercentOffToSeconds(secondsForTimer, percentOff);
+                  const quickOptionTimerValue = convertSecondsToTimeValue(secondsAfterUpgrade);
+                  const copyLostWeapon = displayTimeValue(quickOptionTimerValue, true);
+                  const key = `${secondsAfterUpgrade}-${value}`;
 
-                return (
-                  <button key={key} className={classnamesQuickOptions} onClick={() => onClickEditTimer(quickOptionTimerValue)}>
-                    {copyLostWeapon}
-                  </button>
-                );
-              })
-              }
+                  return (
+                    <button
+                      key={key}
+                      className={classnamesQuickOptions}
+                      onClick={() => onClickEditTimer(quickOptionTimerValue)}
+                    >
+                      {copyLostWeapon}
+                    </button>
+                  );
+                }
+              )}
             </div>
           </div>
         </div>
