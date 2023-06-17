@@ -8,11 +8,13 @@ const commonDateOptions: Intl.DateTimeFormatOptions = {
 };
 
 /**
- * @name applyPercentOffToSeconds
- * @description Returns a reduced number of seconds after applying a percent off upgrade to an initial number of seconds
+ * @name applyPercentOff
+ * @description Returns a reduced number after applying a percent off to an initial positive value
  */
-const applyPercentOffToSeconds = (seconds: number, percentOff: number) => {
-  return Math.max(0, Math.floor((seconds * (100 - percentOff)) / 100));
+const applyPercentOff = (value: number, percentOff: number) => {
+  if (value <= 0 || percentOff >= 100) return 0;
+
+  return Math.floor((value * (100 - percentOff)) / 100);
 };
 
 /**
@@ -220,7 +222,7 @@ const getNextStatus = (currentTimestamp: number, times: APITime[]) => {
 };
 
 export {
-  applyPercentOffToSeconds,
+  applyPercentOff,
   calculateRemainingSeconds,
   getAnchorLink,
   getCurrentTimestamp,
