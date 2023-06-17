@@ -20,7 +20,7 @@ import { TimerCard } from './components/TimerCard';
 import { getCurrentTimestamp, isNullTimeValue, numberRange, sanitizeTimersCookie } from './utils';
 import {
   convertMoneyToSeconds,
-  convertPlayerTimerIndexToHourTimer,
+  convertPlayerTimerIndexToSeconds,
   convertSecondsToTimeValue,
   convertTimerIndexToPlayerIndex,
   convertTimerIndexToPlayerTimerIndex,
@@ -53,7 +53,7 @@ function App() {
   });
 
   const playerTimerIndex = convertTimerIndexToPlayerTimerIndex(timerIndex);
-  const hoursForTimer = convertPlayerTimerIndexToHourTimer(playerTimerIndex);
+  const hoursForTimer = convertPlayerTimerIndexToSeconds(playerTimerIndex) / 3_600;
   const copyLostWeaponBundle = `${BUNDLE_TIMER_MIN}-min`;
   const timerValuesAreNull = isNullTimeValue(timerValue);
   const classnamesQuickOptions =
