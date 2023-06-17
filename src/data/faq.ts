@@ -40,7 +40,7 @@ const questionsAnswers: QuestionAnswer[] = [
       `Dollars-per-hour rates have been determined by playing DMZ for several games during all seasons. It is a proportional function (linear function that includes the origin).`,
       `The current season (<span class='text-amber-500'>Season ${displaySeason(
         CURRENT_SEASON
-      )}</span>) is known to have the following rates: exfiltrating with any chopper in Al Mazrah or Ashika Island (or any elevator in Building 21 or Koschei Complex) with <span class='text-lime-500'>${formatMoney(
+      )}</span>) is known to have the following rates: exfiltrating with any chopper in Al Mazrah, Ashika Island or Vondel (or any elevator in Building 21 or Koschei Complex) with <span class='text-lime-500'>${formatMoney(
         REGULAR_HOURLY_RATE
       )}</span> will reduce the cooldown timer by <b>an hour</b>. Alternatively, depositing <span class='text-lime-500'>${formatMoney(
         DEAD_DROP_HOURLY_RATE
@@ -54,7 +54,7 @@ const questionsAnswers: QuestionAnswer[] = [
     question: 'What are dead drops?',
     answer: [
       `These are white dumpsters that are present in all maps of DMZ and that can be interacted with. Players can drop money, weapons and/or items into them in order to reduce the cooldown timer in exchange.`,
-      `Dead drops offer two advantages compared to exfiltrating with said money/items with any chopper in Al Mazrah or Ashika Island (or any elevator in Building 21 or Koschei Complex): <b>the cooldown timer decreases <span class='text-lime-500'>${
+      `Dead drops offer two advantages compared to exfiltrating with said money/items with any chopper in Al Mazrah, Ashika Island or Vondel (or any elevator in Building 21 or Koschei Complex): <b>the cooldown timer decreases <span class='text-lime-500'>${
         Math.round((REGULAR_HOURLY_RATE / DEAD_DROP_HOURLY_RATE) * 100) / 100
       }x faster</span> thanks to dead drops</b>, and dead drops will award you the time reduction even if you die afterwards.`
     ]
@@ -125,13 +125,14 @@ const questionsAnswers: QuestionAnswer[] = [
       `However, some bundles (that need to be purchased) give the advantage of using a weapon with its own <b>${BUNDLE_TIMER_MIN}-min cooldown timer</b> (no matter the insured slot), so we updated the website to reflect that (in Quick Options section).`,
       `In <span class='text-amber-500'>Season 03 Reloaded</span>, a new Exclusion Zone called Koschei Complex has been introduced. It is available exclusively from Al Mazrah.`,
       `The glitch about heartbeat sensors awarding lots of time reduction has been patched (unfortunately).`,
+      'A new map called Vondel is available since Season 04',
       '<b>Note: the dollars-per-hour rates have never changed since Season 01 (for both exfiltration and dead drops).</b>'
     ]
   },
   {
     question: 'Is there a time difference between the maps?',
     answer: [
-      '<b>No.</b> Al Mazrah, Ashika Island, Building 21 and Koschei Complex all share the same dollars-per-hour rates (for both exfiltration and dead drops).'
+      '<b>No.</b> Al Mazrah, Ashika Island, Vondel, Building 21, Koschei Complex all share the same dollars-per-hour rates (for both exfiltration and dead drops).'
     ]
   },
   {
@@ -140,7 +141,7 @@ const questionsAnswers: QuestionAnswer[] = [
       `Although the maximum that DMZ mode accepts is ${getPlayersSize(
         MAX_PLAYERS_WITHOUT_ASSIMILATION
       )} when launching a game, the squad size can grow <b>up to ${MAX_PLAYERS} players</b> thanks to assimilation in-game (opponents can join your squad).`,
-      'It applies to Al Mazrah and Ashika Island.',
+      'It applies to Al Mazrah, Vondel and Ashika Island.',
       'Thanks to in-game textual chat and voice chat, you can always help your new friends by setting up a timer for them if they roughly remember how much time they had left for their insured slots before starting the game.',
       `Please note that neither Building 21 nor Koschei Complex offers this assimilation concept. However, from Al Mazrah you can enter Koschei Complex with a full squad of ${MAX_PLAYERS} players.`
     ]
