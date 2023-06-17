@@ -1,5 +1,6 @@
 import { APITime, TimeFrequency, TimeStatus, TimeType, TimeUnit } from '../../types';
 import {
+  applyPercentOffToSeconds,
   calculateRemainingSeconds,
   getAnchorLink,
   getCurrentTimestamp,
@@ -14,6 +15,16 @@ import {
   numberRange,
   sanitizeTimersCookie
 } from '../index';
+
+test('applyPercentOffToSeconds', () => {
+  expect(applyPercentOffToSeconds(0,0)).toBe(0);
+  expect(applyPercentOffToSeconds(1,0)).toBe(1);
+  expect(applyPercentOffToSeconds(3_600,0)).toBe(3_600);
+  expect(applyPercentOffToSeconds(3_600,10)).toBe(3_240);
+  expect(applyPercentOffToSeconds(3_600,50)).toBe(1_800);
+  expect(applyPercentOffToSeconds(3_600,100)).toBe(0);
+  expect(applyPercentOffToSeconds(3_600,150)).toBe(0);
+});
 
 test('calculateRemainingSeconds', () => {
   let timer = { timerIndex: 0, timestampStart: 2, durationSec: 0 };

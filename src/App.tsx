@@ -13,11 +13,12 @@ import {
   MAX_TIMERS,
   MAX_TIMERS_PER_PLAYER,
   REGULAR_HOURLY_RATE,
-  UPGRADES_COUNT_PER_SLOT
+  UPGRADES_COUNT_PER_SLOT,
+  UPGRADE_PERCENT
 } from './constants/game';
 import { Footer } from './components/Footer';
 import { TimerCard } from './components/TimerCard';
-import { getCurrentTimestamp, isNullTimeValue, numberRange, sanitizeTimersCookie } from './utils';
+import { applyPercentOffToSeconds, getCurrentTimestamp, isNullTimeValue, numberRange, sanitizeTimersCookie } from './utils';
 import {
   convertMoneyToSeconds,
   convertPlayerTimerIndexToSeconds,
@@ -53,8 +54,8 @@ function App() {
   });
 
   const playerTimerIndex = convertTimerIndexToPlayerTimerIndex(timerIndex);
-  const hoursForTimer = convertPlayerTimerIndexToSeconds(playerTimerIndex) / 3_600;
-  const copyLostWeaponBundle = `${BUNDLE_TIMER_MIN}-min`;
+  const secondsForTimer = convertPlayerTimerIndexToSeconds(playerTimerIndex);
+  const copyLostWeaponBundle = displayTimeValue(convertSecondsToTimeValue(BUNDLE_TIMER_MIN * 60), true);
   const timerValuesAreNull = isNullTimeValue(timerValue);
   const classnamesQuickOptions =
     'inline m-auto mt-2.5 border-2 border-solid border-white text-base md:text-sm lg:text-base rounded-lg p-1 text-center bg-white text-black mx-1 w-1/3';
@@ -369,20 +370,16 @@ function App() {
             </div>
             <div className={classnamesCardBorderAddTimer}>
               <div>Quick options</div>
-              <div className='text-sm'>{timerExists ? 'Override timer to' : 'Add new timer as'}</div>
+              <div className='text-sm'>{timerExists ? 'Modify existing timer' : 'Add new timer'}</div>
               <button className={classnamesQuickOptions} onClick={() => onClickEditTimer(BUNDLE_TIMER_VALUE)}>
                 {copyLostWeaponBundle}
               </button>
-              {Array.from({ length: UPGRADES_COUNT_PER_SLOT + 1 }, (v, i) => i).map((index: number) => {
-                  const copyLostWeapon = `${hoursForTimer}-hour`;
-                  const quickOptionTimerValue: TimeValue = {
-                    [TimeUnit.Day]: 0,
-                    [TimeUnit.Hour]: hoursForTimer,
-                    [TimeUnit.Minute]: 0,
-                    [TimeUnit.Second]: 0
-                  };
-                
-                  const key = `${hoursForTimer}-${index}`
+              {Array.from({ length: UPGRADES_COUNT_PER_SLOT + 1 }, (v, i) => UPGRADES_COUNT_PER_SLOT - i).map((value: number) => {
+                const percentOff = value * UPGRADE_PERCENT;
+                const secondsAfterUpgrade = applyPercentOffToSeconds(secondsForTimer, percentOff);
+                const quickOptionTimerValue = convertSecondsToTimeValue(secondsAfterUpgrade);
+                const copyLostWeapon = displayTimeValue(quickOptionTimerValue, true);
+                const key = `${secondsAfterUpgrade}-${value}`
 
                 return (
                   <button key={key} className={classnamesQuickOptions} onClick={() => onClickEditTimer(quickOptionTimerValue)}>

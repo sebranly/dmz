@@ -217,4 +217,13 @@ test('convertTimeValueToSeconds', () => {
       [TimeUnit.Second]: 14
     })
   ).toBe(176_474);
+
+  expect(
+    convertTimeValueToSeconds({
+      [TimeUnit.Day]: 0,
+      [TimeUnit.Hour]: 0,
+      [TimeUnit.Minute]: 0,
+      [TimeUnit.Second]: 3_700
+    })
+  ).toBe(3_700);
 });
