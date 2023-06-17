@@ -63,7 +63,7 @@ const questionsAnswers: QuestionAnswer[] = [
     map: true,
     question: 'Where are dead drops?',
     answer: [
-      'There are several dead drops per map. For a specific season, they are always at the same spots (except for Building 21 which has locations changing per game). However, with each new season, their locations may change. For this reason, we invite you to take a look at two amazing websites that focus exclusively on locations.'
+      'There are several dead drops on the maps. As their locations may change over time, we invite you to take a look at two amazing websites that focus exclusively on locations.'
     ]
   },
   {
@@ -123,16 +123,17 @@ const questionsAnswers: QuestionAnswer[] = [
       `The Access Card for Building 21 is now single-use since Season 02 (since Season 02 Reloaded, it doesn't have to be equipped in the backpack anymore though).`,
       `In Season 03, lots of changes happened including the introduction of Bartering, Contraband Workbenches, New Backpacks, New Plate Carriers as well as Active Duty Operator Slots. However, for the purpose of this website, most updates don't have an influence, as Contraband Weapons are shared between Active Duty Operators.`,
       `However, some bundles (that need to be purchased) give the advantage of using a weapon with its own <b>${BUNDLE_TIMER_MIN}-min cooldown timer</b> (no matter the insured slot), so we updated the website to reflect that (in Quick Options section).`,
-      `In <span class='text-amber-500'>Season 03 Reloaded</span>, a new Exclusion Zone called Koschei Complex has been introduced. It is available exclusively from Al Mazrah.`,
+      `In Season 03 Reloaded, a new Exclusion Zone called Koschei Complex has been introduced. It is available exclusively from Al Mazrah.`,
       `The glitch about heartbeat sensors awarding lots of time reduction has been patched (unfortunately).`,
-      'A new map called Vondel is available since Season 04',
+      `A new map called Vondel is available since <span class='text-amber-500'>Season 04</span>.`,
+      `In <span class='text-amber-500'>Season 04</span>, lots of new features have been introduced including the wallet between different games, and upgrades for reducing the Insured Weapon cooldown times.`,
       '<b>Note: the dollars-per-hour rates have never changed since Season 01 (for both exfiltration and dead drops).</b>'
     ]
   },
   {
     question: 'Is there a time difference between the maps?',
     answer: [
-      '<b>No.</b> Al Mazrah, Ashika Island, Vondel, Building 21, Koschei Complex all share the same dollars-per-hour rates (for both exfiltration and dead drops).'
+      '<b>No.</b> Al Mazrah, Ashika Island, Vondel, Building 21 and Koschei Complex all share the same dollars-per-hour rates (for both exfiltration and dead drops).'
     ]
   },
   {
