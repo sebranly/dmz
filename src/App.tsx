@@ -276,7 +276,7 @@ function App() {
               We got you. The quickest way is to jump into any map, head to a dead drop location (you'll find them{' '}
               <a
                 className="underline text-white"
-                href="https://dmzmap.net/"
+                href="https://warzonetacmap.online"
                 rel="noopener noreferrer"
                 title="Hyperlink for a DMZ Interactive Map for finding the locations of dead drops"
                 target="_blank"
