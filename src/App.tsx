@@ -12,7 +12,8 @@ import {
   MAX_PLAYERS_WITHOUT_ASSIMILATION,
   MAX_TIMERS,
   MAX_TIMERS_PER_PLAYER,
-  REGULAR_HOURLY_RATE
+  REGULAR_HOURLY_RATE,
+  UPGRADES_COUNT_PER_SLOT
 } from './constants/game';
 import { Footer } from './components/Footer';
 import { TimerCard } from './components/TimerCard';
@@ -53,18 +54,10 @@ function App() {
 
   const playerTimerIndex = convertTimerIndexToPlayerTimerIndex(timerIndex);
   const hoursForTimer = convertPlayerTimerIndexToHourTimer(playerTimerIndex);
-  const quickOptionTimerValue: TimeValue = {
-    [TimeUnit.Day]: 0,
-    [TimeUnit.Hour]: hoursForTimer,
-    [TimeUnit.Minute]: 0,
-    [TimeUnit.Second]: 0
-  };
-
   const copyLostWeaponBundle = `${BUNDLE_TIMER_MIN}-min`;
-  const copyLostWeapon = `${hoursForTimer}-hour`;
   const timerValuesAreNull = isNullTimeValue(timerValue);
   const classnamesQuickOptions =
-    'inline m-auto mt-2.5 border-2 border-solid border-white text-base md:text-sm lg:text-base rounded-lg p-1 text-center bg-white text-black mx-1';
+    'inline m-auto mt-2.5 border-2 border-solid border-white text-base md:text-sm lg:text-base rounded-lg p-1 text-center bg-white text-black mx-1 w-1/3';
 
   const onMount = () => {
     const anchor = window.location.hash.slice(1);
@@ -377,13 +370,27 @@ function App() {
             <div className={classnamesCardBorderAddTimer}>
               <div>Quick options</div>
               <div className='text-sm'>{timerExists ? 'Override timer to' : 'Add new timer as'}</div>
-              <div>
               <button className={classnamesQuickOptions} onClick={() => onClickEditTimer(BUNDLE_TIMER_VALUE)}>
                 {copyLostWeaponBundle}
               </button>
-              <button className={classnamesQuickOptions} onClick={() => onClickEditTimer(quickOptionTimerValue)}>
-                {copyLostWeapon}
-              </button></div>
+              {Array.from({ length: UPGRADES_COUNT_PER_SLOT + 1 }, (v, i) => i).map((index: number) => {
+                  const copyLostWeapon = `${hoursForTimer}-hour`;
+                  const quickOptionTimerValue: TimeValue = {
+                    [TimeUnit.Day]: 0,
+                    [TimeUnit.Hour]: hoursForTimer,
+                    [TimeUnit.Minute]: 0,
+                    [TimeUnit.Second]: 0
+                  };
+                
+                  const key = `${hoursForTimer}-${index}`
+
+                return (
+                  <button key={key} className={classnamesQuickOptions} onClick={() => onClickEditTimer(quickOptionTimerValue)}>
+                    {copyLostWeapon}
+                  </button>
+                );
+              })
+              }
             </div>
           </div>
         </div>
