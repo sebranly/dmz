@@ -60,13 +60,11 @@ function App() {
     [TimeUnit.Second]: 0
   };
 
-  const copyLostWeaponBundle = `Add new ${BUNDLE_TIMER_MIN}-min timer`;
-  const copyLostWeaponBundleEdit = `Edit to ${BUNDLE_TIMER_MIN}-min timer`;
-  const copyLostWeapon = `Add new ${hoursForTimer}-hour timer`;
-  const copyLostWeaponEdit = `Edit to ${hoursForTimer}-hour timer`;
+  const copyLostWeaponBundle = `${BUNDLE_TIMER_MIN}-min`;
+  const copyLostWeapon = `${hoursForTimer}-hour`;
   const timerValuesAreNull = isNullTimeValue(timerValue);
   const classnamesQuickOptions =
-    'block m-auto mt-2.5 border-2 border-solid border-white text-base md:text-sm lg:text-base rounded-lg p-1 text-center bg-white text-black';
+    'inline m-auto mt-2.5 border-2 border-solid border-white text-base md:text-sm lg:text-base rounded-lg p-1 text-center bg-white text-black mx-1';
 
   const onMount = () => {
     const anchor = window.location.hash.slice(1);
@@ -378,12 +376,14 @@ function App() {
             </div>
             <div className={classnamesCardBorderAddTimer}>
               <div>Quick options</div>
-              <button className={classnamesQuickOptions} onClick={() => onClickEditTimer(quickOptionTimerValue)}>
-                {timerExists ? copyLostWeaponEdit : copyLostWeapon}
-              </button>
+              <div className='text-sm'>{timerExists ? 'Override timer to' : 'Add new timer as'}</div>
+              <div>
               <button className={classnamesQuickOptions} onClick={() => onClickEditTimer(BUNDLE_TIMER_VALUE)}>
-                {timerExists ? copyLostWeaponBundleEdit : copyLostWeaponBundle}
+                {copyLostWeaponBundle}
               </button>
+              <button className={classnamesQuickOptions} onClick={() => onClickEditTimer(quickOptionTimerValue)}>
+                {copyLostWeapon}
+              </button></div>
             </div>
           </div>
         </div>
