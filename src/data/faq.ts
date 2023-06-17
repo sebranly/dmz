@@ -80,8 +80,8 @@ const questionsAnswers: QuestionAnswer[] = [
     question: "I don't understand the use-case(s)",
     answer: [
       `Once a timer is set up on the website, it decreases on the website every second like the in-game cooldown timer. However, the latter is only visible on the game menu. So, after some time spent fighting into DMZ, <b>this website allows you to accurately know how much time is left and, more importantly, how to split money within your squad in order not to waste any dollar</b>.`,
-      `Everyone may be able to get their insured weapons back. You can then use the remaining money you saved for better things such as buying and upgrading contraband weapons at the Workbench, buying strikes or UAVs. Or even buying a Building 21 Access Card.`,
-      `Another example is that you can exfiltrate from the battlefield as soon as you have the required money to get your lost weapon back (rather than risking it all). Or if you're that rich, you can even get yourself a Private Exfil instead.`
+      `Everyone may be able to get their insured weapons back. You can then use the remaining money you saved for buying better things.`,
+      `Another example is that you can exfiltrate from the battlefield as soon as you have the required money to get your lost weapon back (rather than risking it all) and your money will be added to your wallet.`
     ]
   },
   {
