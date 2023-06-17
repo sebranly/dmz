@@ -53,8 +53,8 @@ const questionsAnswers: QuestionAnswer[] = [
   {
     question: 'What are dead drops?',
     answer: [
-      `These are white dumpsters that are present in all three main maps of DMZ (Al Mazrah, Ashika Island and Building 21) and that can be interacted with. Players can drop money, weapons and/or items into them in order to reduce the cooldown timer in exchange.`,
-      `Dead drops offer two advantages compared to exfiltrating with said money/items with any chopper in Al Mazrah or Ashika Island (or any elevator in Building 21): <b>the cooldown timer decreases <span class='text-lime-500'>${
+      `These are white dumpsters that are present in all maps of DMZ and that can be interacted with. Players can drop money, weapons and/or items into them in order to reduce the cooldown timer in exchange.`,
+      `Dead drops offer two advantages compared to exfiltrating with said money/items with any chopper in Al Mazrah or Ashika Island (or any elevator in Building 21 or Koschei Complex): <b>the cooldown timer decreases <span class='text-lime-500'>${
         Math.round((REGULAR_HOURLY_RATE / DEAD_DROP_HOURLY_RATE) * 100) / 100
       }x faster</span> thanks to dead drops</b>, and dead drops will award you the time reduction even if you die afterwards.`
     ]
