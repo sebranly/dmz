@@ -14,12 +14,12 @@ const convertMoneyToSeconds = (money: number, hourlyRate: number) => {
 };
 
 /**
- * @name convertPlayerTimerIndexToHourTimer
- * @description Returns the max number of hours a timer can last per the game's rules
+ * @name convertPlayerTimerIndexToSeconds
+ * @description Returns the max number of seconds a timer can last per the game's rules
  */
-const convertPlayerTimerIndexToHourTimer = (index: number, hoursPerSlot = HOURS_PER_SLOT) => {
+const convertPlayerTimerIndexToSeconds = (index: number, hoursPerSlot = HOURS_PER_SLOT) => {
   if (index < 0) return 0;
-  return (index + 1) * hoursPerSlot;
+  return (index + 1) * hoursPerSlot * 3_600;
 };
 
 /**
@@ -101,7 +101,7 @@ const convertTimeValueToSeconds = (timeValue: TimeValue) => {
 
 export {
   convertMoneyToSeconds,
-  convertPlayerTimerIndexToHourTimer,
+  convertPlayerTimerIndexToSeconds,
   convertSecondsToMoney,
   convertSecondsToTimeValue,
   convertTimerIndexToPlayerIndex,

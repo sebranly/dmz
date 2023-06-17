@@ -8,6 +8,16 @@ const commonDateOptions: Intl.DateTimeFormatOptions = {
 };
 
 /**
+ * @name applyPercentOff
+ * @description Returns a reduced number after applying a percent off to an initial positive value
+ */
+const applyPercentOff = (value: number, percentOff: number) => {
+  if (value <= 0 || percentOff >= 100) return 0;
+
+  return Math.floor((value * (100 - percentOff)) / 100);
+};
+
+/**
  * @name calculateRemainingSeconds
  * @description Calculates how many more seconds are left before a timer runs out
  */
@@ -212,6 +222,7 @@ const getNextStatus = (currentTimestamp: number, times: APITime[]) => {
 };
 
 export {
+  applyPercentOff,
   calculateRemainingSeconds,
   getAnchorLink,
   getCurrentTimestamp,

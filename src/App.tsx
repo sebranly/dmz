@@ -12,14 +12,16 @@ import {
   MAX_PLAYERS_WITHOUT_ASSIMILATION,
   MAX_TIMERS,
   MAX_TIMERS_PER_PLAYER,
-  REGULAR_HOURLY_RATE
+  REGULAR_HOURLY_RATE,
+  UPGRADES_COUNT_PER_SLOT,
+  UPGRADE_PERCENT
 } from './constants/game';
 import { Footer } from './components/Footer';
 import { TimerCard } from './components/TimerCard';
-import { getCurrentTimestamp, isNullTimeValue, numberRange, sanitizeTimersCookie } from './utils';
+import { applyPercentOff, getCurrentTimestamp, isNullTimeValue, numberRange, sanitizeTimersCookie } from './utils';
 import {
   convertMoneyToSeconds,
-  convertPlayerTimerIndexToHourTimer,
+  convertPlayerTimerIndexToSeconds,
   convertSecondsToTimeValue,
   convertTimerIndexToPlayerIndex,
   convertTimerIndexToPlayerTimerIndex,
@@ -52,21 +54,11 @@ function App() {
   });
 
   const playerTimerIndex = convertTimerIndexToPlayerTimerIndex(timerIndex);
-  const hoursForTimer = convertPlayerTimerIndexToHourTimer(playerTimerIndex);
-  const quickOptionTimerValue: TimeValue = {
-    [TimeUnit.Day]: 0,
-    [TimeUnit.Hour]: hoursForTimer,
-    [TimeUnit.Minute]: 0,
-    [TimeUnit.Second]: 0
-  };
-
-  const copyLostWeaponBundle = `Add new ${BUNDLE_TIMER_MIN}-min timer`;
-  const copyLostWeaponBundleEdit = `Edit to ${BUNDLE_TIMER_MIN}-min timer`;
-  const copyLostWeapon = `Add new ${hoursForTimer}-hour timer`;
-  const copyLostWeaponEdit = `Edit to ${hoursForTimer}-hour timer`;
+  const secondsForTimer = convertPlayerTimerIndexToSeconds(playerTimerIndex);
+  const copyLostWeaponBundle = displayTimeValue(convertSecondsToTimeValue(BUNDLE_TIMER_MIN * 60), true);
   const timerValuesAreNull = isNullTimeValue(timerValue);
   const classnamesQuickOptions =
-    'block m-auto mt-2.5 border-2 border-solid border-white text-base md:text-sm lg:text-base rounded-lg p-1 text-center bg-white text-black';
+    'inline m-auto mt-2.5 border-2 border-solid border-white text-base md:text-sm lg:text-base rounded-lg p-1 text-center bg-white text-black mx-1 w-1/3';
 
   const onMount = () => {
     const anchor = window.location.hash.slice(1);
@@ -247,6 +239,7 @@ function App() {
   const playerIndex = convertTimerIndexToPlayerIndex(timerIndex);
   const playerColor = getPlayerColor(playerIndex);
   const timerExists = pickTimerByIndex(timers, timerIndex).length > 0;
+  const copyUpsertTimer = timerExists ? 'Modify existing timer' : 'Add new timer';
   const isMaxTimer = timerValue[TimeUnit.Hour] === MAX_HOURS_FOR_TIMER;
 
   const textInformation = timerExists ? 'Existing timer will be edited.' : 'A new timer will be added.';
@@ -284,7 +277,7 @@ function App() {
               We got you. The quickest way is to jump into any map, head to a dead drop location (you'll find them{' '}
               <a
                 className="underline text-white"
-                href="https://dmzmap.net/"
+                href="https://warzonetacmap.online"
                 rel="noopener noreferrer"
                 title="Hyperlink for a DMZ Interactive Map for finding the locations of dead drops"
                 target="_blank"
@@ -373,17 +366,34 @@ function App() {
                 onClick={() => onClickEditTimer(timerValue)}
                 disabled={timerValuesAreNull}
               >
-                {timerExists ? 'Modify existing timer' : 'Add new timer'}
+                {copyUpsertTimer}
               </button>
             </div>
             <div className={classnamesCardBorderAddTimer}>
               <div>Quick options</div>
-              <button className={classnamesQuickOptions} onClick={() => onClickEditTimer(quickOptionTimerValue)}>
-                {timerExists ? copyLostWeaponEdit : copyLostWeapon}
-              </button>
+              <div className="text-sm">{copyUpsertTimer}</div>
               <button className={classnamesQuickOptions} onClick={() => onClickEditTimer(BUNDLE_TIMER_VALUE)}>
-                {timerExists ? copyLostWeaponBundleEdit : copyLostWeaponBundle}
+                {copyLostWeaponBundle}
               </button>
+              {Array.from({ length: UPGRADES_COUNT_PER_SLOT + 1 }, (v, i) => UPGRADES_COUNT_PER_SLOT - i).map(
+                (value: number) => {
+                  const percentOff = value * UPGRADE_PERCENT;
+                  const secondsAfterUpgrade = applyPercentOff(secondsForTimer, percentOff);
+                  const quickOptionTimerValue = convertSecondsToTimeValue(secondsAfterUpgrade);
+                  const copyLostWeapon = displayTimeValue(quickOptionTimerValue, true);
+                  const key = `${secondsAfterUpgrade}-${value}`;
+
+                  return (
+                    <button
+                      key={key}
+                      className={classnamesQuickOptions}
+                      onClick={() => onClickEditTimer(quickOptionTimerValue)}
+                    >
+                      {copyLostWeapon}
+                    </button>
+                  );
+                }
+              )}
             </div>
           </div>
         </div>

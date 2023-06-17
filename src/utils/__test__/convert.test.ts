@@ -1,7 +1,7 @@
 import { TimeUnit } from '../../types';
 import {
   convertMoneyToSeconds,
-  convertPlayerTimerIndexToHourTimer,
+  convertPlayerTimerIndexToSeconds,
   convertSecondsToTimeValue,
   convertSecondsToMoney,
   convertTimerIndexToPlayerIndex,
@@ -20,11 +20,11 @@ test('convertMoneyToSeconds', () => {
   expect(convertMoneyToSeconds(30_000, 30_000)).toBe(3_600);
 });
 
-test('convertPlayerTimerIndexToHourTimer', () => {
-  expect(convertPlayerTimerIndexToHourTimer(-1, 2)).toBe(0);
-  expect(convertPlayerTimerIndexToHourTimer(0, 2)).toBe(2);
-  expect(convertPlayerTimerIndexToHourTimer(1, 2)).toBe(4);
-  expect(convertPlayerTimerIndexToHourTimer(2, 2)).toBe(6);
+test('convertPlayerTimerIndexToSeconds', () => {
+  expect(convertPlayerTimerIndexToSeconds(-1, 2)).toBe(0);
+  expect(convertPlayerTimerIndexToSeconds(0, 2)).toBe(7_200);
+  expect(convertPlayerTimerIndexToSeconds(1, 2)).toBe(14_400);
+  expect(convertPlayerTimerIndexToSeconds(2, 2)).toBe(21_600);
 });
 
 test('convertSecondsToMoney', () => {
@@ -217,4 +217,13 @@ test('convertTimeValueToSeconds', () => {
       [TimeUnit.Second]: 14
     })
   ).toBe(176_474);
+
+  expect(
+    convertTimeValueToSeconds({
+      [TimeUnit.Day]: 0,
+      [TimeUnit.Hour]: 0,
+      [TimeUnit.Minute]: 0,
+      [TimeUnit.Second]: 3_700
+    })
+  ).toBe(3_700);
 });
