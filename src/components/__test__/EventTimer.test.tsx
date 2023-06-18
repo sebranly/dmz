@@ -12,7 +12,7 @@ test('EventTimer', () => {
     time: 1678125600
   };
 
-  const createComponent = (currentTimestamp: number) => <EventTimer currentTimestamp={currentTimestamp} time={time} />;
+  const createComponent = (currentTimestamp: number) => <EventTimer currentTimestamp={currentTimestamp} timer={time} />;
 
   const { container: containerPast } = render(createComponent(1678125601));
   expect(containerPast.childNodes).toMatchSnapshot();

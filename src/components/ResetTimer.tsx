@@ -16,14 +16,14 @@ import { getTimerClasses } from '../utils/tailwind';
 export interface ResetTimerProps {
   className?: string;
   currentTimestamp: number;
-  time: APITimer;
+  timer: APITimer;
 }
 
 const ResetTimer: React.FC<ResetTimerProps> = (props) => {
-  const { className, currentTimestamp, time } = props;
-  const { name, time: resetTime, status, frequency } = time;
+  const { className, currentTimestamp, timer } = props;
+  const { name, time, status, frequency } = timer;
 
-  const nextTime = getNextTime(currentTimestamp, resetTime, frequency);
+  const nextTime = getNextTime(currentTimestamp, time, frequency);
   const remainingSeconds = nextTime - currentTimestamp;
 
   const isDaily = frequency === TimeFrequency.Daily;

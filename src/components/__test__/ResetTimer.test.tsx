@@ -13,7 +13,7 @@ test('ResetTimer', () => {
   };
 
   const createComponent = (currentTimestamp: number, time: APITimer) => (
-    <ResetTimer currentTimestamp={currentTimestamp} time={time} />
+    <ResetTimer currentTimestamp={currentTimestamp} timer={time} />
   );
 
   const { container: containerDaily } = render(createComponent(1678078801, time));

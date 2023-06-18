@@ -65,7 +65,7 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
       const { frequency, name, time: resetTime, type } = time;
       const key = `${frequency}-${name}-${type}-${resetTime}`;
 
-      return <ResetTimer currentTimestamp={currentTimestamp} key={key} time={time} />;
+      return <ResetTimer currentTimestamp={currentTimestamp} key={key} timer={time} />;
     });
   };
 
@@ -76,7 +76,7 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
         <div className="flex justify-center flex-wrap mt-2.5">
           {renderResetTimers(resetTimers)}
           {timesBuilding21.length === 2 && <StatusTimer currentTimestamp={currentTimestamp} times={timesBuilding21} />}
-          {seasonTimer && <EventTimer currentTimestamp={currentTimestamp} time={seasonTimer} />}
+          {seasonTimer && <EventTimer currentTimestamp={currentTimestamp} timer={seasonTimer} />}
         </div>
       </div>
     </div>
