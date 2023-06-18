@@ -52,7 +52,7 @@ export enum TimerFrequency {
   Weekly = 'weekly'
 }
 
-export enum TimeType {
+export enum TimerType {
   Challenges = 'challenges',
   Map = 'map',
   Season = 'season'
@@ -70,5 +70,5 @@ export type APITimer = {
   name: string;
   status: TimeStatus;
   time: number;
-  type: TimeType;
+  type: TimerType;
 };

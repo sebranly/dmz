@@ -1,4 +1,4 @@
-import { APITimer, TimerFrequency, TimeStatus, TimeType, TimeUnit } from '../../types';
+import { APITimer, TimerFrequency, TimeStatus, TimerType, TimeUnit } from '../../types';
 import {
   applyPercentOff,
   calculateRemainingSeconds,
@@ -111,14 +111,14 @@ test('getNextTime', () => {
 test('getNextStatus', () => {
   const times: APITimer[] = [
     {
-      type: TimeType.Map,
+      type: TimerType.Map,
       name: 'Building 21',
       frequency: TimerFrequency.Weekly,
       status: TimeStatus.Opening,
       time: 1678471200
     },
     {
-      type: TimeType.Map,
+      type: TimerType.Map,
       name: 'Building 21',
       frequency: TimerFrequency.Weekly,
       status: TimeStatus.Closing,
