@@ -65,7 +65,7 @@ export enum TimeStatus {
   Reset = 'reset'
 }
 
-export type APITime = {
+export type APITimer = {
   frequency: TimeFrequency;
   name: string;
   status: TimeStatus;

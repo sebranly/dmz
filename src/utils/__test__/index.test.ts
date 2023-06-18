@@ -1,4 +1,4 @@
-import { APITime, TimeFrequency, TimeStatus, TimeType, TimeUnit } from '../../types';
+import { APITimer, TimeFrequency, TimeStatus, TimeType, TimeUnit } from '../../types';
 import {
   applyPercentOff,
   calculateRemainingSeconds,
@@ -109,7 +109,7 @@ test('getNextTime', () => {
 });
 
 test('getNextStatus', () => {
-  const times: APITime[] = [
+  const times: APITimer[] = [
     {
       type: TimeType.Map,
       name: 'Building 21',

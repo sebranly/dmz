@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 import * as React from 'react';
-import { APITime, TimeFrequency, TimeStatus, TimeUnit } from '../types';
+import { APITimer, TimeFrequency, TimeStatus, TimeUnit } from '../types';
 import { getNextStatus, getNextTime, getWeeklyTime } from '../utils';
 import { convertSecondsToTimeValue } from '../utils/convert';
 import {
@@ -15,7 +15,7 @@ import { getTimerClasses } from '../utils/tailwind';
 export interface StatusTimerProps {
   className?: string;
   currentTimestamp: number;
-  times: APITime[];
+  times: APITimer[];
 }
 
 const StatusTimer: React.FC<StatusTimerProps> = (props) => {
@@ -24,7 +24,7 @@ const StatusTimer: React.FC<StatusTimerProps> = (props) => {
 
   if (nextStatus === -1 || !nextStatus) return null;
 
-  const nextStatusTime = times.find((time: APITime) => time.status === nextStatus);
+  const nextStatusTime = times.find((time: APITimer) => time.status === nextStatus);
 
   if (!nextStatusTime) return null;
 
@@ -37,7 +37,7 @@ const StatusTimer: React.FC<StatusTimerProps> = (props) => {
   const statusSubtitle = `It ${getStatusVerb(nextStatus)}s in`;
 
   const otherStatus = nextStatus === TimeStatus.Closing ? TimeStatus.Opening : TimeStatus.Closing;
-  const otherStatusTime = times.find((time: APITime) => time.status === otherStatus);
+  const otherStatusTime = times.find((time: APITimer) => time.status === otherStatus);
 
   if (!otherStatusTime) return null;
 
