@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { render } from '@testing-library/react';
 import { EventTimer } from '../EventTimer';
-import { APITimer, TimeFrequency, TimeStatus, TimeType } from '../../types';
+import { APITimer, TimerFrequency, TimeStatus, TimeType } from '../../types';
 
 test('EventTimer', () => {
   const time: APITimer = {
     type: TimeType.Season,
     name: 'Season 03',
-    frequency: TimeFrequency.None,
+    frequency: TimerFrequency.None,
     status: TimeStatus.Launch,
     time: 1678125600
   };

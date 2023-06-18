@@ -1,21 +1,21 @@
 import * as React from 'react';
 import { render } from '@testing-library/react';
 import { StatusTimer } from '../StatusTimer';
-import { APITimer, TimeFrequency, TimeStatus, TimeType } from '../../types';
+import { APITimer, TimerFrequency, TimeStatus, TimeType } from '../../types';
 
 test('StatusTimer', () => {
   const times: APITimer[] = [
     {
       type: TimeType.Map,
       name: 'Building 21',
-      frequency: TimeFrequency.Weekly,
+      frequency: TimerFrequency.Weekly,
       status: TimeStatus.Opening,
       time: 1678471200
     },
     {
       type: TimeType.Map,
       name: 'Building 21',
-      frequency: TimeFrequency.Weekly,
+      frequency: TimerFrequency.Weekly,
       status: TimeStatus.Closing,
       time: 1678125600
     }

@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 import * as React from 'react';
-import { APITimer, TimeFrequency, TimeUnit } from '../types';
+import { APITimer, TimerFrequency, TimeUnit } from '../types';
 import { getDailyTime, getNextTime, getWeeklyTime } from '../utils';
 import { convertSecondsToTimeValue } from '../utils/convert';
 import {
@@ -26,7 +26,7 @@ const ResetTimer: React.FC<ResetTimerProps> = (props) => {
   const nextTime = getNextTime(currentTimestamp, time, frequency);
   const remainingSeconds = nextTime - currentTimestamp;
 
-  const isDaily = frequency === TimeFrequency.Daily;
+  const isDaily = frequency === TimerFrequency.Daily;
   const subtitle = `They ${getStatusVerb(status)} in`;
   const color = getStatusColor(status);
 
