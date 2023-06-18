@@ -68,7 +68,7 @@ const EventTimer: React.FC<EventTimerProps> = (props) => {
   return (
     <div className={classnamesComponent}>
       <div className={classnamesTitle}>{name}</div>
-      <div className={classnamesSubtitle}>{subtitle}</div>
+      {subtitle && <div className={classnamesSubtitle}>{subtitle}</div>}
       <ul className="timer-card flex justify-center">{items}</ul>
       {isPast ? (
         <div className="text-xs sm:text-sm">The website will be updated in the next few days</div>

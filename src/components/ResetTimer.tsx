@@ -85,7 +85,7 @@ const ResetTimer: React.FC<ResetTimerProps> = (props) => {
   return (
     <div className={classnamesComponent}>
       <div className={classnamesTitle}>{name}</div>
-      <div className={classnamesSubtitle}>{subtitle}</div>
+      {subtitle && <div className={classnamesSubtitle}>{subtitle}</div>}
       <ul className="timer-card flex justify-center">{items}</ul>
       <div className="text-sm">
         <div className="flex text-left pl-2.5">
