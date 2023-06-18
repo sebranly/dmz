@@ -15,7 +15,7 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
   const [times, setTimes] = React.useState<APITimer[]>([]);
 
   const onMount = () => {
-    const fetchAPITimes = async () => {
+    const fetchAPITimers = async () => {
       try {
         const response = await fetch(URL_DATA);
         const data = await response.json();
@@ -27,7 +27,7 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
       }
     };
 
-    fetchAPITimes();
+    fetchAPITimers();
   };
 
   React.useEffect(() => {
