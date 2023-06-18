@@ -18,10 +18,10 @@ const EventTimer: React.FC<EventTimerProps> = (props) => {
 
   if (!data || data.length !== 1) return null;
 
-  const { time: eventTime, color: colorUnsafe, description } = data[0];
+  const { time, color: colorUnsafe, description } = data[0];
   const color = getSafeColor(colorUnsafe);
 
-  const remainingSeconds = eventTime - currentTimestamp;
+  const remainingSeconds = time - currentTimestamp;
   const isPostEvent = remainingSeconds <= 0;
 
   if (isPostEvent && !showPostEvent) return null;
@@ -78,7 +78,7 @@ const EventTimer: React.FC<EventTimerProps> = (props) => {
       {description && (
         <div className="text-xs sm:text-sm">
           <div className="flex text-left pl-2.5">
-            <div className="grow">{description}</div> <div className={classnamesTime}>{getDateTime(eventTime)}</div>
+            <div className="grow">{description}</div> <div className={classnamesTime}>{getDateTime(time)}</div>
           </div>
         </div>
       )}

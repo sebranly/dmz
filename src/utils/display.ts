@@ -41,10 +41,11 @@ const displayTimeValue = (timeValue: TimeValue, shouldCompact = false) => {
     [TimeUnit.Second]: seconds
   } = timeValue;
 
-  const daysString = `${displayWithTwoDigits(days)}d`;
-  const hoursString = hours === 0 && shouldCompact ? '' : `${displayWithTwoDigits(hours)}h`;
-  const minutesString = minutes === 0 && shouldCompact ? '' : `${displayWithTwoDigits(minutes)}m`;
-  const secondsString = seconds === 0 && shouldCompact ? '' : `${displayWithTwoDigits(seconds)}s`;
+  const displayFunction = shouldCompact ? (v: number) => `${v}` : displayWithTwoDigits;
+  const daysString = `${displayFunction(days)}d`;
+  const hoursString = hours === 0 && shouldCompact ? '' : `${displayFunction(hours)}h`;
+  const minutesString = minutes === 0 && shouldCompact ? '' : `${displayFunction(minutes)}m`;
+  const secondsString = seconds === 0 && shouldCompact ? '' : `${displayFunction(seconds)}s`;
 
   const daysStringPrefix = days > 0 ? `${daysString}${shouldCompact ? '' : ' '}` : '';
   const finalString = shouldCompact

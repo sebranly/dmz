@@ -18,10 +18,10 @@ const ResetTimer: React.FC<ResetTimerProps> = (props) => {
 
   if (!data || data.length !== 1) return null;
 
-  const { time: resetTime, color: colorUnsafe, description } = data[0];
+  const { time, color: colorUnsafe, description } = data[0];
   const color = getSafeColor(colorUnsafe);
 
-  const nextTime = getNextTime(currentTimestamp, resetTime, frequency);
+  const nextTime = getNextTime(currentTimestamp, time, frequency);
   const remainingSeconds = nextTime - currentTimestamp;
 
   const isWeekly = frequency === TimerFrequency.Weekly;

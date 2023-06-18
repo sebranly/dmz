@@ -19,15 +19,15 @@ test('displayTimeValue', () => {
   timeValue[TimeUnit.Minute] = 2;
   timeValue[TimeUnit.Second] = 24;
   expect(displayTimeValue(timeValue)).toBe('01h 02m 24s');
-  expect(displayTimeValue(timeValue, true)).toBe('01h02m24s');
+  expect(displayTimeValue(timeValue, true)).toBe('1h2m24s');
 
   timeValue[TimeUnit.Day] = 3;
   expect(displayTimeValue(timeValue)).toBe('03d 01h 02m 24s');
-  expect(displayTimeValue(timeValue, true)).toBe('03d01h02m24s');
+  expect(displayTimeValue(timeValue, true)).toBe('3d1h2m24s');
 
   timeValue[TimeUnit.Second] = 0;
   expect(displayTimeValue(timeValue)).toBe('03d 01h 02m 00s');
-  expect(displayTimeValue(timeValue, true)).toBe('03d01h02m');
+  expect(displayTimeValue(timeValue, true)).toBe('3d1h2m');
 });
 
 test('displaySeason', () => {

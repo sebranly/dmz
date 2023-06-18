@@ -69,7 +69,7 @@ const FAQ = () => {
                     <li>
                       <a
                         className="underline text-white"
-                        href="https://dmzmap.net/"
+                        href="https://warzonetacmap.online"
                         rel="noopener noreferrer"
                         title="Hyperlink for a DMZ Interactive Map for finding the locations of dead drops"
                         target="_blank"
@@ -80,7 +80,7 @@ const FAQ = () => {
                     <li>
                       <a
                         className="underline text-white"
-                        href="https://dmzkeys.com/"
+                        href="https://wzhub.gg/map"
                         rel="noopener noreferrer"
                         title="Hyperlink for another DMZ Interactive Map for finding the locations of dead drops"
                         target="_blank"

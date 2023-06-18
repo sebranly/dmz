@@ -3,7 +3,6 @@ import {
   CURRENT_SEASON,
   DEAD_DROP_HOURLY_RATE,
   DOG_TAG_VALUES,
-  HEARTBEAT_SENSOR_VALUE,
   MAX_HOURS_FOR_TIMER,
   MAX_PLAYERS,
   MAX_PLAYERS_WITHOUT_ASSIMILATION,
@@ -41,7 +40,7 @@ const questionsAnswers: QuestionAnswer[] = [
       `Dollars-per-hour rates have been determined by playing DMZ for several games during all seasons. It is a proportional function (linear function that includes the origin).`,
       `The current season (<span class='text-amber-500'>Season ${displaySeason(
         CURRENT_SEASON
-      )}</span>) is known to have the following rates: exfiltrating with the chopper (or elevator in Building 21) with <span class='text-lime-500'>${formatMoney(
+      )}</span>) is known to have the following rates: exfiltrating with any chopper in Al Mazrah, Ashika Island or Vondel (or any elevator in Building 21 or Koschei Complex) with <span class='text-lime-500'>${formatMoney(
         REGULAR_HOURLY_RATE
       )}</span> will reduce the cooldown timer by <b>an hour</b>. Alternatively, depositing <span class='text-lime-500'>${formatMoney(
         DEAD_DROP_HOURLY_RATE
@@ -54,8 +53,8 @@ const questionsAnswers: QuestionAnswer[] = [
   {
     question: 'What are dead drops?',
     answer: [
-      `These are white dumpsters that are present in all three maps of DMZ and that can be interacted with. Players can drop money, weapons and/or items into them in order to reduce the cooldown timer in exchange.`,
-      `Dead drops offer two advantages compared to exfiltrating with said money/items with the chopper (or elevator in Building 21): <b>the cooldown timer decreases <span class='text-lime-500'>${
+      `These are white dumpsters that are present in all maps of DMZ and that can be interacted with. Players can drop money, weapons and/or items into them in order to reduce the cooldown timer in exchange.`,
+      `Dead drops offer two advantages compared to exfiltrating with said money/items with any chopper in Al Mazrah, Ashika Island or Vondel (or any elevator in Building 21 or Koschei Complex): <b>the cooldown timer decreases <span class='text-lime-500'>${
         Math.round((REGULAR_HOURLY_RATE / DEAD_DROP_HOURLY_RATE) * 100) / 100
       }x faster</span> thanks to dead drops</b>, and dead drops will award you the time reduction even if you die afterwards.`
     ]
@@ -64,30 +63,25 @@ const questionsAnswers: QuestionAnswer[] = [
     map: true,
     question: 'Where are dead drops?',
     answer: [
-      'There are several dead drops per map. For a specific season, they are always at the same spots (except for Building 21 which has locations changing per game). However, with each new season, their locations may change. For this reason, we invite you to take a look at two amazing websites that focus exclusively on locations.'
+      'There are several dead drops on the maps. As their locations may change over time, we invite you to take a look at two amazing websites that focus exclusively on locations.'
     ]
   },
   {
-    isNew: true,
     question: 'What about items?',
     answer: [
       'Items sometimes have a displayed value underneath (in your backpack) which corresponds to the equivalent amount of money they give you when exfiltrating or deposited into dead drops.',
       `Some other items don't have a displayed value but one exists anyway. We don't have a definite list but for instance depositing a weapon into dead drops will award you <span class='text-lime-500'>${formatMoney(
         WEAPON_VALUE,
         true
-      )}</span> (which is then converted for time reduction). The number of attachments does not matter.`,
-      `Even better, <b>depositing a heartbeat sensor will award you <span class='text-lime-500'>${formatMoney(
-        HEARTBEAT_SENSOR_VALUE,
-        true
-      )}</span></b>, which should cover all of your needs for time reduction.`
+      )}</span> (which is then converted for time reduction). The number of attachments does not matter.`
     ]
   },
   {
     question: "I don't understand the use-case(s)",
     answer: [
       `Once a timer is set up on the website, it decreases on the website every second like the in-game cooldown timer. However, the latter is only visible on the game menu. So, after some time spent fighting into DMZ, <b>this website allows you to accurately know how much time is left and, more importantly, how to split money within your squad in order not to waste any dollar</b>.`,
-      `Everyone may be able to get their insured weapons back. You can then use the remaining money you saved for better things such as buying and upgrading contraband weapons at the Workbench, buying strikes or UAVs. Or even buying a Building 21 Access Card.`,
-      `Another example is that you can exfiltrate from the battlefield as soon as you have the required money to get your lost weapon back (rather than risking it all). Or if you're that rich, you can even get yourself a Private Exfil instead.`
+      `Everyone may be able to get their insured weapons back. You can then use the remaining money you saved for buying better things.`,
+      `Another example is that you can exfiltrate from the battlefield as soon as you have the required money to get your lost weapon back (rather than risking it all) and your money will be added to your wallet.`
     ]
   },
   {
@@ -127,15 +121,19 @@ const questionsAnswers: QuestionAnswer[] = [
       'The locations of dead drops in Al Mazrah and Building 21 have changed in Season 02.',
       'A new map called Ashika Island is available since Season 02.',
       `The Access Card for Building 21 is now single-use since Season 02 (since Season 02 Reloaded, it doesn't have to be equipped in the backpack anymore though).`,
-      `In <span class='text-amber-500'>Season 03</span>, lots of changes happened including the introduction of Bartering, Contraband Workbenches, New Backpacks, New Plate Carriers as well as Active Duty Operator Slots. However, for the purpose of this website, most updates don't have an influence, as Contraband Weapons are shared between Active Duty Operators.`,
+      `In Season 03, lots of changes happened including the introduction of Bartering, Contraband Workbenches, New Backpacks, New Plate Carriers as well as Active Duty Operator Slots. However, for the purpose of this website, most updates don't have an influence, as Contraband Weapons are shared between Active Duty Operators.`,
       `However, some bundles (that need to be purchased) give the advantage of using a weapon with its own <b>${BUNDLE_TIMER_MIN}-min cooldown timer</b> (no matter the insured slot), so we updated the website to reflect that (in Quick Options section).`,
+      `In Season 03 Reloaded, a new Exclusion Zone called Koschei Complex has been introduced. It is available exclusively from Al Mazrah.`,
+      `The glitch about heartbeat sensors awarding lots of time reduction has been patched (unfortunately).`,
+      `A new map called Vondel is available since <span class='text-amber-500'>Season 04</span>.`,
+      `In <span class='text-amber-500'>Season 04</span>, lots of new features have been introduced including the wallet between different games, and upgrades for reducing the Insured Weapon cooldown times.`,
       '<b>Note: the dollars-per-hour rates have never changed since Season 01 (for both exfiltration and dead drops).</b>'
     ]
   },
   {
     question: 'Is there a time difference between the maps?',
     answer: [
-      '<b>No.</b> Al Mazrah, Ashika Island and Building 21 all share the same dollars-per-hour rates (for both exfiltration and dead drops).'
+      '<b>No.</b> Al Mazrah, Ashika Island, Vondel, Building 21 and Koschei Complex all share the same dollars-per-hour rates (for both exfiltration and dead drops).'
     ]
   },
   {
@@ -144,8 +142,9 @@ const questionsAnswers: QuestionAnswer[] = [
       `Although the maximum that DMZ mode accepts is ${getPlayersSize(
         MAX_PLAYERS_WITHOUT_ASSIMILATION
       )} when launching a game, the squad size can grow <b>up to ${MAX_PLAYERS} players</b> thanks to assimilation in-game (opponents can join your squad).`,
+      'It applies to Al Mazrah, Vondel and Ashika Island.',
       'Thanks to in-game textual chat and voice chat, you can always help your new friends by setting up a timer for them if they roughly remember how much time they had left for their insured slots before starting the game.',
-      'Please note that Building 21 does not offer this assimilation concept.'
+      `Please note that neither Building 21 nor Koschei Complex offers this assimilation concept. However, from Al Mazrah you can enter Koschei Complex with a full squad of ${MAX_PLAYERS} players.`
     ]
   },
   {
