@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { URL_DATA } from '../constants/general';
-import { APITime, TimeFrequency, TimeStatus, TimeType } from '../types';
+import { APITimer, TimerFrequency, TimeStatus, TimerType } from '../types';
 import { Header } from './Header';
 import { EventTimer } from './EventTimer';
 import { ResetTimer } from './ResetTimer';
@@ -12,14 +12,14 @@ export interface OtherTimersProps {
 }
 
 const OtherTimers: React.FC<OtherTimersProps> = (props) => {
-  const [times, setTimes] = React.useState<APITime[]>([]);
+  const [times, setTimes] = React.useState<APITimer[]>([]);
 
   const onMount = () => {
-    const fetchAPITimes = async () => {
+    const fetchAPITimers = async () => {
       try {
         const response = await fetch(URL_DATA);
         const data = await response.json();
-        const safeTimes = (data.times || []) as APITime[];
+        const safeTimes = (data.times || []) as APITimer[];
 
         setTimes(safeTimes);
       } catch (error) {
@@ -27,7 +27,7 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
       }
     };
 
-    fetchAPITimes();
+    fetchAPITimers();
   };
 
   React.useEffect(() => {
@@ -39,33 +39,33 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
 
   if (times.length === 0) return null;
 
-  const seasonTimer = times.find((time: APITime) => {
+  const seasonTimer = times.find((time: APITimer) => {
     const { frequency, status, type } = time;
-    const isNoneFrequency = frequency === TimeFrequency.None;
+    const isNoneFrequency = frequency === TimerFrequency.None;
     const isLaunchStatus = status === TimeStatus.Launch;
-    const isSeason = type === TimeType.Season;
+    const isSeason = type === TimerType.Season;
 
     return isNoneFrequency && isLaunchStatus && isSeason;
   });
 
-  const resetTimers = times.filter((time: APITime) => {
+  const resetTimers = times.filter((time: APITimer) => {
     const { status } = time;
     return status === TimeStatus.Reset;
   });
 
-  const timesBuilding21 = times.filter((time: APITime) => {
+  const timesBuilding21 = times.filter((time: APITimer) => {
     const { name, type } = time;
-    return type === TimeType.Map && name === 'Building 21';
+    return type === TimerType.Map && name === 'Building 21';
   });
 
-  const renderResetTimers = (times: APITime[]) => {
+  const renderResetTimers = (times: APITimer[]) => {
     if (times.length === 0) return null;
 
-    return times.map((time: APITime) => {
+    return times.map((time: APITimer) => {
       const { frequency, name, time: resetTime, type } = time;
       const key = `${frequency}-${name}-${type}-${resetTime}`;
 
-      return <ResetTimer currentTimestamp={currentTimestamp} key={key} time={time} />;
+      return <ResetTimer currentTimestamp={currentTimestamp} key={key} timer={time} />;
     });
   };
 
@@ -76,7 +76,7 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
         <div className="flex justify-center flex-wrap mt-2.5">
           {renderResetTimers(resetTimers)}
           {timesBuilding21.length === 2 && <StatusTimer currentTimestamp={currentTimestamp} times={timesBuilding21} />}
-          {seasonTimer && <EventTimer currentTimestamp={currentTimestamp} time={seasonTimer} />}
+          {seasonTimer && <EventTimer currentTimestamp={currentTimestamp} timer={seasonTimer} />}
         </div>
       </div>
     </div>

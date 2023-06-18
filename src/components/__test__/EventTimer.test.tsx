@@ -1,18 +1,18 @@
 import * as React from 'react';
 import { render } from '@testing-library/react';
 import { EventTimer } from '../EventTimer';
-import { APITime, TimeFrequency, TimeStatus, TimeType } from '../../types';
+import { APITimer, TimerFrequency, TimeStatus, TimerType } from '../../types';
 
 test('EventTimer', () => {
-  const time: APITime = {
-    type: TimeType.Season,
+  const timer: APITimer = {
+    type: TimerType.Season,
     name: 'Season 03',
-    frequency: TimeFrequency.None,
+    frequency: TimerFrequency.None,
     status: TimeStatus.Launch,
     time: 1678125600
   };
 
-  const createComponent = (currentTimestamp: number) => <EventTimer currentTimestamp={currentTimestamp} time={time} />;
+  const createComponent = (currentTimestamp: number) => <EventTimer currentTimestamp={currentTimestamp} timer={timer} />;
 
   const { container: containerPast } = render(createComponent(1678125601));
   expect(containerPast.childNodes).toMatchSnapshot();

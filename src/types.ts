@@ -46,13 +46,13 @@ export enum Sort {
   ShortestToLongest = 'Shortest to Longest'
 }
 
-export enum TimeFrequency {
+export enum TimerFrequency {
   Daily = 'daily',
   None = 'none',
   Weekly = 'weekly'
 }
 
-export enum TimeType {
+export enum TimerType {
   Challenges = 'challenges',
   Map = 'map',
   Season = 'season'
@@ -65,10 +65,10 @@ export enum TimeStatus {
   Reset = 'reset'
 }
 
-export type APITime = {
-  frequency: TimeFrequency;
+export type APITimer = {
+  frequency: TimerFrequency;
   name: string;
   status: TimeStatus;
   time: number;
-  type: TimeType;
+  type: TimerType;
 };

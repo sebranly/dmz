@@ -1,5 +1,5 @@
 import { MAX_TIMERS } from '../constants/game';
-import { APITime, TimeFrequency, Timer, TimeUnit, TimeValue } from '../types';
+import { APITimer, TimerFrequency, Timer, TimeUnit, TimeValue } from '../types';
 
 const commonDateOptions: Intl.DateTimeFormatOptions = {
   hour: '2-digit',
@@ -183,8 +183,8 @@ const getUTCDayOffset = (timestamp: number) => {
  * @name getNextTime
  * @description Returns the next timestamp, in seconds, that corresponds to a cycle tick based on a frequency
  */
-const getNextTime = (currentTimestamp: number, resetTimestamp: number, frequency: TimeFrequency) => {
-  const isWeekly = frequency === TimeFrequency.Weekly;
+const getNextTime = (currentTimestamp: number, resetTimestamp: number, frequency: TimerFrequency) => {
+  const isWeekly = frequency === TimerFrequency.Weekly;
   const dayOffset = getUTCDayOffset(resetTimestamp);
   const dailyOffset = resetTimestamp % 86_400;
   const offset = isWeekly ? dailyOffset + dayOffset * 86_400 : dailyOffset;
@@ -202,14 +202,14 @@ const getNextTime = (currentTimestamp: number, resetTimestamp: number, frequency
  * @name getNextTimeStatus
  * @description For an element that can have several statuses, it returns the closest next status
  */
-const getNextStatus = (currentTimestamp: number, times: APITime[]) => {
+const getNextStatus = (currentTimestamp: number, times: APITimer[]) => {
   if (times.length === 0) return -1;
   if (times.length === 1) return times[0].status;
 
   let closestStatus;
   let minValue = Number.MAX_SAFE_INTEGER;
 
-  times.forEach((timeBis: APITime) => {
+  times.forEach((timeBis: APITimer) => {
     const { frequency, status, time } = timeBis;
     const nextTime = getNextTime(currentTimestamp, time, frequency);
     if (nextTime < minValue) {

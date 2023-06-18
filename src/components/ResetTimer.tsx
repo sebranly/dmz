@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 import * as React from 'react';
-import { APITime, TimeFrequency, TimeUnit } from '../types';
+import { APITimer, TimerFrequency, TimeUnit } from '../types';
 import { getDailyTime, getNextTime, getWeeklyTime } from '../utils';
 import { convertSecondsToTimeValue } from '../utils/convert';
 import {
@@ -16,17 +16,17 @@ import { getTimerClasses } from '../utils/tailwind';
 export interface ResetTimerProps {
   className?: string;
   currentTimestamp: number;
-  time: APITime;
+  timer: APITimer;
 }
 
 const ResetTimer: React.FC<ResetTimerProps> = (props) => {
-  const { className, currentTimestamp, time } = props;
-  const { name, time: resetTime, status, frequency } = time;
+  const { className, currentTimestamp, timer } = props;
+  const { name, time, status, frequency } = timer;
 
-  const nextTime = getNextTime(currentTimestamp, resetTime, frequency);
+  const nextTime = getNextTime(currentTimestamp, time, frequency);
   const remainingSeconds = nextTime - currentTimestamp;
 
-  const isDaily = frequency === TimeFrequency.Daily;
+  const isDaily = frequency === TimerFrequency.Daily;
   const subtitle = `They ${getStatusVerb(status)} in`;
   const color = getStatusColor(status);
 
@@ -85,7 +85,7 @@ const ResetTimer: React.FC<ResetTimerProps> = (props) => {
   return (
     <div className={classnamesComponent}>
       <div className={classnamesTitle}>{name}</div>
-      <div className={classnamesSubtitle}>{subtitle}</div>
+      {subtitle && <div className={classnamesSubtitle}>{subtitle}</div>}
       <ul className="timer-card flex justify-center">{items}</ul>
       <div className="text-sm">
         <div className="flex text-left pl-2.5">
