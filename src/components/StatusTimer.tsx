@@ -13,6 +13,7 @@ export interface StatusTimerProps {
 }
 
 const StatusTimer: React.FC<StatusTimerProps> = (props) => {
+  // TODO: invert colors for text status
   const { className, currentTimestamp, timer } = props;
 
   const { data, frequency, subtitle, title } = timer;
