@@ -1,25 +1,94 @@
 import { MAX_TIMERS } from '../constants/game';
 import { APITimer, Timer, TimerFrequency, TimerType } from '../types';
 
+// TODO: have unit tests for these functions
+/**
+ * @name isValidOptionalStringEnum
+ * @description Returns whether an optional field expected to be a string enum is valid
+ */
+const isValidOptionalStringEnum = (field: any, enumValues: string[]) => {
+  if (typeof field === 'undefined') return true;
+  return isValidRequiredStringEnum(field, enumValues); 
+}
+
+/**
+ * @name isValidOptionalType
+ * @description Returns whether an optional field expected to be of a specific type is valid
+ */
+const isValidOptionalType = (field: any, type: string) => {
+  // The field can be either undefined (optional) or a boolean (if provided)
+  return [type, 'undefined'].includes(typeof field);
+};
+
+/**
+ * @name isValidOptionalBoolean
+ * @description Returns whether an optional field expected to be boolean is valid
+ */
+const isValidOptionalBoolean = (field: any) => {
+  // The field can be either undefined (optional) or a boolean (if provided)
+  return isValidOptionalType(field, 'boolean');
+};
+
+/**
+ * @name isValidOptionalString
+ * @description Returns whether an optional field expected to be string is valid
+ */
+const isValidOptionalString = (field: any) => {
+  // The field can be either undefined (optional) or a string (if provided)
+  return isValidOptionalType(field, 'string');
+};
+
+/**
+ * @name isValidRequiredStringEnum
+ * @description Returns whether a required field expected to be a string enum is valid
+ */
+const isValidRequiredStringEnum = (field: any, enumValues: string[]) => {
+  return enumValues.includes(field); 
+}
+
+/**
+ * @name isValidRequiredString
+ * @description Returns whether a required field expected to be string is valid
+ * A non-empty value is expected
+ */
+const isValidRequiredString = (field: any) => {
+  return typeof field === 'string' && field !== '';
+};
+
+/**
+ * @name isValidRequiredObject
+ * @description Returns whether a required field expected to be object is valid
+ */
+const isValidRequiredObject = (field: any) => {
+  return !!field && typeof field === 'object' && !Array.isArray(field);
+};
+
+/**
+ * @name isValidRequiredArray
+ * @description Returns whether a required field expected to be array is valid
+ * A minimum length of 1 is expected
+ */
+const isValidRequiredArray = (field: any) => {
+  return !!field && Array.isArray(field) && field.length > 0;
+};
+
 /**
  * @name sanitizeAPITimers
  * @description Returns API timers by removing any wrong value
  */
 const sanitizeAPITimers = (APIResponse: any) => {
-  if (!APIResponse) return [];
-  if (!Array.isArray(APIResponse)) return [];
+  if (!isValidRequiredArray(APIResponse)) return [];
 
   const timers: APITimer[] = [];
 
   APIResponse.forEach((row: any) => {
-    if (!row) return;
-    if (typeof row !== 'object') return;
+    if (!isValidRequiredObject(row)) return;
 
     // Mandatory fields
     const { data, title, type } = row;
-    if (typeof title !== 'string' || title === '') return;
-    if (typeof type !== 'string' || !Object.values(TimerType).includes(type as any)) return;
-    if (!data || !Array.isArray(data) || !data.length) return;
+    if (!isValidRequiredString(title)) return;
+    if (!isValidRequiredStringEnum(type, Object.values(TimerType))) return;
+    if (!isValidRequiredArray(data)) return;
 
     // data has to be fully correct for the overall timer to be accepted
     if (type === TimerType.Status && data.length < 2) return;
@@ -29,14 +98,14 @@ const sanitizeAPITimers = (APIResponse: any) => {
       const { color, description, time, textOverride } = dataValue;
 
       if (typeof time !== 'number') return true;
-      if (typeof color !== 'undefined' && typeof color !== 'string') return true;
-      if (typeof description !== 'undefined' && typeof description !== 'string') return true;
+      if (!isValidOptionalString(color)) return true;
+      if (!isValidOptionalString(description)) return true;
       if (typeof textOverride !== 'undefined') {
-        if (typeof textOverride !== 'object' || Array.isArray(textOverride)) return true;
+        if (!isValidRequiredObject(textOverride)) return true;
+        
         const { subtitle, title } = textOverride;
-
-        if (typeof subtitle !== 'undefined' && typeof subtitle !== 'string') return true;
-        if (typeof title !== 'undefined' && typeof title !== 'string') return true;
+        if (!isValidOptionalString(title)) return true;
+        if (!isValidOptionalString(subtitle)) return true;
       }
 
       return false;
@@ -46,10 +115,10 @@ const sanitizeAPITimers = (APIResponse: any) => {
 
     // Optional fields
     const { frequency, showPostEvent, subtitle, subtitlePostEvent } = row;
-    if (typeof frequency !== 'undefined' && !Object.values(TimerFrequency).includes(frequency)) return;
-    if (typeof showPostEvent !== 'undefined' && typeof showPostEvent !== 'boolean') return;
-    if (typeof subtitle !== 'undefined' && typeof subtitle !== 'string') return;
-    if (typeof subtitlePostEvent !== 'undefined' && typeof subtitlePostEvent !== 'string') return;
+    if (!isValidOptionalStringEnum(frequency, Object.values(TimerFrequency))) return;
+    if (!isValidOptionalBoolean(showPostEvent)) return;
+    if (!isValidOptionalString(subtitle)) return;
+    if (!isValidOptionalString(subtitlePostEvent)) return;
 
     timers.push(row);
   });
@@ -62,14 +131,12 @@ const sanitizeAPITimers = (APIResponse: any) => {
  * @description Returns timers contained in their cookie by removing any wrong value
  */
 const sanitizeTimersCookie = (cookieValue: any, maxTimers = MAX_TIMERS) => {
-  if (!cookieValue) return [];
-  if (!Array.isArray(cookieValue)) return [];
+  if (!isValidRequiredArray(cookieValue)) return [];
 
   const timers: Timer[] = [];
 
   cookieValue.forEach((row: any) => {
-    if (!row) return;
-    if (typeof row !== 'object') return;
+    if (!isValidRequiredObject(row)) return;
 
     const { durationSec, timerIndex, timestampStart } = row;
     if (!durationSec) return;
