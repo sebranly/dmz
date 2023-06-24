@@ -9,8 +9,8 @@ import { APITimer, Timer, TimerFrequency, TimerType } from '../types';
  * @description Returns whether an array of assertions is fully respected
  */
 const areValidAssertions = (assertions: boolean[]) => {
-  return assertions.every((assertion: boolean) => assertion)
-}
+  return assertions.every((assertion: boolean) => assertion);
+};
 
 /**
  * @name isValidOptionalStringEnum
@@ -18,8 +18,8 @@ const areValidAssertions = (assertions: boolean[]) => {
  */
 const isValidOptionalStringEnum = (field: any, enumValues: string[]) => {
   if (typeof field === 'undefined') return true;
-  return isValidRequiredStringEnum(field, enumValues); 
-}
+  return isValidRequiredStringEnum(field, enumValues);
+};
 
 /**
  * @name isValidOptionalType
@@ -55,15 +55,15 @@ const isValidOptionalString = (field: any) => {
  */
 const isValidRequiredNumber = (field: any, min = -Infinity, max = Infinity) => {
   return typeof field === 'number' && min <= field && field <= max;
-}
+};
 
 /**
  * @name isValidRequiredStringEnum
  * @description Returns whether a required field expected to be a string enum is valid
  */
 const isValidRequiredStringEnum = (field: any, enumValues: string[]) => {
-  return enumValues.includes(field); 
-}
+  return enumValues.includes(field);
+};
 
 /**
  * @name isValidRequiredString
@@ -131,7 +131,7 @@ const sanitizeAPITimers = (APIResponse: any) => {
 
       if (typeof textOverride !== 'undefined') {
         if (!isValidRequiredObject(textOverride)) return true;
-        
+
         const { subtitle, title } = textOverride;
         if (!isValidOptionalString(title)) return true;
         if (!isValidOptionalString(subtitle)) return true;
