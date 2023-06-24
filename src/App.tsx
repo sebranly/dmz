@@ -18,7 +18,7 @@ import {
 } from './constants/game';
 import { Footer } from './components/Footer';
 import { TimerCard } from './components/TimerCard';
-import { applyPercentOff, getCurrentTimestamp, isNullTimeValue, numberRange, sanitizeTimersCookie } from './utils';
+import { applyPercentOff, getCurrentTimestamp, isNullTimeValue, numberRange } from './utils';
 import {
   convertMoneyToSeconds,
   convertPlayerTimerIndexToSeconds,
@@ -35,6 +35,7 @@ import { FAQ } from './components/FAQ';
 import classnames from 'classnames';
 import { Header } from './components/Header';
 import { OtherTimers } from './components/OtherTimers';
+import { sanitizeTimersCookie } from './utils/sanitize';
 
 function App() {
   const [cookies, setCookie] = useCookies([COOKIE_TIMERS]);
