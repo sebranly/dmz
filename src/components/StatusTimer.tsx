@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 import * as React from 'react';
 import { APITimer, APITimerData, TimerFrequency, TimeUnit } from '../types';
-import { getNextStatus, getNextTime, getWeeklyTime } from '../utils';
+import { getNextStatusTimerData, getNextTime, getWeeklyTime } from '../utils';
 import { convertSecondsToTimeValue } from '../utils/convert';
 import { displayWithTwoDigits, getTimeUnitAbbreviation } from '../utils/display';
 import { getSafeColor, getTimerClasses } from '../utils/tailwind';
@@ -20,7 +20,7 @@ const StatusTimer: React.FC<StatusTimerProps> = (props) => {
 
   if (!data || data.length < 2) return null;
 
-  const nextStatusTime = getNextStatus(currentTimestamp, timer);
+  const nextStatusTime = getNextStatusTimerData(currentTimestamp, timer);
 
   if (!nextStatusTime) return null;
 

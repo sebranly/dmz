@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { API_VERSION, URL_DATA } from '../constants/general';
-import { APITimer, Color, TimerFrequency, TimerType } from '../types';
+import { APITimer, TimerType } from '../types';
 import { Header } from './Header';
 import { EventTimer } from './EventTimer';
 import { ResetTimer } from './ResetTimer';

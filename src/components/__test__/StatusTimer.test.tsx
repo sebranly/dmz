@@ -10,7 +10,7 @@ test('StatusTimer', () => {
     frequency: TimerFrequency.Weekly,
     data: [
       {
-        color: 'green', // TODO: invert?
+        color: 'green',
         time: 1678471200,
         description: 'Weekly Opening:',
         textOverride: {
@@ -19,7 +19,7 @@ test('StatusTimer', () => {
         }
       },
       {
-        color: 'orange', // TODO: invert?
+        color: 'orange',
         time: 1678125600,
         description: 'Weekly Closing:',
         textOverride: {

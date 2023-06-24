@@ -7,7 +7,7 @@ import {
   getDailyTime,
   getDateTime,
   getEndTime,
-  getNextStatus,
+  getNextStatusTimerData,
   getNextTime,
   getUTCDayOffset,
   getWeeklyTime,
@@ -108,7 +108,7 @@ test('getNextTime', () => {
   expect(getNextTime(2678032694, 1678125600, TimerFrequency.Weekly)).toBe(2678464800);
 });
 
-test('getNextStatus', () => {
+test('getNextStatusTimerData', () => {
   const timeOpening: APITimerData = { time: 1678471200 };
   const timeClosing: APITimerData = { time: 1678125600 };
 
@@ -132,17 +132,17 @@ test('getNextStatus', () => {
     frequency: TimerFrequency.Weekly,
     data: [timeOpening, timeClosing]
   };
-  expect(getNextStatus(0, timerOpeningOnly)).toStrictEqual(timeOpening);
-  expect(getNextStatus(0, timerClosingOnly)).toStrictEqual(timeClosing);
-  expect(getNextStatus(0, timer)).toStrictEqual(timeOpening);
+  expect(getNextStatusTimerData(0, timerOpeningOnly)).toStrictEqual(timeOpening);
+  expect(getNextStatusTimerData(0, timerClosingOnly)).toStrictEqual(timeClosing);
+  expect(getNextStatusTimerData(0, timer)).toStrictEqual(timeOpening);
 
-  expect(getNextStatus(1678471199, timer)).toStrictEqual(timeOpening);
-  expect(getNextStatus(1678471200, timer)).toStrictEqual(timeClosing);
-  expect(getNextStatus(1678471201, timer)).toStrictEqual(timeClosing);
+  expect(getNextStatusTimerData(1678471199, timer)).toStrictEqual(timeOpening);
+  expect(getNextStatusTimerData(1678471200, timer)).toStrictEqual(timeClosing);
+  expect(getNextStatusTimerData(1678471201, timer)).toStrictEqual(timeClosing);
 
-  expect(getNextStatus(1678125599, timer)).toStrictEqual(timeClosing);
-  expect(getNextStatus(1678125600, timer)).toStrictEqual(timeOpening);
-  expect(getNextStatus(1678125601, timer)).toStrictEqual(timeOpening);
+  expect(getNextStatusTimerData(1678125599, timer)).toStrictEqual(timeClosing);
+  expect(getNextStatusTimerData(1678125600, timer)).toStrictEqual(timeOpening);
+  expect(getNextStatusTimerData(1678125601, timer)).toStrictEqual(timeOpening);
 });
 
 test('getDailyTime', () => {

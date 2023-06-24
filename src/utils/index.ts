@@ -200,12 +200,11 @@ const getNextTime = (currentTimestamp: number, resetTimestamp: number, frequency
 };
 
 /**
- * // TODO: rename to getNextStatusTime or something similar
  * // TODO: have tests for more than two statuses
- * @name getNextStatus
+ * @name getNextStatusTimerData
  * @description For an element that can have several statuses, it returns the closest one
  */
-const getNextStatus = (currentTimestamp: number, timer: APITimer) => {
+const getNextStatusTimerData = (currentTimestamp: number, timer: APITimer) => {
   const { data } = timer;
   if (data.length <= 1) return data[0];
 
@@ -235,7 +234,7 @@ export {
   getDateTime,
   getEndTime,
   getNextTime,
-  getNextStatus,
+  getNextStatusTimerData,
   getUTCDayOffset,
   getWeeklyTime,
   isNullTimeValue,
