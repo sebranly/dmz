@@ -2,6 +2,16 @@ import { MAX_TIMERS } from '../constants/game';
 import { APITimer, Timer, TimerFrequency, TimerType } from '../types';
 
 // TODO: have unit tests for these functions
+// TODO: move to another PR
+
+/**
+ * @name areValidAssertions
+ * @description Returns whether an array of assertions is fully respected
+ */
+const areValidAssertions = (assertions: boolean[]) => {
+  return assertions.every((assertion: boolean) => assertion)
+}
+
 /**
  * @name isValidOptionalStringEnum
  * @description Returns whether an optional field expected to be a string enum is valid
@@ -37,6 +47,15 @@ const isValidOptionalString = (field: any) => {
   // The field can be either undefined (optional) or a string (if provided)
   return isValidOptionalType(field, 'string');
 };
+
+/**
+ * @name isValidRequiredNumber
+ * @description Returns whether a required field expected to be number is valid
+ * It can also check for bounds (inclusive)
+ */
+const isValidRequiredNumber = (field: any, min = -Infinity, max = Infinity) => {
+  return typeof field === 'number' && min <= field && field <= max;
+}
 
 /**
  * @name isValidRequiredStringEnum
@@ -86,9 +105,14 @@ const sanitizeAPITimers = (APIResponse: any) => {
 
     // Mandatory fields
     const { data, title, type } = row;
-    if (!isValidRequiredString(title)) return;
-    if (!isValidRequiredStringEnum(type, Object.values(TimerType))) return;
-    if (!isValidRequiredArray(data)) return;
+
+    const isValid1 = areValidAssertions([
+      isValidRequiredArray(data),
+      isValidRequiredString(title),
+      isValidRequiredStringEnum(type, Object.values(TimerType))
+    ]);
+
+    if (!isValid1) return;
 
     // data has to be fully correct for the overall timer to be accepted
     if (type === TimerType.Status && data.length < 2) return;
@@ -97,9 +121,14 @@ const sanitizeAPITimers = (APIResponse: any) => {
     const incorrectData = data.find((dataValue: any) => {
       const { color, description, time, textOverride } = dataValue;
 
-      if (typeof time !== 'number') return true;
-      if (!isValidOptionalString(color)) return true;
-      if (!isValidOptionalString(description)) return true;
+      const isValid2 = areValidAssertions([
+        isValidRequiredNumber(time, 0),
+        isValidOptionalString(color),
+        isValidOptionalString(description)
+      ]);
+
+      if (!isValid2) return true;
+
       if (typeof textOverride !== 'undefined') {
         if (!isValidRequiredObject(textOverride)) return true;
         
@@ -115,10 +144,15 @@ const sanitizeAPITimers = (APIResponse: any) => {
 
     // Optional fields
     const { frequency, showPostEvent, subtitle, subtitlePostEvent } = row;
-    if (!isValidOptionalStringEnum(frequency, Object.values(TimerFrequency))) return;
-    if (!isValidOptionalBoolean(showPostEvent)) return;
-    if (!isValidOptionalString(subtitle)) return;
-    if (!isValidOptionalString(subtitlePostEvent)) return;
+
+    const isValid3 = areValidAssertions([
+      isValidOptionalBoolean(showPostEvent),
+      isValidOptionalString(subtitle),
+      isValidOptionalString(subtitlePostEvent),
+      isValidOptionalStringEnum(frequency, Object.values(TimerFrequency))
+    ]);
+
+    if (!isValid3) return;
 
     timers.push(row);
   });
@@ -139,17 +173,13 @@ const sanitizeTimersCookie = (cookieValue: any, maxTimers = MAX_TIMERS) => {
     if (!isValidRequiredObject(row)) return;
 
     const { durationSec, timerIndex, timestampStart } = row;
-    if (!durationSec) return;
-    if (!timerIndex && timerIndex !== 0) return;
-    if (!timestampStart) return;
+    const isValid = areValidAssertions([
+      isValidRequiredNumber(durationSec, 1),
+      isValidRequiredNumber(timerIndex, 0, maxTimers - 1),
+      isValidRequiredNumber(timestampStart, 1)
+    ]);
 
-    if (typeof durationSec !== 'number') return;
-    if (typeof timerIndex !== 'number') return;
-    if (typeof timestampStart !== 'number') return;
-
-    if (durationSec <= 0) return;
-    if (timerIndex < 0 || timerIndex >= maxTimers) return;
-    if (timestampStart <= 0) return;
+    if (!isValid) return;
 
     const timer: Timer = {
       durationSec,
