@@ -1,6 +1,7 @@
 import { MAX_TIMERS } from '../constants/game';
 import { APITimer, Timer, TimerFrequency, TimerType } from '../types';
 
+// TODO: move to other file
 // TODO: have unit tests for these functions
 // TODO: move to another PR
 

@@ -5,6 +5,7 @@ import { Header } from './Header';
 import { EventTimer } from './EventTimer';
 import { ResetTimer } from './ResetTimer';
 import { StatusTimer } from './StatusTimer';
+import { sanitizeAPITimers } from '../utils/sanitize';
 
 export interface OtherTimersProps {
   className?: string;
@@ -22,7 +23,7 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
         const data = await response.json();
 
         // TODO: have function filtering out API response
-        const safeTimers = (data[API_VERSION] || []) as APITimer[];
+        const safeTimers = sanitizeAPITimers(data[API_VERSION] || [])
 
         setTimers(safeTimers);
       } catch (error) {
