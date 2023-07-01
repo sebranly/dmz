@@ -7,6 +7,14 @@ const commonDateOptions: Intl.DateTimeFormatOptions = {
 };
 
 /**
+ * @name areValidAssertions
+ * @description Returns whether an array of assertions is fully respected
+ */
+const areValidAssertions = (assertions: boolean[]) => {
+  return assertions.every((assertion: boolean) => assertion);
+};
+
+/**
  * @name applyPercentOff
  * @description Returns a reduced number after applying a percent off to an initial positive value
  */
@@ -185,6 +193,7 @@ const getNextStatusTimerData = (currentTimestamp: number, timer: APITimer) => {
 
 export {
   applyPercentOff,
+  areValidAssertions,
   calculateRemainingSeconds,
   getAnchorLink,
   getCurrentTimestamp,

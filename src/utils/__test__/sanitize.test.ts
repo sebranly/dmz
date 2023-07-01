@@ -4,14 +4,22 @@ import { sanitizeAPITimers, sanitizeTimersCookie } from '../sanitize';
 test('sanitizeAPITimers', () => {
   expect(sanitizeAPITimers(null)).toStrictEqual([]);
   expect(sanitizeAPITimers('')).toStrictEqual([]);
+  expect(sanitizeAPITimers('test')).toStrictEqual([]);
   expect(sanitizeAPITimers(0)).toStrictEqual([]);
+  expect(sanitizeAPITimers(1)).toStrictEqual([]);
+  expect(sanitizeAPITimers(false)).toStrictEqual([]);
+  expect(sanitizeAPITimers(true)).toStrictEqual([]);
   expect(sanitizeAPITimers([])).toStrictEqual([]);
   expect(sanitizeAPITimers(undefined)).toStrictEqual([]);
   expect(sanitizeAPITimers({})).toStrictEqual([]);
 
   expect(sanitizeAPITimers([null])).toStrictEqual([]);
   expect(sanitizeAPITimers([''])).toStrictEqual([]);
+  expect(sanitizeAPITimers(['test'])).toStrictEqual([]);
   expect(sanitizeAPITimers([0])).toStrictEqual([]);
+  expect(sanitizeAPITimers([1])).toStrictEqual([]);
+  expect(sanitizeAPITimers([false])).toStrictEqual([]);
+  expect(sanitizeAPITimers([true])).toStrictEqual([]);
   expect(sanitizeAPITimers([[]])).toStrictEqual([]);
   expect(sanitizeAPITimers([undefined])).toStrictEqual([]);
   expect(sanitizeAPITimers([{}])).toStrictEqual([]);
@@ -512,14 +520,22 @@ test('sanitizeAPITimers', () => {
 test('sanitizeTimersCookie', () => {
   expect(sanitizeTimersCookie(null, 9)).toStrictEqual([]);
   expect(sanitizeTimersCookie('', 9)).toStrictEqual([]);
+  expect(sanitizeTimersCookie('test', 9)).toStrictEqual([]);
   expect(sanitizeTimersCookie(0, 9)).toStrictEqual([]);
+  expect(sanitizeTimersCookie(1, 9)).toStrictEqual([]);
+  expect(sanitizeTimersCookie(false, 9)).toStrictEqual([]);
+  expect(sanitizeTimersCookie(true, 9)).toStrictEqual([]);
   expect(sanitizeTimersCookie([], 9)).toStrictEqual([]);
   expect(sanitizeTimersCookie(undefined, 9)).toStrictEqual([]);
   expect(sanitizeTimersCookie({}, 9)).toStrictEqual([]);
 
   expect(sanitizeTimersCookie([null], 9)).toStrictEqual([]);
   expect(sanitizeTimersCookie([''], 9)).toStrictEqual([]);
+  expect(sanitizeTimersCookie(['test'], 9)).toStrictEqual([]);
   expect(sanitizeTimersCookie([0], 9)).toStrictEqual([]);
+  expect(sanitizeTimersCookie([1], 9)).toStrictEqual([]);
+  expect(sanitizeTimersCookie([false], 9)).toStrictEqual([]);
+  expect(sanitizeTimersCookie([true], 9)).toStrictEqual([]);
   expect(sanitizeTimersCookie([[]], 9)).toStrictEqual([]);
   expect(sanitizeTimersCookie([undefined], 9)).toStrictEqual([]);
   expect(sanitizeTimersCookie([{}], 9)).toStrictEqual([]);
