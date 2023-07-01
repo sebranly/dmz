@@ -1,7 +1,16 @@
 import { areValidAssertions } from '.';
 import { MAX_TIMERS } from '../constants/game';
 import { APITimer, Timer, TimerFrequency, TimerType } from '../types';
-import { isValidOptionalStringEnum, isValidOptionalBoolean, isValidOptionalString, isValidRequiredNumber, isValidRequiredStringEnum, isValidRequiredString, isValidRequiredObject, isValidRequiredArray } from './type';
+import {
+  isValidOptionalStringEnum,
+  isValidOptionalBoolean,
+  isValidOptionalString,
+  isValidRequiredNumber,
+  isValidRequiredStringEnum,
+  isValidRequiredString,
+  isValidRequiredObject,
+  isValidRequiredArray
+} from './type';
 
 /**
  * @name sanitizeAPITimers

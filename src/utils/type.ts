@@ -77,4 +77,14 @@ const isValidRequiredArray = (field: any) => {
   return !!field && Array.isArray(field) && field.length > 0;
 };
 
-export { isValidOptionalStringEnum, isValidOptionalType, isValidOptionalBoolean, isValidOptionalString, isValidRequiredNumber, isValidRequiredStringEnum, isValidRequiredString, isValidRequiredObject, isValidRequiredArray }
+export {
+  isValidOptionalStringEnum,
+  isValidOptionalType,
+  isValidOptionalBoolean,
+  isValidOptionalString,
+  isValidRequiredNumber,
+  isValidRequiredStringEnum,
+  isValidRequiredString,
+  isValidRequiredObject,
+  isValidRequiredArray
+};

@@ -23,7 +23,7 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
         const data = await response.json();
 
         // TODO: have function filtering out API response
-        const safeTimers = sanitizeAPITimers(data[API_VERSION] || [])
+        const safeTimers = sanitizeAPITimers(data[API_VERSION] || []);
 
         setTimers(safeTimers);
       } catch (error) {
