@@ -6,12 +6,8 @@ import {
   formatMoney,
   getPlayerColor,
   getPlayersSize,
-  getStatusAdjective,
-  getStatusColor,
-  getStatusVerb,
   getTimeUnitAbbreviation,
-  pluralize,
-  titleize
+  pluralize
 } from '../display';
 
 test('displayTimeValue', () => {
@@ -89,27 +85,6 @@ test('getPlayersSize', () => {
   expect(getPlayersSize(5)).toBe('');
 });
 
-test('getStatusColor', () => {
-  expect(getStatusColor(TimeStatus.Closing)).toBe(Color.Green);
-  expect(getStatusColor(TimeStatus.Opening)).toBe(Color.Orange);
-  expect(getStatusColor(TimeStatus.Launch)).toBe(Color.Red);
-  expect(getStatusColor(TimeStatus.Reset)).toBe(Color.Yellow);
-});
-
-test('getStatusAdjective', () => {
-  expect(getStatusAdjective(TimeStatus.Closing)).toBe('open');
-  expect(getStatusAdjective(TimeStatus.Opening)).toBe('closed');
-  expect(getStatusAdjective(TimeStatus.Launch)).toBe('closed');
-  expect(getStatusAdjective(TimeStatus.Reset)).toBe('closed');
-});
-
-test('getStatusVerb', () => {
-  expect(getStatusVerb(TimeStatus.Closing)).toBe('close');
-  expect(getStatusVerb(TimeStatus.Opening)).toBe('open');
-  expect(getStatusVerb(TimeStatus.Launch)).toBe('launch');
-  expect(getStatusVerb(TimeStatus.Reset)).toBe('reset');
-});
-
 test('getTimeUnitAbbreviation', () => {
   expect(getTimeUnitAbbreviation(TimeUnit.Day)).toBe('days');
   expect(getTimeUnitAbbreviation(TimeUnit.Hour)).toBe('hrs');
@@ -123,14 +98,4 @@ test('pluralize', () => {
   expect(pluralize('word', 1)).toBe('word');
   expect(pluralize('word', 2)).toBe('words');
   expect(pluralize('word', 100)).toBe('words');
-});
-
-test('titleize', () => {
-  expect(titleize('')).toBe('');
-  expect(titleize('a')).toBe('A');
-  expect(titleize('ab')).toBe('Ab');
-  expect(titleize('Ab')).toBe('Ab');
-  expect(titleize('aB')).toBe('AB');
-  expect(titleize('AB')).toBe('AB');
-  expect(titleize('bonjour')).toBe('Bonjour');
 });
