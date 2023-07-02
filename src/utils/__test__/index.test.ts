@@ -1,5 +1,6 @@
 import { APITimer, TimerFrequency, TimeStatus, TimerType, TimeUnit } from '../../types';
 import {
+  areValidAssertions,
   applyPercentOff,
   calculateRemainingSeconds,
   getAnchorLink,
@@ -14,6 +15,16 @@ import {
   isNullTimeValue,
   numberRange
 } from '../index';
+
+test('areValidAssertions', () => {
+  expect(areValidAssertions([])).toBe(true);
+  expect(areValidAssertions([true])).toBe(true);
+  expect(areValidAssertions([true, true])).toBe(true);
+  expect(areValidAssertions([false])).toBe(false);
+  expect(areValidAssertions([false, false])).toBe(false);
+  expect(areValidAssertions([true, false])).toBe(false);
+  expect(areValidAssertions([false, true])).toBe(false);
+});
 
 test('applyPercentOff', () => {
   expect(applyPercentOff(-1, 0)).toBe(0);
