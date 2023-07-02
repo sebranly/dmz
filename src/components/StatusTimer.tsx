@@ -13,7 +13,6 @@ export interface StatusTimerProps {
 }
 
 const StatusTimer: React.FC<StatusTimerProps> = (props) => {
-  // TODO: invert colors for text status
   const { className, currentTimestamp, timer } = props;
 
   const { data, frequency, subtitle, title } = timer;
@@ -24,8 +23,15 @@ const StatusTimer: React.FC<StatusTimerProps> = (props) => {
 
   if (!nextStatusTime) return null;
 
-  const { color: colorUnsafe, time: statusTime, textOverride } = nextStatusTime;
+  // TODO: LATER: fix it for more than 2 statuses
+  const previousStatusTime = timer.data.find((d: APITimerData) => d.time !== nextStatusTime.time);
+
+  if (!previousStatusTime) return null;
+
+  const { color: colorUnsafe } = previousStatusTime;
   const color = getSafeColor(colorUnsafe);
+
+  const { time: statusTime, textOverride } = nextStatusTime;
 
   const nextTime = getNextTime(currentTimestamp, statusTime, frequency);
   const remainingSeconds = nextTime - currentTimestamp;
