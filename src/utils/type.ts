@@ -12,7 +12,6 @@ const isValidOptionalStringEnum = (field: any, enumValues: string[]) => {
  * @description Returns whether an optional field expected to be of a specific type is valid
  */
 const isValidOptionalType = (field: any, type: string) => {
-  // The field can be either undefined (optional) or a boolean (if provided)
   return [type, 'undefined'].includes(typeof field);
 };
 
@@ -21,7 +20,6 @@ const isValidOptionalType = (field: any, type: string) => {
  * @description Returns whether an optional field expected to be boolean is valid
  */
 const isValidOptionalBoolean = (field: any) => {
-  // The field can be either undefined (optional) or a boolean (if provided)
   return isValidOptionalType(field, 'boolean');
 };
 
@@ -30,7 +28,6 @@ const isValidOptionalBoolean = (field: any) => {
  * @description Returns whether an optional field expected to be string is valid
  */
 const isValidOptionalString = (field: any) => {
-  // The field can be either undefined (optional) or a string (if provided)
   return isValidOptionalType(field, 'string');
 };
 
@@ -74,7 +71,7 @@ const isValidRequiredObject = (field: any) => {
  * A minimum length of 1 is expected
  */
 const isValidRequiredArray = (field: any) => {
-  return !!field && Array.isArray(field) && field.length > 0;
+  return Array.isArray(field) && field.length > 0;
 };
 
 export {
