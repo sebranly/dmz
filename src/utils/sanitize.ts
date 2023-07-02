@@ -36,8 +36,9 @@ const sanitizeAPITimers = (APIResponse: any) => {
     if (!isValid1) return;
 
     // data has to be fully correct for the overall timer to be accepted
-    if (type === TimerType.Status && data.length < 2) return;
-    if (type !== TimerType.Status && data.length !== 1) return;
+    const isStatusTimer = type === TimerType.Status;
+    const exactLength = isStatusTimer ? 2 : 1;
+    if (data.length !== exactLength) return;
 
     const incorrectData = data.find((dataValue: any) => {
       const { color, description, time, textOverride } = dataValue;

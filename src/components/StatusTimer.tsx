@@ -12,6 +12,7 @@ export interface StatusTimerProps {
   timer: APITimer;
 }
 
+// TODO: make this component work with more than 2 statuses
 const StatusTimer: React.FC<StatusTimerProps> = (props) => {
   const { className, currentTimestamp, timer } = props;
 
@@ -19,22 +20,24 @@ const StatusTimer: React.FC<StatusTimerProps> = (props) => {
 
   if (!data || data.length < 2) return null;
 
-  const nextStatusTime = getNextStatusTimerData(currentTimestamp, timer);
+  const nextStatusTimer = getNextStatusTimerData(currentTimestamp, timer);
 
-  if (!nextStatusTime) return null;
+  if (!nextStatusTimer) return null;
 
   // TODO: LATER: fix it for more than 2 statuses
-  const previousStatusTime = timer.data.find((d: APITimerData) => d.time !== nextStatusTime.time);
+  const previousStatusTimer = timer.data.find((d: APITimerData) => d.time !== nextStatusTimer.time);
 
-  if (!previousStatusTime) return null;
+  if (!previousStatusTimer) return null;
 
-  const { color: colorUnsafe } = previousStatusTime;
+  const { color: colorUnsafe, time: previousStatusTime } = previousStatusTimer;
   const color = getSafeColor(colorUnsafe);
 
-  const { time: statusTime, textOverride } = nextStatusTime;
+  const { time: nextStatusTime, textOverride } = nextStatusTimer;
 
-  const nextTime = getNextTime(currentTimestamp, statusTime, frequency);
+  const nextTime = getNextTime(currentTimestamp, nextStatusTime, frequency);
   const remainingSeconds = nextTime - currentTimestamp;
+
+  const previousTime = getNextTime(currentTimestamp, previousStatusTime, frequency);
 
   const statusTitle = textOverride?.title ?? title;
   const statusSubtitle = textOverride?.subtitle ?? subtitle;
@@ -89,13 +92,15 @@ const StatusTimer: React.FC<StatusTimerProps> = (props) => {
       {frequency === TimerFrequency.Weekly && (
         <div className="text-xs sm:text-sm">
           {data.map((dataEl: APITimerData) => {
-            const { color: colorUnsafe, description, time } = dataEl;
+            const { color: colorUnsafe, description } = dataEl;
             const color = getSafeColor(colorUnsafe);
+            const isNextTime = dataEl.time === nextStatusTimer.time;
+            const weeklyTime = isNextTime ? getWeeklyTime(nextTime) : getWeeklyTime(previousTime);
 
             const classnamesTime = classnames('font-bold pr-1', `text-${color}-500`);
             return description ? (
               <div className="flex text-left pl-2.5" key={dataEl.time}>
-                <div className="grow">{description}</div> <div className={classnamesTime}>{getWeeklyTime(time)}</div>
+                <div className="grow">{description}</div> <div className={classnamesTime}>{weeklyTime}</div>
               </div>
             ) : null;
           })}
