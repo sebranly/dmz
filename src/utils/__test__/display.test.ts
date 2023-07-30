@@ -1,4 +1,4 @@
-import { Color, TimeStatus, TimeUnit } from '../../types';
+import { Color, TimeUnit } from '../../types';
 import {
   displaySeason,
   displayTimeValue,

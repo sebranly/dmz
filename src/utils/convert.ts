@@ -15,7 +15,7 @@ const convertMoneyToSeconds = (money: number, hourlyRate: number) => {
 
 /**
  * @name convertPlayerTimerIndexToSeconds
- * @description Returns the max number of seconds a timer can last per the game's rules
+ * @description Returns the max number of seconds a timer can last per the game’s rules
  */
 const convertPlayerTimerIndexToSeconds = (index: number, hoursPerSlot = HOURS_PER_SLOT) => {
   if (index < 0) return 0;
@@ -75,7 +75,7 @@ const convertTimerIndexToPlayerIndex = (timerIndex: number, maxTimersPerPlayer =
 
 /**
  * @name convertTimerIndexToPlayerTimerIndex
- * @description Returns the timer index seen from its player's perspective
+ * @description Returns the timer index seen from its player’s perspective
  * @example 9 timers for 3 players. Timer index 3 belongs to second player and has index 0
  */
 const convertTimerIndexToPlayerTimerIndex = (timerIndex: number, maxTimersPerPlayer = MAX_TIMERS_PER_PLAYER) => {
