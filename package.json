@@ -24,14 +24,64 @@
     "deploy": "gh-pages -b master -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx ./src",
+    "lint:file": "eslint --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "npm run lint -- --fix",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "pretty": "prettier --write \"./**/*.{js,jsx,ts,tsx,json}\""
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "npm run pretty",
+      "npm run lint:file"
+    ]
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
+      "react-app/jest",
+      "eslint:recommended",
+      "plugin:react/recommended",
+      "plugin:jsx-a11y/recommended",
+      "plugin:react-hooks/recommended",
+      "plugin:jest/recommended",
+      "plugin:testing-library/react"
+    ],
+    "plugins": [
+      "jsx-a11y"
+    ],
+    "rules": {
+      "no-unused-vars": "off",
+      "@typescript-eslint/no-unused-vars": "error"
+    },
+    "overrides": [
+      {
+        "files": [
+          "**/*.ts?(x)"
+        ],
+        "parser": "@typescript-eslint/parser",
+        "parserOptions": {
+          "ecmaFeatures": {
+            "jsx": true
+          },
+          "ecmaVersion": 2021,
+          "sourceType": "module"
+        },
+        "plugins": [
+          "@typescript-eslint"
+        ],
+        "rules": {
+          "@typescript-eslint/no-explicit-any": "error",
+          "@typescript-eslint/no-array-constructor": "warn",
+          "no-array-constructor": "off"
+        }
+      }
     ]
   },
   "browserslist": {
@@ -47,7 +97,9 @@
     ]
   },
   "devDependencies": {
-    "prettier": "^2.8.1",
+    "husky": "^4.3.8",
+    "lint-staged": "^13.2.3",
+    "prettier": "^2.8.8",
     "tailwindcss": "^3.2.7"
   }
 }
