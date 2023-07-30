@@ -2,8 +2,8 @@ import React from 'react';
 import { useCookies } from 'react-cookie';
 import { COOKIE_TIMERS, DEFAULT_SORT_OPTION, SORT_OPTIONS, WEBSITE_SUBTITLE, WEBSITE_TITLE } from './constants/general';
 import {
-  BUNDLE_TIMER_MIN,
   BUNDLE_TIMER_VALUE,
+  BUNDLE_TIMER_MIN,
   CURRENT_SEASON,
   DEAD_DROP_HOURLY_RATE,
   HOURS_PER_SLOT,
