@@ -103,7 +103,7 @@ NodeList [
       <button
         class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
       >
-        I don't understand the use-case(s) [+]
+        I don’t understand the use-case(s) [+]
       </button>
     </div>
     <div
