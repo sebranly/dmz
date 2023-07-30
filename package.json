@@ -27,7 +27,7 @@
     "lint": "eslint --ext .js,.jsx,.ts,.tsx ./src",
     "lint:file": "eslint --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "npm run lint -- --fix",
-    "test": "react-scripts test",
+    "test": "TZ=CET react-scripts test",
     "eject": "react-scripts eject",
     "pretty": "prettier --write \"./**/*.{js,jsx,ts,tsx,json}\""
   },
