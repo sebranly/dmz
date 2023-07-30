@@ -1,5 +1,6 @@
 import { Sort } from '../types';
 
+export const API_VERSION = 'v2';
 export const AUTHOR_NAME = 'sebranly';
 export const AUTHOR_GITHUB = `https://${AUTHOR_NAME}.github.io`;
 export const DEFAULT_SORT_OPTION = Sort.OldestToNewest;
