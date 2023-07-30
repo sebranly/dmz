@@ -46,6 +46,7 @@ export enum Sort {
   ShortestToLongest = 'Shortest to Longest'
 }
 
+// TODO: LATER: have Monthly etc.?
 export enum TimerFrequency {
   Daily = 'daily',
   None = 'none',
