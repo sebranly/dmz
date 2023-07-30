@@ -17,11 +17,13 @@ import {
  * @name sanitizeAPITimers
  * @description Returns API timers by removing any wrong value
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const sanitizeAPITimers = (APIResponse: any) => {
   if (!isValidRequiredArray(APIResponse)) return [];
 
   const timers: APITimer[] = [];
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   APIResponse.forEach((row: any) => {
     if (!isValidRequiredObject(row)) return;
 
@@ -41,6 +43,7 @@ const sanitizeAPITimers = (APIResponse: any) => {
     if (type === 'status' && data.length < 2) return;
     if (type !== 'status' && data.length !== 1) return;
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const incorrectData = data.find((dataValue: any) => {
       const { color, description, time, textOverride } = dataValue;
 
@@ -87,11 +90,13 @@ const sanitizeAPITimers = (APIResponse: any) => {
  * @name sanitizeTimersCookie
  * @description Returns timers contained in their cookie by removing any wrong value
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const sanitizeTimersCookie = (cookieValue: any, maxTimers = MAX_TIMERS) => {
   if (!isValidRequiredArray(cookieValue)) return [];
 
   const timers: Timer[] = [];
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   cookieValue.forEach((row: any) => {
     if (!isValidRequiredObject(row)) return;
 
