@@ -1,4 +1,4 @@
-import { Color, TimerFrequency, TimerType } from '../../types';
+import { Color, TimerFrequency } from '../../types';
 import { sanitizeAPITimers, sanitizeTimersCookie } from '../sanitize';
 
 test('sanitizeAPITimers', () => {

@@ -33,13 +33,13 @@ const FAQ = () => {
 
         return (
           <div key={question} className={classnamesQuestionAndAnswer}>
-            <div
+            <button
               onClick={() => onToggle(question)}
               className="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
             >
               {isNew && <div className="inline text-amber-500 hover:text-amber-600">[New] </div>}
               {questionBis}
-            </div>
+            </button>
             {shown && (
               <div className="text-left sm:text-justify mb-5">
                 {answer.map((answerParagraph: string, index: number) => {

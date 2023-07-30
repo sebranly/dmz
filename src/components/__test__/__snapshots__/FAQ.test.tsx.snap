@@ -18,20 +18,20 @@ NodeList [
     <div
       class="text-base lg:text-lg mt-2.5"
     >
-      <div
+      <button
         class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
       >
         What is DMZ? [+]
-      </div>
+      </button>
     </div>
     <div
       class="text-base lg:text-lg my-5"
     >
-      <div
+      <button
         class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
       >
         What is this website? [-]
-      </div>
+      </button>
       <div
         class="text-left sm:text-justify mb-5"
       >
@@ -64,61 +64,61 @@ NodeList [
     <div
       class="text-base lg:text-lg mt-2.5"
     >
-      <div
+      <button
         class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
       >
         What are the hourly rates? [+]
-      </div>
+      </button>
     </div>
     <div
       class="text-base lg:text-lg mt-2.5"
     >
-      <div
+      <button
         class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
       >
         What are dead drops? [+]
-      </div>
+      </button>
     </div>
     <div
       class="text-base lg:text-lg mt-2.5"
     >
-      <div
+      <button
         class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
       >
         Where are dead drops? [+]
-      </div>
+      </button>
     </div>
     <div
       class="text-base lg:text-lg mt-2.5"
     >
-      <div
+      <button
         class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
       >
         What about items? [+]
-      </div>
+      </button>
     </div>
     <div
       class="text-base lg:text-lg mt-2.5"
     >
-      <div
+      <button
         class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
       >
-        I don't understand the use-case(s) [+]
-      </div>
+        I don’t understand the use-case(s) [+]
+      </button>
     </div>
     <div
       class="text-base lg:text-lg mt-2.5"
     >
-      <div
+      <button
         class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
       >
         I think your formulae are incorrect [+]
-      </div>
+      </button>
     </div>
     <div
       class="text-base lg:text-lg mt-2.5"
     >
-      <div
+      <button
         class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
       >
         <div
@@ -127,43 +127,43 @@ NodeList [
           [New] 
         </div>
         What changed between Season 01 and Season 04? [+]
-      </div>
+      </button>
     </div>
     <div
       class="text-base lg:text-lg mt-2.5"
     >
-      <div
+      <button
         class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
       >
         Is there a time difference between the maps? [+]
-      </div>
+      </button>
     </div>
     <div
       class="text-base lg:text-lg mt-2.5"
     >
-      <div
+      <button
         class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
       >
         Why is the maximum number of players high on this website? [+]
-      </div>
+      </button>
     </div>
     <div
       class="text-base lg:text-lg mt-2.5"
     >
-      <div
+      <button
         class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
       >
         Can I bake cakes with this website? [+]
-      </div>
+      </button>
     </div>
     <div
       class="text-base lg:text-lg mt-2.5"
     >
-      <div
+      <button
         class="text-left sm:text-center cursor-pointer font-bold mb-2 text-lime-400 hover:text-lime-500"
       >
         What about cookies? [+]
-      </div>
+      </button>
     </div>
   </div>,
 ]

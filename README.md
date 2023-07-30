@@ -18,7 +18,7 @@ Live at https://sebranly.github.io/dmz/
 
 ### Deploy
 
-- Commit and push your changes to `main` branch, or create a merge request as a PR from your clone to this project's `main` branch
+- Commit and push your changes to `main` branch, or create a merge request as a PR from your clone to this project’s `main` branch
 - Make sure to have followed the following. If not, create a new PR.
   - increase the `WEBSITE_VERSION` from `src/constants/general.ts` file, by following semver
     - MAJOR version when you make incompatible API changes,
