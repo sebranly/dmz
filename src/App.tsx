@@ -275,7 +275,7 @@ function App() {
           </div>
           <div className="text-left sm:text-justify mb-5">
             <div className="mb-5">
-              We got you. The quickest way is to jump into any map, head to a dead drop location (you‘ll find them{' '}
+              We got you. The quickest way is to jump into any map, head to a dead drop location (you’ll find them{' '}
               <a
                 className="underline text-white"
                 href="https://warzonetacmap.online"
