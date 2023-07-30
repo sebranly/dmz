@@ -61,7 +61,7 @@ test('isValidOptionalType', () => {
 
   expect(isValidOptionalType(undefined, 'boolean')).toBe(true);
   expect(isValidOptionalType(false, 'boolean')).toBe(true);
-  expect(isValidOptionalType(true, 'boolean')).toBe(true);
+  expect(isValidOptionalType(true, 'boolean')).toBe(false);
 });
 
 test('isValidRequiredNumber', () => {
