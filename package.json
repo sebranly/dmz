@@ -29,8 +29,7 @@
     "lint:fix": "npm run lint -- --fix",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "pretty": "prettier --write \"./**/*.{js,jsx,ts,tsx,json}\"",
-    "prepare": "husky install"
+    "pretty": "prettier --write \"./**/*.{js,jsx,ts,tsx,json}\""
   },
   "husky": {
     "hooks": {
