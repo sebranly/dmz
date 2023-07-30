@@ -25,6 +25,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx ./src",
+    "lint:file": "eslint --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "npm run lint -- --fix",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -38,7 +39,8 @@
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
-      "npm run pretty && npm run lint"
+      "npm run pretty",
+      "npm run lint:file"
     ]
   },
   "eslintConfig": {

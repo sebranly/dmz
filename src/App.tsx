@@ -2,8 +2,8 @@ import React from 'react';
 import { useCookies } from 'react-cookie';
 import { COOKIE_TIMERS, DEFAULT_SORT_OPTION, SORT_OPTIONS, WEBSITE_SUBTITLE, WEBSITE_TITLE } from './constants/general';
 import {
-  BUNDLE_TIMER_MIN,
   BUNDLE_TIMER_VALUE,
+  BUNDLE_TIMER_MIN,
   CURRENT_SEASON,
   DEAD_DROP_HOURLY_RATE,
   HOURS_PER_SLOT,
@@ -275,7 +275,7 @@ function App() {
           </div>
           <div className="text-left sm:text-justify mb-5">
             <div className="mb-5">
-              We got you. The quickest way is to jump into any map, head to a dead drop location (you'll find them{' '}
+              We got you. The quickest way is to jump into any map, head to a dead drop location (you‘ll find them{' '}
               <a
                 className="underline text-white"
                 href="https://warzonetacmap.online"
