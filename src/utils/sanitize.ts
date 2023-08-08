@@ -1,7 +1,6 @@
 import { areValidAssertions } from '.';
 import { MAX_TIMERS } from '../constants/game';
 import { APITimer, Timer, TimerFrequency, TimerType } from '../types';
-
 import {
   isValidOptionalStringEnum,
   isValidOptionalBoolean,
@@ -39,9 +38,9 @@ const sanitizeAPITimers = (APIResponse: any) => {
     if (!isValid1) return;
 
     // data has to be fully correct for the overall timer to be accepted
-    // TODO: fix
-    if (type === 'status' && data.length < 2) return;
-    if (type !== 'status' && data.length !== 1) return;
+    const isStatusTimer = type === 'status';
+    const exactLength = isStatusTimer ? 2 : 1;
+    if (data.length !== exactLength) return;
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const incorrectData = data.find((dataValue: any) => {

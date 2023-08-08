@@ -86,6 +86,8 @@ test('isValidRequiredNumber', () => {
   expect(isValidRequiredNumber(1, 1, 20)).toBe(true);
   expect(isValidRequiredNumber(20, 1, 20)).toBe(true);
   expect(isValidRequiredNumber(21, 1, 20)).toBe(false);
+  expect(isValidRequiredNumber('1', 1, 20)).toBe(false);
+  expect(isValidRequiredNumber('21', 1, 20)).toBe(false);
 });
 
 test('isValidOptionalStringEnum', () => {

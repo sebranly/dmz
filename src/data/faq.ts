@@ -125,8 +125,9 @@ const questionsAnswers: QuestionAnswer[] = [
       `However, some bundles (that need to be purchased) give the advantage of using a weapon with its own <b>${BUNDLE_TIMER_MIN}-min cooldown timer</b> (no matter the insured slot), so we updated the website to reflect that (in Quick Options section).`,
       `In Season 03 Reloaded, a new Exclusion Zone called Koschei Complex has been introduced. It is available exclusively from Al Mazrah.`,
       `The glitch about heartbeat sensors awarding lots of time reduction has been patched (unfortunately).`,
-      `A new map called Vondel is available since <span class='text-amber-500'>Season 04</span>.`,
-      `In <span class='text-amber-500'>Season 04</span>, lots of new features have been introduced including the wallet between different games, and upgrades for reducing the Insured Weapon cooldown times.`,
+      'A new map called Vondel is available since Season 04.',
+      'In Season 04, lots of new features have been introduced including the wallet between different games, and upgrades for reducing the Insured Weapon cooldown times.',
+      `In both Season 04 Reloaded and <span class='text-amber-500'>Season 05</span>, there have not been changes that impact timers from this website.`,
       '<b>Note: the dollars-per-hour rates have never changed since Season 01 (for both exfiltration and dead drops).</b>'
     ]
   },
