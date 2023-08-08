@@ -32,13 +32,13 @@ const sanitizeAPITimers = (APIResponse: any) => {
     const isValid1 = areValidAssertions([
       isValidRequiredArray(data),
       isValidRequiredString(title),
-      isValidRequiredStringEnum(type, [...Object.values(TimerType), 'status', 'event', 'reset']) // TODO: fix by deleting hardcoded values
+      isValidRequiredStringEnum(type, Object.values(TimerType))
     ]);
 
     if (!isValid1) return;
 
     // data has to be fully correct for the overall timer to be accepted
-    const isStatusTimer = type === 'status';
+    const isStatusTimer = type === TimerType.Status;
     const exactLength = isStatusTimer ? 2 : 1;
     if (data.length !== exactLength) return;
 

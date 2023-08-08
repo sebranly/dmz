@@ -1,15 +1,21 @@
 import * as React from 'react';
 import { render } from '@testing-library/react';
 import { ResetTimer } from '../ResetTimer';
-import { APITimer, TimerFrequency, TimeStatus, TimerType } from '../../types';
+import { APITimer, TimerFrequency, TimerType } from '../../types';
 
 test('ResetTimer', () => {
   const timer: APITimer = {
-    type: TimerType.Challenges,
-    name: 'Daily Challenges',
+    type: TimerType.Reset,
+    title: 'Daily Challenges',
+    subtitle: 'They reset in',
     frequency: TimerFrequency.Daily,
-    status: TimeStatus.Reset,
-    time: 1678078800
+    data: [
+      {
+        color: 'yellow',
+        description: 'Daily Reset:',
+        time: 1678078800
+      }
+    ]
   };
 
   const createComponent = (currentTimestamp: number, timer: APITimer) => (
@@ -19,8 +25,9 @@ test('ResetTimer', () => {
   const { container: containerDaily } = render(createComponent(1678078801, timer));
   expect(containerDaily.childNodes).toMatchSnapshot();
 
-  timer.name = 'Weekly Challenges';
+  timer.title = 'Weekly Challenges';
   timer.frequency = TimerFrequency.Weekly;
+  timer.data[0].description = 'Weekly Reset:';
 
   const { container: containerWeekly } = render(createComponent(1678078801, timer));
   expect(containerWeekly.childNodes).toMatchSnapshot();

@@ -1,28 +1,37 @@
 import * as React from 'react';
 import { render } from '@testing-library/react';
 import { StatusTimer } from '../StatusTimer';
-import { APITimer, TimerFrequency, TimeStatus, TimerType } from '../../types';
+import { APITimer, TimerFrequency, TimerType } from '../../types';
 
 test('StatusTimer', () => {
-  const times: APITimer[] = [
-    {
-      type: TimerType.Map,
-      name: 'Building 21',
-      frequency: TimerFrequency.Weekly,
-      status: TimeStatus.Opening,
-      time: 1678471200
-    },
-    {
-      type: TimerType.Map,
-      name: 'Building 21',
-      frequency: TimerFrequency.Weekly,
-      status: TimeStatus.Closing,
-      time: 1678125600
-    }
-  ];
+  const timer: APITimer = {
+    type: TimerType.Status,
+    title: 'Building 21',
+    frequency: TimerFrequency.Weekly,
+    data: [
+      {
+        color: 'green',
+        time: 1678471200,
+        description: 'Weekly Opening:',
+        textOverride: {
+          title: 'Building 21 is closed',
+          subtitle: 'It opens in'
+        }
+      },
+      {
+        color: 'orange',
+        time: 1678125600,
+        description: 'Weekly Closing:',
+        textOverride: {
+          title: 'Building 21 is open',
+          subtitle: 'It closes in'
+        }
+      }
+    ]
+  };
 
   const createComponent = (currentTimestamp: number) => (
-    <StatusTimer currentTimestamp={currentTimestamp} times={times} />
+    <StatusTimer currentTimestamp={currentTimestamp} timer={timer} />
   );
 
   const { container: containerOpen } = render(createComponent(1678471201));

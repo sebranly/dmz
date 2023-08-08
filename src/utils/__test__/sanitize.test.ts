@@ -502,8 +502,7 @@ test('sanitizeAPITimers', () => {
     ])
   ).toStrictEqual([
     {
-      // TODO: fix by applying `TimerType.Reset`
-      type: 'reset',
+      type: TimerType.Reset,
       title: 'Daily Challenges',
       subtitle: 'They reset in',
       frequency: TimerFrequency.Daily,
@@ -516,8 +515,7 @@ test('sanitizeAPITimers', () => {
       ]
     },
     {
-      // TODO: fix by applying `TimerType.Reset`
-      type: 'status',
+      type: TimerType.Status,
       title: 'Building 21',
       frequency: TimerFrequency.Weekly,
       data: [
@@ -542,8 +540,7 @@ test('sanitizeAPITimers', () => {
       ]
     },
     {
-      // TODO: fix by applying `TimerType.Event`
-      type: 'event',
+      type: TimerType.Event,
       title: 'Season 03 Reloaded',
       showPostEvent: true,
       subtitle: 'It launches in',

@@ -1,15 +1,22 @@
 import * as React from 'react';
 import { render } from '@testing-library/react';
 import { EventTimer } from '../EventTimer';
-import { APITimer, TimerFrequency, TimeStatus, TimerType } from '../../types';
+import { APITimer, TimerType } from '../../types';
 
 test('EventTimer', () => {
   const timer: APITimer = {
-    type: TimerType.Season,
-    name: 'Season 03',
-    frequency: TimerFrequency.None,
-    status: TimeStatus.Launch,
-    time: 1678125600
+    type: TimerType.Event,
+    title: 'Season 03',
+    showPostEvent: true,
+    subtitle: 'It launches in',
+    subtitlePostEvent: 'It launched already',
+    data: [
+      {
+        color: 'red',
+        description: 'Release Date:',
+        time: 1678125600
+      }
+    ]
   };
 
   const createComponent = (currentTimestamp: number) => (

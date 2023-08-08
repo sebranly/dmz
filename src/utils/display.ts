@@ -1,5 +1,5 @@
 import { isNullTimeValue } from '.';
-import { Color, TimeStatus, TimeUnit, TimeValue } from '../types';
+import { Color, TimeUnit, TimeValue } from '../types';
 
 /**
  * @name displaySeason
@@ -95,50 +95,6 @@ const getPlayerColor = (playerIndex: number) => {
 };
 
 /**
- * @name getStatusColor
- * @description Returns the current color based on next status
- */
-const getStatusColor = (nextStatus: TimeStatus) => {
-  switch (nextStatus) {
-    case TimeStatus.Closing:
-      return Color.Green;
-    case TimeStatus.Launch:
-      return Color.Red;
-    case TimeStatus.Opening:
-    default:
-      return Color.Orange;
-    case TimeStatus.Reset:
-      return Color.Yellow;
-  }
-};
-
-/**
- * @name getStatusAdjective
- * @description Returns the adjective for current status based on next status
- */
-const getStatusAdjective = (nextStatus: TimeStatus) => {
-  return nextStatus === TimeStatus.Closing ? 'open' : 'closed';
-};
-
-/**
- * @name getStatusVerb
- * @description Returns the verb for next status based on next status
- */
-const getStatusVerb = (nextStatus: TimeStatus) => {
-  switch (nextStatus) {
-    case TimeStatus.Closing:
-      return 'close';
-    case TimeStatus.Launch:
-      return 'launch';
-    case TimeStatus.Opening:
-    default:
-      return 'open';
-    case TimeStatus.Reset:
-      return 'reset';
-  }
-};
-
-/**
  * @name getPlayersSize
  * @description Returns a word describing the size of the squad
  */
@@ -187,18 +143,6 @@ const pluralize = (str: string, nb: number) => {
   return `${str}s`;
 };
 
-/**
- * @name titleize
- * @description Returns the same string but starting with a capital letter
- */
-const titleize = (str: string) => {
-  if (!str) return '';
-
-  const capitalLetter = str.charAt(0).toUpperCase();
-
-  return `${capitalLetter}${str.substring(1)}`;
-};
-
 export {
   displaySeason,
   displayTimeValue,
@@ -206,10 +150,6 @@ export {
   formatMoney,
   getPlayerColor,
   getPlayersSize,
-  getStatusAdjective,
-  getStatusColor,
-  getStatusVerb,
   getTimeUnitAbbreviation,
-  pluralize,
-  titleize
+  pluralize
 };

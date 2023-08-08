@@ -3,15 +3,8 @@ import * as React from 'react';
 import { APITimer, TimerFrequency, TimeUnit } from '../types';
 import { getDailyTime, getNextTime, getWeeklyTime } from '../utils';
 import { convertSecondsToTimeValue } from '../utils/convert';
-import {
-  displayWithTwoDigits,
-  getStatusColor,
-  getStatusVerb,
-  getTimeUnitAbbreviation,
-  pluralize,
-  titleize
-} from '../utils/display';
-import { getTimerClasses } from '../utils/tailwind';
+import { displayWithTwoDigits, getTimeUnitAbbreviation, pluralize } from '../utils/display';
+import { getSafeColor, getTimerClasses } from '../utils/tailwind';
 
 export interface ResetTimerProps {
   className?: string;
@@ -21,14 +14,18 @@ export interface ResetTimerProps {
 
 const ResetTimer: React.FC<ResetTimerProps> = (props) => {
   const { className, currentTimestamp, timer } = props;
-  const { name, time, status, frequency } = timer;
+  const { subtitle, title, frequency, data } = timer;
+
+  if (!data || data.length !== 1) return null;
+
+  const { time, color: colorUnsafe, description } = data[0];
+  const color = getSafeColor(colorUnsafe);
 
   const nextTime = getNextTime(currentTimestamp, time, frequency);
   const remainingSeconds = nextTime - currentTimestamp;
 
-  const isDaily = frequency === TimerFrequency.Daily;
-  const subtitle = `They ${getStatusVerb(status)} in`;
-  const color = getStatusColor(status);
+  const isWeekly = frequency === TimerFrequency.Weekly;
+  const isDaily = !isWeekly;
 
   const classnamesColor = `text-${color}-500`;
   const classnamesSubtitle = 'font-bold my-1 text-lg';
@@ -84,15 +81,17 @@ const ResetTimer: React.FC<ResetTimerProps> = (props) => {
 
   return (
     <div className={classnamesComponent}>
-      <div className={classnamesTitle}>{name}</div>
+      <div className={classnamesTitle}>{title}</div>
       {subtitle && <div className={classnamesSubtitle}>{subtitle}</div>}
       <ul className="timer-card flex justify-center">{items}</ul>
-      <div className="text-sm">
-        <div className="flex text-left pl-2.5">
-          <div className="grow">{`${titleize(frequency)} ${titleize(status)}:`}</div>
-          <div className={classnamesTime}>{resetTimeString}</div>
+      {description && (
+        <div className="text-sm">
+          <div className="flex text-left pl-2.5">
+            <div className="grow">{description}</div>
+            <div className={classnamesTime}>{resetTimeString}</div>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

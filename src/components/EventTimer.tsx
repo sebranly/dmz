@@ -3,8 +3,8 @@ import * as React from 'react';
 import { APITimer, TimeUnit } from '../types';
 import { getDateTime } from '../utils';
 import { convertSecondsToTimeValue } from '../utils/convert';
-import { displayWithTwoDigits, getStatusColor, getStatusVerb, getTimeUnitAbbreviation } from '../utils/display';
-import { getTimerClasses } from '../utils/tailwind';
+import { displayWithTwoDigits, getTimeUnitAbbreviation } from '../utils/display';
+import { getSafeColor, getTimerClasses } from '../utils/tailwind';
 
 export interface EventTimerProps {
   className?: string;
@@ -14,14 +14,19 @@ export interface EventTimerProps {
 
 const EventTimer: React.FC<EventTimerProps> = (props) => {
   const { className, currentTimestamp, timer } = props;
-  const { name, time, status } = timer;
+  const { title, subtitlePostEvent, subtitle: subtitleNotDone, data, showPostEvent } = timer;
+
+  if (!data || data.length !== 1) return null;
+
+  const { time, color: colorUnsafe, description } = data[0];
+  const color = getSafeColor(colorUnsafe);
 
   const remainingSeconds = time - currentTimestamp;
-  const isPast = remainingSeconds <= 0;
-  const statusVerb = getStatusVerb(status);
+  const isPostEvent = remainingSeconds <= 0;
 
-  const subtitle = isPast ? `It ${statusVerb}ed already` : `It ${statusVerb}es in`;
-  const color = getStatusColor(status);
+  if (isPostEvent && !showPostEvent) return null;
+
+  const subtitle = isPostEvent ? subtitlePostEvent : subtitleNotDone;
 
   const classnamesColor = `text-${color}-500`;
   const classnamesSubtitle = 'font-bold my-1 text-lg';
@@ -67,15 +72,13 @@ const EventTimer: React.FC<EventTimerProps> = (props) => {
 
   return (
     <div className={classnamesComponent}>
-      <div className={classnamesTitle}>{name}</div>
+      <div className={classnamesTitle}>{title}</div>
       {subtitle && <div className={classnamesSubtitle}>{subtitle}</div>}
       <ul className="timer-card flex justify-center">{items}</ul>
-      {isPast ? (
-        <div className="text-xs sm:text-sm">The website will be updated in the next few days</div>
-      ) : (
+      {description && (
         <div className="text-xs sm:text-sm">
           <div className="flex text-left pl-2.5">
-            <div className="grow">Release Date:</div> <div className={classnamesTime}>{getDateTime(time)}</div>
+            <div className="grow">{description}</div> <div className={classnamesTime}>{getDateTime(time)}</div>
           </div>
         </div>
       )}
