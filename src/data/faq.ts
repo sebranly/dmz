@@ -127,7 +127,7 @@ const questionsAnswers: QuestionAnswer[] = [
       `The glitch about heartbeat sensors awarding lots of time reduction has been patched (unfortunately).`,
       'A new map called Vondel is available since Season 04.',
       'In Season 04, lots of new features have been introduced including the wallet between different games, and upgrades for reducing the Insured Weapon cooldown times.',
-      `In <span class='text-amber-500'>Season 04 Reloaded</span>, there have not been changes that impact timers from this website.`,
+      `In both Season 04 Reloaded and <span class='text-amber-500'>Season 05</span>, there have not been changes that impact timers from this website.`,
       '<b>Note: the dollars-per-hour rates have never changed since Season 01 (for both exfiltration and dead drops).</b>'
     ]
   },
