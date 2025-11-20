@@ -1,4 +1,4 @@
-import { APITimer, TimerFrequency, Timer, TimeUnit, TimeValue } from '../types';
+import { APITimer, APITimerData, TimerFrequency, Timer, TimeUnit, TimeValue } from '../types';
 
 const commonDateOptions: Intl.DateTimeFormatOptions = {
   hour: '2-digit',
@@ -148,8 +148,9 @@ const getUTCDayOffset = (timestamp: number) => {
 /**
  * @name getNextTime
  * @description Returns the next timestamp, in seconds, that corresponds to a cycle tick based on a frequency
+ * If no frequency is provided, daily is assumed by default
  */
-const getNextTime = (currentTimestamp: number, resetTimestamp: number, frequency: TimerFrequency) => {
+const getNextTime = (currentTimestamp: number, resetTimestamp: number, frequency?: TimerFrequency) => {
   const isWeekly = frequency === TimerFrequency.Weekly;
   const dayOffset = getUTCDayOffset(resetTimestamp);
   const dailyOffset = resetTimestamp % 86_400;
@@ -165,26 +166,29 @@ const getNextTime = (currentTimestamp: number, resetTimestamp: number, frequency
 };
 
 /**
- * @name getNextTimeStatus
- * @description For an element that can have several statuses, it returns the closest next status
+ * // TODO: have tests for more than two statuses
+ * @name getNextStatusTimerData
+ * @description For an element that can have several statuses, it returns the closest one
  */
-const getNextStatus = (currentTimestamp: number, times: APITimer[]) => {
-  if (times.length === 0) return -1;
-  if (times.length === 1) return times[0].status;
+const getNextStatusTimerData = (currentTimestamp: number, timer: APITimer) => {
+  const { data } = timer;
+  if (data.length <= 1) return data[0];
 
-  let closestStatus;
+  const { frequency } = timer;
+
+  let closestStatusTimeIndex = 0;
   let minValue = Number.MAX_SAFE_INTEGER;
 
-  times.forEach((timeBis: APITimer) => {
-    const { frequency, status, time } = timeBis;
+  data.forEach((dataElement: APITimerData, index: number) => {
+    const { time } = dataElement;
     const nextTime = getNextTime(currentTimestamp, time, frequency);
     if (nextTime < minValue) {
       minValue = nextTime;
-      closestStatus = status;
+      closestStatusTimeIndex = index;
     }
   });
 
-  return closestStatus;
+  return data[closestStatusTimeIndex];
 };
 
 export {
@@ -197,7 +201,7 @@ export {
   getDateTime,
   getEndTime,
   getNextTime,
-  getNextStatus,
+  getNextStatusTimerData,
   getUTCDayOffset,
   getWeeklyTime,
   isNullTimeValue,

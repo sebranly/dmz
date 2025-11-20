@@ -49,27 +49,34 @@ export enum Sort {
 // TODO: LATER: have Monthly etc.?
 export enum TimerFrequency {
   Daily = 'daily',
-  None = 'none',
   Weekly = 'weekly'
 }
 
 export enum TimerType {
-  Challenges = 'challenges',
-  Map = 'map',
-  Season = 'season'
+  Event = 'event',
+  Reset = 'reset',
+  Status = 'status'
 }
 
-export enum TimeStatus {
-  Closing = 'closing',
-  Launch = 'launch',
-  Opening = 'opening',
-  Reset = 'reset'
-}
+export type APITimerDataTextOverride = {
+  title?: string;
+  subtitle?: string;
+};
 
-export type APITimer = {
-  frequency: TimerFrequency;
-  name: string;
-  status: TimeStatus;
+export type APITimerData = {
+  color?: string;
+  description?: string;
   time: number;
+  textOverride?: APITimerDataTextOverride;
+};
+
+// TODO: LATER: have showPreEvent and subtitlePreEvent
+export type APITimer = {
+  frequency?: TimerFrequency;
+  title: string;
+  showPostEvent?: boolean;
+  subtitle?: string;
+  subtitlePostEvent?: string;
+  data: APITimerData[];
   type: TimerType;
 };

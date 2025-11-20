@@ -1,4 +1,4 @@
-import { APITimer, TimerFrequency, TimeStatus, TimerType, TimeUnit } from '../../types';
+import { APITimer, APITimerData, TimerFrequency, TimerType, TimeUnit } from '../../types';
 import {
   areValidAssertions,
   applyPercentOff,
@@ -8,7 +8,7 @@ import {
   getDailyTime,
   getDateTime,
   getEndTime,
-  getNextStatus,
+  getNextStatusTimerData,
   getNextTime,
   getUTCDayOffset,
   getWeeklyTime,
@@ -85,7 +85,7 @@ test('getUTCDayOffset', () => {
 });
 
 test('getNextTime', () => {
-  expect(getNextTime(0, 0, TimerFrequency.None)).toBe(86_400);
+  expect(getNextTime(0, 0)).toBe(86_400);
 
   expect(getNextTime(0, 0, TimerFrequency.Daily)).toBe(86_400);
   expect(getNextTime(86_399, 0, TimerFrequency.Daily)).toBe(86_400);
@@ -118,36 +118,41 @@ test('getNextTime', () => {
   expect(getNextTime(2678032694, 1678125600, TimerFrequency.Weekly)).toBe(2678464800);
 });
 
-test('getNextStatus', () => {
-  const times: APITimer[] = [
-    {
-      type: TimerType.Map,
-      name: 'Building 21',
-      frequency: TimerFrequency.Weekly,
-      status: TimeStatus.Opening,
-      time: 1678471200
-    },
-    {
-      type: TimerType.Map,
-      name: 'Building 21',
-      frequency: TimerFrequency.Weekly,
-      status: TimeStatus.Closing,
-      time: 1678125600
-    }
-  ];
+test('getNextStatusTimerData', () => {
+  const timeOpening: APITimerData = { time: 1678471200 };
+  const timeClosing: APITimerData = { time: 1678125600 };
 
-  expect(getNextStatus(0, [])).toBe(-1);
-  expect(getNextStatus(0, [times[0]])).toBe(TimeStatus.Opening);
-  expect(getNextStatus(0, [times[1]])).toBe(TimeStatus.Closing);
-  expect(getNextStatus(0, times)).toBe(TimeStatus.Opening);
+  const timerOpeningOnly: APITimer = {
+    type: TimerType.Status,
+    title: 'Building 21',
+    frequency: TimerFrequency.Weekly,
+    data: [timeOpening]
+  };
 
-  expect(getNextStatus(1678471199, times)).toBe(TimeStatus.Opening);
-  expect(getNextStatus(1678471200, times)).toBe(TimeStatus.Closing);
-  expect(getNextStatus(1678471201, times)).toBe(TimeStatus.Closing);
+  const timerClosingOnly: APITimer = {
+    type: TimerType.Status,
+    title: 'Building 21',
+    frequency: TimerFrequency.Weekly,
+    data: [timeClosing]
+  };
 
-  expect(getNextStatus(1678125599, times)).toBe(TimeStatus.Closing);
-  expect(getNextStatus(1678125600, times)).toBe(TimeStatus.Opening);
-  expect(getNextStatus(1678125601, times)).toBe(TimeStatus.Opening);
+  const timer: APITimer = {
+    type: TimerType.Status,
+    title: 'Building 21',
+    frequency: TimerFrequency.Weekly,
+    data: [timeOpening, timeClosing]
+  };
+  expect(getNextStatusTimerData(0, timerOpeningOnly)).toStrictEqual(timeOpening);
+  expect(getNextStatusTimerData(0, timerClosingOnly)).toStrictEqual(timeClosing);
+  expect(getNextStatusTimerData(0, timer)).toStrictEqual(timeOpening);
+
+  expect(getNextStatusTimerData(1678471199, timer)).toStrictEqual(timeOpening);
+  expect(getNextStatusTimerData(1678471200, timer)).toStrictEqual(timeClosing);
+  expect(getNextStatusTimerData(1678471201, timer)).toStrictEqual(timeClosing);
+
+  expect(getNextStatusTimerData(1678125599, timer)).toStrictEqual(timeClosing);
+  expect(getNextStatusTimerData(1678125600, timer)).toStrictEqual(timeOpening);
+  expect(getNextStatusTimerData(1678125601, timer)).toStrictEqual(timeOpening);
 });
 
 test('getDailyTime', () => {
