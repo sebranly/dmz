@@ -28,6 +28,10 @@ Live at https://sebranly.github.io/dmz/
 - Then run `npm run deploy`
 - Finally create a new release for this version on [GitHub Releases page](https://github.com/sebranly/dmz/releases) by adding the changelog
 
+### Diagram
+
+![Visualization of the codebase](./diagram.svg)
+
 ### Credits
 
 The sharing image comes from: https://commons.wikimedia.org/wiki/File:Calculator_icon.svg
