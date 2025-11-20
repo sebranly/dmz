@@ -17,7 +17,8 @@ const OtherTimers: React.FC<OtherTimersProps> = (props) => {
   const onMount = () => {
     const fetchAPITimers = async () => {
       try {
-        const response = await fetch(URL_DATA);
+        const ms = Date.now();
+        const response = await fetch(`${URL_DATA}?ms=${ms}`);
         const data = await response.json();
         const safeTimes = (data.times || []) as APITimer[];
 

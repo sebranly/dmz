@@ -194,6 +194,45 @@ test('sanitizeAPITimers', () => {
   expect(
     sanitizeAPITimers([
       {
+        type: 'status',
+        title: 'Building 21',
+        frequency: TimerFrequency.Weekly,
+        data: [
+          {
+            color: 'green',
+            time: 1678467600,
+            description: 'Weekly Opening:',
+            textOverride: {
+              title: 'Building 21 is closed',
+              subtitle: 'It opens in'
+            }
+          },
+          {
+            color: 'orange',
+            time: 1678122000,
+            description: 'Weekly Closing:',
+            textOverride: {
+              title: 'Building 21 is open',
+              subtitle: 'It closes in'
+            }
+          },
+          {
+            color: 'red',
+            time: 1678122010,
+            description: 'Weekly Something:',
+            textOverride: {
+              title: 'Building 21 is something',
+              subtitle: 'It does something in'
+            }
+          }
+        ]
+      }
+    ])
+  ).toStrictEqual([]);
+
+  expect(
+    sanitizeAPITimers([
+      {
         type: 'reset',
         title: 'Daily Challenges',
         subtitle: 'They reset in',

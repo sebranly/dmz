@@ -13,7 +13,7 @@ const isValidOptionalStringEnum = (field: any, enumValues: string[]) => {
  * @description Returns whether an optional field expected to be of a specific type is valid
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const isValidOptionalType = (field: any, type: string) => {
+const isValidOptionalType = (field: any, type: 'boolean' | 'string') => {
   return [type, 'undefined'].includes(typeof field);
 };
 

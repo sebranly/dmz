@@ -6,9 +6,8 @@ import { Color } from '../types';
  * @description Returns a color supported by our Tailwind setup
  */
 const getSafeColor = (color?: string) => {
-  const isSafe = [Color.Blue, Color.Gray, Color.Green, Color.Orange, Color.Pink, Color.Red, Color.Yellow].includes(
-    color as Color
-  );
+  const safeColors = Object.values(Color);
+  const isSafe = safeColors.includes(color as Color);
 
   return isSafe ? (color as Color) : Color.Red;
 };
